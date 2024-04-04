@@ -1,21 +1,6 @@
 <?php
-// ini_set('display_errors', '1');
-// ini_set('display_startup_errors', '1');
-// error_reporting(E_ALL);
-// Устанавливаем время жизни сессии в 3 часа (в секундах)
-$session_lifetime = 3 * 60 * 60;
-ini_set('session.gc_maxlifetime', $session_lifetime);
-
 // Запускаем сессию
 session_start();
-
-// Обновляем время жизни сессии
-if (isset($_SESSION['last_activity']) && time() - $_SESSION['last_activity'] > $session_lifetime) {
-    // Если прошло более $session_lifetime секунд с момента последней активности, уничтожаем сессию
-    session_unset();
-    session_destroy();
-    session_start(); // Начинаем новую сессию
-} 
 
 $_SESSION['last_activity'] = time(); // Обновляем время последней активности
     //подключение к БД
@@ -45,7 +30,7 @@ $_SESSION['last_activity'] = time(); // Обновляем время после
 
     $password=md5($password);//хеш пассворда
 
-    $check_user=mysqli_query($db, "SELECT * FROM `teams` WHERE `login`='$login' AND `password`='$password'");
+    $check_user=mysqli_query($db, "SELECT * FROM `users` WHERE `login`='$login' AND `password`='$password'");
 
     if(mysqli_num_rows($check_user)>0){
         $user=mysqli_fetch_assoc($check_user);
