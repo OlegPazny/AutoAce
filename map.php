@@ -1,3 +1,6 @@
+<?php
+    require_once "assets/api/get_services_script.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,28 +18,36 @@
 <style>
     #map{
         position: absolute;
-        top:0;
+        top:100px;
         bottom:0;
         left:0;
         right:0
     }
 </style>
 <body>
+    <form id="filterForm">
+        <?php
+            foreach($services as $service){
+                echo("<input type='checkbox' name='services' value='".$service[0]."'>".$service[1]."</input>");
+            }
+        ?>
+        <button type="submit">Применить фильтр</button>
+    </form>
     <div id="map"></div>
     <script>
-        var map=L.map('map').setView([1, 1], 1);
+        var map=L.map('map').setView([53.902292, 27.561821], 12.3);
 
-        L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=zu81qp5yGvbAgHoNquf3', {
-            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
-        }).addTo(map);
+        L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=zu81qp5yGvbAgHoNquf3').addTo(map);
         //добавление маркеров на карту
         $(function() {
             $.getJSON('assets/api/get_coords_script.php', function(data) {
                 $(data).each(function(key, value) {
                     var marker = L.marker([value['latitude'], value['longitude']]).addTo(map);
+                    marker.bindPopup(value['name']);
                 });
             });
         });
     </script>
 </body>
+<script src="assets/js/workshops_filter.js"></script>
 </html>
