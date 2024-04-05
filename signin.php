@@ -16,8 +16,8 @@
             placeholder="Логин...">
         <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль...">
         <input type="submit" class=" login-btn btn btn-info btn-link btn-wd btn-lg" value="Войти" />
-        <script src="assets/js/auth.js"></script>
+        <a href="signup.php">Регистрация</a>
     </form>
 </body>
-
+<script src="assets/js/auth.js"></script>
 </html>
