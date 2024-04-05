@@ -9,13 +9,13 @@ $_SESSION['last_activity'] = time(); // Обновляем время после
     $login=$_POST['login'];
     $password=$_POST['password'];
 
-    if($login===''||preg_match("/^[A-Za-z]+$/",$login)==0){
-        $error_fields[]='login';
-    }
+    // if($login===''||preg_match("/^[A-Za-z]+$/",$login)==0){
+    //     $error_fields[]='login';
+    // }
 
-    if($password===''){
-        $error_fields[]='password';
-    }
+    // if($password===''){
+    //     $error_fields[]='password';
+    // }
 
     if(!empty($error_fields)){
         $response=[
@@ -38,6 +38,7 @@ $_SESSION['last_activity'] = time(); // Обновляем время после
             $_SESSION['user']=[
                 "id"=>$user['id'],
                 "UserName"=>$user['login'],
+                "role"=>$user['role'],
             ];
 
             $response=[//ответ авторизации

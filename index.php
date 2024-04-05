@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+    require_once "assets/api/isAdmin.php";
+
     if(!isset($_SESSION['user'])){
         header('Location: signin.php');
     }
@@ -18,5 +20,15 @@
     <form action="assets/api/logout.php">
         <input type="submit" value="Выйти">
     </form>
+
+    <?php 
+        if($isAdmin==true){
+            echo("админ");
+        }else if($isClient==true){
+            echo("клиент");
+        }else if($isWorker==true){
+            echo("работник");
+        }
+    ?>
 </body>
 </html>
