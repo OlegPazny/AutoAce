@@ -10,7 +10,7 @@ $(function() {
     function addMarkers(data) {
         $(data).each(function(key, value) {
             var marker = L.marker([value['latitude'], value['longitude']]).addTo(map);
-            marker.bindPopup(value['name']);
+            marker.bindPopup("<a href='workshop.php?id="+value['id']+"' target='_blank'>"+value['name']+"</a>");
         });
     }
 
