@@ -2,6 +2,7 @@
     session_start();
     
     require_once "db_connect.php";
+    require_once "mail_client_connect.php";
     
     $login=$_POST['login'];
     $name=$_POST['name'];
@@ -61,7 +62,11 @@
     if($password===$password_confirm){
         $password=md5($password);
 
-        mysqli_query($db, "INSERT INTO `USERS` (`id`, `login`, `name`, `email`, `password`, `role`) VALUES (NULL, '$login', '$name', '$email', '$password', 'client')");
+        mysqli_query($db, "INSERT INTO `USERS` (`id`, `login`, `name`, `email`, `password`, `role`, `isVerified`) VALUES (NULL, '$login', '$name', '$email', '$password', 'client', 0)");
+
+        $hash=md5($login.$name.$email);
+        $body="<h1>Пожалуйста, перейдите по <a href='autoace/verify.php?hash=$hash' target='_blank'>ссылке</a>, если вы хотите подтвердить регистрацию!</h1>";
+        var_dump(send_mail($settings['mail_settings'], [$email], 'Подтвердите регистрацию!', $body));
 
         $response=[
             "status"=>true,
