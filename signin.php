@@ -24,6 +24,7 @@
         <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль...">
         <input type="submit" class=" login-btn btn btn-info btn-link btn-wd btn-lg" value="Войти" />
         <a href="signup.php">Регистрация</a>
+        <a href="send_reset_message.php">Забыли пароль?</a>
     </form>
     <div class="message none">Ошибка авторизации</div>
 </body>

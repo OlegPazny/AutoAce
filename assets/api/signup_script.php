@@ -23,6 +23,19 @@
         echo json_encode($response);
         die();
     }
+    //проверка на существование почты
+    $check_email=mysqli_query($db, "SELECT * FROM `users` WHERE `email`='$email'");
+
+    if(mysqli_num_rows($check_email)>0){
+        $response=[
+            "status"=>false,
+            "type"=>1,
+            "message"=>"Пользователь с такой почтой уже зарегистрирован",
+            "fields"=>['email']
+        ];
+        echo json_encode($response);
+        die();
+    }
     //валидация
     $error_fields=[];
 

@@ -8,7 +8,14 @@
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <title>регистрация</title>
 </head>
-
+<style>
+    .message{
+        color:red;
+    }
+    .none{
+        display:none;
+    }
+</style>
 <body>
     <h1>регистрация</h1>
     <form>
