@@ -8,7 +8,14 @@
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <title>авторизация</title>
 </head>
-
+<style>
+    .message{
+        color:red;
+    }
+    .none{
+        display: none;
+    }
+</style>
 <body>
     <h1>авторизация</h1>
     <form class="form">
@@ -18,6 +25,7 @@
         <input type="submit" class=" login-btn btn btn-info btn-link btn-wd btn-lg" value="Войти" />
         <a href="signup.php">Регистрация</a>
     </form>
+    <div class="message none">Ошибка авторизации</div>
 </body>
 <script src="assets/js/auth.js"></script>
 </html>
