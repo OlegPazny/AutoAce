@@ -1,5 +1,5 @@
 <?php
-    require_once "assets/api/get_hash_script.php";
+    require_once "../assets/api/get_hash_script.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,5 +27,5 @@
     </form>
     <p class="message none">error</p>
 </body>
-<script src="assets/js/reset_pass.js"></script>
+<script src="../assets/js/reset_pass.js"></script>
 </html>

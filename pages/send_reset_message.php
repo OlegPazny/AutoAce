@@ -22,5 +22,5 @@
     </form>
     <p class="message none">error</p>
 </body>
-<script src="assets/js/send_reset_message.js"></script>
+<script src="../assets/js/send_reset_message.js"></script>
 </html>

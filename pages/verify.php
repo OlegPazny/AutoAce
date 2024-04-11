@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require_once "assets/api/verification_script.php";
+    require_once "../assets/api/verification_script.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -26,7 +26,7 @@ $(function() {
         if (selectedServices.length === 0) {
             // Если услуги не выбраны, отправляем запрос без параметров
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'assets/api/get_all_workshops.php', true);
+            xhr.open('GET', '../assets/api/get_all_workshops.php', true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
@@ -42,7 +42,7 @@ $(function() {
         } else {
             // Если услуги выбраны, отправляем запрос с выбранными услугами
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'assets/api/filter_script.php', true);
+            xhr.open('POST', '../assets/api/filter_script.php', true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {

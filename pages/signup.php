@@ -33,6 +33,6 @@
         <p class="message none">error</p>
     </form>
 </body>
-<script src="assets/js/signup.js"></script>
+<script src="../assets/js/signup.js"></script>
 
 </html>

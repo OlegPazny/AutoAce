@@ -10,7 +10,7 @@ $('.send-btn').click(function(e){
     formData.append('email', email);
 
     $.ajax({
-        url:'assets/api/send_reset_message_script.php',
+        url:'../assets/api/send_reset_message_script.php',
         type:'POST',
         dataType:'json',
         data:formData,

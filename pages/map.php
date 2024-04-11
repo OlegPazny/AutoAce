@@ -1,5 +1,5 @@
 <?php
-    require_once "assets/api/get_services_script.php";
+    require_once "../assets/api/get_services_script.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,5 +49,5 @@
         });
     </script>
 </body>
-<script src="assets/js/workshops_filter.js"></script>
+<script src="../assets/js/workshops_filter.js"></script>
 </html>

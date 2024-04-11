@@ -18,7 +18,7 @@ $('.register-btn').click(function(e){
     formData.append('password_confirm', password_confirm);
 
     $.ajax({
-        url:'assets/api/signup_script.php',
+        url:'../assets/api/signup_script.php',
         type:'POST',
         dataType:'json',
         data:formData,

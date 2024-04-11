@@ -8,7 +8,7 @@ $('.login-btn').click(function(e){
     let password=$('input[name="password"]').val();
 
     $.ajax({
-        url:'assets/api/signin_script.php',
+        url:'../assets/api/signin_script.php',
         type:'POST',
         dataType:'json',
         data:{

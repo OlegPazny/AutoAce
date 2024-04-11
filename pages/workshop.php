@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once "assets/api/get_workshop_data_script.php";
+    require_once "../assets/api/get_workshop_data_script.php";
     
 ?>
 <!DOCTYPE html>
