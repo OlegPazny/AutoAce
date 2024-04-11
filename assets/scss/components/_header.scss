@@ -2,32 +2,32 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  background-color: #333; /* Пример цвета фона */
+  padding: 2.91rem 11.3rem;
+  background-color: transparent; /* Пример цвета фона */
   color: #fff; /* Пример цвета текста */
-}
-
-.logo {
-  /* Стили для логотипа */
-}
-
-.search {
-  a {
-    /* Стили для ссылки */
-    color: inherit; /* Наследование цвета текста от родителя */
-    text-decoration: none; /* Убрать подчеркивание ссылки */
+  border-bottom: 2px solid #fff;
+  &__logo{
+    font-size: 1.1rem;
+    text-transform: uppercase;
   }
-}
-
-.contact-info {
-  display: flex;
-  align-items: center;
-
-  .phone-number {
-    margin-right: 10px; /* Пример отступа между номером телефона и иконкой */
+  &__search{
+    text-transform: uppercase;
   }
-
-  .account-icon {
-    /* Стили для иконки аккаунта */
+  &__search a, &__logo a{
+    text-decoration: none;
+    color: inherit;
+  }
+  &__contact-info{
+    display: flex;
+    align-items: center;
+    .phone-number {
+        margin-right: 1.5rem;
+      }
+      .account-icon {
+        /* Стили для иконки аккаунта */
+      }
+  }
+  &__logo h1, &__search p, &__contact-info{
+    margin:0;
   }
 }

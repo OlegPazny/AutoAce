@@ -1,5 +1,8 @@
+@import "./components/_normalize.scss";
 @import "./components/_ui.scss";
+@import "./components/_swiper.scss";
 @import "./components/_header.scss";
+@import "./components/_index.scss";
 
 @font-face {
     font-family: 'Soyuz';
@@ -23,4 +26,9 @@
 
 body {
     font-family: 'Onest'; /* использование подключенного шрифта */
+    background-color: #474747;
+}
+
+html{
+    font-size:24px;
 }

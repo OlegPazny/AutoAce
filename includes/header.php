@@ -8,14 +8,18 @@
 <body>
     <header class="header">
     <div class="header__logo">
-        <h1>logo</h1>
+        <a href="../index.php">
+            <h1>logo</h1>
+        </a>
     </div>
     <div class="header__search">
-        <p><a href="#">Поиск автосервиса</a></p>
+        <p><a href="../pages/map.php">Поиск автосервиса</a></p>
     </div>
     <div class="header__contact-info">
-        <div class="phone-number">+7 (123) 456-7890</div>
-        <div class="account-icon">Иконка аккаунта</div>
+        <div class="phone-number">+375 (29) 865-79-68</div>
+        <div class="account-icon">
+            <img src="../assets/images/account_icon.png">
+        </div>
     </div>
     </header>
 </body>
