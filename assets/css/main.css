@@ -1,4 +1,34 @@
 @charset "UTF-8";
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #333; /* Пример цвета фона */
+  color: #fff; /* Пример цвета текста */
+}
+
+.logo {
+  /* Стили для логотипа */
+}
+
+.search a {
+  /* Стили для ссылки */
+  color: inherit; /* Наследование цвета текста от родителя */
+  text-decoration: none; /* Убрать подчеркивание ссылки */
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+}
+.contact-info .phone-number {
+  margin-right: 10px; /* Пример отступа между номером телефона и иконкой */
+}
+.contact-info .account-icon {
+  /* Стили для иконки аккаунта */
+}
+
 @font-face {
   font-family: "Soyuz";
   src: url("../fonts/Soyuz/Soyuz Grotesk Bold.otf") format("truetype");
