@@ -53,3 +53,51 @@ swiper-container {
   swiper-slide:nth-child(10n) {
     background-color: rgb(54, 94, 77);
   }
+
+  .swiper {
+    width: 100%;
+  }
+  .container {
+    border-radius: 20px;
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    background: #232323;
+    border: 1px solid #474747;
+    border-radius: 45px;
+    color:#fff;
+    padding:2.05rem 3.5rem;
+    width: fit-content !important;
+
+    &__head{
+      font-size:1.67rem;
+      margin:0;
+      margin-bottom: 2.95rem;
+    }
+    &__discount{
+      font-family:"Soyuz";
+      font-size:5rem;
+      margin:0;
+      margin-bottom: 2rem;
+    }
+    &__description{
+      font-size: 1.17rem;
+      margin:0;
+      margin-bottom: 1.75rem;
+    }
+  }
+  .swiper-pagination-bullet {
+    height: 7px;
+    width: 26px;
+    background: #474747;
+    border-radius: 25px;
+  }
+  .card:nth-child(even){
+    color:#232323;
+    background: #fff;
+    border: 1px solid #000000;
+  }

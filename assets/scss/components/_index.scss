@@ -1,3 +1,6 @@
+body{
+    background-color: #fff;
+}
 .prons-section{
     background-color: #fff;
     padding: 5rem 8.33rem;
@@ -39,6 +42,7 @@
     &__text{
         font-size:0.75rem;
         margin:0;
+        line-height: 170%;
     }
     &__img{
         height:4.45rem;
@@ -69,11 +73,13 @@
         font-family: "Soyuz";
         letter-spacing: 0.15rem;
         font-size:2.91rem;
+        line-height: 90%;
     }
     &__text{
         font-size: 0.75rem;
         text-align: justify;
         margin-bottom: 1.67rem;
+        line-height: 170%;
     }
 }
 
@@ -82,11 +88,33 @@
     position: relative;
 
     &__shadow{
-        position: absolute; /* Абсолютное позиционирование для тени */
-        bottom: -10px; /* Смещаем тень чуть ниже слайдера */
-        left: 0;
-        width: 65%;
-        height: auto;
-        pointer-events: none;
+        filter: blur(7.2em);
+        position: absolute;
+        top:-3.54rem;
+        right:-2rem;
+        height:29.2rem;
+        width:29.2rem;
+        background: radial-gradient(circle, rgb(255 255 255 / 50%) 0%, rgb(255 255 255 / 0%) 60%);
     }
+}
+
+.discount-offers-section{
+    background-color: #fff;
+    padding: 5rem 8.33rem;
+
+
+    &__head{
+        font-family: "Soyuz";
+        letter-spacing: 0.15rem;
+        font-size:2.91rem;
+        color:#646464;
+        line-height: 90%;
+    }
+}
+
+.discount-offers-section__slider__scetion {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }

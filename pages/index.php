@@ -9,6 +9,7 @@ require_once "../assets/api/isAdmin.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
     <title>главная</title>
 </head>
@@ -73,12 +74,89 @@ require_once "../assets/api/isAdmin.php";
                 <swiper-slide>Slide 8</swiper-slide>
                 <swiper-slide>Slide 9</swiper-slide>
             </swiper-container>
-            <img class="slider__shadow" src="../assets/images/card_shadow.png">
+            <div class="slider__shadow"></div>
         </div>
+    </section>
+    <section class="discount-offers-section">
+        <h2 class="discount-offers-section__head">Выгодные<br>предложения</h2>
+        <container class="discount-offers-section__slider">
+            <section class="discount-offers-section__slider__scetion">
+                <div class="swiper mySwiper container">
+                    <div class="swiper-wrapper content">
+                        <div class="swiper-slide card">
+                            <h5 class="card__head">скидка</h5>
+                            <h3 class="card__discount">25%</h3>
+                            <p class="card__description">Замена глушителя</p>
+                            <div class="slider-button">
+                                <input type="button" class="slider-button__content" value="Записаться">
+                            </div>
+                            <div class="slider__shadow"></div>
+                        </div>
+                        <div class="swiper-slide card">
+                            <h5 class="card__head">скидка</h5>
+                            <h3 class="card__discount">25%</h3>
+                            <p class="card__description">Замена глушителя</p>
+                            <div class="slider-button">
+                                <input type="button" class="slider-button__content" value="Записаться">
+                            </div>
+                            <div class="slider__shadow"></div>
+                        </div>
+                        <div class="swiper-slide card">
+                            <h5 class="card__head">скидка</h5>
+                            <h3 class="card__discount">25%</h3>
+                            <p class="card__description">Замена глушителя</p>
+                            <div class="slider-button">
+                                <input type="button" class="slider-button__content" value="Записаться">
+                            </div>
+                            <div class="slider__shadow"></div>
+                        </div>
+                        <div class="swiper-slide card">
+                            <h5 class="card__head">скидка</h5>
+                            <h3 class="card__discount">25%</h3>
+                            <p class="card__description">Замена глушителя</p>
+                            <div class="slider-button">
+                                <input type="button" class="slider-button__content" value="Записаться">
+                            </div>
+                            <div class="slider__shadow"></div>
+                        </div>
+                        <div class="swiper-slide card">
+                            <h5 class="card__head">скидка</h5>
+                            <h3 class="card__discount">25%</h3>
+                            <p class="card__description">Замена глушителя</p>
+                            <div class="slider-button">
+                                <input type="button" class="slider-button__content" value="Записаться">
+                            </div>
+                            <div class="slider__shadow"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </section>
+        </container>
     </section>
     <form action="assets/api/logout.php">
         <input type="submit" value="Выйти">
     </form>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper(".mySwiper", {
+  slidesPerView: 3,
+  spaceBetween: 30,
+  slidesPerGroup: 3,
+  loop: true,
+  grabCursor: true,
+  loopFillGroupWithBlank: true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
+</script>
+
 </html>

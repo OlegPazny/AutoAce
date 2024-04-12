@@ -328,6 +328,32 @@ template {
   font-weight: bold;
 }
 
+.slider-button {
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 45px;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0.83rem 2.3rem;
+}
+.slider-button__content {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.67rem;
+  color: #fff;
+  margin: 0;
+  font-weight: bold;
+}
+
+.swiper-slide:nth-child(even) .slider-button {
+  border: 1px solid #232323;
+}
+.swiper-slide:nth-child(even) .slider-button__content {
+  color: #232323;
+}
+
 swiper-container {
   width: 14rem;
   height: 18rem;
@@ -383,6 +409,57 @@ swiper-slide:nth-child(10n) {
   background-color: rgb(54, 94, 77);
 }
 
+.swiper {
+  width: 100%;
+}
+
+.container {
+  border-radius: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background: #232323;
+  border: 1px solid #474747;
+  border-radius: 45px;
+  color: #fff;
+  padding: 2.05rem 3.5rem;
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+}
+.card__head {
+  font-size: 1.67rem;
+  margin: 0;
+  margin-bottom: 2.95rem;
+}
+.card__discount {
+  font-family: "Soyuz";
+  font-size: 5rem;
+  margin: 0;
+  margin-bottom: 2rem;
+}
+.card__description {
+  font-size: 1.17rem;
+  margin: 0;
+  margin-bottom: 1.75rem;
+}
+
+.swiper-pagination-bullet {
+  height: 7px;
+  width: 26px;
+  background: #474747;
+  border-radius: 25px;
+}
+
+.card:nth-child(even) {
+  color: #232323;
+  background: #fff;
+  border: 1px solid #000000;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -415,6 +492,10 @@ swiper-slide:nth-child(10n) {
 }
 .header__logo h1, .header__search p, .header__contact-info {
   margin: 0;
+}
+
+body {
+  background-color: #fff;
 }
 
 .prons-section {
@@ -457,6 +538,7 @@ swiper-slide:nth-child(10n) {
 .pron__text {
   font-size: 0.75rem;
   margin: 0;
+  line-height: 170%;
 }
 .pron__img {
   height: 4.45rem;
@@ -484,11 +566,13 @@ swiper-slide:nth-child(10n) {
   font-family: "Soyuz";
   letter-spacing: 0.15rem;
   font-size: 2.91rem;
+  line-height: 90%;
 }
 .info__text {
   font-size: 0.75rem;
   text-align: justify;
   margin-bottom: 1.67rem;
+  line-height: 170%;
 }
 
 .slider {
@@ -496,12 +580,32 @@ swiper-slide:nth-child(10n) {
   position: relative;
 }
 .slider__shadow {
-  position: absolute; /* Абсолютное позиционирование для тени */
-  bottom: -10px; /* Смещаем тень чуть ниже слайдера */
-  left: 0;
-  width: 65%;
-  height: auto;
-  pointer-events: none;
+  filter: blur(7.2em);
+  position: absolute;
+  top: -3.54rem;
+  right: -2rem;
+  height: 29.2rem;
+  width: 29.2rem;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 60%);
+}
+
+.discount-offers-section {
+  background-color: #fff;
+  padding: 5rem 8.33rem;
+}
+.discount-offers-section__head {
+  font-family: "Soyuz";
+  letter-spacing: 0.15rem;
+  font-size: 2.91rem;
+  color: #646464;
+  line-height: 90%;
+}
+
+.discount-offers-section__slider__scetion {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 @font-face {
