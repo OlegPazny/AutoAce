@@ -41,3 +41,49 @@
         color: #232323;
     }
 }
+
+
+//элементы формы
+$label-font-size: 1.16rem;
+input[type="text"], input[type="email"], textarea{
+    background: none;
+    border:1px solid #fff;
+    resize:none;
+}
+input[type="text"], input[type="email"]{
+    margin-right: 1.67rem;
+}
+label{
+    font-size:$label-font-size;
+    color:#fff;
+    margin:0.625rem 0;
+}
+
+/* Стилизация самого чекбокса */
+.callback-form__checkbox {
+    appearance: none; /* Убираем стандартный вид */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px; /* Задаем желаемые размеры */
+    height: 20px;
+    border: 1px solid #fff; /* Тонкая белая граница */
+    background-color: transparent; /* Прозрачный фон */
+    outline: none; /* Убираем контур при фокусе */
+    cursor: pointer; /* Курсор при наведении */
+    border-radius: 3px; /* Закругленные углы */
+    transition: 0.5s ease-in-out;
+}
+
+/* Стилизация метки чекбокса */
+.callback-form__checkbox + label {
+    font-size: 1rem; /* Размер текста */
+    color: #fff; /* Цвет текста */
+    margin-left: 0.5rem; /* Отступ слева */
+}
+
+/* Стилизация чекбокса при его выборе */
+.callback-form__checkbox:checked {
+    transition: 0.5s ease-in-out;
+    background-color: #fff; /* Фон при выборе */
+    border-color: #fff; /* Граница при выборе */
+}

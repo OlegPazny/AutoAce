@@ -1,0 +1,25 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.91rem 11.3rem;
+    background-color: #fff; /* Пример цвета фона */
+    color: #000000; /* Пример цвета текста */
+    &__logo a h1{
+      text-transform: uppercase;
+      font-weight: normal;
+      font-size:1.083rem;
+    }
+    &__search{
+      text-transform: uppercase;
+      font-size:1.083rem;
+    }
+    &__search a, &__logo a{
+      text-decoration: none;
+      color: inherit;
+    }
+    &__logo h1, &__search p, &__contact-info{
+      margin:0;
+    }
+  }
+  

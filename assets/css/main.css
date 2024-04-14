@@ -354,6 +354,51 @@ template {
   color: #232323;
 }
 
+input[type=text], input[type=email], textarea {
+  background: none;
+  border: 1px solid #fff;
+  resize: none;
+}
+
+input[type=text], input[type=email] {
+  margin-right: 1.67rem;
+}
+
+label {
+  font-size: 1.16rem;
+  color: #fff;
+  margin: 0.625rem 0;
+}
+
+/* Стилизация самого чекбокса */
+.callback-form__checkbox {
+  appearance: none; /* Убираем стандартный вид */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px; /* Задаем желаемые размеры */
+  height: 20px;
+  border: 1px solid #fff; /* Тонкая белая граница */
+  background-color: transparent; /* Прозрачный фон */
+  outline: none; /* Убираем контур при фокусе */
+  cursor: pointer; /* Курсор при наведении */
+  border-radius: 3px; /* Закругленные углы */
+  transition: 0.5s ease-in-out;
+}
+
+/* Стилизация метки чекбокса */
+.callback-form__checkbox + label {
+  font-size: 1rem; /* Размер текста */
+  color: #fff; /* Цвет текста */
+  margin-left: 0.5rem; /* Отступ слева */
+}
+
+/* Стилизация чекбокса при его выборе */
+.callback-form__checkbox:checked {
+  transition: 0.5s ease-in-out;
+  background-color: #fff; /* Фон при выборе */
+  border-color: #fff; /* Граница при выборе */
+}
+
 swiper-container {
   width: 14rem;
   height: 18rem;
@@ -494,6 +539,31 @@ swiper-slide:nth-child(10n) {
   margin: 0;
 }
 
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.91rem 11.3rem;
+  background-color: #fff; /* Пример цвета фона */
+  color: #000000; /* Пример цвета текста */
+}
+.footer__logo a h1 {
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 1.083rem;
+}
+.footer__search {
+  text-transform: uppercase;
+  font-size: 1.083rem;
+}
+.footer__search a, .footer__logo a {
+  text-decoration: none;
+  color: inherit;
+}
+.footer__logo h1, .footer__search p, .footer__contact-info {
+  margin: 0;
+}
+
 body {
   background-color: #fff;
 }
@@ -606,6 +676,71 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
+}
+
+.callback-section {
+  padding: 5rem 8.33rem;
+  background-color: #232323;
+}
+.callback-section__head {
+  font-family: "Soyuz";
+  letter-spacing: 0.15rem;
+  font-size: 2.91rem;
+  color: #fff;
+  line-height: 90%;
+  text-align: center;
+}
+
+.callback-form {
+  display: flex;
+  flex-direction: column;
+}
+.callback-form > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.callback-form > div > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.callback-form__textarea-block {
+  height: 12.5rem;
+}
+.callback-form__textarea {
+  height: 100%;
+}
+.callback-form__inputs-block {
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+}
+.callback-form__input {
+  height: 100%;
+}
+.callback-form__submit-check-block {
+  margin-top: 3rem;
+}
+.callback-form__submit {
+  align-self: flex-start;
+}
+.callback-form__submit-block {
+  display: block !important;
+  flex: none !important;
+}
+.callback-form__checkbox-block {
+  flex-direction: row !important;
+  width: 50%;
+  position: absolute;
+  right: 0;
+  align-items: baseline;
+}
+.callback-form__checkbox {
+  margin-right: 1rem;
+}
+.callback-form__checkbox-label {
+  font-size: 1rem;
 }
 
 @font-face {

@@ -134,6 +134,37 @@ require_once "../assets/api/isAdmin.php";
             </section>
         </container>
     </section>
+    <section class="callback-section">
+        <h2 class="callback-section__head">
+            остались вопросы?
+        </h2>
+        <div class="callback-section__block">
+            <form class="callback-form">
+                <div>
+                    <div class="callback-form__inputs-block">
+                        <label class="callback-form__label">Имя</label>
+                        <input class="callback-form__input" type="text" name="name">
+                        <label class="callback-form__label">Почта</label>
+                        <input class="callback-form__input" type="email" name="email">
+                    </div>
+                    <div class="callback-form__textarea-block">
+                        <label class="callback-form__label">Текст сообщения</label>
+                        <textarea class="callback-form__textarea" name="message"></textarea>
+                    </div>
+                </div>
+                <div class="callback-form__submit-check-block">
+                    <div class="callback-form__submit-block button">
+                        <input type="submit" class="callback-form__submit button__content" value="отправить">
+                    </div>
+                    <div class="callback-form__checkbox-block">
+                        <input type="checkbox" class="callback-form__checkbox">
+                        <label class="callback-form__checkbox-label">Я даю согласие на обработку персональных данных</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <?php require_once "../includes/footer.php"; ?>
     <form action="assets/api/logout.php">
         <input type="submit" value="Выйти">
     </form>
