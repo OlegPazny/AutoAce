@@ -16,6 +16,93 @@ require_once "../assets/api/isAdmin.php";
 
 <body>
     <?php require_once "../includes/header.php"; ?>
+    <section class="offers-section">
+        <div class="swiper mySwiper1">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide car-maintenance-slide">
+                    <div class="offers-slider-elem">
+                        <h2 class="offers-slider-elem__head">техобслуживание автомобиля</h2>
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?</p>
+                        <div class="button">
+                            <input type="button" class="button__content" value="Записаться на ремонт">
+                        </div>
+                        <img class="car-maintenance-slide__image" src="../assets/images/main_slider1.png">
+                    </div>
+                </div>
+                <div class="swiper-slide brake-system-slide">
+                    <div class="offers-slider-elem">
+                        <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?</p>
+                        <div class="button">
+                            <input type="button" class="button__content" value="Записаться на ремонт">
+                        </div>
+                        <img class="brake-system-slide__image" src="../assets/images/main_slider2.png">
+                    </div>
+                </div>
+                <div class="swiper-slide car-maintenance-slide">
+                    <div class="offers-slider-elem">
+                        <h2 class="offers-slider-elem__head">техобслуживание автомобиля</h2>
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?</p>
+                        <div class="button">
+                            <input type="button" class="button__content" value="Записаться на ремонт">
+                        </div>
+                        <img class="offers-slider-elem__image" src="../assets/images/main_slider1.png">
+                    </div>
+                </div>
+                <div class="swiper-slide brake-system-slide">
+                    <div class="offers-slider-elem">
+                        <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?</p>
+                        <div class="button">
+                            <input type="button" class="button__content" value="Записаться на ремонт">
+                        </div>
+                        <img class="offers-slider-elem__image" src="../assets/images/main_slider2.png">
+                    </div>
+                </div>
+                <div class="swiper-slide car-maintenance-slide">
+                    <div class="offers-slider-elem">
+                        <h2 class="offers-slider-elem__head">техобслуживание автомобиля</h2>
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?</p>
+                        <div class="button">
+                            <input type="button" class="button__content" value="Записаться на ремонт">
+                        </div>
+                        <img class="offers-slider-elem__image" src="../assets/images/main_slider1.png">
+                    </div>
+                </div>
+                <div class="swiper-slide brake-system-slide">
+                    <div class="offers-slider-elem">
+                        <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?</p>
+                        <div class="button">
+                            <input type="button" class="button__content" value="Записаться на ремонт">
+                        </div>
+                        <img class="offers-slider-elem__image" src="../assets/images/main_slider2.png">
+                    </div>
+                </div>
+                <div class="swiper-slide car-maintenance-slide">
+                    <div class="offers-slider-elem">
+                        <h2 class="offers-slider-elem__head">техобслуживание автомобиля</h2>
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?</p>
+                        <div class="button">
+                            <input type="button" class="button__content" value="Записаться на ремонт">
+                        </div>
+                        <img class="offers-slider-elem__image" src="../assets/images/main_slider1.png">
+                    </div>
+                </div>
+                <div class="swiper-slide brake-system-slide">
+                    <div class="offers-slider-elem">
+                        <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?</p>
+                        <div class="button">
+                            <input type="button" class="button__content" value="Записаться на ремонт">
+                        </div>
+                        <img class="offers-slider-elem__image" src="../assets/images/main_slider2.png">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
     <section class="prons-section">
         <h2 class="prons-section__head"> мы это —</h2>
         <div class="prons-section__body">
@@ -158,7 +245,8 @@ require_once "../assets/api/isAdmin.php";
                     </div>
                     <div class="callback-form__checkbox-block">
                         <input type="checkbox" class="callback-form__checkbox">
-                        <label class="callback-form__checkbox-label">Я даю согласие на обработку персональных данных</label>
+                        <label class="callback-form__checkbox-label">Я даю согласие на обработку персональных
+                            данных</label>
                     </div>
                 </div>
             </form>
@@ -169,25 +257,38 @@ require_once "../assets/api/isAdmin.php";
         <input type="submit" value="Выйти">
     </form>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 <script>
+     var swiper = new Swiper(".mySwiper1", {
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      grid: {
+        rows: 1,
+      },
+      spaceBetween: 0,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
     var swiper = new Swiper(".mySwiper", {
-  slidesPerView: 3,
-  spaceBetween: 30,
-  slidesPerGroup: 3,
-  loop: true,
-  grabCursor: true,
-  loopFillGroupWithBlank: true,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-});
+        slidesPerView: 3,
+        spaceBetween: 30,
+        slidesPerGroup: 3,
+        loop: true,
+        grabCursor: true,
+        loopFillGroupWithBlank: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
 </script>
 
 </html>
