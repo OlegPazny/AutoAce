@@ -128,7 +128,7 @@ swiper-container {
     width:30.4rem;
     height:700px;
     padding-left:6rem;
-    padding-right:6rem;
+    padding-left:6rem;
     
     &__head{
       font-family: "Soyuz";
@@ -165,4 +165,34 @@ swiper-container {
       align-self: flex-end;
       margin-top:-2rem;
     }
+  }
+  .slide-shadow1{
+    filter: blur(7.2em);
+        position: absolute;
+        top:3.46rem;
+        right:-8rem;
+        height:29.2rem;
+        width:29.2rem;
+        z-index: -1;
+        background: radial-gradient(circle, rgb(242 0 0 / 50%) 0%, rgb(255 255 255 / 0%) 60%);
+  }
+  .slide-shadow2{
+    filter: blur(7.2em);
+        position: absolute;
+        top:-11.5rem;
+        right:21rem;
+        height:29.2rem;
+        width:29.2rem;
+        z-index: -1;
+        background: radial-gradient(circle, rgb(255 255 255 / 50%) 0%, rgb(255 255 255 / 0%) 60%);
+  }
+  .slide-shadow3{
+    filter: blur(7.2em);
+        position: absolute;
+        top:3.46rem;
+        right:-8rem;
+        height:29.2rem;
+        width:29.2rem;
+        z-index: -1;
+        background: radial-gradient(circle, rgb(255 255 255 / 50%) 0%, rgb(255 255 255 / 0%) 60%);
   }

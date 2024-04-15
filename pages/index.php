@@ -21,12 +21,16 @@ require_once "../assets/api/isAdmin.php";
             <div class="swiper-wrapper">
                 <div class="swiper-slide car-maintenance-slide">
                     <div class="offers-slider-elem">
-                        <h2 class="offers-slider-elem__head">техобслуживание автомобиля</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?</p>
+                        <h2 class="offers-slider-elem__head">техническое обслуживание автомобиля</h2>
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
+                        Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
+                        </p>
                         <div class="button">
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
                         <img class="car-maintenance-slide__image" src="../assets/images/main_slider1.png">
+                        <div class="slide-shadow1"></div>
+                        <div class="slide-shadow2"></div>
                     </div>
                 </div>
                 <div class="swiper-slide brake-system-slide">
@@ -37,16 +41,21 @@ require_once "../assets/api/isAdmin.php";
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
                         <img class="brake-system-slide__image" src="../assets/images/main_slider2.png">
+                        <div class="slide-shadow3"></div>
                     </div>
                 </div>
                 <div class="swiper-slide car-maintenance-slide">
                     <div class="offers-slider-elem">
-                        <h2 class="offers-slider-elem__head">техобслуживание автомобиля</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?</p>
+                        <h2 class="offers-slider-elem__head">техническое обслуживание автомобиля</h2>
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
+                        Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
+                        </p>
                         <div class="button">
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
-                        <img class="offers-slider-elem__image" src="../assets/images/main_slider1.png">
+                        <img class="car-maintenance-slide__image" src="../assets/images/main_slider1.png">
+                        <div class="slide-shadow1"></div>
+                        <div class="slide-shadow2"></div>
                     </div>
                 </div>
                 <div class="swiper-slide brake-system-slide">
@@ -56,17 +65,22 @@ require_once "../assets/api/isAdmin.php";
                         <div class="button">
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
-                        <img class="offers-slider-elem__image" src="../assets/images/main_slider2.png">
+                        <img class="brake-system-slide__image" src="../assets/images/main_slider2.png">
+                        <div class="slide-shadow3"></div>
                     </div>
                 </div>
                 <div class="swiper-slide car-maintenance-slide">
                     <div class="offers-slider-elem">
-                        <h2 class="offers-slider-elem__head">техобслуживание автомобиля</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?</p>
+                        <h2 class="offers-slider-elem__head">техническое обслуживание автомобиля</h2>
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
+                        Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
+                        </p>
                         <div class="button">
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
-                        <img class="offers-slider-elem__image" src="../assets/images/main_slider1.png">
+                        <img class="car-maintenance-slide__image" src="../assets/images/main_slider1.png">
+                        <div class="slide-shadow1"></div>
+                        <div class="slide-shadow2"></div>
                     </div>
                 </div>
                 <div class="swiper-slide brake-system-slide">
@@ -76,17 +90,22 @@ require_once "../assets/api/isAdmin.php";
                         <div class="button">
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
-                        <img class="offers-slider-elem__image" src="../assets/images/main_slider2.png">
+                        <img class="brake-system-slide__image" src="../assets/images/main_slider2.png">
+                        <div class="slide-shadow3"></div>
                     </div>
                 </div>
                 <div class="swiper-slide car-maintenance-slide">
                     <div class="offers-slider-elem">
-                        <h2 class="offers-slider-elem__head">техобслуживание автомобиля</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?</p>
+                        <h2 class="offers-slider-elem__head">техническое обслуживание автомобиля</h2>
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
+                        Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
+                        </p>
                         <div class="button">
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
-                        <img class="offers-slider-elem__image" src="../assets/images/main_slider1.png">
+                        <img class="car-maintenance-slide__image" src="../assets/images/main_slider1.png">
+                        <div class="slide-shadow1"></div>
+                        <div class="slide-shadow2"></div>
                     </div>
                 </div>
                 <div class="swiper-slide brake-system-slide">
@@ -96,7 +115,8 @@ require_once "../assets/api/isAdmin.php";
                         <div class="button">
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
-                        <img class="offers-slider-elem__image" src="../assets/images/main_slider2.png">
+                        <img class="brake-system-slide__image" src="../assets/images/main_slider2.png">
+                        <div class="slide-shadow3"></div>
                     </div>
                 </div>
             </div>
@@ -267,7 +287,7 @@ require_once "../assets/api/isAdmin.php";
       grid: {
         rows: 1,
       },
-      spaceBetween: 0,
+      spaceBetween: 2,
       pagination: {
         el: ".swiper-pagination",
         clickable: true,

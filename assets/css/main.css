@@ -529,7 +529,7 @@ swiper-slide:nth-child(10n) {
   width: 30.4rem;
   height: 700px;
   padding-left: 6rem;
-  padding-right: 6rem;
+  padding-left: 6rem;
 }
 .offers-slider-elem__head {
   font-family: "Soyuz";
@@ -565,12 +565,45 @@ swiper-slide:nth-child(10n) {
   margin-top: -2rem;
 }
 
+.slide-shadow1 {
+  filter: blur(7.2em);
+  position: absolute;
+  top: 3.46rem;
+  right: -8rem;
+  height: 29.2rem;
+  width: 29.2rem;
+  z-index: -1;
+  background: radial-gradient(circle, rgba(242, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 60%);
+}
+
+.slide-shadow2 {
+  filter: blur(7.2em);
+  position: absolute;
+  top: -11.5rem;
+  right: 21rem;
+  height: 29.2rem;
+  width: 29.2rem;
+  z-index: -1;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 60%);
+}
+
+.slide-shadow3 {
+  filter: blur(7.2em);
+  position: absolute;
+  top: 3.46rem;
+  right: -8rem;
+  height: 29.2rem;
+  width: 29.2rem;
+  z-index: -1;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 60%);
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2.91rem 11.3rem;
-  background-color: transparent; /* Пример цвета фона */
+  background-color: #232323; /* Пример цвета фона */
   color: #fff; /* Пример цвета текста */
   border-bottom: 2px solid #fff;
 }
