@@ -358,6 +358,7 @@ input[type=text], input[type=email], textarea {
   background: none;
   border: 1px solid #fff;
   resize: none;
+  color: #fff;
 }
 
 input[type=text], input[type=email] {
@@ -371,7 +372,7 @@ label {
 }
 
 /* Стилизация самого чекбокса */
-.callback-form__checkbox {
+input[type=checkbox] {
   appearance: none; /* Убираем стандартный вид */
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -386,17 +387,37 @@ label {
 }
 
 /* Стилизация метки чекбокса */
-.callback-form__checkbox + label {
+input[type=checkbox] + label {
   font-size: 1rem; /* Размер текста */
   color: #fff; /* Цвет текста */
   margin-left: 0.5rem; /* Отступ слева */
 }
 
 /* Стилизация чекбокса при его выборе */
-.callback-form__checkbox:checked {
+input[type=checkbox]:checked {
   transition: 0.5s ease-in-out;
   background-color: #fff; /* Фон при выборе */
   border-color: #fff; /* Граница при выборе */
+}
+
+.form-shadow1 {
+  filter: blur(7.2em);
+  position: absolute;
+  top: -24.5rem;
+  right: 58rem;
+  height: 29.2rem;
+  width: 29.2rem;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 60%);
+}
+
+.form-shadow2 {
+  filter: blur(7.2em);
+  position: absolute;
+  top: -1.54rem;
+  right: -15rem;
+  height: 29.2rem;
+  width: 29.2rem;
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 60%);
 }
 
 swiper-container {
@@ -605,7 +626,7 @@ swiper-slide:nth-child(10n) {
   padding: 2.91rem 11.3rem;
   background-color: #232323; /* Пример цвета фона */
   color: #fff; /* Пример цвета текста */
-  border-bottom: 2px solid #fff;
+  border-bottom: 1px solid #fff;
 }
 .header__logo {
   font-size: 1.1rem;
@@ -633,6 +654,7 @@ swiper-slide:nth-child(10n) {
 }
 
 .footer {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -662,8 +684,10 @@ body {
 }
 
 .prons-section {
+  position: relative;
   background-color: #fff;
   padding: 5rem 8.33rem;
+  overflow: hidden;
 }
 .prons-section__head {
   font-family: "Soyuz";
@@ -678,6 +702,24 @@ body {
 }
 .prons-section__img {
   margin: -2rem 0;
+}
+.prons-section__shadow1 {
+  filter: blur(7.2em);
+  position: absolute;
+  top: -5rem;
+  right: 80rem;
+  height: 29.2rem;
+  width: 29.2rem;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgb(0, 0, 0) 60%);
+}
+.prons-section__shadow2 {
+  filter: blur(7.2em);
+  position: absolute;
+  top: 30rem;
+  right: -15rem;
+  height: 29.2rem;
+  width: 29.2rem;
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 60%);
 }
 
 .bottom-prons {
@@ -717,6 +759,7 @@ body {
   align-items: center;
   background-color: #646464;
   padding: 5rem 8.33rem;
+  position: relative;
 }
 
 .info {
@@ -774,6 +817,10 @@ body {
 .callback-section {
   padding: 5rem 8.33rem;
   background-color: #232323;
+  overflow: hidden;
+}
+.callback-section__block {
+  position: relative;
 }
 .callback-section__head {
   font-family: "Soyuz";
@@ -834,6 +881,61 @@ body {
 }
 .callback-form__checkbox-label {
   font-size: 1rem;
+}
+
+.search-section {
+  display: flex;
+  flex-direction: row;
+  padding-left: 8.33rem;
+  background-color: #232323;
+  border-bottom: 1px solid #fff;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.map-block {
+  flex: 1;
+  position: relative;
+  height: 70vh;
+}
+
+.filter-block {
+  width: 34%;
+}
+.filter-block__headlist {
+  list-style-type: none;
+}
+.filter-block__headlist__service-type {
+  font-family: "Soyuz";
+  font-size: 1.45rem;
+  margin-bottom: 0.625rem;
+}
+.filter-block__list {
+  list-style-type: none;
+}
+.filter-block__list__service {
+  font-family: "Onest";
+  font-size: 1rem;
+}
+
+#filterForm {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+li > ul {
+  margin-top: 0.625rem;
+}
+li > ul > li {
+  margin-bottom: 0.625rem;
+}
+
+input[type=checkbox] {
+  margin-right: 0.625rem;
 }
 
 @font-face {

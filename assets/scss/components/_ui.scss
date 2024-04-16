@@ -49,6 +49,7 @@ input[type="text"], input[type="email"], textarea{
     background: none;
     border:1px solid #fff;
     resize:none;
+    color:#fff;
 }
 input[type="text"], input[type="email"]{
     margin-right: 1.67rem;
@@ -60,7 +61,7 @@ label{
 }
 
 /* Стилизация самого чекбокса */
-.callback-form__checkbox {
+input[type="checkbox"] {
     appearance: none; /* Убираем стандартный вид */
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -75,15 +76,34 @@ label{
 }
 
 /* Стилизация метки чекбокса */
-.callback-form__checkbox + label {
+input[type="checkbox"] + label {
     font-size: 1rem; /* Размер текста */
     color: #fff; /* Цвет текста */
     margin-left: 0.5rem; /* Отступ слева */
 }
 
 /* Стилизация чекбокса при его выборе */
-.callback-form__checkbox:checked {
+input[type="checkbox"]:checked {
     transition: 0.5s ease-in-out;
     background-color: #fff; /* Фон при выборе */
     border-color: #fff; /* Граница при выборе */
+}
+
+.form-shadow1{
+    filter: blur(7.2em);
+    position: absolute;
+    top:-24.5rem;
+    right:58rem;
+    height:29.2rem;
+    width:29.2rem;
+    background: radial-gradient(circle, rgb(255 255 255 / 50%) 0%, rgb(255 255 255 / 0%) 60%);
+}
+.form-shadow2{
+    filter: blur(7.2em);
+    position: absolute;
+    top:-1.54rem;
+    right:-15rem;
+    height:29.2rem;
+    width:29.2rem;
+    background: radial-gradient(circle, rgb(255 0 0 / 50%) 0%, rgb(255 255 255 / 0%) 60%);
 }

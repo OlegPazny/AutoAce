@@ -22,8 +22,9 @@ require_once "../assets/api/isAdmin.php";
                 <div class="swiper-slide car-maintenance-slide">
                     <div class="offers-slider-elem">
                         <h2 class="offers-slider-elem__head">техническое обслуживание автомобиля</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
-                        Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру
+                            сгенерировать несколько абзацев?
+                            Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
                         </p>
                         <div class="button">
                             <input type="button" class="button__content" value="Записаться на ремонт">
@@ -36,7 +37,8 @@ require_once "../assets/api/isAdmin.php";
                 <div class="swiper-slide brake-system-slide">
                     <div class="offers-slider-elem">
                         <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?</p>
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру
+                            сгенерировать несколько абзацев?</p>
                         <div class="button">
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
@@ -47,8 +49,9 @@ require_once "../assets/api/isAdmin.php";
                 <div class="swiper-slide car-maintenance-slide">
                     <div class="offers-slider-elem">
                         <h2 class="offers-slider-elem__head">техническое обслуживание автомобиля</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
-                        Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру
+                            сгенерировать несколько абзацев?
+                            Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
                         </p>
                         <div class="button">
                             <input type="button" class="button__content" value="Записаться на ремонт">
@@ -61,7 +64,8 @@ require_once "../assets/api/isAdmin.php";
                 <div class="swiper-slide brake-system-slide">
                     <div class="offers-slider-elem">
                         <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?</p>
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру
+                            сгенерировать несколько абзацев?</p>
                         <div class="button">
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
@@ -72,8 +76,9 @@ require_once "../assets/api/isAdmin.php";
                 <div class="swiper-slide car-maintenance-slide">
                     <div class="offers-slider-elem">
                         <h2 class="offers-slider-elem__head">техническое обслуживание автомобиля</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
-                        Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру
+                            сгенерировать несколько абзацев?
+                            Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
                         </p>
                         <div class="button">
                             <input type="button" class="button__content" value="Записаться на ремонт">
@@ -86,7 +91,8 @@ require_once "../assets/api/isAdmin.php";
                 <div class="swiper-slide brake-system-slide">
                     <div class="offers-slider-elem">
                         <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?</p>
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру
+                            сгенерировать несколько абзацев?</p>
                         <div class="button">
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
@@ -97,8 +103,9 @@ require_once "../assets/api/isAdmin.php";
                 <div class="swiper-slide car-maintenance-slide">
                     <div class="offers-slider-elem">
                         <h2 class="offers-slider-elem__head">техническое обслуживание автомобиля</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
-                        Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру
+                            сгенерировать несколько абзацев?
+                            Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
                         </p>
                         <div class="button">
                             <input type="button" class="button__content" value="Записаться на ремонт">
@@ -111,7 +118,8 @@ require_once "../assets/api/isAdmin.php";
                 <div class="swiper-slide brake-system-slide">
                     <div class="offers-slider-elem">
                         <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?</p>
+                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру
+                            сгенерировать несколько абзацев?</p>
                         <div class="button">
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
@@ -154,6 +162,8 @@ require_once "../assets/api/isAdmin.php";
                 </div>
             </div>
         </div>
+        <div class="prons-section__shadow1"></div>
+        <div class="prons-section__shadow2"></div>
     </section>
     <section class="about-section">
         <div class="info">
@@ -235,6 +245,24 @@ require_once "../assets/api/isAdmin.php";
                             </div>
                             <div class="slider__shadow"></div>
                         </div>
+                        <div class="swiper-slide card">
+                            <h5 class="card__head">скидка</h5>
+                            <h3 class="card__discount">25%</h3>
+                            <p class="card__description">Замена глушителя</p>
+                            <div class="slider-button">
+                                <input type="button" class="slider-button__content" value="Записаться">
+                            </div>
+                            <div class="slider__shadow"></div>
+                        </div>
+                        <div class="swiper-slide card">
+                            <h5 class="card__head">скидка</h5>
+                            <h3 class="card__discount">25%</h3>
+                            <p class="card__description">Замена глушителя</p>
+                            <div class="slider-button">
+                                <input type="button" class="slider-button__content" value="Записаться">
+                            </div>
+                            <div class="slider__shadow"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="swiper-pagination"></div>
@@ -269,7 +297,10 @@ require_once "../assets/api/isAdmin.php";
                             данных</label>
                     </div>
                 </div>
+
             </form>
+            <div class="form-shadow1"></div>
+            <div class="form-shadow2"></div>
         </div>
     </section>
     <?php require_once "../includes/footer.php"; ?>
@@ -281,33 +312,25 @@ require_once "../assets/api/isAdmin.php";
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 <script>
-     var swiper = new Swiper(".mySwiper1", {
-      slidesPerView: 2,
-      slidesPerGroup: 2,
-      grid: {
-        rows: 1,
-      },
-      spaceBetween: 2,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-    });
-    var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 3,
-        spaceBetween: 30,
-        slidesPerGroup: 3,
-        loop: true,
-        grabCursor: true,
-        loopFillGroupWithBlank: true,
+    var swiper = new Swiper(".mySwiper1", {
+        slidesPerView: 2,
+        slidesPerGroup: 2,
+        grid: {
+            rows: 1,
+        },
+        spaceBetween: 1,
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
         },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
+    });
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 3,
+        spaceBetween: 10,
+        slidesPerGroup: 3,
+        loop: true,
+        grabCursor: true,
+        loopFillGroupWithBlank: true,
     });
 </script>
 
