@@ -1,8 +1,9 @@
 <?php
+session_start();
 require_once "db_connect.php";
 
-if (isset($_GET['id'])) {
-    $workshop_id = $_GET['id'];
+if (isset($_SESSION['workshop_id'])) {
+    $workshop_id = $_SESSION['workshop_id'];
 
     $workshop_services_data = mysqli_query($db, "SELECT st.type AS service_type, s.id AS service_id, s.service_name AS service_name 
         FROM workshops w 
@@ -24,12 +25,6 @@ if (isset($_GET['id'])) {
             );
         }
     }
-    $workshop=array();
-    $workshop_location=mysqli_query($db, "SELECT * FROM `workshops` WHERE `id`=$workshop_id;");
-    while ($row = mysqli_fetch_assoc($workshop_location)) {
-        $workshop[] = $row;
-    }
-    echo json_encode($workshop, JSON_UNESCAPED_UNICODE);
 } else {
     die("Данные не переданы");
 }

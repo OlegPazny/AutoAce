@@ -1,7 +1,10 @@
 <?php
 session_start();
+if(isset($_SESSION['workshop_id'])){
+    unset($_SESSION['workshop_id']);
+}
+$_SESSION['workshop_id']=$_GET['id'];
 require_once "../assets/api/get_workshop_data_script.php";
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,6 +73,7 @@ require_once "../assets/api/get_workshop_data_script.php";
     </section>
     <section class="book-section">
         <form class="callback-form" id="bookingForm">
+            <input type="hidden" value="<?php echo $_GET['id'];?>" name="hash" class="hash">
             <div>
                 <div class="callback-form__inputs-block">
 
@@ -109,19 +113,6 @@ require_once "../assets/api/get_workshop_data_script.php";
         <div class="form-shadow1"></div>
         <div class="form-shadow2"></div>
     </section>
-    <?php
-    // echo ("<ul>");
-    // foreach ($services_arr as $service_type => $services) {
-    //     echo ("<li>" . $service_type);
-    //     echo ("<ul>");
-    //     foreach ($services as $service) {
-    //         echo ("<li>" . $service . "</li>");
-    //     }
-    //     echo ("</ul>");
-    //     echo ("</li>");
-    // }
-    // echo ("</ul>");
-    ?>
     <?php require_once "../includes/footer.php"; ?>
 </body>
 <script src="../assets/js/workshop_location.js"></script>
