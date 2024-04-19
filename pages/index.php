@@ -304,9 +304,6 @@ require_once "../assets/api/isAdmin.php";
         </div>
     </section>
     <?php require_once "../includes/footer.php"; ?>
-    <form action="../assets/api/logout.php">
-        <input type="submit" value="Выйти">
-    </form>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>

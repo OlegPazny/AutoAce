@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $isAdmin=false;
     $isClient=false;
     $isWorker=false;

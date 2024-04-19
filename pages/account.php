@@ -8,8 +8,8 @@ require_once "../assets/api/account_info_script.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- jQuery connection -->
-    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!-- jQuery connection -->
     <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
     <title>Личный кабинет</title>
@@ -117,10 +117,15 @@ require_once "../assets/api/account_info_script.php";
             </table>
         </div>
     </section>
+    <form action="../assets/api/logout.php">
+        <div class="button logout-button">
+            <input type="submit" class="button__content logout-button__content" value="Выйти">
+        </div>
+    </form>
     <?php require_once "../includes/footer.php"; ?>
 </body>
-<script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
-<script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
+<!-- <script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
+<script src="../assets/js/core/popper.min.js" type="text/javascript"></script> -->
 <script src="../assets/js/account_navigation.js"></script>
 <script src="../assets/js/change_user_data.js"></script>
 

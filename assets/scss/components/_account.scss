@@ -13,6 +13,7 @@
         font-size:1.46rem;
         color:#fff;
         width:fit-content;
+        margin:0;
 
         &__item{
             background-color: #232323;
@@ -64,4 +65,12 @@
 }
 .history{
     display: none;
+}
+
+.logout-button{
+    border: 1px solid #232323;
+
+    &__content{
+        color:#232323;
+    }
 }

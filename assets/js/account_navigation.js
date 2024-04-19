@@ -53,7 +53,7 @@ $(document).ready(function () {
         // Проверяем, видим ли блок #answers-container
         if (infoContainer.css('display') != 'none') {
             // Если блок видим, скрываем его
-            ordersContainer.hide();
+            infoContainer.hide();
 
         }
         if (historyContainer.css('display') != 'none') {

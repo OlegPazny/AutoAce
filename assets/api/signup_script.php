@@ -78,7 +78,7 @@
         mysqli_query($db, "INSERT INTO `USERS` (`id`, `login`, `name`, `email`, `password`, `role`, `isVerified`) VALUES (NULL, '$login', '$name', '$email', '$password', 'client', 0)");
 
         $hash=md5($login.$name.$email);
-        $body="<h1>Пожалуйста, перейдите по <a href='autoace/verify.php?hash=$hash' target='_blank'>ссылке</a>, если вы хотите подтвердить регистрацию!</h1>";
+        $body="<h1>Пожалуйста, перейдите по <a href='autoace/pages/verify.php?hash=$hash' target='_blank'>ссылке</a>, если вы хотите подтвердить регистрацию!</h1>";
         var_dump(send_mail($settings['mail_settings'], [$email], 'Подтвердите регистрацию!', $body));
 
         $response=[

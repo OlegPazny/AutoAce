@@ -1138,6 +1138,7 @@ input[type=checkbox] {
   color: #fff;
   width: -moz-fit-content;
   width: fit-content;
+  margin: 0;
 }
 .nav__list__item {
   background-color: #232323;
@@ -1189,6 +1190,21 @@ input[type=checkbox] {
 
 .history {
   display: none;
+}
+
+.logout-button {
+  border: 1px solid #232323;
+}
+.logout-button__content {
+  color: #232323;
+}
+
+.moderator-section {
+  padding: 0 8.33rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 @font-face {
