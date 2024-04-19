@@ -1,6 +1,6 @@
 <?php
 require_once "../assets/api/isAdmin.php";
-if($isClient==true){
+if ($isClient == true) {
     header("Location: ../index.php");
 }
 require_once "../assets/api/moderator_info_script.php";
@@ -27,9 +27,10 @@ require_once "../assets/api/moderator_info_script.php";
                 <li class="nav__list__item info-btn">пользователи</li>
                 <li class="nav__list__item orders-btn">заказанные услуги</li>
                 <li class="nav__list__item history-btn">история заказов</li>
+                <li class="nav__list__item services-btn">услуги</li>
             </ul>
         </div>
-        <div class="accounts">
+        <div class="account-services accounts">
             <table>
                 <thead>
                     <tr>
@@ -53,6 +54,7 @@ require_once "../assets/api/moderator_info_script.php";
 
                             if ($user[5] == "admin") {
                                 $role = "Администратор";
+                                continue;
                             } else if ($user[5] == "client") {
                                 $role = "Клиент";
                             } else if ($user[5] == "worker") {
@@ -102,24 +104,24 @@ require_once "../assets/api/moderator_info_script.php";
                             echo ("<tr>
                                     <td>" . $account_book[1] . "</td>
                                     <td>" . $account_book[2] . "</td>
-                                    <td>" . (int)$account_book[7] . " р.</td>
+                                    <td>" . (int) $account_book[7] . " р.</td>
                                     <td>" . $account_book[3] . "</td>
                                     <td>" . $account_book[4] . "</td>
                                     <td>" . substr($account_book[5], 0, 5) . "</td>
                                     <td>");
-                                ?>
-                                    <select class='status-select' data-booking-id="<?php echo $account_book[0];?>">
-                                        <option value='pending' <?php if ($account_book[6] == "pending")
-                                            echo "selected"; ?>>В
-                                            обработке</option>
-                                        <option value='confirmed' <?php if ($account_book[6] == "confirmed")
-                                            echo "selected"; ?>>
-                                            Принято в работу</option>
-                                        <option value='completed' <?php if ($account_book[6] == "completed")
-                                            echo "selected"; ?>>
-                                            Выполнено</option>
-                                    </select>
-                                    <?php echo ("</td>
+                            ?>
+                            <select class='status-select' data-booking-id="<?php echo $account_book[0]; ?>">
+                                <option value='pending' <?php if ($account_book[6] == "pending")
+                                    echo "selected"; ?>>В
+                                    обработке</option>
+                                <option value='confirmed' <?php if ($account_book[6] == "confirmed")
+                                    echo "selected"; ?>>
+                                    Принято в работу</option>
+                                <option value='completed' <?php if ($account_book[6] == "completed")
+                                    echo "selected"; ?>>
+                                    Выполнено</option>
+                            </select>
+                            <?php echo ("</td>
                             </tr>");
                         }
                         ?>
@@ -148,23 +150,76 @@ require_once "../assets/api/moderator_info_script.php";
                                 <td>" . $account_history[3] . "</td>
                                 <td>" . $account_history[4] . "</td>
                                 <td>");
-                                ?>
-                                    <select class='history-status-select' data-booking-id="<?php echo $account_history[6];?>">
-                                        <option value='pending' <?php if ($account_history[5] == "pending")
-                                            echo "selected"; ?>>В
-                                            обработке</option>
-                                        <option value='confirmed' <?php if ($account_history[5] == "confirmed")
-                                            echo "selected"; ?>>
-                                            Принято в работу</option>
-                                        <option value='completed' <?php if ($account_history[5] == "completed")
-                                            echo "selected"; ?>>
-                                            Выполнено</option>
-                                    </select>
-                                    <?php echo ("</td>
+                            ?>
+                            <select class='history-status-select' data-booking-id="<?php echo $account_history[6]; ?>">
+                                <option value='pending' <?php if ($account_history[5] == "pending")
+                                    echo "selected"; ?>>В
+                                    обработке</option>
+                                <option value='confirmed' <?php if ($account_history[5] == "confirmed")
+                                    echo "selected"; ?>>
+                                    Принято в работу</option>
+                                <option value='completed' <?php if ($account_history[5] == "completed")
+                                    echo "selected"; ?>>
+                                    Выполнено</option>
+                            </select>
+                            <?php echo ("</td>
                                 </tr>
                                 ");
                         }
                         ?>
+                    </tbody>
+            </table>
+        </div>
+        <div class="account-services services">
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Название</th>
+                        <th>Описание</th>
+                        <th>Стоимость</th>
+                        <th>Тип услуги</th>
+                        <th></th>
+                    </tr>
+                    <thead>
+                    <tbody>
+                        <?php
+                        foreach ($services as $service) {
+                            echo ("<tr>
+                                <td>" . $service[0] . "</td>
+                                <td>" . $service[1] . "</td>
+                                <td>" . $service[2] . "</td>
+                                <td>" . (int) $service[3] . " р.</td>
+                                <td>" . $service[4] . "</td>
+                                <td>
+                                    <div class='delete-service' data-service-id='" . $service[0] . "''>
+                                        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
+                                            <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
+                                        </svg>
+                                    </div>
+                                </td>
+                                </tr>
+                                ");
+                        }
+                        ?>
+                        <tr id="new-service-row">
+                            <td></td>
+                            <td><input type="text" class="add-service-input" name="service_name" id="service_name"></td>
+                            <td><input type="text" class="add-service-input" name="service_description"
+                                    id="service_description"></td>
+                            <td><input type="text" class="add-service-input" name="service_price" id="service_price">
+                            </td>
+                            <td> <select class="add-service-input" name="service_type" id="service_type">
+                                <?php
+                                    foreach($services_types as $services_type){
+                                        echo("<option value='".$services_type[0]."'>".$services_type[1]."</option>");
+                                    }
+                                ?>
+                                    
+                                </select></td>
+                            <td><input type="button" class="add-service-button" name="add-service-button"
+                                    value="Добавить"></td>
+                        </tr>
                     </tbody>
             </table>
         </div>

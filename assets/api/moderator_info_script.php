@@ -16,4 +16,11 @@
     INNER JOIN `users` ON `service_bookings`.`user_id` = `users`.`id`
     INNER JOIN `workshops` ON `service_bookings`.`workshop_id`=`workshops`.`id`;");
     $accounts_history=mysqli_fetch_all($accounts_history);
+
+    $services=mysqli_query($db, "SELECT `services`.`id`, `service_name`, `description`, `price`, `service_type`.`type` FROM `services` INNER JOIN `service_type` ON `services`.`id_service_type`=`service_type`.`id`");
+    $services=mysqli_fetch_all($services);
+
+    $services_types=mysqli_query($db, "SELECT * FROM `service_type`");
+    $services_types=mysqli_fetch_all($services_types);
+
 ?>
