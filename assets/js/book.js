@@ -5,7 +5,6 @@ $(document).ready(function () {
         // Получаем данные формы
         var formData = $(this).serialize();
 
-        if ($('#book_submit').is(':checked')&&$('#service').val()==null) {
             // Отправляем AJAX запрос на сервер
             $.ajax({
                 type: 'POST',
@@ -18,9 +17,10 @@ $(document).ready(function () {
                 error: function (xhr, status, error) {
                     // Обработка ошибок при отправке запроса
                     console.error(xhr.responseText);
+                    console.log("ошибка");
                 }
             });
-        }
+        
 
     });
 });

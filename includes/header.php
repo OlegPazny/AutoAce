@@ -18,7 +18,7 @@
     <div class="header__contact-info">
         <div class="phone-number">+375 (29) 865-79-68</div>
         <div class="account-icon">
-            <img src="../assets/images/account_icon.png">
+            <a href="../pages/account.php"><img src="../assets/images/account_icon.png"></a>
         </div>
     </div>
     </header>

@@ -28,24 +28,24 @@ require_once "../assets/api/get_workshop_data_script.php";
 
 <body>
     <?php require_once "../includes/header.php"; ?>
-    <section class="about-section">
-        <div class="about-section__container">
-            <div class="about-section__container__img">
-                <div class="about-section__container__img__main">
+    <section class="about-workshop-section">
+        <div class="about-workshop-section__container">
+            <div class="about-workshop-section__container__img">
+                <div class="about-workshop-section__container__img__main">
 
                 </div>
-                <div class="about-section__container__img__secondary">
-                    <div class="about-section__container__img__secondary__img">
+                <div class="about-workshop-section__container__img__secondary">
+                    <div class="about-workshop-section__container__img__secondary__img">
 
                     </div>
-                    <div class="about-section__container__img__secondary__img">
+                    <div class="about-workshop-section__container__img__secondary__img">
 
                     </div>
                 </div>
             </div>
-            <div class="about-section__container__info">
-                <h2 class="about-section__container__info__head">Название станции</h2>
-                <div class="about-section__container__info__services-block">
+            <div class="about-workshop-section__container__info">
+                <h2 class="about-workshop-section__container__info__head">Название станции</h2>
+                <div class="about-workshop-section__container__info__services-block">
                     <?php foreach ($services_arr as $service_type => $services) {
                         echo ("<div class='list-container'>");
                         echo ("<h3 class='list-container__head'>" . $service_type . "</h3>");
@@ -57,8 +57,8 @@ require_once "../assets/api/get_workshop_data_script.php";
                         echo ("</div>");
                     } ?>
                 </div>
-                <h3 class="about-section__container__info__description-head">описание</h3>
-                <p class="about-section__container__info__description">Сайт рыбатекст поможет дизайнеру, верстальщику,
+                <h3 class="about-workshop-section__container__info__description-head">описание</h3>
+                <p class="about-workshop-section__container__info__description">Сайт рыбатекст поможет дизайнеру, верстальщику,
                     вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а
                     начинающему оратору отточить навык публичных выступлений в домашних условиях. При создании
                     генератора мы использовали небезизвестный универсальный код речей.</p>

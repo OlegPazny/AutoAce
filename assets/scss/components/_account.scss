@@ -1,0 +1,67 @@
+.account-section{
+    padding: 0 8.33rem;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.nav{
+    width:70%;
+    &__list{
+        list-style-type: none;
+        font-family: "Soyuz";
+        font-size:1.46rem;
+        color:#fff;
+        width:fit-content;
+
+        &__item{
+            background-color: #232323;
+            padding:1.4rem 1.5rem 1.4rem 2.91rem;
+            cursor: pointer;
+        }
+        &__item:first-child{
+            background-color: #fff;
+            color:#232323;
+        }
+    }
+    margin-right:1.7rem;
+}
+
+.account-info{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    &__data{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        &__label{
+            color: #232323;
+        }
+        &__input{
+            border-color: #232323 !important;
+            color: #232323 !important;
+            width:18rem;
+            height:3rem;
+        }
+    }
+    &__button{
+        border:1px solid #232323;
+        height:fit-content;
+    }
+    &__submit{
+        color:#232323;
+    }
+}
+
+.account-services{
+    width:70%;
+    display: flex;
+    align-items: flex-start;
+}
+.orders{
+    display: none;
+}
+.history{
+    display: none;
+}

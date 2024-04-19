@@ -2,7 +2,8 @@
 session_start();
 require_once "db_connect.php";
 // Получаем данные из POST запроса
-$workshop_id = $_POST['workshop'];
+echo("dssad");
+$workshop_id = $_POST['hash'];
 $service_id = $_POST['service'];
 $message = $_POST['message'];
 $user_id=$_SESSION["user"]["id"];

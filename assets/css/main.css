@@ -354,7 +354,7 @@ template {
   color: #232323;
 }
 
-input[type=text], input[type=email], textarea {
+input[type=text], input[type=email], input[type=password], textarea {
   background: none;
   border: 1px solid #fff;
   resize: none;
@@ -420,6 +420,100 @@ input[type=checkbox]:checked {
   background: radial-gradient(circle, rgba(255, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 60%);
 }
 
+table {
+  border-spacing: 1;
+  border-collapse: collapse;
+  background: white;
+  overflow: hidden;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+table * {
+  position: relative;
+}
+table td,
+table th {
+  padding-left: 8px;
+}
+table thead tr {
+  height: 60px;
+  background: #242424;
+  font-size: 16px;
+  color: #fff;
+}
+table tbody tr {
+  height: 48px;
+  border-bottom: 1px solid #E3F1D5;
+}
+table tbody tr:last-child {
+  border: 0;
+}
+table td,
+table th {
+  text-align: left;
+}
+table td.l,
+table th.l {
+  text-align: right;
+}
+table td.c,
+table th.c {
+  text-align: center;
+}
+table td.r,
+table th.r {
+  text-align: center;
+}
+
+@media screen and (max-width: 35.5em) {
+  table {
+    display: block;
+  }
+  table > *,
+  table tr,
+  table td,
+  table th {
+    display: block;
+  }
+  table thead {
+    display: none;
+  }
+  table tbody tr {
+    height: auto;
+    padding: 8px 0;
+  }
+  table tbody tr td {
+    padding-left: 45%;
+    margin-bottom: 12px;
+  }
+  table tbody tr td:last-child {
+    margin-bottom: 0;
+  }
+  table tbody tr td:before {
+    position: absolute;
+    font-weight: 700;
+    width: 40%;
+    left: 10px;
+    top: 0;
+  }
+  table tbody tr td:nth-child(1):before {
+    content: "Code";
+  }
+  table tbody tr td:nth-child(2):before {
+    content: "Stock";
+  }
+  table tbody tr td:nth-child(3):before {
+    content: "Cap";
+  }
+  table tbody tr td:nth-child(4):before {
+    content: "Inch";
+  }
+  table tbody tr td:nth-child(5):before {
+    content: "Box Type";
+  }
+}
 swiper-container {
   width: 14rem;
   height: 18rem;
@@ -938,53 +1032,54 @@ input[type=checkbox] {
   margin-right: 0.625rem;
 }
 
-.about-section {
+.about-workshop-section {
+  padding: 5rem 8.33rem;
   background-color: #fff;
 }
-.about-section__container {
+.about-workshop-section__container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.about-section__container__info {
+.about-workshop-section__container__info {
   width: 45%;
 }
-.about-section__container__info__head {
+.about-workshop-section__container__info__head {
   font-size: 2.5rem;
   text-transform: uppercase;
   margin-top: 0;
 }
-.about-section__container__info__services-block {
+.about-workshop-section__container__info__services-block {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.about-section__container__info__description {
+.about-workshop-section__container__info__description {
   font-size: 0.75rem;
   line-height: 170%;
   text-align: justify;
 }
-.about-section__container__info__description-head {
+.about-workshop-section__container__info__description-head {
   font-family: "Soyuz";
   text-transform: lowercase;
 }
-.about-section__container__img {
+.about-workshop-section__container__img {
   display: flex;
   flex-direction: column;
 }
-.about-section__container__img__main {
+.about-workshop-section__container__img__main {
   height: 25.4rem;
   width: 25.125rem;
   background-color: #d9d9d9;
   border-radius: 2.91rem;
   margin-bottom: 2.97rem;
 }
-.about-section__container__img__secondary {
+.about-workshop-section__container__img__secondary {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.about-section__container__img__secondary__img {
+.about-workshop-section__container__img__secondary__img {
   width: 10.83rem;
   height: 6.8rem;
   background-color: #d9d9d9;
@@ -1022,6 +1117,78 @@ input[type=checkbox] {
   background-color: #232323;
   overflow: hidden;
   position: relative;
+}
+
+.account-section {
+  padding: 0 8.33rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nav {
+  width: 70%;
+  margin-right: 1.7rem;
+}
+.nav__list {
+  list-style-type: none;
+  font-family: "Soyuz";
+  font-size: 1.46rem;
+  color: #fff;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.nav__list__item {
+  background-color: #232323;
+  padding: 1.4rem 1.5rem 1.4rem 2.91rem;
+  cursor: pointer;
+}
+.nav__list__item:first-child {
+  background-color: #fff;
+  color: #232323;
+}
+
+.account-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.account-info__data {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.account-info__data__label {
+  color: #232323;
+}
+.account-info__data__input {
+  border-color: #232323 !important;
+  color: #232323 !important;
+  width: 18rem;
+  height: 3rem;
+}
+.account-info__button {
+  border: 1px solid #232323;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.account-info__submit {
+  color: #232323;
+}
+
+.account-services {
+  width: 70%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.orders {
+  display: none;
+}
+
+.history {
+  display: none;
 }
 
 @font-face {
