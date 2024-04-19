@@ -1,5 +1,6 @@
 <?php
 require_once "../assets/api/account_info_script.php";
+require_once "../assets/api/isAdmin.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,8 +43,24 @@ require_once "../assets/api/account_info_script.php";
                 <label class="account-info__data__label">Новый пароль</label>
                 <input class="account-info__data__input" type="password" name="new_password">
             </div>
-            <div class="button account-info__button">
-                <input type="button" class="button__content account-info__submit" value="изменить данные">
+            <div class="account-info__btn-block">
+                <?php
+                    if($isWorker==true){
+                        echo("<a href='../pages/moderator.php'>
+                                <div class='button account-info__button'>
+                                    <input type='button' class='button__content account-info__moderate' value='панель модератора'>
+                                </div>
+                            </a>");
+                    }
+                ?>
+                <form action="../assets/api/logout.php">
+                    <div class="button logout-button">
+                        <input type="submit" class="button__content logout-button__content" value="Выйти">
+                    </div>
+                </form>
+                <div class="button account-info__button">
+                    <input type="button" class="button__content account-info__submit" value="изменить данные">
+                </div>
             </div>
         </div>
         <div class="account-services orders">
@@ -117,11 +134,6 @@ require_once "../assets/api/account_info_script.php";
             </table>
         </div>
     </section>
-    <form action="../assets/api/logout.php">
-        <div class="button logout-button">
-            <input type="submit" class="button__content logout-button__content" value="Выйти">
-        </div>
-    </form>
     <?php require_once "../includes/footer.php"; ?>
 </body>
 <!-- <script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>

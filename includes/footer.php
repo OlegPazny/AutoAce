@@ -9,7 +9,7 @@
     <footer class="footer">
         <div class="footer__logo">
             <a href="../index.php">
-                <h1>logo</h1>
+                <img src="../assets/images/logo_dark.png">
             </a>
         </div>
         <div class="footer__search">

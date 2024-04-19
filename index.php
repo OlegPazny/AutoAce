@@ -8,6 +8,9 @@
     }else if($isAdmin==true){
         header('Location: pages/admin.php');
     }else if($isWorker==true){
-        header('Location :pages/moderator.php');
+        header('Location: pages/moderator.php');
+    }else if($isClient==false&&$isAdmin==false&&$isWorker==false){
+        header('Location: pages/index.php');
     }
+    
 ?>

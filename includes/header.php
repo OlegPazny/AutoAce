@@ -1,3 +1,11 @@
+<?php
+    if(!isset($_SESSION['user'])){
+        $account_href="../pages/signin.php";
+    }else{
+        $account_href="../pages/account.php";
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +17,7 @@
     <header class="header">
     <div class="header__logo">
         <a href="../index.php">
-            <h1>logo</h1>
+            <img src="../assets/images/logo_light.png">
         </a>
     </div>
     <div class="header__search">
@@ -18,7 +26,7 @@
     <div class="header__contact-info">
         <div class="phone-number">+375 (29) 865-79-68</div>
         <div class="account-icon">
-            <a href="../pages/account.php"><img src="../assets/images/account_icon.png"></a>
+            <a href="<?php echo $account_href;?>"><img src="../assets/images/account_icon.png"></a>
         </div>
     </div>
     </header>

@@ -1175,8 +1175,14 @@ input[type=checkbox] {
   height: -moz-fit-content;
   height: fit-content;
 }
-.account-info__submit {
+.account-info__submit, .account-info__moderate {
   color: #232323;
+}
+.account-info__btn-block {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .account-services {
@@ -1221,6 +1227,10 @@ input[type=checkbox] {
   border: none !important;
   border-bottom: 1px solid #232323 !important;
   outline: none !important;
+}
+
+.add-service-button, .block-user, .delete-service {
+  cursor: pointer;
 }
 
 @font-face {

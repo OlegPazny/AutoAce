@@ -26,7 +26,7 @@ require_once "../assets/api/moderator_info_script.php";
             <ul class="nav__list">
                 <li class="nav__list__item info-btn">пользователи</li>
                 <li class="nav__list__item orders-btn">заказанные услуги</li>
-                <li class="nav__list__item history-btn">история заказов</li>
+                <li class="nav__list__item history-btn">архив заказов</li>
                 <li class="nav__list__item services-btn">услуги</li>
             </ul>
         </div>
@@ -209,16 +209,21 @@ require_once "../assets/api/moderator_info_script.php";
                                     id="service_description"></td>
                             <td><input type="text" class="add-service-input" name="service_price" id="service_price">
                             </td>
-                            <td> <select class="add-service-input" name="service_type" id="service_type">
+                            <td>
+                                <select class="add-service-input" name="service_type" id="service_type">
                                 <?php
                                     foreach($services_types as $services_type){
                                         echo("<option value='".$services_type[0]."'>".$services_type[1]."</option>");
                                     }
                                 ?>
                                     
-                                </select></td>
-                            <td><input type="button" class="add-service-button" name="add-service-button"
-                                    value="Добавить"></td>
+                                </select>
+                            </td>
+                            <td>
+                                <div class="add-service-button">
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'><path fill='#232323' d='M21 7v12q0 .825-.587 1.413T19 21H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h12zm-9 11q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-6-8h9V6H6z'/></svg>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
             </table>
