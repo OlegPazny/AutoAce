@@ -1226,6 +1226,7 @@ input[type=checkbox] {
   border: none !important;
   border-bottom: 1px solid #232323 !important;
   color: #232323 !important;
+  width: 6rem !important;
 }
 .add-service-input:focus {
   border: none !important;

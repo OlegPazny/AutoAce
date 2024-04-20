@@ -198,6 +198,7 @@ require_once "../assets/api/moderator_info_script.php";
                         <th>Описание</th>
                         <th>Стоимость</th>
                         <th>Тип услуги</th>
+                        <th>Скидка, %</th>
                         <th></th>
                     </tr>
                     <thead>
@@ -210,6 +211,7 @@ require_once "../assets/api/moderator_info_script.php";
                                 <td>" . $service[2] . "</td>
                                 <td>" . (int) $service[3] . " р.</td>
                                 <td>" . $service[4] . "</td>
+                                <td>" . $service[5] . "</td>
                                 <td>
                                     <div class='delete-service' data-service-id='" . $service[0] . "''>
                                         <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
@@ -238,6 +240,7 @@ require_once "../assets/api/moderator_info_script.php";
 
                                 </select>
                             </td>
+                            <td><input type="text" class="add-service-input" name="service_discount" id="service_discount"></td>
                             <td>
                                 <div class="add-service-button">
                                     <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'

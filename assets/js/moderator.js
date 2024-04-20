@@ -295,6 +295,7 @@ $(document).ready(function () {
         var serviceDescription = $('#service_description').val();
         var servicePrice = $('#service_price').val();
         var serviceType = $('#service_type').val();
+        var serviceDiscount = $('#service_discount').val();
 
         $.ajax({
             type: 'POST',
@@ -303,7 +304,8 @@ $(document).ready(function () {
                 service_name: serviceName,
                 service_description: serviceDescription,
                 service_price: servicePrice,
-                service_type: serviceType
+                service_type: serviceType,
+                service_discount: serviceDiscount
             },
             success: function (response) {
                 console.log('Услуга успешно добавлена!');
@@ -311,6 +313,7 @@ $(document).ready(function () {
                 $('#service_name').val('');
                 $('#service_description').val('');
                 $('#service_price').val('');
+                $('#service_discount').val('');
             },
             error: function (xhr, status, error) {
                 // Обработка ошибки AJAX-запроса
