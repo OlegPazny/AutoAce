@@ -1,6 +1,6 @@
 <?php
 require_once "../assets/api/isAdmin.php";
-if ($isClient == true) {
+if ($isClient == true || $isWorker == true) {
     header("Location: ../index.php");
 }
 require_once "../assets/api/moderator_info_script.php";
@@ -16,7 +16,7 @@ require_once "../assets/api/moderator_info_script.php";
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!-- jQuery connection -->
     <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
-    <title>Модерирование заказов</title>
+    <title>Панель администратора</title>
 </head>
 
 <body>
@@ -55,7 +55,6 @@ require_once "../assets/api/moderator_info_script.php";
 
                             if ($user[5] == "admin") {
                                 $role = "Администратор";
-                                continue;
                             } else if ($user[5] == "client") {
                                 $role = "Клиент";
                             } else if ($user[5] == "worker") {
@@ -67,14 +66,33 @@ require_once "../assets/api/moderator_info_script.php";
                                     <td>" . $user[1] . "</td>
                                     <td>" . $user[2] . "</td>
                                     <td>" . $user[3] . "</td>
-                                    <td>" . $role . "</td>
+                                    <td>"); 
+                            if($user[5]!="admin"){?>
+                            <select class='role-select' data-user-id="<?php echo $user[0]; ?>">
+                                <option value='client' <?php if ($user[5] == "client")
+                                    echo "selected"; ?>>
+                                    Клиент</option>
+                                <option value='worker' <?php if ($user[5] == "worker")
+                                    echo "selected"; ?>>
+                                    Работник</option>
+                            </select>
+                            <?php }else{
+                                echo("Администратор");
+                            } 
+                            echo ("
+                                    </td>
                                     <td>" . $isVerified . "</td>
-                                    <td>
-                                        <div class='block-user' data-user-id='" . $user[0] . "''>
-                                            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
-                                                <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
-                                            </svg>
-                                        </div>
+                                    <td>");
+                            if ($user[5] != "admin") {
+                                echo ("
+                                    <div class='block-user' data-user-id='" . $user[0] . "''>
+                                        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
+                                            <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
+                                        </svg>
+                                    </div>
+                                    ");
+                            }
+                            echo (" 
                                     </td>
                                 </tr>");
                         }
@@ -261,7 +279,8 @@ require_once "../assets/api/moderator_info_script.php";
                         ?>
                         <tr class="add-relation-row">
                             <td>
-                                <select class="workshops-input" name="relation_workshop_name" id="relation_workshop_name">
+                                <select class="workshops-input" name="relation_workshop_name"
+                                    id="relation_workshop_name">
                                     <?php
                                     foreach ($workshops as $workshop) {
                                         echo ("<option value='" . $workshop[0] . "'>" . $workshop[1] . "</option>");
@@ -297,5 +316,6 @@ require_once "../assets/api/moderator_info_script.php";
     <?php require_once "../includes/footer.php"; ?>
 </body>
 <script src="../assets/js/moderator.js"></script>
+<script src="../assets/js/admin.js"></script>
 
 </html>

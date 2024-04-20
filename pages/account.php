@@ -51,6 +51,12 @@ require_once "../assets/api/isAdmin.php";
                                     <input type='button' class='button__content account-info__moderate' value='панель модератора'>
                                 </div>
                             </a>");
+                    }else if($isAdmin==true){
+                        echo("<a href='../pages/admin.php'>
+                                <div class='button account-info__button'>
+                                    <input type='button' class='button__content account-info__moderate' value='панель администратора'>
+                                </div>
+                            </a>");
                     }
                 ?>
                 <form action="../assets/api/logout.php">

@@ -370,7 +370,6 @@ $(document).ready(function () {
                     "</td>" +
                     "</tr>";
                     var inputRow = $('.add-relation-row');
-                    alert(inputRow);
                     // Вставляем новую строку перед найденным элементом
                     inputRow.before(newRow);
             },
