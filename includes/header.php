@@ -16,7 +16,7 @@
 <body>
     <header class="header">
     <div class="header__logo">
-        <a href="../index.php">
+        <a href="../pages/index.php">
             <img src="../assets/images/logo_light.png">
         </a>
     </div>

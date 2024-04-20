@@ -1203,6 +1203,10 @@ input[type=checkbox] {
   display: none;
 }
 
+.relations {
+  display: none;
+}
+
 .logout-button {
   border: 1px solid #232323;
 }

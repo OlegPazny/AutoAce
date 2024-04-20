@@ -4,14 +4,17 @@ $(document).ready(function () {
     var orders_btn = $('.orders-btn');
     var history_btn = $('.history-btn');
     var services_btn = $('.services-btn');
+    var relations_btn = $('.relations-btn');
     var infoContainer = $('.accounts');
     var ordersContainer = $('.orders');
     var historyContainer = $('.history');
     var servicesContainer = $('.services');
+    var relationsContainer = $('.relations');
     $('.info-btn').on('click', function () {
         ordersContainer.fadeOut();
         historyContainer.fadeOut();
         servicesContainer.fadeOut();
+        relationsContainer.fadeOut();
 
         info_btn.css("background", "#fff");
         info_btn.css("color", "#232323");
@@ -21,6 +24,8 @@ $(document).ready(function () {
         history_btn.css("color", "#fff");
         services_btn.css("background", "#232323");
         services_btn.css("color", "#fff");
+        relations_btn.css("background", "#232323");
+        relations_btn.css("color", "#fff");
 
         // Проверяем, видим ли блок #answers-container
         if (ordersContainer.css('display') != 'none') {
@@ -36,6 +41,10 @@ $(document).ready(function () {
             // Если блок видим, скрываем его
             servicesContainer.hide();
         }
+        if (relationsContainer.css('display') != 'none') {
+            // Если блок видим, скрываем его
+            relationsContainer.hide();
+        }
 
         infoContainer.fadeIn('slow'); // Показываем блок #answers-container
     })
@@ -46,6 +55,7 @@ $(document).ready(function () {
         infoContainer.fadeOut();
         historyContainer.fadeOut();
         servicesContainer.fadeOut();
+        relationsContainer.fadeOut();
 
         info_btn.css("background", "#232323");
         info_btn.css("color", "#fff");
@@ -55,6 +65,8 @@ $(document).ready(function () {
         history_btn.css("color", "#fff");
         services_btn.css("background", "#232323");
         services_btn.css("color", "#fff");
+        relations_btn.css("background", "#232323");
+        relations_btn.css("color", "#fff");
 
         // Проверяем, видим ли блок #answers-container
         if (infoContainer.css('display') != 'none') {
@@ -69,6 +81,10 @@ $(document).ready(function () {
         if (servicesContainer.css('display') != 'none') {
             // Если блок видим, скрываем его
             servicesContainer.hide();
+        }
+        if (relationsContainer.css('display') != 'none') {
+            // Если блок видим, скрываем его
+            relationsContainer.hide();
         }
 
         ordersContainer.fadeIn('slow'); // Показываем блок #answers-container
@@ -81,6 +97,7 @@ $(document).ready(function () {
         infoContainer.fadeOut();
         ordersContainer.fadeOut();
         servicesContainer.fadeOut();
+        relationsContainer.fadeOut();
 
         info_btn.css("background", "#232323");
         info_btn.css("color", "#fff");
@@ -90,6 +107,8 @@ $(document).ready(function () {
         history_btn.css("color", "#232323");
         services_btn.css("background", "#232323");
         services_btn.css("color", "#fff");
+        relations_btn.css("background", "#232323");
+        relations_btn.css("color", "#fff");
 
         // Проверяем, видим ли блок #answers-container
         if (infoContainer.css('display') != 'none') {
@@ -105,6 +124,10 @@ $(document).ready(function () {
             // Если блок видим, скрываем его
             servicesContainer.hide();
         }
+        if (relationsContainer.css('display') != 'none') {
+            // Если блок видим, скрываем его
+            relationsContainer.hide();
+        }
 
         historyContainer.fadeIn('slow'); // Показываем блок #answers-container
 
@@ -115,6 +138,7 @@ $(document).ready(function () {
         infoContainer.fadeOut();
         ordersContainer.fadeOut();
         historyContainer.fadeOut();
+        relationsContainer.fadeOut();
 
         info_btn.css("background", "#232323");
         info_btn.css("color", "#fff");
@@ -124,6 +148,8 @@ $(document).ready(function () {
         history_btn.css("color", "#fff");
         services_btn.css("background", "#fff");
         services_btn.css("color", "#232323");
+        relations_btn.css("background", "#232323");
+        relations_btn.css("color", "#fff");
 
         // Проверяем, видим ли блок #answers-container
         if (infoContainer.css('display') != 'none') {
@@ -139,8 +165,52 @@ $(document).ready(function () {
             // Если блок видим, скрываем его
             historyContainer.hide();
         }
+        if (relationsContainer.css('display') != 'none') {
+            // Если блок видим, скрываем его
+            relationsContainer.hide();
+        }
 
         servicesContainer.fadeIn('slow'); // Показываем блок #answers-container
+
+    })
+    //блок отношений
+    $('.relations-btn').on('click', function () {
+        infoContainer.fadeOut();
+        ordersContainer.fadeOut();
+        historyContainer.fadeOut();
+        servicesContainer.fadeOut();
+
+        info_btn.css("background", "#232323");
+        info_btn.css("color", "#fff");
+        orders_btn.css("background", "#232323");
+        orders_btn.css("color", "#fff");
+        history_btn.css("background", "#232323");
+        history_btn.css("color", "#fff");
+        services_btn.css("background", "#232323");
+        services_btn.css("color", "#fff");
+        relations_btn.css("background", "#fff");
+        relations_btn.css("color", "#232323");
+
+        // Проверяем, видим ли блок #answers-container
+        if (infoContainer.css('display') != 'none') {
+            // Если блок видим, скрываем его
+            infoContainer.hide();
+
+        }
+        if (ordersContainer.css('display') != 'none') {
+            // Если блок видим, скрываем его
+            ordersContainer.hide();
+        }
+        if (historyContainer.css('display') != 'none') {
+            // Если блок видим, скрываем его
+            historyContainer.hide();
+        }
+        if (servicesContainer.css('display') != 'none') {
+            // Если блок видим, скрываем его
+            servicesContainer.hide();
+        }
+
+        relationsContainer.fadeIn('slow'); // Показываем блок #answers-container
 
     })
     //блокировка пользователя
@@ -271,5 +341,67 @@ $(document).ready(function () {
         xhr.open('POST', '../assets/api/delete_service_script.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send('service_id=' + serviceId);
+    }
+    //добавление отношения
+    $('.add-relation-button').click(function () {
+        var serviceNameRelation = $('#relation_service_name').val();
+        var workshopNameRelation = $('#relation_workshop_name').val();
+        var serviceNameRelationValue = $('#relation_service_name option:selected').text(); // Получаем текст выбранной опции (название услуги)
+        var workshopNameRelationValue = $('#relation_workshop_name option:selected').text(); // Получаем текст выбранной опции (название автосервиса)
+        $.ajax({
+            type: 'POST',
+            url: '../assets/api/add_relation_script.php',
+            data: {
+                service_name_relation: serviceNameRelation,
+                workshop_name_relation: workshopNameRelation,
+            },
+            success: function (response) {
+                console.log('Услуга успешно добавлена!');
+                // Создаем новую строку таблицы на основе полученных данных
+                var newRow = "<tr>" +
+                    "<td>" + workshopNameRelationValue + "</td>" +
+                    "<td>" + serviceNameRelationValue + "</td>" +
+                    "<td>" +
+                    "<div class='delete-relation' data-service-id='" + serviceNameRelation + "''>" +
+                    "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>" +
+                    "<path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>" +
+                    "</svg>" +
+                    "</div>" +
+                    "</td>" +
+                    "</tr>";
+                    var inputRow = $('.add-relation-row');
+                    alert(inputRow);
+                    // Вставляем новую строку перед найденным элементом
+                    inputRow.before(newRow);
+            },
+            error: function (xhr, status, error) {
+                // Обработка ошибки AJAX-запроса
+                console.error(xhr.responseText);
+            }
+        });
+    });
+    //удаление отношения
+    var deleteRelationButtons = document.querySelectorAll('.delete-relation');
+    deleteRelationButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var relationId = this.getAttribute('data-relation-id');
+            deleteRelation(relationId, button); // Передаем ссылку на кнопку вместе с userId
+        });
+    });
+    function deleteRelation(relationId, button) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var relationRow = button.parentNode.parentNode; // Используем parentNode для доступа к <td>, а затем к <tr>
+                    relationRow.parentNode.removeChild(relationRow);
+                } else {
+                    console.error('Произошла ошибка при удалении отношения');
+                }
+            }
+        };
+        xhr.open('POST', '../assets/api/delete_relation_script.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('relation_id=' + relationId);
     }
 });
