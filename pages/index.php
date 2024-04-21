@@ -140,10 +140,9 @@ require_once "../assets/api/isAdmin.php";
         <h2 class="prons-section__head"> мы это —</h2>
         <div class="prons-section__body">
             <div class="pron">
-                <h5 class="pron__head">Преимущество 1</h5>
+                <h5 class="pron__head">Профессиональные мастера</h5>
                 <p class="pron__text">
-                    Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более
-                    менее.
+                    Наши мастера осуществляют качественный ремонт и обслуживание вашего автомобиля с использованием передовых технологий и лучших практик в автомобильной индустрии.
                 </p>
                 <img class="pron__img" src="../assets/images/pron_arrow.png">
             </div>
@@ -151,18 +150,16 @@ require_once "../assets/api/isAdmin.php";
             <div class="bottom-prons">
                 <div class="pron">
                     <img class="pron__img up" src="../assets/images/pron_arrow.png">
-                    <h5 class="pron__head">Преимущество 2</h5>
+                    <h5 class="pron__head">Индивидуальный подход</h5>
                     <p class="pron__text">
-                        Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более
-                        менее.
+                    Мы работаем с каждым клиентом индивидуально, чтобы полностью удовлетворить его потребности.
                     </p>
                 </div>
                 <div class="pron">
                     <img class="pron__img up" src="../assets/images/pron_arrow.png">
-                    <h5 class="pron__head">Преимущество 3</h5>
+                    <h5 class="pron__head">Современное оборудование</h5>
                     <p class="pron__text">
-                        Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более
-                        менее.
+                    Мы используем передовое оборудование для точной диагностики и эффективного ремонта вашего автомобиля.
                     </p>
                 </div>
             </div>
