@@ -574,8 +574,9 @@ swiper-slide:nth-child(10n) {
   background-color: rgb(54, 94, 77);
 }
 
-.swiper {
+.swiper2 {
   width: 100%;
+  overflow: hidden;
 }
 
 .container {
@@ -592,8 +593,7 @@ swiper-slide:nth-child(10n) {
   border-radius: 45px;
   color: #fff;
   padding: 2.05rem 3.5rem;
-  width: -moz-fit-content !important;
-  width: fit-content !important;
+  width: 10rem !important;
 }
 .card__head {
   font-size: 1.67rem;

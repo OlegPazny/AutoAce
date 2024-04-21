@@ -203,12 +203,12 @@ require_once "../assets/api/isAdmin.php";
         <h2 class="discount-offers-section__head">Выгодные<br>предложения</h2>
         <container class="discount-offers-section__slider">
             <section class="discount-offers-section__slider__scetion">
-                <div class="swiper mySwiper container">
+                <div class="swiper2 mySwiper2 container">
                     <div class="swiper-wrapper content">
                         <div class="swiper-slide card">
                             <h5 class="card__head">скидка</h5>
-                            <h3 class="card__discount">25%</h3>
-                            <p class="card__description">Замена глушителя</p>
+                            <h3 class="card__discount">10%</h3>
+                            <p class="card__description">Замена банки выхлопа</p>
                             <div class="slider-button">
                                 <input type="button" class="slider-button__content" value="Записаться">
                             </div>
@@ -270,7 +270,6 @@ require_once "../assets/api/isAdmin.php";
                         </div>
                     </div>
                 </div>
-                <div class="swiper-pagination"></div>
             </section>
         </container>
     </section>
@@ -314,7 +313,7 @@ require_once "../assets/api/isAdmin.php";
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 <script>
-    var swiper = new Swiper(".mySwiper1", {
+    var swiper1 = new Swiper(".mySwiper1", {
         slidesPerView: 2,
         slidesPerGroup: 2,
         grid: {
@@ -326,11 +325,11 @@ require_once "../assets/api/isAdmin.php";
             clickable: true,
         },
     });
-    var swiper = new Swiper(".mySwiper", {
+    var swiper2 = new Swiper(".mySwiper2", {
         slidesPerView: 3,
-        spaceBetween: 10,
+        spaceBetween: 135,
         slidesPerGroup: 3,
-        loop: true,
+        loop: false,
         grabCursor: true,
         loopFillGroupWithBlank: true,
     });
