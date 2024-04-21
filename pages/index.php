@@ -27,11 +27,9 @@ require_once "../assets/api/isAdmin.php";
                 <div class="swiper-slide car-maintenance-slide">
                     <div class="offers-slider-elem">
                         <h2 class="offers-slider-elem__head">техническое обслуживание автомобиля</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру
-                            сгенерировать несколько абзацев?
-                            Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
+                        <p class="offers-slider-elem__text">Техническое обслуживание транспорта отличается сроками проведения и характером работ. Но его нельзя вычеркнуть из списка обязательных дел.
                         </p>
-                        <div class="button">
+                        <div class="button to-map">
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
                         <img class="car-maintenance-slide__image" src="../assets/images/main_slider1.png">
@@ -42,9 +40,8 @@ require_once "../assets/api/isAdmin.php";
                 <div class="swiper-slide brake-system-slide">
                     <div class="offers-slider-elem">
                         <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру
-                            сгенерировать несколько абзацев?</p>
-                        <div class="button">
+                        <p class="offers-slider-elem__text">Если Ваш автомобиль тормозит плохо или вообще не тормозит записывайтесь к нам на ремонт узлов тормозной системы!</p>
+                        <div class="button to-map">
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
                         <img class="brake-system-slide__image" src="../assets/images/main_slider2.png">
@@ -54,11 +51,9 @@ require_once "../assets/api/isAdmin.php";
                 <div class="swiper-slide car-maintenance-slide">
                     <div class="offers-slider-elem">
                         <h2 class="offers-slider-elem__head">техническое обслуживание автомобиля</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру
-                            сгенерировать несколько абзацев?
-                            Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
+                        <p class="offers-slider-elem__text">Техническое обслуживание транспорта отличается сроками проведения и характером работ. Но его нельзя вычеркнуть из списка обязательных дел.
                         </p>
-                        <div class="button">
+                        <div class="button to-map">
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
                         <img class="car-maintenance-slide__image" src="../assets/images/main_slider1.png">
@@ -69,9 +64,8 @@ require_once "../assets/api/isAdmin.php";
                 <div class="swiper-slide brake-system-slide">
                     <div class="offers-slider-elem">
                         <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру
-                            сгенерировать несколько абзацев?</p>
-                        <div class="button">
+                        <p class="offers-slider-elem__text">Если Ваш автомобиль тормозит плохо или вообще не тормозит записывайтесь к нам на ремонт узлов тормозной системы!</p>
+                        <div class="button to-map">
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
                         <img class="brake-system-slide__image" src="../assets/images/main_slider2.png">
@@ -81,11 +75,9 @@ require_once "../assets/api/isAdmin.php";
                 <div class="swiper-slide car-maintenance-slide">
                     <div class="offers-slider-elem">
                         <h2 class="offers-slider-elem__head">техническое обслуживание автомобиля</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру
-                            сгенерировать несколько абзацев?
-                            Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
+                        <p class="offers-slider-elem__text">Техническое обслуживание транспорта отличается сроками проведения и характером работ. Но его нельзя вычеркнуть из списка обязательных дел.
                         </p>
-                        <div class="button">
+                        <div class="button to-map">
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
                         <img class="car-maintenance-slide__image" src="../assets/images/main_slider1.png">
@@ -96,36 +88,8 @@ require_once "../assets/api/isAdmin.php";
                 <div class="swiper-slide brake-system-slide">
                     <div class="offers-slider-elem">
                         <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру
-                            сгенерировать несколько абзацев?</p>
-                        <div class="button">
-                            <input type="button" class="button__content" value="Записаться на ремонт">
-                        </div>
-                        <img class="brake-system-slide__image" src="../assets/images/main_slider2.png">
-                        <div class="slide-shadow3"></div>
-                    </div>
-                </div>
-                <div class="swiper-slide car-maintenance-slide">
-                    <div class="offers-slider-elem">
-                        <h2 class="offers-slider-elem__head">техническое обслуживание автомобиля</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру
-                            сгенерировать несколько абзацев?
-                            Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев?
-                        </p>
-                        <div class="button">
-                            <input type="button" class="button__content" value="Записаться на ремонт">
-                        </div>
-                        <img class="car-maintenance-slide__image" src="../assets/images/main_slider1.png">
-                        <div class="slide-shadow1"></div>
-                        <div class="slide-shadow2"></div>
-                    </div>
-                </div>
-                <div class="swiper-slide brake-system-slide">
-                    <div class="offers-slider-elem">
-                        <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
-                        <p class="offers-slider-elem__text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру
-                            сгенерировать несколько абзацев?</p>
-                        <div class="button">
+                        <p class="offers-slider-elem__text">Если Ваш автомобиль тормозит плохо или вообще не тормозит записывайтесь к нам на ремонт узлов тормозной системы!</p>
+                        <div class="button to-map">
                             <input type="button" class="button__content" value="Записаться на ремонт">
                         </div>
                         <img class="brake-system-slide__image" src="../assets/images/main_slider2.png">
@@ -180,7 +144,7 @@ require_once "../assets/api/isAdmin.php";
                 подход к вашему автомобилю. Доверьте нам заботу о вашем авто, и мы сделаем все возможное, чтобы ваши
                 дорогие вам машины всегда оставались в идеальном состоянии.
             </p>
-            <div class="button">
+            <div class="button to-map">
                 <input type="button" class="button__content" value="Перейти к услугам">
             </div>
         </div>
