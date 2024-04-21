@@ -1066,6 +1066,7 @@ input[type=checkbox] {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  width: 100%;
 }
 .about-workshop-section__container__info__description {
   font-size: 0.75rem;
@@ -1099,6 +1100,9 @@ input[type=checkbox] {
   border-radius: 2.91rem;
 }
 
+.list-container {
+  width: 50%;
+}
 .list-container__head {
   font-family: "Soyuz";
   font-size: 1.45;
