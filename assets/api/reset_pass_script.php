@@ -14,7 +14,7 @@
     $isTrusted=false;
     foreach($users_data as $user_data){
         $current_user=md5($user_data[1].$user_data[2].$user_data[3]);
-        var_dump($current_user);
+
         if($hash===$current_user){
             $trusted_id=$user_data[0];
             $trusted_name=$user_data[2];

@@ -1,4 +1,4 @@
-//регистрация
+//смена пароля
 $('.send-btn').click(function(e){
     e.preventDefault();//не обновляет страницу при клике(отключение стандартного поведения)
 
@@ -8,7 +8,7 @@ $('.send-btn').click(function(e){
     
     let formData=new FormData();
     formData.append('email', email);
-
+    
     $.ajax({
         url:'../assets/api/send_reset_message_script.php',
         type:'POST',
@@ -20,7 +20,7 @@ $('.send-btn').click(function(e){
 
         success:function(data){
             if(data.status){
-                document.location.href='/index.php';
+                window.location.href=data.redirect_url;
             }else{
                 if(data.type===1){
                     data.fields.forEach(function(field){

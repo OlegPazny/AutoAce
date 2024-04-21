@@ -19,7 +19,6 @@ function russianMonth($monthNumber) {
     return $months[$monthNumber - 1];
 }
 ?>
-?>
 <!DOCTYPE html>
 <html lang="en">
 

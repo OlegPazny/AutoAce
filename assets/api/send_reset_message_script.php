@@ -40,12 +40,13 @@
         die();
     }else{
         $hash=md5($user_data['login'].$user_data['name'].$user_data['email']);
-        $body="<h1>Пожалуйста, перейдите по <a href='autoace/reset_password.php?hash=$hash' target='_blank'>ссылке</a>, если вы хотите изменить пароль!</h1>";
+        $body="<h1>Пожалуйста, перейдите по <a href='autoace/pages/reset_password.php?hash=$hash' target='_blank'>ссылке</a>, если вы хотите изменить пароль!</h1>";
         var_dump(send_mail($settings['mail_settings'], [$email], 'Изменение пароля!', $body));
 
         $response=[
             "status"=>true,
             "message"=>"Сообщение отправлено на почту",
+            "redirect_url"=>"../index.php",
         ];
         echo json_encode($response);
     }

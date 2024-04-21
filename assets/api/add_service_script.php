@@ -7,5 +7,10 @@
     $serviceType = $_POST['service_type'];
     $serviceDiscount = $_POST['service_discount'];
 
-    $add_service=mysqli_query($db, "INSERT INTO `services` (`id`, `service_name`, `description`, `price`, `id_service_type`, `discount`) VALUES (NULL, '$serviceName', '$serviceDescription', $servicePrice, $serviceType, $serviceDiscount)");
+    if($serviceDiscount!=""){
+        $add_service=mysqli_query($db, "INSERT INTO `services` (`id`, `service_name`, `description`, `price`, `id_service_type`, `discount`) VALUES (NULL, '$serviceName', '$serviceDescription', $servicePrice, $serviceType, $serviceDiscount)");
+    }else{
+        $add_service=mysqli_query($db, "INSERT INTO `services` (`id`, `service_name`, `description`, `price`, `id_service_type`, `discount`) VALUES (NULL, '$serviceName', '$serviceDescription', $servicePrice, $serviceType, NULL)");
+    }
+
 ?>
