@@ -35,10 +35,10 @@ require_once "../assets/api/get_workshop_data_script.php";
 
                 </div>
                 <div class="about-workshop-section__container__img__secondary">
-                    <div class="about-workshop-section__container__img__secondary__img">
+                    <div class="about-workshop-section__container__img__secondary__img second">
 
                     </div>
-                    <div class="about-workshop-section__container__img__secondary__img">
+                    <div class="about-workshop-section__container__img__secondary__img third">
 
                     </div>
                 </div>
