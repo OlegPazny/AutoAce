@@ -39,6 +39,7 @@ $_SESSION['last_activity'] = time(); // Обновляем время после
                 "id"=>$user['id'],
                 "UserName"=>$user['login'],
                 "role"=>$user['role'],
+                "email"=>$user['email'],
             ];
 
             $response=[//ответ авторизации
