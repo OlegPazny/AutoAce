@@ -5,6 +5,17 @@ if ($isClient == true || $isWorker == true) {
     header("Location: ../index.php");
 }
 require_once "../assets/api/moderator_info_script.php";
+// Функция для получения русского названия месяца
+function russianMonth($monthNumber) {
+    $months = array(
+        'января', 'февраля', 'марта',
+        'апреля', 'мая', 'июня',
+        'июля', 'августа', 'сентября',
+        'октября', 'ноября', 'декабря'
+    );
+    return $months[$monthNumber - 1];
+}
+?>
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -120,13 +131,17 @@ require_once "../assets/api/moderator_info_script.php";
                             if ($account_book[6] == "completed") {
                                 continue;
                             }
+                            $date = strtotime($account_book[4]); // Преобразование строки в дату
+                            $day = date('j', $date);
+                            $month = date('n', $date);
+                            $date = $day . ' ' . russianMonth($month);
 
                             echo ("<tr>
                                     <td>" . $account_book[1] . "</td>
                                     <td>" . $account_book[2] . "</td>
                                     <td>" . (int) $account_book[7] . " р.</td>
                                     <td>" . $account_book[3] . "</td>
-                                    <td>" . $account_book[4] . "</td>
+                                    <td>" . $date . "</td>
                                     <td>" . substr($account_book[5], 0, 5) . "</td>
                                     <td>");
                             ?>
@@ -163,12 +178,16 @@ require_once "../assets/api/moderator_info_script.php";
                     <tbody>
                         <?php
                         foreach ($accounts_history as $account_history) {
+                            $date = strtotime($account_history[3]); // Преобразование строки в дату
+                            $day = date('j', $date);
+                            $month = date('n', $date);
+                            $date = $day . ' ' . russianMonth($month);
                             echo ("<tr>
                                 <td>" . $account_history[0] . "</td>
                                 <td>" . $account_history[1] . "</td>
                                 <td>" . $account_history[2] . "</td>
-                                <td>" . $account_history[3] . "</td>
-                                <td>" . $account_history[4] . "</td>
+                                <td>" . $date . "</td>
+                                <td>" . substr($account_history[4], 0, 5) . "</td>
                                 <td>");
                             ?>
                             <select class='history-status-select' data-booking-id="<?php echo $account_history[6]; ?>">

@@ -2,6 +2,17 @@
 session_start();
 require_once "../assets/api/account_info_script.php";
 require_once "../assets/api/isAdmin.php";
+
+// Функция для получения русского названия месяца
+function russianMonth($monthNumber) {
+    $months = array(
+        'января', 'февраля', 'марта',
+        'апреля', 'мая', 'июня',
+        'июля', 'августа', 'сентября',
+        'октября', 'ноября', 'декабря'
+    );
+    return $months[$monthNumber - 1];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,6 +96,10 @@ require_once "../assets/api/isAdmin.php";
                     <tbody>
                         <?php
                         foreach ($account_books as $account_book) {
+                            $date = strtotime($account_book[4]); // Преобразование строки в дату
+                            $day = date('j', $date);
+                            $month = date('n', $date);
+                            $date = $day . ' ' . russianMonth($month);
                             if ($account_book[5] == "pending") {
                                 $status = "В обработке";
                             } else if ($account_book[5] == "confirmed") {
@@ -97,8 +112,8 @@ require_once "../assets/api/isAdmin.php";
                                 <td>" . $account_book[0] . "</td>
                                 <td>" . $account_book[1] . "</td>
                                 <td>" . $account_book[2] . "</td>
-                                <td>" . $account_book[3] . "</td>
-                                <td>" . $account_book[4] . "</td>
+                                <td>" . $date . "</td>
+                                <td>" . substr($account_book[4], 0, 5) . "</td>
                                 <td>" . $status . "</td></tr>");
                         }
                         ?>
@@ -112,29 +127,24 @@ require_once "../assets/api/isAdmin.php";
                         <th>Автосервис</th>
                         <th>Услуга</th>
                         <th>Комментарий</th>
-                        <th>Дата записи</th>
-                        <th>Время записи</th>
-                        <th>Статус</th>
+                        <th>Дата завершения</th>
+                        <th>Время завершения</th>
                     </tr>
                     <thead>
                     <tbody>
                         <?php
-                        foreach ($account_books as $account_book) {
-                            if ($account_book[5] == "pending") {
-                                $status = "В обработке";
-                            } else if ($account_book[5] == "confirmed") {
-                                $status = "Принято в работу";
-                            } else if ($account_book[5] == "completed") {
-                                $status = "Выполнено";
-                            }
-
+                        foreach ($account_history as $item) {
+                            $date = strtotime($item[3]); // Преобразование строки в дату
+                            $day = date('j', $date);
+                            $month = date('n', $date);
+                            $date = $day . ' ' . russianMonth($month);
                             echo ("<tr>
-                                <td>" . $account_book[0] . "</td>
-                                <td>" . $account_book[1] . "</td>
-                                <td>" . $account_book[2] . "</td>
-                                <td>" . $account_book[3] . "</td>
-                                <td>" . $account_book[4] . "</td>
-                                <td>" . $status . "</td></tr>");
+                                    <td>" . $item[0] . "</td>
+                                    <td>" . $item[1] . "</td>
+                                    <td>" . $item[2] . "</td>
+                                    <td>" . $date . "</td>
+                                    <td>" . substr($item[4], 0, 5) . "</td>
+                                </tr>");
                         }
                         ?>
                     </tbody>
