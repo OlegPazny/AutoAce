@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "../assets/api/isAdmin.php";
 if ($isClient == true || $isWorker == true) {
     header("Location: ../index.php");

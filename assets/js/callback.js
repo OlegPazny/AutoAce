@@ -29,6 +29,7 @@ $(document).ready(function () {
                 $('input[name="name"]').val('');
                 $('input[name="email"]').val('');
                 $('textarea[name="message"]').val('');
+                $('.callback-form__checkbox').prop('checked', false);
             },
             error: function (xhr, status, error) {
                 // Обработка ошибки AJAX-запроса

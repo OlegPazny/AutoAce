@@ -44,7 +44,7 @@ require_once "../assets/api/get_workshop_data_script.php";
                 </div>
             </div>
             <div class="about-workshop-section__container__info">
-                <h2 class="about-workshop-section__container__info__head">Название станции</h2>
+                <h2 class="about-workshop-section__container__info__head"><?php echo($workshop_data['name']);?></h2>
                 <div class="about-workshop-section__container__info__services-block">
                     <?php foreach ($services_arr as $service_type => $services) {
                         echo ("<div class='list-container'>");
@@ -57,11 +57,10 @@ require_once "../assets/api/get_workshop_data_script.php";
                         echo ("</div>");
                     } ?>
                 </div>
-                <h3 class="about-workshop-section__container__info__description-head">описание</h3>
-                <p class="about-workshop-section__container__info__description">Сайт рыбатекст поможет дизайнеру, верстальщику,
-                    вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а
-                    начинающему оратору отточить навык публичных выступлений в домашних условиях. При создании
-                    генератора мы использовали небезизвестный универсальный код речей.</p>
+                <h3 class="about-workshop-section__container__info__description-head">адрес</h3>
+                <p class="about-workshop-section__container__info__description"><?php echo($workshop_data['address']);?></p>
+                <h3 class="about-workshop-section__container__info__description-head">время работы</h3>
+                <p class="about-workshop-section__container__info__description"><?php echo($workshop_data['working_hours']);?></p>
             </div>
         </div>
     </section>
@@ -78,17 +77,16 @@ require_once "../assets/api/get_workshop_data_script.php";
                 <div class="callback-form__inputs-block">
 
                     <label class="callback-form__label">Станция технического обслуживания</label>
-                    <select id="workshop" name="workshop">
-                        <option name="workshop" value="<?php echo($_GET['id']);?>">мастерская</option>
-                    </select>
+                    <h2 style="color:#fff" name="workshop" value="<?php echo($_GET['id']);?>"><?php echo($workshop_data['name']);?></h2>
+                   
 
                     <label class="callback-form__label">Услуга</label>
                     <select id="service" name="service">
                         <option selected disabled>Выберите услугу</option>
                         <?php foreach ($services_arr as $service_type => $services) {
-                            echo ("<option disabled>" . $service_type . "</option>");
+                            echo ("<option disabled class='disabled-option'>" . $service_type . "</option>");
                             foreach ($services as $service) {
-                                echo ("<option value='".$service['id']."'>" . $service['name'] . "</option>");
+                                echo ("<option class='service-option' value='".$service['id']."'>" . $service['name'] . "</option>");
                             }
                         } ?>
                     </select>

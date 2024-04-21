@@ -1124,6 +1124,10 @@ input[type=checkbox] {
   position: relative;
 }
 
+.disabled-option {
+  font-weight: bold;
+}
+
 .account-section {
   padding: 0 8.33rem;
   background-color: #fff;

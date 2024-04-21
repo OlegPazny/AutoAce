@@ -5,6 +5,9 @@ require_once "db_connect.php";
 if (isset($_SESSION['workshop_id'])) {
     $workshop_id = $_SESSION['workshop_id'];
 
+    $workshop_data=mysqli_query($db, "SELECT * FROM `workshops` WHERE `id`=$workshop_id");
+    $workshop_data=mysqli_fetch_assoc($workshop_data);
+
     $workshop_services_data = mysqli_query($db, "SELECT st.type AS service_type, s.id AS service_id, s.service_name AS service_name 
         FROM workshops w 
         JOIN service_workshop_relationships swr ON w.id = swr.workshop_id 

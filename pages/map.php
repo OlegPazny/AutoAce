@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "../assets/api/get_services_script.php";
 ?>
 <!DOCTYPE html>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "../assets/api/account_info_script.php";
 require_once "../assets/api/isAdmin.php";
 ?>
