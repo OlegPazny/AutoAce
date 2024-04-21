@@ -98,7 +98,7 @@ require_once "../assets/api/get_workshop_data_script.php";
             </div>
             <div class="callback-form__submit-check-block">
                 <div class="callback-form__submit-block button">
-                    <input type="submit" class="callback-form__submit button__content" value="Записаться">
+                    <input type="submit" class="callback-form__submit button__content" value="Записаться" <?php if(!isset($_SESSION['user']['id'])){echo("disabled");}?>>
                 </div>
                 <div class="callback-form__checkbox-block">
                     <input type="checkbox" class="callback-form__checkbox" id="book_submit">
