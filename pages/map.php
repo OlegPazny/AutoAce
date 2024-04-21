@@ -11,6 +11,7 @@ require_once "../assets/api/get_services_script.php";
     <!-- jQuery connection -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jQuery/3.3.1/jQuery.min.js"></script>
     <!-- jQuery connection -->
     <!-- leaflet connection -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -32,7 +33,7 @@ require_once "../assets/api/get_services_script.php";
                     echo ("<li class='filter-block__headlist__service-type'>" . $service_type);
                     echo ("<ul class='filter-block__list'>");
                     foreach ($services as $service) {
-                        echo ("<li class='filter-block__list__service'><input type='checkbox' name='services' value='" . $service['id'] . "'>" . $service['name'] . "</li>");
+                        echo ("<li class='filter-block__list__service'><input type='checkbox' name='services' value='" . $service['id'] . "'>" . $service['name'] . "&nbsp<b>" . $service['price'] . "&nbspр.</b></li>");
                     }
                     echo ("</ul>");
                     echo ("</li>");
@@ -78,9 +79,10 @@ require_once "../assets/api/get_services_script.php";
             <div class="form-shadow2"></div>
         </div>
     </section>
-    <?php require_once "../includes/footer.php";?>
+    <?php require_once "../includes/footer.php"; ?>
 </body>
 <script src="../assets/js/map_init.js"></script>
 <script src="../assets/js/workshops_filter.js"></script>
+<script src="../assets/js/callback.js"></script>
 
 </html>

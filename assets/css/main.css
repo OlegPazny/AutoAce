@@ -984,6 +984,7 @@ body {
   padding-left: 8.33rem;
   background-color: #232323;
   border-bottom: 1px solid #fff;
+  height: 70vh;
 }
 
 #map {
@@ -998,7 +999,10 @@ body {
 }
 
 .filter-block {
-  width: 34%;
+  width: 35%;
+  padding-right: 0.5rem;
+  height: 70vh;
+  overflow-y: auto;
 }
 .filter-block__headlist {
   list-style-type: none;
