@@ -79,7 +79,7 @@
 
         $hash=md5($login.$name.$email);
         $body="<h1>Пожалуйста, перейдите по <a href='autoace/pages/verify.php?hash=$hash' target='_blank'>ссылке</a>, если вы хотите подтвердить регистрацию!</h1>";
-        var_dump(send_mail($settings['mail_settings'], [$email], 'Подтвердите регистрацию!', $body));
+        send_mail($settings['mail_settings'], [$email], 'Подтвердите регистрацию!', $body);
 
         $response=[
             "status"=>true,

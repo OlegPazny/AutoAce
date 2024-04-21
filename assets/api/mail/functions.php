@@ -7,7 +7,7 @@
     {
         $mail=new PHPMailer(true);
         try{
-            $mail->SMTPDebug=2;
+            $mail->SMTPDebug=0;//2 для дебага
             $mail->isSMTP();
             $mail->Host=$mail_settings['host'];
             $mail->SMTPAuth=$mail_settings['auth'];

@@ -1,0 +1,60 @@
+.signup-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+}
+
+.signup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #acacac;
+    width:fit-content;
+    height: auto;
+    padding:1rem 1.5rem;
+    border-radius:45px;
+
+    &__input-block{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom:0.2rem;
+        width: 100%;
+
+        & label{
+            font-size:0.9rem;
+            font-weight: bold;
+            margin-bottom:5px;
+        }
+        & input[type="text"], input[type="email"], input[type="password"]{
+            width: 100% !important;
+            margin:0 !important;
+            height:2rem;
+            border-radius:10px;
+            border-color: #fff;
+            background-color: #fff;
+            color:#232323
+        }
+    }
+
+    &__submit-block{
+        display: flex;
+        justify-content: center;
+        margin:1rem 0;
+        border-radius: 25px !important;
+        width:8rem !important;
+    }
+}
+
+.have-acc, .message{
+    color:#fff;
+    text-decoration: none;
+    font-size:0.8rem;
+}
+
+.error{
+    border:1px solid red !important;
+}
