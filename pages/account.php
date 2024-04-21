@@ -29,7 +29,7 @@ require_once "../assets/api/isAdmin.php";
         <div class="account-info">
             <div class="account-info__data">
                 <label class="account-info__data__label">Имя</label>
-                <input class="account-info__data__input" type="text" name="name">
+                <input class="account-info__data__input" type="text" name="name" value="<?php echo($account_info['name']);?>">
             </div>
             <div class="account-info__data">
                 <label class="account-info__data__label">Пароль</label>
@@ -37,7 +37,7 @@ require_once "../assets/api/isAdmin.php";
             </div>
             <div class="account-info__data">
                 <label class="account-info__data__label">Почта</label>
-                <input class="account-info__data__input" type="email" name="email">
+                <input class="account-info__data__input" type="email" name="email" value="<?php echo($account_info['email']);?>">
             </div>
             <div class="account-info__data">
                 <label class="account-info__data__label">Новый пароль</label>
