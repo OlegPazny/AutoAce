@@ -216,8 +216,35 @@ require_once "../assets/api/isAdmin.php";
                         </div>
                         <div class="swiper-slide card">
                             <h5 class="card__head">скидка</h5>
-                            <h3 class="card__discount">25%</h3>
-                            <p class="card__description">Замена глушителя</p>
+                            <h3 class="card__discount">30%</h3>
+                            <p class="card__description">Замена сцепления</p>
+                            <div class="slider-button">
+                                <input type="button" class="slider-button__content" value="Записаться">
+                            </div>
+                            <div class="slider__shadow"></div>
+                        </div>
+                        <div class="swiper-slide card">
+                            <h5 class="card__head">скидка</h5>
+                            <h3 class="card__discount">30%</h3>
+                            <p class="card__description">Озонирование салона</p>
+                            <div class="slider-button">
+                                <input type="button" class="slider-button__content" value="Записаться">
+                            </div>
+                            <div class="slider__shadow"></div>
+                        </div>
+                        <div class="swiper-slide card">
+                            <h5 class="card__head">скидка</h5>
+                            <h3 class="card__discount">50%</h3>
+                            <p class="card__description">Диагностика подвески</p>
+                            <div class="slider-button">
+                                <input type="button" class="slider-button__content" value="Записаться">
+                            </div>
+                            <div class="slider__shadow"></div>
+                        </div>
+                        <div class="swiper-slide card">
+                            <h5 class="card__head">скидка</h5>
+                            <h3 class="card__discount">15%</h3>
+                            <p class="card__description">Реставрация дисков</p>
                             <div class="slider-button">
                                 <input type="button" class="slider-button__content" value="Записаться">
                             </div>
@@ -226,7 +253,7 @@ require_once "../assets/api/isAdmin.php";
                         <div class="swiper-slide card">
                             <h5 class="card__head">скидка</h5>
                             <h3 class="card__discount">25%</h3>
-                            <p class="card__description">Замена глушителя</p>
+                            <p class="card__description">Комплексный шиномонтаж</p>
                             <div class="slider-button">
                                 <input type="button" class="slider-button__content" value="Записаться">
                             </div>
@@ -234,35 +261,8 @@ require_once "../assets/api/isAdmin.php";
                         </div>
                         <div class="swiper-slide card">
                             <h5 class="card__head">скидка</h5>
-                            <h3 class="card__discount">25%</h3>
-                            <p class="card__description">Замена глушителя</p>
-                            <div class="slider-button">
-                                <input type="button" class="slider-button__content" value="Записаться">
-                            </div>
-                            <div class="slider__shadow"></div>
-                        </div>
-                        <div class="swiper-slide card">
-                            <h5 class="card__head">скидка</h5>
-                            <h3 class="card__discount">25%</h3>
-                            <p class="card__description">Замена глушителя</p>
-                            <div class="slider-button">
-                                <input type="button" class="slider-button__content" value="Записаться">
-                            </div>
-                            <div class="slider__shadow"></div>
-                        </div>
-                        <div class="swiper-slide card">
-                            <h5 class="card__head">скидка</h5>
-                            <h3 class="card__discount">25%</h3>
-                            <p class="card__description">Замена глушителя</p>
-                            <div class="slider-button">
-                                <input type="button" class="slider-button__content" value="Записаться">
-                            </div>
-                            <div class="slider__shadow"></div>
-                        </div>
-                        <div class="swiper-slide card">
-                            <h5 class="card__head">скидка</h5>
-                            <h3 class="card__discount">25%</h3>
-                            <p class="card__description">Замена глушителя</p>
+                            <h3 class="card__discount">5%</h3>
+                            <p class="card__description">Ремонт<br>шин</p>
                             <div class="slider-button">
                                 <input type="button" class="slider-button__content" value="Записаться">
                             </div>
@@ -330,10 +330,11 @@ require_once "../assets/api/isAdmin.php";
         spaceBetween: 135,
         slidesPerGroup: 3,
         loop: false,
-        grabCursor: true,
+        grabCursor: false,
         loopFillGroupWithBlank: true,
     });
 </script>
 <script src="../assets/js/callback.js"></script>
+<script src="../assets/js/index.js"></script>
 
 </html>
