@@ -13,7 +13,9 @@ swiper-container {
     font-weight: bold;
     color: #fff;
   }
-
+.swiper-img{
+  height:100% !important;
+}
   swiper-slide:nth-child(1n) {
     background-color: rgb(206, 17, 17);
   }

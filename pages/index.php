@@ -186,15 +186,15 @@ require_once "../assets/api/isAdmin.php";
         </div>
         <div class="slider">
             <swiper-container class="mySwiper" effect="cards" grab-cursor="true">
-                <swiper-slide>Slide 1</swiper-slide>
-                <swiper-slide>Slide 2</swiper-slide>
-                <swiper-slide>Slide 3</swiper-slide>
-                <swiper-slide>Slide 4</swiper-slide>
-                <swiper-slide>Slide 5</swiper-slide>
-                <swiper-slide>Slide 6</swiper-slide>
-                <swiper-slide>Slide 7</swiper-slide>
-                <swiper-slide>Slide 8</swiper-slide>
-                <swiper-slide>Slide 9</swiper-slide>
+                <swiper-slide><img class="swiper-img" src="../assets/images/slider1.jpg"></swiper-slide>
+                <swiper-slide><img class="swiper-img" src="../assets/images/slider2.jpg"></swiper-slide>
+                <swiper-slide><img class="swiper-img" src="../assets/images/slider3.jpg"></swiper-slide>
+                <swiper-slide><img class="swiper-img" src="../assets/images/slider4.jpg"></swiper-slide>
+                <swiper-slide><img class="swiper-img" src="../assets/images/slider5.jpg"></swiper-slide>
+                <swiper-slide><img class="swiper-img" src="../assets/images/slider6.jpg"></swiper-slide>
+                <swiper-slide><img class="swiper-img" src="../assets/images/slider7.jpg"></swiper-slide>
+                <swiper-slide><img class="swiper-img" src="../assets/images/slider8.jpg"></swiper-slide>
+                <swiper-slide><img class="swiper-img" src="../assets/images/slider9.jpg"></swiper-slide>
             </swiper-container>
             <div class="slider__shadow"></div>
         </div>
