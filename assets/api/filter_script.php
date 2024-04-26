@@ -1,35 +1,32 @@
 <?php
 require_once "db_connect.php";
-function arrayToString($arr) {
-    if (count($arr) === 1) {
-        return (string) $arr[0]; // Если в массиве только один элемент, возвращаем его как строку
-    } else {
-        return implode(', ', $arr); // Если в массиве несколько элементов, объединяем их через запятую
-    }
-}
+
 // Получаем JSON данные из тела запроса
 $json = file_get_contents('php://input');
+
 // Преобразуем JSON в массив
 $data = json_decode($json, true);
 
 // Получаем выбранные услуги из данных
 $selectedServices = isset($data['services']) ? $data['services'] : [];
 
-
 // Проверяем, есть ли выбранные услуги
 if (!empty($selectedServices)) {
     // Подготавливаем SQL запрос
-    $sql = "SELECT DISTINCT w.*
+    $sql = "SELECT w.*
             FROM workshops w
-            JOIN service_workshop_relationships swr ON w.id = swr.workshop_id
-            JOIN services s ON swr.service_id = s.id
-            WHERE s.id IN (";
+            WHERE NOT EXISTS (
+                SELECT 1 FROM services s
+                WHERE s.id NOT IN (
+                    SELECT service_id FROM service_workshop_relationships swr
+                    WHERE swr.workshop_id = w.id
+                ) AND s.id IN (";
 
     // Добавляем плейсхолдеры для параметров
     $placeholders = rtrim(str_repeat("?,", count($selectedServices)), ",");
 
-    // Добавляем плейсхолдеры в SQL запрос
-    $sql .= $placeholders . ")";
+    // Завершаем запрос
+    $sql .= $placeholders . "))";
 
     // Подготавливаем запрос
     $stmt = $db->prepare($sql);
