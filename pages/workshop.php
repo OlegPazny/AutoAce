@@ -86,10 +86,12 @@ require_once "../assets/api/get_workshop_data_script.php";
                         <?php foreach ($services_arr as $service_type => $services) {
                             echo ("<option disabled class='disabled-option'>" . $service_type . "</option>");
                             foreach ($services as $service) {
-                                echo ("<option class='service-option' value='".$service['id']."'>" . $service['name'] . "</option>");
+                                echo ("<option class='service-option' data-service-price='".$service['price']."' value='".$service['id']."'>" . $service['name'] . "</option>");
                             }
                         } ?>
                     </select>
+                    <label class="callback-form__label">Выберите сотрудника</label>
+                    <select id="worker" name="worker"></select>
                 </div>
                 <div class="callback-form__textarea-block">
                     <label class="callback-form__label">Комментарий к заказу</label>

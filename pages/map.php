@@ -34,7 +34,7 @@ require_once "../assets/api/get_services_script.php";
                     echo ("<li class='filter-block__headlist__service-type'>" . $service_type);
                     echo ("<ul class='filter-block__list'>");
                     foreach ($services as $service) {
-                        echo ("<li class='filter-block__list__service'><input type='checkbox' name='services' value='" . $service['id'] . "'>" . $service['name'] . "&nbsp<b>" . $service['price'] . "&nbspр.</b></li>");
+                        echo ("<li class='filter-block__list__service'><input type='checkbox' name='services' value='" . $service['id'] . "'>" . $service['name'] ."</li>");
                     }
                     echo ("</ul>");
                     echo ("</li>");
