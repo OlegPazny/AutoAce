@@ -1238,6 +1238,10 @@ input[type=checkbox] {
   display: none;
 }
 
+.workers {
+  display: none;
+}
+
 .logout-button {
   border: 1px solid #232323;
 }

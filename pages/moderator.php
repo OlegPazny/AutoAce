@@ -41,6 +41,7 @@ function russianMonth($monthNumber) {
         <div class="nav">
             <ul class="nav__list">
                 <li class="nav__list__item info-btn">пользователи</li>
+                <li class="nav__list__item workers-btn">работники</li>
                 <li class="nav__list__item orders-btn">заказанные услуги</li>
                 <li class="nav__list__item history-btn">архив заказов</li>
                 <li class="nav__list__item services-btn">услуги</li>
@@ -87,6 +88,42 @@ function russianMonth($monthNumber) {
                                     <td>" . $isVerified . "</td>
                                     <td>
                                         <div class='block-user' data-user-id='" . $user[0] . "''>
+                                            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
+                                                <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
+                                            </svg>
+                                        </div>
+                                    </td>
+                                </tr>");
+                        }
+                        ?>
+                    </tbody>
+            </table>
+        </div>
+        <div class="account-services workers">
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Логин</th>
+                        <th>Имя</th>
+                        <th>Почта</th>
+                        <th>Автосервис</th>
+                        <th>Кол-во часов</th>
+                        <th></th>
+                    </tr>
+                    <thead>
+                    <tbody>
+                        <?php
+                        foreach ($workers as $worker) {
+                            echo ("<tr>
+                                    <td>" . $worker[0] . "</td>
+                                    <td>" . $worker[4] . "</td>
+                                    <td>" . $worker[1] . "</td>
+                                    <td>" . $worker[5] . "</td>
+                                    <td>" . $worker[2] . "</td>
+                                    <td>" . $worker[3] . "</td>
+                                    <td>
+                                        <div class='block-worker' data-worker-id='" . $worker[0] . "''>
                                             <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
                                                 <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
                                             </svg>

@@ -1,218 +1,58 @@
 // Обработчик клика на кнопке информации
 $(document).ready(function () {
-    var info_btn = $('.info-btn');
-    var orders_btn = $('.orders-btn');
-    var history_btn = $('.history-btn');
-    var services_btn = $('.services-btn');
-    var relations_btn = $('.relations-btn');
-    var infoContainer = $('.accounts');
-    var ordersContainer = $('.orders');
-    var historyContainer = $('.history');
-    var servicesContainer = $('.services');
-    var relationsContainer = $('.relations');
-    $('.info-btn').on('click', function () {
-        ordersContainer.fadeOut();
-        historyContainer.fadeOut();
-        servicesContainer.fadeOut();
-        relationsContainer.fadeOut();
+    // Функция для скрытия всех контейнеров, кроме переданного
+function hideContainers(exceptContainer) {
+    $('.accounts, .orders, .history, .services, .relations, .workers').not(exceptContainer).hide();
+}
 
-        info_btn.css("background", "#fff");
-        info_btn.css("color", "#232323");
-        orders_btn.css("background", "#232323");
-        orders_btn.css("color", "#fff");
-        history_btn.css("background", "#232323");
-        history_btn.css("color", "#fff");
-        services_btn.css("background", "#232323");
-        services_btn.css("color", "#fff");
-        relations_btn.css("background", "#232323");
-        relations_btn.css("color", "#fff");
+// Функция для установки стилей кнопок
+function setButtonStyles(activeButton) {
+    $('.info-btn, .orders-btn, .history-btn, .services-btn, .relations-btn, .workers-btn').css({
+        'background': '#232323',
+        'color': '#fff'
+    });
+    activeButton.css({
+        'background': '#fff',
+        'color': '#232323'
+    });
+}
 
-        // Проверяем, видим ли блок #answers-container
-        if (ordersContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            ordersContainer.hide();
+// Обработчики кликов
+$('.info-btn').on('click', function () {
+    hideContainers('.accounts');
+    $('.accounts').fadeIn('slow');
+    setButtonStyles($(this));
+});
 
-        }
-        if (historyContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            historyContainer.hide();
-        }
-        if (servicesContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            servicesContainer.hide();
-        }
-        if (relationsContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            relationsContainer.hide();
-        }
+$('.orders-btn').on('click', function () {
+    hideContainers('.orders');
+    $('.orders').fadeIn('slow');
+    setButtonStyles($(this));
+});
 
-        infoContainer.fadeIn('slow'); // Показываем блок #answers-container
-    })
+$('.history-btn').on('click', function () {
+    hideContainers('.history');
+    $('.history').fadeIn('slow');
+    setButtonStyles($(this));
+});
 
-    // Обработчик клика на кнопке заказов
+$('.services-btn').on('click', function () {
+    hideContainers('.services');
+    $('.services').fadeIn('slow');
+    setButtonStyles($(this));
+});
 
-    $('.orders-btn').on('click', function () {
-        infoContainer.fadeOut();
-        historyContainer.fadeOut();
-        servicesContainer.fadeOut();
-        relationsContainer.fadeOut();
+$('.relations-btn').on('click', function () {
+    hideContainers('.relations');
+    $('.relations').fadeIn('slow');
+    setButtonStyles($(this));
+});
+$('.workers-btn').on('click', function () {
+    hideContainers('.workers');
+    $('.workers').fadeIn('slow');
+    setButtonStyles($(this));
+});
 
-        info_btn.css("background", "#232323");
-        info_btn.css("color", "#fff");
-        orders_btn.css("background", "#fff");
-        orders_btn.css("color", "#232323");
-        history_btn.css("background", "#232323");
-        history_btn.css("color", "#fff");
-        services_btn.css("background", "#232323");
-        services_btn.css("color", "#fff");
-        relations_btn.css("background", "#232323");
-        relations_btn.css("color", "#fff");
-
-        // Проверяем, видим ли блок #answers-container
-        if (infoContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            infoContainer.hide();
-
-        }
-        if (historyContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            historyContainer.hide();
-        }
-        if (servicesContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            servicesContainer.hide();
-        }
-        if (relationsContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            relationsContainer.hide();
-        }
-
-        ordersContainer.fadeIn('slow'); // Показываем блок #answers-container
-
-    })
-
-    // Обработчик клика на кнопке истории
-
-    $('.history-btn').on('click', function () {
-        infoContainer.fadeOut();
-        ordersContainer.fadeOut();
-        servicesContainer.fadeOut();
-        relationsContainer.fadeOut();
-
-        info_btn.css("background", "#232323");
-        info_btn.css("color", "#fff");
-        orders_btn.css("background", "#232323");
-        orders_btn.css("color", "#fff");
-        history_btn.css("background", "#fff");
-        history_btn.css("color", "#232323");
-        services_btn.css("background", "#232323");
-        services_btn.css("color", "#fff");
-        relations_btn.css("background", "#232323");
-        relations_btn.css("color", "#fff");
-
-        // Проверяем, видим ли блок #answers-container
-        if (infoContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            infoContainer.hide();
-
-        }
-        if (ordersContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            ordersContainer.hide();
-        }
-        if (servicesContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            servicesContainer.hide();
-        }
-        if (relationsContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            relationsContainer.hide();
-        }
-
-        historyContainer.fadeIn('slow'); // Показываем блок #answers-container
-
-    })
-    // Обработчик клика на кнопке добавления услуги
-
-    $('.services-btn').on('click', function () {
-        infoContainer.fadeOut();
-        ordersContainer.fadeOut();
-        historyContainer.fadeOut();
-        relationsContainer.fadeOut();
-
-        info_btn.css("background", "#232323");
-        info_btn.css("color", "#fff");
-        orders_btn.css("background", "#232323");
-        orders_btn.css("color", "#fff");
-        history_btn.css("background", "#232323");
-        history_btn.css("color", "#fff");
-        services_btn.css("background", "#fff");
-        services_btn.css("color", "#232323");
-        relations_btn.css("background", "#232323");
-        relations_btn.css("color", "#fff");
-
-        // Проверяем, видим ли блок #answers-container
-        if (infoContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            infoContainer.hide();
-
-        }
-        if (ordersContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            ordersContainer.hide();
-        }
-        if (historyContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            historyContainer.hide();
-        }
-        if (relationsContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            relationsContainer.hide();
-        }
-
-        servicesContainer.fadeIn('slow'); // Показываем блок #answers-container
-
-    })
-    //блок отношений
-    $('.relations-btn').on('click', function () {
-        infoContainer.fadeOut();
-        ordersContainer.fadeOut();
-        historyContainer.fadeOut();
-        servicesContainer.fadeOut();
-
-        info_btn.css("background", "#232323");
-        info_btn.css("color", "#fff");
-        orders_btn.css("background", "#232323");
-        orders_btn.css("color", "#fff");
-        history_btn.css("background", "#232323");
-        history_btn.css("color", "#fff");
-        services_btn.css("background", "#232323");
-        services_btn.css("color", "#fff");
-        relations_btn.css("background", "#fff");
-        relations_btn.css("color", "#232323");
-
-        // Проверяем, видим ли блок #answers-container
-        if (infoContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            infoContainer.hide();
-
-        }
-        if (ordersContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            ordersContainer.hide();
-        }
-        if (historyContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            historyContainer.hide();
-        }
-        if (servicesContainer.css('display') != 'none') {
-            // Если блок видим, скрываем его
-            servicesContainer.hide();
-        }
-
-        relationsContainer.fadeIn('slow'); // Показываем блок #answers-container
-
-    })
     //блокировка пользователя
     var blockButtons = document.querySelectorAll('.block-user');
     blockButtons.forEach(function (button) {

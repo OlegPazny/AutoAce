@@ -1,8 +1,14 @@
 <?php
     require_once "db_connect.php";
-
+//пользователи
     $users=mysqli_query($db, "SELECT * FROM `users`");
     $users=mysqli_fetch_all($users);
+//работники
+    $workers=mysqli_query($db, "SELECT `workers`.`id`, `workers`.`name`, `workshops`.`name`, `workers`.`max_hours`, `workers`.`login`, `workers`.`email`
+    FROM `workers`
+    INNER JOIN `workshops` ON `workers`.`workshop_id`=`workshops`.`id`
+    ");
+    $workers=mysqli_fetch_all($workers);
 //записи на услуги
     $accounts_books=mysqli_query($db, "SELECT `service_bookings`.`id`, `workshops`.`name`, `services`.`service_name`, `message`, `service_date`, `service_time`, `status`, `services`.`price`, `workshops`.`standart_hour`, `services`.`discount` FROM `service_bookings`
     INNER JOIN `workers` ON `service_bookings`.`worker_id`=`workers`.`id`
@@ -25,9 +31,6 @@
 //автосервисы
     $workshops=mysqli_query($db, "SELECT * FROM `workshops`");
     $workshops=mysqli_fetch_all($workshops);
-//работники
-    $workers=mysqli_query($db, "SELECT * FROM `workers`");
-    $workers=mysqli_fetch_all($workers);
 //типы услуг
     $services_types=mysqli_query($db, "SELECT * FROM `service_type`");
     $services_types=mysqli_fetch_all($services_types);
