@@ -26,8 +26,10 @@ function russianMonth($monthNumber) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- jQuery connection -->
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="../assets/js/core/jquery.min.js"></script>
+    <script src="../assets/js/core/pooper.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> -->
     <!-- jQuery connection -->
     <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
     <title>Модерирование заказов</title>
@@ -120,10 +122,16 @@ function russianMonth($monthNumber) {
                             $month = date('n', $date);
                             $date = $day . ' ' . russianMonth($month);
 
+                            if($account_book[9]==NULL){
+                                $price=$account_book[7]*$account_book[8];
+                            }else{
+                                $price=$account_book[7]*$account_book[8]*(100-$account_book[9])/100;
+                            }
+                            
                             echo ("<tr>
                                     <td>" . $account_book[1] . "</td>
                                     <td>" . $account_book[2] . "</td>
-                                    <td>" . (int) $account_book[7] . " р.</td>
+                                    <td>" . $price . " р.</td>
                                     <td>" . $account_book[3] . "</td>
                                     <td>" . $date . "</td>
                                     <td>" . substr($account_book[5], 0, 5) . "</td>
@@ -152,6 +160,7 @@ function russianMonth($monthNumber) {
                 <thead>
                     <tr>
                         <th>Автосервис</th>
+                        <th>Работник</th>
                         <th>Услуга</th>
                         <th>Комментарий</th>
                         <th>Дата записи</th>
@@ -167,6 +176,7 @@ function russianMonth($monthNumber) {
                             $month = date('n', $date);
                             $date = $day . ' ' . russianMonth($month);
                             echo ("<tr>
+                                <td>" . $account_history[7] . "</td>
                                 <td>" . $account_history[0] . "</td>
                                 <td>" . $account_history[1] . "</td>
                                 <td>" . $account_history[2] . "</td>
@@ -200,7 +210,7 @@ function russianMonth($monthNumber) {
                         <th>id</th>
                         <th>Название</th>
                         <th>Описание</th>
-                        <th>Стоимость</th>
+                        <th>Нормочас</th>
                         <th>Тип услуги</th>
                         <th>Скидка, %</th>
                         <th></th>
@@ -213,7 +223,7 @@ function russianMonth($monthNumber) {
                                 <td>" . $service[0] . "</td>
                                 <td>" . $service[1] . "</td>
                                 <td>" . $service[2] . "</td>
-                                <td>" . (int) $service[3] . " р.</td>
+                                <td>" . $service[3] . " н/ч</td>
                                 <td>" . $service[4] . "</td>
                                 <td>" . $service[5] . "</td>
                                 <td>
@@ -262,6 +272,7 @@ function russianMonth($monthNumber) {
             <table>
                 <thead>
                     <tr>
+                        <th>Работник</th>
                         <th>Автосервис</th>
                         <th>Услуга</th>
                         <th></th>
@@ -269,12 +280,13 @@ function russianMonth($monthNumber) {
                     <thead>
                     <tbody class="relations-table-body">
                         <?php
-                        foreach ($relationships as $relationship) {
+                        foreach ($worker_services as $worker_service) {
                             echo ("<tr>
-                                <td>" . $relationship[1] . "</td>
-                                <td>" . $relationship[2] . "</td>
+                                <td>".$worker_service[1]."</td>
+                                <td>" . $worker_service[3] . "</td>
+                                <td>" . $worker_service[2] . "</td>
                                 <td>
-                                    <div class='delete-relation' data-relation-id='" . $relationship[0] . "''>
+                                    <div class='delete-relation' data-relation-id='" . $worker_service[0] . "''>
                                         <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
                                             <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
                                         </svg>
@@ -286,20 +298,21 @@ function russianMonth($monthNumber) {
                         ?>
                         <tr class="add-relation-row">
                             <td>
-                                <select class="workshops-input" name="relation_workshop_name" id="relation_workshop_name">
+                                <select class="workers-input" name="relation_worker_name" id="relation_worker_name">
                                     <?php
-                                    foreach ($workshops as $workshop) {
-                                        echo ("<option value='" . $workshop[0] . "'>" . $workshop[1] . "</option>");
+                                    foreach ($workers as $worker) {
+                                        echo ("<option value='" . $worker[0] . "'>" . $worker[1] . "</option>");
                                     }
                                     ?>
 
                                 </select>
                             </td>
+                            <td id="worker-workshop"></td>
                             <td>
                                 <select class="services-input" name="relation_service_name" id="relation_service_name">
                                     <?php
-                                    foreach ($services as $service) {
-                                        echo ("<option value='" . $service[0] . "'>" . $service[1] . "</option>");
+                                    foreach ($new_services as $new_service) {
+                                        echo ("<option value='" . $new_service[0] . "'>" . $new_service[1] . "</option>");
                                     }
                                     ?>
 

@@ -24,8 +24,10 @@ function russianMonth($monthNumber) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- jQuery connection -->
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="../assets/js/core/jquery.min.js"></script>
+    <script src="../assets/js/core/pooper.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> -->
     <!-- jQuery connection -->
     <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
     <title>Личный кабинет</title>
@@ -89,6 +91,7 @@ function russianMonth($monthNumber) {
                 <thead>
                     <tr>
                         <th>Автосервис</th>
+                        <th>Работник</th>
                         <th>Услуга</th>
                         <th>Комментарий</th>
                         <th>Дата записи</th>
@@ -103,20 +106,22 @@ function russianMonth($monthNumber) {
                             $day = date('j', $date);
                             $month = date('n', $date);
                             $date = $day . ' ' . russianMonth($month);
-                            if ($account_book[5] == "pending") {
+                            if ($account_book[6] == "pending") {
                                 $status = "В обработке";
-                            } else if ($account_book[5] == "confirmed") {
+                            } else if ($account_book[6] == "confirmed") {
                                 $status = "Принято в работу";
-                            } else if ($account_book[5] == "completed") {
+                            } else if ($account_book[6] == "completed") {
                                 $status = "Выполнено";
+                                continue;
                             }
 
                             echo ("<tr>
-                                <td>" . $account_book[0] . "</td>
                                 <td>" . $account_book[1] . "</td>
                                 <td>" . $account_book[2] . "</td>
+                                <td>" . $account_book[0] . "</td>
+                                <td>" . $account_book[3] . "</td>
                                 <td>" . $date . "</td>
-                                <td>" . substr($account_book[4], 0, 5) . "</td>
+                                <td>" . substr($account_book[5], 0, 5) . "</td>
                                 <td>" . $status . "</td></tr>");
                         }
                         ?>
@@ -128,6 +133,7 @@ function russianMonth($monthNumber) {
                 <thead>
                     <tr>
                         <th>Автосервис</th>
+                        <th>Работник</th>
                         <th>Услуга</th>
                         <th>Комментарий</th>
                         <th>Дата завершения</th>
@@ -142,6 +148,7 @@ function russianMonth($monthNumber) {
                             $month = date('n', $date);
                             $date = $day . ' ' . russianMonth($month);
                             echo ("<tr>
+                                    <td>" . $item[7] . "</td>
                                     <td>" . $item[0] . "</td>
                                     <td>" . $item[1] . "</td>
                                     <td>" . $item[2] . "</td>

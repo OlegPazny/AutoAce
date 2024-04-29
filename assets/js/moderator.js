@@ -347,25 +347,28 @@ $(document).ready(function () {
     }
     //добавление отношения
     $('.add-relation-button').click(function () {
+        var workerNameRelation = $('#relation_worker_name').val();
         var serviceNameRelation = $('#relation_service_name').val();
-        var workshopNameRelation = $('#relation_workshop_name').val();
+        var workshopNameRelationValue = $('#worker-workshop').text();
         var serviceNameRelationValue = $('#relation_service_name option:selected').text(); // Получаем текст выбранной опции (название услуги)
-        var workshopNameRelationValue = $('#relation_workshop_name option:selected').text(); // Получаем текст выбранной опции (название автосервиса)
+        var workerNameRelationValue = $('#relation_worker_name option:selected').text(); // Получаем текст выбранной опции (название автосервиса)
+        
         $.ajax({
             type: 'POST',
             url: '../assets/api/add_relation_script.php',
             data: {
                 service_name_relation: serviceNameRelation,
-                workshop_name_relation: workshopNameRelation,
+                worker_name_relation: workerNameRelation,
             },
             success: function (response) {
                 console.log('Услуга успешно добавлена!');
                 // Создаем новую строку таблицы на основе полученных данных
                 var newRow = "<tr>" +
+                    "<td>" + workerNameRelationValue + "</td>" +
                     "<td>" + workshopNameRelationValue + "</td>" +
                     "<td>" + serviceNameRelationValue + "</td>" +
                     "<td>" +
-                    "<div class='delete-relation' data-service-id='" + serviceNameRelation + "''>" +
+                    "<div class='delete-relation' data-relation-id='" + serviceNameRelation + "''>" +
                     "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>" +
                     "<path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>" +
                     "</svg>" +
@@ -406,4 +409,47 @@ $(document).ready(function () {
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send('relation_id=' + relationId);
     }
+    // Получаем ссылку на элемент <select> для услуги и работника
+    var workerSelect = $(".workers-input");
+    var serviceSelect = $(".services-input");
+    var workshop_block = $("#worker-workshop");
+
+    // Слушаем изменения в выборе услуги
+    for(var i=0; i<workerSelect.length;i++){
+        workerSelect[i].addEventListener("change", async function() {
+            // Получаем выбранное значение услуги
+            var selectedWorkerId = this.value;
+            // Очищаем список автосервисов
+            workshop_block.innerText = '';
+            // Очищаем список услуг
+            serviceSelect[0].innerHTML = '<option selected disabled>Выберите услугу</option>';
+            
+            if (selectedWorkerId) {
+                try {
+                    // Отправляем асинхронный запрос на сервер для получения работников, предоставляющих выбранную услугу
+                    const response = await fetch(`../assets/api/get_worker_workshop_script.php?worker_id=${selectedWorkerId}`);
+                    const workshop = await response.json();
+                    // Обновляем список работников в <select>
+                    workshop_block.text(workshop)
+                } catch (error) {
+                    console.error('Ошибка при получении данных о работнике:', error);
+                }
+                try {
+                    // Отправляем асинхронный запрос на сервер для получения услуг, которых нет у работников
+                    const response = await fetch(`../assets/api/get_new_worker_service_script.php?worker_id=${selectedWorkerId}`);
+                    const services = await response.json();
+                    // Обновляем список работников в <select>
+                    services.forEach(service => {
+                        const option = document.createElement('option');
+                        option.value = service[0];
+                        option.textContent = service[1];
+                        serviceSelect[0].appendChild(option);
+                    });
+                } catch (error) {
+                    console.error('Ошибка при получении данных о работниках:', error);
+                }
+            }
+        });
+    }
+    
 });
