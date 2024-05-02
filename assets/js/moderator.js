@@ -129,6 +129,36 @@ $('.workers-btn').on('click', function () {
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send('booking_id=' + bookingId + '&new_status=' + newStatus);
     }
+    //добавление работника
+    $('.add-worker-button').click(function () {
+        var workerName = $('#worker_name').val();
+        var workerEmail = $('#worker_email').val();
+        var workerWorkshop = $('#worker_workshops_insert').val();
+        var workerHours = $('#worker_hours').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '../assets/api/add_worker_script.php',
+            data: {
+                worker_name: workerName,
+                worker_email: workerEmail,
+                worker_workshop: workerWorkshop,
+                worker_hours: workerHours
+            },
+            success: function (response) {
+                console.log('Услуга успешно добавлена!');
+                // Очищаем поля ввода после успешной отправки
+                $('#worker_name').val('');
+                $('#worker_email').val('');
+                $('#worker_workshops_insert').val('');
+                $('#worker_hours').val('');
+            },
+            error: function (xhr, status, error) {
+                // Обработка ошибки AJAX-запроса
+                console.error(xhr.responseText);
+            }
+        });
+    });
     //добавление услуги
     $('.add-service-button').click(function () {
         var serviceName = $('#service_name').val();
