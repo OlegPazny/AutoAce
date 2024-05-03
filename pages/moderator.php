@@ -104,6 +104,7 @@ function russianMonth($monthNumber) {
                 <thead>
                     <tr>
                         <th>id</th>
+                        <th>Логин</th>
                         <th>Имя</th>
                         <th>Почта</th>
                         <th>Автосервис</th>
@@ -112,7 +113,8 @@ function russianMonth($monthNumber) {
                     </tr>
                     <thead>
                     <tbody>
-                        <tr class="add-relation-row">
+                        <tr class="add-worker-row">
+                            <td></td>
                             <td></td>
                             <td><input type="text" class="add-worker-name-input" name="worker_name" id="worker_name"></td>
                             <td><input type="email" class="add-worker-email-input" name="worker_email" id="worker_email"></td>
@@ -140,8 +142,9 @@ function russianMonth($monthNumber) {
                         foreach ($workers as $worker) {
                             echo ("<tr>
                                     <td>" . $worker[0] . "</td>
-                                    <td>" . $worker[1] . "</td>
                                     <td>" . $worker[4] . "</td>
+                                    <td>" . $worker[1] . "</td>
+                                    <td>" . $worker[5] . "</td>
                                     <td>" . $worker[2] . "</td>
                                     <td>" . $worker[3] . "</td>
                                     <td>

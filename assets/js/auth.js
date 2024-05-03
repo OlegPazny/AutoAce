@@ -17,7 +17,8 @@ $('.login-btn').click(function(e){
         },
         success:function(data){
             if(data.status){
-                document.location.href="index.php";
+                var target_url="../index.php";
+                document.location.href= target_url;
             }else{
                 if(data.type===1){
                     data.fields.forEach(function(field){

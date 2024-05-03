@@ -1,57 +1,57 @@
 // Обработчик клика на кнопке информации
 $(document).ready(function () {
     // Функция для скрытия всех контейнеров, кроме переданного
-function hideContainers(exceptContainer) {
-    $('.accounts, .orders, .history, .services, .relations, .workers').not(exceptContainer).hide();
-}
+    function hideContainers(exceptContainer) {
+        $('.accounts, .orders, .history, .services, .relations, .workers').not(exceptContainer).hide();
+    }
 
-// Функция для установки стилей кнопок
-function setButtonStyles(activeButton) {
-    $('.info-btn, .orders-btn, .history-btn, .services-btn, .relations-btn, .workers-btn').css({
-        'background': '#232323',
-        'color': '#fff'
+    // Функция для установки стилей кнопок
+    function setButtonStyles(activeButton) {
+        $('.info-btn, .orders-btn, .history-btn, .services-btn, .relations-btn, .workers-btn').css({
+            'background': '#232323',
+            'color': '#fff'
+        });
+        activeButton.css({
+            'background': '#fff',
+            'color': '#232323'
+        });
+    }
+
+    // Обработчики кликов
+    $('.info-btn').on('click', function () {
+        hideContainers('.accounts');
+        $('.accounts').fadeIn('slow');
+        setButtonStyles($(this));
     });
-    activeButton.css({
-        'background': '#fff',
-        'color': '#232323'
+
+    $('.orders-btn').on('click', function () {
+        hideContainers('.orders');
+        $('.orders').fadeIn('slow');
+        setButtonStyles($(this));
     });
-}
 
-// Обработчики кликов
-$('.info-btn').on('click', function () {
-    hideContainers('.accounts');
-    $('.accounts').fadeIn('slow');
-    setButtonStyles($(this));
-});
+    $('.history-btn').on('click', function () {
+        hideContainers('.history');
+        $('.history').fadeIn('slow');
+        setButtonStyles($(this));
+    });
 
-$('.orders-btn').on('click', function () {
-    hideContainers('.orders');
-    $('.orders').fadeIn('slow');
-    setButtonStyles($(this));
-});
+    $('.services-btn').on('click', function () {
+        hideContainers('.services');
+        $('.services').fadeIn('slow');
+        setButtonStyles($(this));
+    });
 
-$('.history-btn').on('click', function () {
-    hideContainers('.history');
-    $('.history').fadeIn('slow');
-    setButtonStyles($(this));
-});
-
-$('.services-btn').on('click', function () {
-    hideContainers('.services');
-    $('.services').fadeIn('slow');
-    setButtonStyles($(this));
-});
-
-$('.relations-btn').on('click', function () {
-    hideContainers('.relations');
-    $('.relations').fadeIn('slow');
-    setButtonStyles($(this));
-});
-$('.workers-btn').on('click', function () {
-    hideContainers('.workers');
-    $('.workers').fadeIn('slow');
-    setButtonStyles($(this));
-});
+    $('.relations-btn').on('click', function () {
+        hideContainers('.relations');
+        $('.relations').fadeIn('slow');
+        setButtonStyles($(this));
+    });
+    $('.workers-btn').on('click', function () {
+        hideContainers('.workers');
+        $('.workers').fadeIn('slow');
+        setButtonStyles($(this));
+    });
 
     //блокировка пользователя
     var blockButtons = document.querySelectorAll('.block-user');
@@ -222,7 +222,7 @@ $('.workers-btn').on('click', function () {
         var workshopNameRelationValue = $('#worker-workshop').text();
         var serviceNameRelationValue = $('#relation_service_name option:selected').text(); // Получаем текст выбранной опции (название услуги)
         var workerNameRelationValue = $('#relation_worker_name option:selected').text(); // Получаем текст выбранной опции (название автосервиса)
-        
+
         $.ajax({
             type: 'POST',
             url: '../assets/api/add_relation_script.php',
@@ -245,9 +245,9 @@ $('.workers-btn').on('click', function () {
                     "</div>" +
                     "</td>" +
                     "</tr>";
-                    var inputRow = $('.add-relation-row');
-                    // Вставляем новую строку перед найденным элементом
-                    inputRow.before(newRow);
+                var inputRow = $('.add-relation-row');
+                // Вставляем новую строку перед найденным элементом
+                inputRow.before(newRow);
             },
             error: function (xhr, status, error) {
                 // Обработка ошибки AJAX-запроса
@@ -285,15 +285,15 @@ $('.workers-btn').on('click', function () {
     var workshop_block = $("#worker-workshop");
 
     // Слушаем изменения в выборе услуги
-    for(var i=0; i<workerSelect.length;i++){
-        workerSelect[i].addEventListener("change", async function() {
+    for (var i = 0; i < workerSelect.length; i++) {
+        workerSelect[i].addEventListener("change", async function () {
             // Получаем выбранное значение услуги
             var selectedWorkerId = this.value;
             // Очищаем список автосервисов
             workshop_block.innerText = '';
             // Очищаем список услуг
             serviceSelect[0].innerHTML = '<option selected disabled>Выберите услугу</option>';
-            
+
             if (selectedWorkerId) {
                 try {
                     // Отправляем асинхронный запрос на сервер для получения работников, предоставляющих выбранную услугу
@@ -321,5 +321,5 @@ $('.workers-btn').on('click', function () {
             }
         });
     }
-    
+
 });

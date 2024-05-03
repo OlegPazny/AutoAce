@@ -4,7 +4,7 @@
     $users=mysqli_query($db, "SELECT * FROM `users`");
     $users=mysqli_fetch_all($users);
 //работники
-    $workers=mysqli_query($db, "SELECT `workers`.`id`, `workers`.`name`, `workshops`.`name`, `workers`.`max_hours`, `workers`.`email`
+    $workers=mysqli_query($db, "SELECT `workers`.`id`, `workers`.`name`, `workshops`.`name`, `workers`.`max_hours`, `workers`.`login`, `workers`.`email`
     FROM `workers`
     INNER JOIN `workshops` ON `workers`.`workshop_id`=`workshops`.`id`
     ");

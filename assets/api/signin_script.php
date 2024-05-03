@@ -30,25 +30,46 @@ $_SESSION['last_activity'] = time(); // Обновляем время после
 
     $password=md5($password);//хеш пассворда
 
-    $check_user=mysqli_query($db, "SELECT * FROM `users` WHERE `login`='$login' AND `password`='$password' AND `isVerified`=1");
+    $check_user=mysqli_query($db, "SELECT 'user' AS source, id FROM users
+                                WHERE login = '$login' AND password = '$password' AND isVerified=1
+                                UNION
+                                SELECT 'worker' AS source, id FROM workers
+                                WHERE login = '$login' AND password = '$password'
+                            ");
 
     if(mysqli_num_rows($check_user)>0){
         $user=mysqli_fetch_assoc($check_user);
+        if($user['source']=="user"){
+            $userId=$user['id'];
+            $user_data=mysqli_query($db, "SELECT * FROM `users` WHERE `id`=$userId");
+            $user_data=mysqli_fetch_assoc($user_data);
 
             $_SESSION['user']=[
-                "id"=>$user['id'],
-                "UserName"=>$user['login'],
-                "role"=>$user['role'],
-                "email"=>$user['email'],
+                "id"=>$user_data['id'],
+                "UserName"=>$user_data['login'],
+                "role"=>$user_data['role'],
+                "email"=>$user_data['email'],
+            ];
+        }else if($user['source']=="worker"){
+            $userId=$user['id'];
+            $user_data=mysqli_query($db, "SELECT * FROM `workers` WHERE `id`=$userId");
+            $user_data=mysqli_fetch_assoc($user_data);
+
+            $_SESSION['user']=[
+                "id"=>$user_data['id'],
+                "UserName"=>$user_data['login'],
+                "role"=>"mechanic",
+                "email"=>$user_data['email'],
             ];
 
-            $response=[//ответ авторизации
-                "status"=>true,
-            ];
+        }
+        $response=[//ответ авторизации
+            "status"=>true,
+        ];
 
-            echo json_encode($response);
+        echo json_encode($response);
 
-            $_SESSION['loggedin'] = true;
+        $_SESSION['loggedin'] = true;
     }else{
         $response=[//ответ авторизации
             "status"=>false,
