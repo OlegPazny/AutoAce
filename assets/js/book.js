@@ -66,4 +66,62 @@ $(document).ready(function () {
             }
         }
     });
+    //календарь
+    function updateCalendar() {
+        const monthSelect = document.getElementById('month');
+        const yearInput = document.getElementById('year');
+        const monthYear = document.getElementById('month-year');
+        const calendarBody = document.getElementById('calendar-body');
+
+        const monthIndex = parseInt(monthSelect.value);
+        const year = parseInt(yearInput.value);
+
+        const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+        const firstDayOfMonth = new Date(year, monthIndex, 1).getDay();
+
+        calendarBody.innerHTML = '';
+        monthYear.textContent = `${monthSelect.options[monthIndex].text} ${year}`;
+
+        let date = 1;
+        let row = document.createElement('tr');
+
+        // Устанавливаем начальное значение дня недели
+        let currentDay = firstDayOfMonth === 0 ? 7 : firstDayOfMonth;
+
+        for (let i = 1; i < currentDay; i++) {
+            const cell = document.createElement('td');
+            cell.textContent = '';
+            row.appendChild(cell);
+        }
+
+        for (let i = 0; i < daysInMonth; i++) {
+            const cell = document.createElement('td');
+            cell.textContent = date;
+            row.appendChild(cell);
+
+            currentDay++;
+
+            if (currentDay > 7) {
+                calendarBody.appendChild(row);
+                row = document.createElement('tr');
+                currentDay = 1;
+            }
+
+            date++;
+        }
+
+        // Завершаем последний ряд
+        if (currentDay !== 1) {
+            for (let i = currentDay; i <= 7; i++) {
+                const cell = document.createElement('td');
+                cell.textContent = '';
+                row.appendChild(cell);
+            }
+            calendarBody.appendChild(row);
+        }
+    }
+
+    document.getElementById('month').addEventListener('change', updateCalendar);
+    document.getElementById('year').addEventListener('change', updateCalendar);
+    updateCalendar();
 });
