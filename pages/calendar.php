@@ -163,8 +163,8 @@ $service_id = 5;
             const formattedDate = selectedDate.toISOString().split('T')[0];
             console.log('Выбранная дата:', formattedDate); // Выводим выбранную дату для отладки
 
-            // Отправляем запрос к серверу с выбранной датой
-            fetch(`../assets/api/get_available_slots.php?date=${formattedDate}`)
+            const timestamp = Date.now();
+            fetch(`../assets/api/get_available_slots.php?date=${formattedDate}&timestamp=${timestamp}`)
                 .then(response => response.json())
                 .then(slots => {
                     console.log('Доступные слоты времени:', slots); // Выводим доступные слоты времени для отладки

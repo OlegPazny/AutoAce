@@ -7,72 +7,85 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["date"])) {
     $selectedDate = $_GET["date"];
 
     // Запрос к базе данных для получения занятых слотов времени на выбранную дату
-    $sql = "SELECT DISTINCT TIME(service_time) AS service_time FROM service_bookings WHERE DATE(service_date) = '$selectedDate' AND service_id = 5 AND worker_id = 1";
+    $sql = "SELECT TIME_FORMAT(service_time, '%H:%i') AS service_time, services.price FROM service_bookings 
+            INNER JOIN services ON service_bookings.service_id = services.id 
+            WHERE service_date = '$selectedDate' AND `worker_id`=1";
     $result = $db->query($sql);
 
-    // Формирование массива с занятыми слотами времени
+    // Формирование массива с занятыми слотами времени и продолжительностью услуги
     $occupiedSlots = [];
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            // Преобразуем время в формат "часы:минуты"
-            $time = date("H:i", strtotime($row["service_time"]));
-            $occupiedSlots[] = $time;
-        }
+    if ($result) {
+        $occupiedSlots = $result->fetch_all(MYSQLI_ASSOC);
     }
-
-    // Запрос к базе данных для получения длительности услуги
-    $serviceId = 5; // ID услуги, может быть передан как параметр запроса, если необходимо
-    $sqlService = "SELECT price FROM services WHERE id = $serviceId";
-    $resultService = $db->query($sqlService);
-    $serviceDuration = 0; // Длительность услуги по умолчанию
-    if ($resultService->num_rows > 0) {
-        $rowService = $resultService->fetch_assoc();
-        $serviceDuration = $rowService["price"];
-    }
-
-    // Преобразуем длительность услуги в минуты
-    $serviceDurationMinutes = $serviceDuration * 60;
 
     // Формирование массива доступных слотов времени (шаг 30 минут)
-    $availableSlots = [];
     $start = strtotime('08:00');
     $end = strtotime('18:00');
-    for ($i = $start; $i <= $end; $i += 1800) { // 1800 секунд = 30 минут
+    $timeIncrement = 30 * 60; // 30 минут в секундах
+
+    $availableSlots = [];
+    for ($i = $start; $i <= $end; $i += $timeIncrement) {
         $timeSlot = date('H:i', $i);
-        
-        // Проверяем доступность слота времени, учитывая длительность услуги
-        $isSlotAvailable = true;
-        for ($j = 0; $j < $serviceDurationMinutes / 30; $j++) { // Делим длительность услуги на 30 минут
-            $currentTime = strtotime($timeSlot) + ($j * 1800); // Увеличиваем текущее время на 30 минут
-            $currentSlot = date('H:i', $currentTime);
+        $availableSlots[] = $timeSlot;
+    }
 
-            // Проверяем, занят ли текущий слот времени
-            if (in_array($currentSlot, $occupiedSlots)) {
-                $isSlotAvailable = false;
-                break;
+    $occupiedDuration = []; // Массив для хранения длительности занятых слотов времени
+
+    // Заполняем массив $occupiedDuration длительностями занятых слотов времени
+    foreach ($occupiedSlots as $occupiedSlot) {
+        $duration = (int) ceil($occupiedSlot['price'] / 0.5);
+        $occupiedDuration[] = $duration;
+    }
+
+    // Удаляем занятые слоты времени
+    foreach ($occupiedSlots as $occupiedSlot) {
+        $serviceTime = $occupiedSlot['service_time'];
+        if (($key = array_search($serviceTime, $availableSlots)) !== false) {
+            $duration = array_shift($occupiedDuration); // Получаем длительность текущего занятого слота времени
+            for ($i = $key; $i < $key + $duration; $i++) {
+                unset($availableSlots[$i]);
             }
-        }
-
-        // Если слот времени доступен, добавляем его в массив доступных слотов
-        if ($isSlotAvailable) {
-            $availableSlots[] = $timeSlot;
         }
     }
 
-    // Удаляем слоты времени, которые находятся в течение времени выполнения услуги
-    $startService = strtotime('14:00'); // Время начала услуги
-    $endService = strtotime('16:00'); // Время окончания услуги
+    // Удаляем слоты времени, которые недостаточны для выполнения услуги
     foreach ($availableSlots as $key => $slot) {
-        $timeSlot = strtotime($slot);
-        if ($timeSlot >= $startService && $timeSlot <= $endService) {
+        $remainingSlots = count($availableSlots) - $key;
+        $minDuration = !empty($occupiedDuration) ? min($occupiedDuration) : 1; // Устанавливаем минимальную длительность как 1, если массив $occupiedDuration пустой
+        if ($remainingSlots < $minDuration) {
             unset($availableSlots[$key]);
         }
     }
+    // foreach ($occupiedSlots as $occupiedSlot) {
+    //     $occupiedDuration=(int)ceil($occupiedSlot['price']/0.5);
 
-    // Переиндексируем массив, чтобы избежать пропусков в индексах
-    $availableSlots = array_values($availableSlots);
+    //     for($i=0; $i<count($availableSlots); $i++){
 
-    echo json_encode($availableSlots);
+    //         if($availableSlots[$i]==$occupiedSlot['service_time']){
+    //             for($j=0; $j<$occupiedDuration; $j++){
+    //                 echo($availableSlots[$i]." удален");
+    //                 unset($availableSlots[$i+$j]);
+    //             }
+    //         }
+    //     }
+    // $occupiedTime = strtotime($occupiedSlot['service_time']);
+    // $occupiedDuration = $occupiedSlot['price'] * 60; // Преобразуем продолжительность из часов в минуты
+    // $occupiedEndTime = $occupiedTime + $occupiedDuration;
+
+    // // Удаляем занятые слоты времени из доступных
+    // for ($i = $occupiedTime; $i < $occupiedEndTime; $i += $timeIncrement) {
+    //     $timeSlot = date('H:i', $i);
+    //     $index = array_search($timeSlot, $availableSlots);
+    //     if ($index !== false) {
+    //         unset($availableSlots[$index]);
+    //     }
+    // }
+    //}
+
+    // Индексируем слоты времени в новом массиве
+    $indexedSlots = array_values($availableSlots);
+
+    echo json_encode($indexedSlots);
 } else {
     // Если запрос не GET или не содержит дату, отправляем ошибку
     http_response_code(400);
