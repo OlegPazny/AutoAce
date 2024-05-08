@@ -111,51 +111,63 @@ function getBookingsByMaster(masterId) {
     });
 }
 
+//чтобы убирать те слоты, где промежуток времени равен 0 минут
+function isSlotEmpty(slot) {
+    return slot.start !== slot.end;
+}
+
+
 function defineWorkingHours(busySlots) {
-    // Шаг 1.1: Определение свободных промежутков времени с учетом всех занятых слотов
-    var currentDate = moment(); // Текущая дата
-    
-    // var endDate = moment().endOf('year'); // Конечная дата (конец года)
-    var endDate = moment(currentDate).endOf('month').add(1, 'day'); // Конец следующего месяца
-    
-    var freeSlots = []; // Массив для хранения свободных промежутков времени
-
-    // Итерация по дням с текущего дня до конца года
-    while (currentDate.isBefore(endDate)) {
-        // Создаем начальное и конечное время для текущего дня
-        var startOfDay = moment(currentDate).startOf('day').set({ hour: 8, minute: 0, second: 0 });
-        var endOfDay = moment(currentDate).endOf('day').set({ hour: 18, minute: 0, second: 0 });
-
-        // Перебираем занятые слоты и исключаем их из общего временного диапазона
-        for (var i = 0; i < busySlots.length; i++) {
-            var busyStart = moment(busySlots[i].start);
-            var busyEnd = moment(busySlots[i].end);
-
-            // Исключаем занятые слоты из текущего дня
-            if (busyStart.isSameOrBefore(endOfDay) && busyEnd.isSameOrAfter(startOfDay)) {
-                if (busyStart.isBefore(startOfDay)) {
-                    startOfDay = moment(busyEnd);
-                }
-                if (busyEnd.isAfter(endOfDay)) {
-                    endOfDay = moment(busyStart);
-                }
+     // Шаг 1.1: Определение свободных промежутков времени с учетом всех занятых слотов
+     var currentDate = moment(); // Текущая дата
+     console.log("Текущая дата:", currentDate.format('YYYY-MM-DD HH:mm:ss'));
+ 
+     // var endDate = moment().endOf('year'); // Конечная дата (конец года)
+     // var endDate = moment(currentDate).endOf('month').add(1, 'month'); // Конец следующего месяца
+     
+     var endDate = moment(currentDate).endOf('month');  // Конец этого месяца
+     console.log("Конец следующего месяца:", endDate.format('YYYY-MM-DD HH:mm:ss'));
+     
+     var freeSlots = []; // Массив для хранения свободных промежутков времени
+ 
+     // Итерация по дням с текущего дня до конца года
+     while (currentDate.isBefore(endDate)) {
+         // Создаем начальное и конечное время для текущего дня
+         var startOfDay = moment(currentDate).set({ hour: 8, minute: 0, second: 0 });
+         var endOfDay = moment(currentDate).set({ hour: 18, minute: 0, second: 0 });
+ 
+         // Перебираем занятые слоты и исключаем их из общего временного диапазона
+         for (var i = 0; i < busySlots.length; i++) {
+             var busyStart = moment(busySlots[i].start);
+             var busyEnd = moment(busySlots[i].end);
+ 
+             // Исключаем занятые слоты из текущего дня
+             if (busyStart.isSameOrBefore(endOfDay) && busyEnd.isSameOrAfter(startOfDay)) {
+                 if (busyStart.isBefore(startOfDay)) {
+                     startOfDay = moment(busyEnd);
+                 }
+                 if (busyEnd.isAfter(endOfDay)) {
+                     endOfDay = moment(busyStart);
+                 }
+             }
+         }
+ 
+         // Проверяем, остались ли свободные промежутки времени в текущем дне
+         while (startOfDay.isBefore(endOfDay)) {
+            var nextSlot = moment.min(endOfDay, moment(startOfDay).add(30, 'minutes')); // Находим следующий свободный промежуток или конец дня
+            if (isSlotEmpty({ start: startOfDay.toString(), end: nextSlot.toString() })) {
+                freeSlots.push({ start: startOfDay.toString(), end: nextSlot.toString() }); // Добавляем свободный промежуток в массив
             }
+            startOfDay = nextSlot; // Переходим к следующему свободному промежутку
         }
-
-        // Проверяем, остались ли свободные промежутки времени в текущем дне
-        if (startOfDay.isBefore(endOfDay)) {
-            freeSlots.push({ start: startOfDay.toString(), end: endOfDay.toString() });
-        }
-
-        // Переходим к следующему дню
-        currentDate.add(1, 'day');
-    }
-
-    // Шаг 2.1: Обрезка свободных промежутков до рабочего дня
-
-    // Выводим результаты
-    console.log("Свободные промежутки времени с учетом занятых слотов:");
-    console.log(freeSlots);
+ 
+         // Переходим к следующему дню
+         currentDate.add(1, 'day');
+     }
+ 
+     // Выводим результаты
+     console.log("Свободные промежутки времени с учетом занятых слотов:");
+     console.log(freeSlots);
 }
 
 

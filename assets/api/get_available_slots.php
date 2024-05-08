@@ -56,31 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["date"])) {
             unset($availableSlots[$key]);
         }
     }
-    // foreach ($occupiedSlots as $occupiedSlot) {
-    //     $occupiedDuration=(int)ceil($occupiedSlot['price']/0.5);
-
-    //     for($i=0; $i<count($availableSlots); $i++){
-
-    //         if($availableSlots[$i]==$occupiedSlot['service_time']){
-    //             for($j=0; $j<$occupiedDuration; $j++){
-    //                 echo($availableSlots[$i]." удален");
-    //                 unset($availableSlots[$i+$j]);
-    //             }
-    //         }
-    //     }
-    // $occupiedTime = strtotime($occupiedSlot['service_time']);
-    // $occupiedDuration = $occupiedSlot['price'] * 60; // Преобразуем продолжительность из часов в минуты
-    // $occupiedEndTime = $occupiedTime + $occupiedDuration;
-
-    // // Удаляем занятые слоты времени из доступных
-    // for ($i = $occupiedTime; $i < $occupiedEndTime; $i += $timeIncrement) {
-    //     $timeSlot = date('H:i', $i);
-    //     $index = array_search($timeSlot, $availableSlots);
-    //     if ($index !== false) {
-    //         unset($availableSlots[$index]);
-    //     }
-    // }
-    //}
 
     // Индексируем слоты времени в новом массиве
     $indexedSlots = array_values($availableSlots);
