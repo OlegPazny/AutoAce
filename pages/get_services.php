@@ -18,7 +18,7 @@ $result = $db->query($sql);
 if ($result->num_rows > 0) {
     // Создаем опции для выбора услуги в HTML-форме
     while($row = $result->fetch_assoc()) {
-        echo "<option value='" . $row["id"] . "'>" . $row["service_name"] . "</option>";
+        echo "<option value='" . $row["id"] . "' data-duration='" . $row["duration"] . "'>" . $row["service_name"] . "</option>";
     }
 } else {
     echo "0 результатов";

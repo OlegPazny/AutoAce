@@ -4,6 +4,7 @@ function loadServices() {
         url: 'get_services.php', // Файл PHP для запроса списка услуг
         success: function (response) {
             $('#service').html(response);
+            getProcedureDuration();
         }
     });
 }
@@ -11,6 +12,7 @@ function loadServices() {
 // Функция для загрузки списка мастеров в зависимости от выбранной услуги
 $('#service').change(function () {
     var serviceId = $(this).val();
+    getProcedureDuration();
     $.ajax({
         url: 'get_workers_by_service.php', // Файл PHP для запроса списка мастеров
         method: 'POST',
@@ -25,6 +27,14 @@ $('#service').change(function () {
         }
     });
 });
+
+// Функция для получения длительности процедуры из выбранной услуги
+function getProcedureDuration() {
+    var durationHours = parseFloat($('#service option:selected').attr('data-duration')); // Длительность процедуры в часах
+    var durationSlots = Math.ceil(durationHours * 60 / 30); // Количество слотов, из которых состоит процедура
+    console.log("Выбранная в селекте процедура занимает слотов(шт по 30 минут): ", durationSlots);
+    return durationSlots;
+}
 
 $('#master').change(function () {
     var masterId = $(this).val();
@@ -116,7 +126,7 @@ function isSlotEmpty(slot) {
     return slot.start !== slot.end;
 }
 
-
+//получаем все свободные слтоты по 30 минут с текущего дня до конца текущего  месяца, учли занятые слоты 
 function defineWorkingHours(busySlots) {
      // Шаг 1.1: Определение свободных промежутков времени с учетом всех занятых слотов
      var currentDate = moment(); // Текущая дата
