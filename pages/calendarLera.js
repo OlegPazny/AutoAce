@@ -4,7 +4,7 @@ function loadServices() {
         url: 'get_services.php', // Файл PHP для запроса списка услуг
         success: function (response) {
             $('#service').html(response);
-            getProcedureDuration();
+            //getProcedureDuration();
         }
     });
 }
@@ -12,7 +12,7 @@ function loadServices() {
 // Функция для загрузки списка мастеров в зависимости от выбранной услуги
 $('#service').change(function () {
     var serviceId = $(this).val();
-    getProcedureDuration();
+    //getProcedureDuration();
     $.ajax({
         url: 'get_workers_by_service.php', // Файл PHP для запроса списка мастеров
         method: 'POST',
@@ -121,6 +121,46 @@ function getBookingsByMaster(masterId) {
     });
 }
 
+// Функция для проверки вмещения промежутков времени в свободные слоты с учетом продолжения на следующие дни
+function checkSlotAvailability(freeSlots, durationSlots) {
+    var availableSlots = []; // Массив для хранения доступных временных слотов
+
+    for (var i = 0; i < freeSlots.length; i++) {
+        var startOfDay = moment(freeSlots[i].start);
+        var endOfDay = moment(freeSlots[i].end);
+
+        // Проверяем, вмещаются ли в текущий свободный промежуток времени все промежутки процедуры
+        if (endOfDay.diff(startOfDay, 'minutes') >= durationSlots * 30) {
+            // Если да, добавляем текущий свободный промежуток в список доступных временных слотов
+            availableSlots.push({ start: startOfDay.toString(), end: endOfDay.toString() });
+        } else {
+            // Если нет, проверяем доступность следующих дней
+            var remainingDurationSlots = durationSlots - 1; // Уменьшаем количество промежутков на 1, так как текущий день уже учтен
+            var nextDay = moment(startOfDay).add(1, 'day').set({ hour: 8, minute: 0, second: 0 }); // Начало следующего дня
+
+            // Пока остались неучтенные промежутки процедуры и есть доступные дни
+            while (remainingDurationSlots > 0 && nextDay.isBefore(endOfDay)) {
+                var nextDayEnd = moment(nextDay).set({ hour: 18, minute: 0, second: 0 }); // Конец текущего дня
+
+                // Проверяем, вмещаются ли все оставшиеся промежутки процедуры в текущий день
+                if (nextDayEnd.diff(nextDay, 'minutes') >= remainingDurationSlots * 30) {
+                    // Если да, добавляем текущий день в список доступных временных слотов
+                    availableSlots.push({ start: nextDay.toString(), end: nextDayEnd.toString() });
+
+                    // Уменьшаем количество оставшихся промежутков
+                    remainingDurationSlots -= nextDayEnd.diff(nextDay, 'minutes') / 30;
+                }
+
+                // Переходим к следующему дню
+                nextDay = moment(nextDay).add(1, 'day').set({ hour: 8, minute: 0, second: 0 });
+            }
+        }
+    }
+
+    // Возвращаем список доступных временных слотов
+    return availableSlots;
+}
+
 //чтобы убирать те слоты, где промежуток времени равен 0 минут
 function isSlotEmpty(slot) {
     return slot.start !== slot.end;
@@ -178,6 +218,14 @@ function defineWorkingHours(busySlots) {
      // Выводим результаты
      console.log("Свободные промежутки времени с учетом занятых слотов:");
      console.log(freeSlots);
+
+    // Шаг 4: Проверка вмещения полученных промежутков времени в свободные слоты работы мастера с учетом продолжения на следующие дни
+    var durationSlots = getProcedureDuration(); // Получаем количество слотов, которые занимает процедура
+    var availableSlots = checkSlotAvailability(freeSlots, durationSlots); // Проверяем доступность свободных слотов
+
+    // Выводим результаты
+    console.log("Доступные промежутки времени для записи:");
+    console.log(availableSlots);
 }
 
 
