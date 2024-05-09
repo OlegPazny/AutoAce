@@ -59,7 +59,7 @@ function getBookingsByMaster(masterId) {
             console.log(bookings);
             // Проходимся по каждой записи и добавляем занятые слоты в массив
             for (var i = 0; i < bookings.length; i++) {
-
+                console.log('i', i);
                 var startTime = bookings[i].service_time;
                 // Преобразуем время начала записи в формат, понятный FullCalendar
                 var start = moment(bookings[i].service_date + ' ' + startTime, 'YYYY-MM-DD HH:mm:ss');
@@ -72,15 +72,17 @@ function getBookingsByMaster(masterId) {
 
                     var start = moment(bookings[i].service_date + ' ' + startTime, 'YYYY-MM-DD HH:mm:ss');
 
-                    var hoursInStartDay = Math.abs(moment(start).diff(start.set({ hour: 18, minute: 0, second: 0 }), 'hours'));
+                    var hoursInStartDay = Math.abs(moment(start).diff(start.set({ hour: 18, minute: 0, second: 0 }), 'hours', 'minutes'));
 
                     var start = moment(bookings[i].service_date + ' ' + startTime, 'YYYY-MM-DD HH:mm:ss');
 
+                    console.log("Если процедура затрагивает не только 1 день, то остаток часов, которые еще влазят в этот день после начала процедуры:");
                     console.log(hoursInStartDay);
                     
 
                     // Вычисляем оставшееся количество часов после конца рабочего дня
                     var remainingHours = bookings[i].duration - hoursInStartDay;
+                    console.log("Часы которые переносятся на следующий день/дни:");
                     console.log(remainingHours);
 
                     // Вычисляем количество дней, необходимых для выполнения оставшихся часов
@@ -103,6 +105,12 @@ function getBookingsByMaster(masterId) {
                     console.log(end.toString());
 
                     end.add(remainingHoursInDay, 'hours');
+
+                    let remainder = end.minutes() % 30;
+                        if (remainder !== 0) {
+                            end.add(30 - remainder, 'minutes');
+                        }
+
                     console.log(end.toString());
 
                     
@@ -111,9 +119,14 @@ function getBookingsByMaster(masterId) {
                 // Добавляем оставшееся время, если оно не выходит за пределы рабочего дня
                 else {
                     var end = moment(start).add(bookings[i].duration, 'hours');
+                    let remainder = end.minutes() % 30;
+                        if (remainder !== 0) {
+                            end.add(30 - remainder, 'minutes');
+                        }
                     busySlots.push({ start: start.toString(), end: end.toString() });
                 }
             }
+            console.log('Занятые слоты');
             console.log(busySlots);
             // Возвращаем массив занятых временных слотов
             defineWorkingHours(busySlots);
@@ -121,44 +134,62 @@ function getBookingsByMaster(masterId) {
     });
 }
 
-// Функция для проверки вмещения промежутков времени в свободные слоты с учетом продолжения на следующие дни
-function checkSlotAvailability(freeSlots, durationSlots) {
-    var availableSlots = []; // Массив для хранения доступных временных слотов
+// Функция для проверки вмещения промежутков времени в свободные слоты с учетом продолжения на следующие дни 
+function findProcedureSlots(freeSlots, durationSlots) {
+    let procedureCombinations = []; // Здесь будем хранить все найденные комбинации
 
-    for (var i = 0; i < freeSlots.length; i++) {
-        var startOfDay = moment(freeSlots[i].start);
-        var endOfDay = moment(freeSlots[i].end);
+    // Цикл по свободным слотам
+    for (let i = 0; i < freeSlots.length; i++) {
+        let currentCombination = []; // Текущая комбинация слотов
 
-        // Проверяем, вмещаются ли в текущий свободный промежуток времени все промежутки процедуры
-        if (endOfDay.diff(startOfDay, 'minutes') >= durationSlots * 30) {
-            // Если да, добавляем текущий свободный промежуток в список доступных временных слотов
-            availableSlots.push({ start: startOfDay.toString(), end: endOfDay.toString() });
-        } else {
-            // Если нет, проверяем доступность следующих дней
-            var remainingDurationSlots = durationSlots - 1; // Уменьшаем количество промежутков на 1, так как текущий день уже учтен
-            var nextDay = moment(startOfDay).add(1, 'day').set({ hour: 8, minute: 0, second: 0 }); // Начало следующего дня
+        // Проверка продолжительности процедуры
+        if (i + durationSlots <= freeSlots.length) {
+           var k = 0;
+            // Проверяем последовательные слоты
+            for (let j = i; j < i + durationSlots - 1; j++) {
+                k = k + 1;
+                let currentSlot = freeSlots[j];
+                let nextSlot = freeSlots[j + 1];
 
-            // Пока остались неучтенные промежутки процедуры и есть доступные дни
-            while (remainingDurationSlots > 0 && nextDay.isBefore(endOfDay)) {
-                var nextDayEnd = moment(nextDay).set({ hour: 18, minute: 0, second: 0 }); // Конец текущего дня
+                // Проверяем условия для последовательных слотов
+                                    // Условие 1: конец текущего слота совпадает с началом следующего слота
+                if ((nextSlot && moment(currentSlot.end).isSame(nextSlot.start))) {
+                    if(k == durationSlots - 1){
+                        currentCombination.push(currentSlot);
+                        currentCombination.push(nextSlot);
+                        continue;
+                    }
+                    else{
+                        currentCombination.push(currentSlot);
+                    }
+                } 
 
-                // Проверяем, вмещаются ли все оставшиеся промежутки процедуры в текущий день
-                if (nextDayEnd.diff(nextDay, 'minutes') >= remainingDurationSlots * 30) {
-                    // Если да, добавляем текущий день в список доступных временных слотов
-                    availableSlots.push({ start: nextDay.toString(), end: nextDayEnd.toString() });
-
-                    // Уменьшаем количество оставшихся промежутков
-                    remainingDurationSlots -= nextDayEnd.diff(nextDay, 'minutes') / 30;
+                // Условие 2: конец текущего слота равен 18:00, а начало следующего равно 8:00,  
+                // и дата конца текущего слота на один день меньше даты начала следующего слота
+                else if((moment(currentSlot.end).format('HH:mm') === '18:00' && nextSlot && moment(nextSlot.start).format('HH:mm') === '08:00' && moment(currentSlot.end).add(1, 'day').isSame(nextSlot.start, 'day'))) {
+                    if(k == durationSlots - 1){
+                        currentCombination.push(currentSlot);
+                        currentCombination.push(nextSlot);
+                        continue;
+                    }
+                    else{
+                        currentCombination.push(currentSlot);
+                    }
                 }
 
-                // Переходим к следующему дню
-                nextDay = moment(nextDay).add(1, 'day').set({ hour: 8, minute: 0, second: 0 });
+                else {
+                    break; // Прерываем цикл, если условия не выполнены
+                }
+            }
+
+            // Если длительность процедуры вмещается в найденные последовательные слоты, добавляем комбинацию
+            if (currentCombination.length === durationSlots) {
+                procedureCombinations.push(currentCombination);
             }
         }
     }
 
-    // Возвращаем список доступных временных слотов
-    return availableSlots;
+    return procedureCombinations;
 }
 
 //чтобы убирать те слоты, где промежуток времени равен 0 минут
@@ -166,10 +197,13 @@ function isSlotEmpty(slot) {
     return slot.start !== slot.end;
 }
 
-//получаем все свободные слтоты по 30 минут с текущего дня до конца текущего  месяца, учли занятые слоты 
+//получаем все свободные слтоты по 30 минут с текущего дня до конца текущего  месяца, учли занятые слоты(НЕКОРРЕКТНО РАБОТАЕТ С ПРОЦЕДУРАМИ НА 1 ДЕНЬ)
 function defineWorkingHours(busySlots) {
      // Шаг 1.1: Определение свободных промежутков времени с учетом всех занятых слотов
-     var currentDate = moment(); // Текущая дата
+
+    //  var currentDate = moment(); // Текущая дата
+    //var currentDate = "Wed May 22 2024 09:00:00 GMT+0300";
+    var currentDate = moment().month(4).date(16);
      console.log("Текущая дата:", currentDate.format('YYYY-MM-DD HH:mm:ss'));
  
      // var endDate = moment().endOf('year'); // Конечная дата (конец года)
@@ -188,31 +222,37 @@ function defineWorkingHours(busySlots) {
  
          // Перебираем занятые слоты и исключаем их из общего временного диапазона
          for (var i = 0; i < busySlots.length; i++) {
-             var busyStart = moment(busySlots[i].start);
-             var busyEnd = moment(busySlots[i].end);
- 
-             // Исключаем занятые слоты из текущего дня
-             if (busyStart.isSameOrBefore(endOfDay) && busyEnd.isSameOrAfter(startOfDay)) {
-                 if (busyStart.isBefore(startOfDay)) {
-                     startOfDay = moment(busyEnd);
-                 }
-                 if (busyEnd.isAfter(endOfDay)) {
-                     endOfDay = moment(busyStart);
-                 }
-             }
-         }
- 
-         // Проверяем, остались ли свободные промежутки времени в текущем дне
-         while (startOfDay.isBefore(endOfDay)) {
+            var busyStart = moment(busySlots[i].start);
+            var busyEnd = moment(busySlots[i].end);
+
+            // Исключаем занятые слоты из текущего дня
+            if (busyStart.isSameOrBefore(endOfDay) && busyEnd.isSameOrAfter(startOfDay)) {
+                if (busyStart.isSame(startOfDay) && busyEnd.isSame(endOfDay)) {
+                    // Если занятый слот совпадает полностью с текущим днем, пропускаем его
+                    continue;
+                }
+                if (busyStart.isBefore(startOfDay)) {
+                    startOfDay = moment(busyEnd);
+                }
+                if (busyEnd.isAfter(endOfDay)) {
+                    endOfDay = moment(busyStart);
+                }
+            }
+        }
+
+        // Проверяем, остались ли свободные промежутки времени в текущем дне
+        if (startOfDay.isBefore(endOfDay)) {
+        while (startOfDay.isBefore(endOfDay)) {
             var nextSlot = moment.min(endOfDay, moment(startOfDay).add(30, 'minutes')); // Находим следующий свободный промежуток или конец дня
-            if (isSlotEmpty({ start: startOfDay.toString(), end: nextSlot.toString() })) {
+            if (startOfDay.isBefore(endOfDay) && isSlotEmpty({ start: startOfDay.toString(), end: nextSlot.toString() })) {
                 freeSlots.push({ start: startOfDay.toString(), end: nextSlot.toString() }); // Добавляем свободный промежуток в массив
             }
             startOfDay = nextSlot; // Переходим к следующему свободному промежутку
         }
- 
-         // Переходим к следующему дню
-         currentDate.add(1, 'day');
+    }
+
+        // Переходим к следующему дню
+        currentDate.add(1, 'day');
      }
  
      // Выводим результаты
@@ -221,11 +261,11 @@ function defineWorkingHours(busySlots) {
 
     // Шаг 4: Проверка вмещения полученных промежутков времени в свободные слоты работы мастера с учетом продолжения на следующие дни
     var durationSlots = getProcedureDuration(); // Получаем количество слотов, которые занимает процедура
-    var availableSlots = checkSlotAvailability(freeSlots, durationSlots); // Проверяем доступность свободных слотов
+    var procedureCombinations = findProcedureSlots(freeSlots, durationSlots); // Проверяем доступность свободных слотов
 
     // Выводим результаты
-    console.log("Доступные промежутки времени для записи:");
-    console.log(availableSlots);
+    console.log("Доступные комбинации для записи:");
+    console.log(procedureCombinations);
 }
 
 
