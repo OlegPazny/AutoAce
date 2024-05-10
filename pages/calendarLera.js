@@ -201,6 +201,9 @@ function isSlotEmpty(slot) {
 function defineWorkingHours(busySlots) {
      // Шаг 1.1: Определение свободных промежутков времени с учетом всех занятых слотов
 
+     busySlots.sort((a, b) => new Date(a.start) - new Date(b.start));
+     console.log("отсортированный массив");
+     console.log()
     //  var currentDate = moment(); // Текущая дата
     //var currentDate = "Wed May 22 2024 09:00:00 GMT+0300";
     var currentDate = moment().month(4).date(16);
