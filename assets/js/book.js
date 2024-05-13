@@ -1,40 +1,40 @@
-$(document).ready(function () {
-    $('#bookingForm').submit(function (e) {
-        e.preventDefault();
+// $(document).ready(function () {
+//     $('#bookingForm').submit(function (e) {
+//         e.preventDefault();
 
-        var checkboxChecked = $('.callback-form__checkbox').is(':checked');
+//         var checkboxChecked = $('.callback-form__checkbox').is(':checked');
 
-        if (!checkboxChecked) {
-            // Если чекбокс не отмечен, выводим сообщение об ошибке
-            alert('Пожалуйста, отметьте чекбокс "Я даю согласие на обработку персональных данных".');
-            return;
-        }
-        // Получаем цену выбранной услуги
-        var servicePrice = $('#service option:selected').data('service-price');
+//         if (!checkboxChecked) {
+//             // Если чекбокс не отмечен, выводим сообщение об ошибке
+//             alert('Пожалуйста, отметьте чекбокс "Я даю согласие на обработку персональных данных".');
+//             return;
+//         }
+//         // Получаем цену выбранной услуги
+//         var servicePrice = $('#service option:selected').data('service-price');
 
-        // Собираем данные формы, включая цену услуги
-        var formData = $(this).serialize() + '&service_price=' + servicePrice;
+//         // Собираем данные формы, включая цену услуги
+//         var formData = $(this).serialize() + '&service_price=' + servicePrice;
 
-        // Отправляем AJAX запрос на сервер
-        $.ajax({
-            type: 'POST',
-            url: '../assets/api/book_script.php',
-            data: formData,
-            success: function (response) {
-                // Обработка успешного ответа от сервера
-                console.log('Данные успешно отправлены!');
-                $('textarea[name="message"]').val('');
-                $('.callback-form__checkbox').prop('checked', false);
-            },
-            error: function (xhr, status, error) {
-                // Обработка ошибок при отправке запроса
-                console.error(xhr.responseText);
-                console.log("ошибка");
-            }
-        });
+//         // Отправляем AJAX запрос на сервер
+//         $.ajax({
+//             type: 'POST',
+//             url: '../assets/api/book_script.php',
+//             data: formData,
+//             success: function (response) {
+//                 // Обработка успешного ответа от сервера
+//                 console.log('Данные успешно отправлены!');
+//                 $('textarea[name="message"]').val('');
+//                 $('.callback-form__checkbox').prop('checked', false);
+//             },
+//             error: function (xhr, status, error) {
+//                 // Обработка ошибок при отправке запроса
+//                 console.error(xhr.responseText);
+//                 console.log("ошибка");
+//             }
+//         });
     
 
-    });
+//     });
     
     // // Получаем ссылку на элемент <select> для услуги и работника
     // const serviceSelect = document.getElementById("service");
@@ -124,4 +124,4 @@ $(document).ready(function () {
     // document.getElementById('month').addEventListener('change', updateCalendar);
     // document.getElementById('year').addEventListener('change', updateCalendar);
     // updateCalendar();
-});
+// });

@@ -55,8 +55,22 @@
                     <textarea class="callback-form__textarea" id="message" name="message"></textarea>
                 </div>
             </div>
+            <div id="openModal" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Выбор времени и даты</h3>
+                        <a href="#close" title="Close" class="close">×</a>
+                    </div>
+                    <div class="modal-body">    
+                        <div id="calendar"></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#openModal">Выбрать дату и время</a>
             <div class="callback-form__calendar">
-                <div id="calendar"></div>
+                
             </div>
             <div class="callback-form__submit-check-block">
                 <div id="book" class="callback-form__submit-block button">
