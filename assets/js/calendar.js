@@ -19,11 +19,14 @@ var masterId;
 function loadServices() {
     $.ajax({
         url: '../assets/api/get_services.php', // Файл PHP для запроса списка услуг
+        method: "POST",
+        dataType:"json",
         success: function (response) {
-            $('#service').html(response);
+            console.log(response);
+            $('#service').html(response.options);
             //getProcedureDuration();
-            $('#service option:first').prop('selected', true);
-            var firstDefaultServiceId = $('#service option:first').val();
+            $('#service option:eq(1)').prop('selected', true);
+            var firstDefaultServiceId = $('#service option:eq(1)').val();
             serviceId = firstDefaultServiceId;
             loadMastersByService(firstDefaultServiceId);
         }

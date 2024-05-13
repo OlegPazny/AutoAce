@@ -84,26 +84,30 @@ require_once "../assets/api/get_workshop_data_script.php";
 
 
                     <label class="callback-form__label">Услуга</label>
-                    <select id="service" name="service">
-                        <option selected disabled>Выберите услугу</option>
-                        <?php foreach ($services_arr as $service_type => $services) {
-                            echo ("<option disabled class='disabled-option'>" . $service_type . "</option>");
-                            foreach ($services as $service) {
-                                echo ("<option class='service-option' data-service-price='" . $service['price'] . "' value='" . $service['id'] . "'>" . $service['name'] . "</option>");
-                            }
-                        } ?>
-                    </select>
+
+
+
+                    <select id="service" name="service"></select>
+
+
+
                     <label class="callback-form__label">Выберите сотрудника</label>
-                    <select id="worker" name="worker"></select>
+
+
+
+                    <select id="master" name="master"></select>
+
+
+
                 </div>
                 <div class="callback-form__textarea-block">
                     <label class="callback-form__label">Комментарий к заказу</label>
                     <textarea class="callback-form__textarea" id="message" name="message"></textarea>
                 </div>
-                <div class="callback-form__calendar">
+            </div>
+            <div class="callback-form__calendar">
                     <?php require_once "calendar.php";?>
                 </div>
-            </div>
             <div class="callback-form__submit-check-block">
                 <div class="callback-form__submit-block button">
                     <input type="submit" class="callback-form__submit button__content" value="Записаться" <?php if (!isset($_SESSION['user']['id'])) {

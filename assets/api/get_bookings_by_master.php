@@ -11,7 +11,7 @@ if ($db->connect_error) {
 $masterId = $_POST['masterId'];
 
 // Выполняем запрос к базе данных для получения записей на услуги для выбранного мастера
-$sql = "SELECT sb.id, sb.service_date, sb.service_time, sb.status, s.duration /* замените column_name на фактическое имя колонки, которое вы хотите вывести */
+$sql = "SELECT sb.id, sb.service_date, sb.service_time, sb.status, s.duration
 FROM service_bookings sb
 INNER JOIN worker_service_relationships wsr ON sb.worker_service_id = wsr.id
 INNER JOIN services s ON wsr.service_id = s.id

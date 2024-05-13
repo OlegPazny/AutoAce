@@ -36,92 +36,92 @@ $(document).ready(function () {
 
     });
     
-    // Получаем ссылку на элемент <select> для услуги и работника
-    const serviceSelect = document.getElementById("service");
-    const workerSelect = document.getElementById("worker");
+    // // Получаем ссылку на элемент <select> для услуги и работника
+    // const serviceSelect = document.getElementById("service");
+    // const workerSelect = document.getElementById("worker");
 
-    // Слушаем изменения в выборе услуги
-    serviceSelect.addEventListener("change", async function() {
-        // Получаем выбранное значение услуги
-        const selectedServiceId = serviceSelect.value;
+    // // Слушаем изменения в выборе услуги
+    // serviceSelect.addEventListener("change", async function() {
+    //     // Получаем выбранное значение услуги
+    //     const selectedServiceId = serviceSelect.value;
         
-        // Очищаем список работников
-        workerSelect.innerHTML = '<option selected disabled>Выберите работника</option>';
+    //     // Очищаем список работников
+    //     workerSelect.innerHTML = '<option selected disabled>Выберите работника</option>';
         
-        if (selectedServiceId) {
-            try {
-                // Отправляем асинхронный запрос на сервер для получения работников, предоставляющих выбранную услугу
-                const response = await fetch(`../assets/api/get_worker_data_script.php?service_id=${selectedServiceId}`);
-                const workers = await response.json();
-                // Обновляем список работников в <select>
-                workers.forEach(worker => {
-                    console.log(worker);
-                    const option = document.createElement('option');
-                    option.value = worker[1];
-                    option.textContent = worker[0];
-                    workerSelect.appendChild(option);
-                });
-            } catch (error) {
-                console.error('Ошибка при получении данных о работниках:', error);
-            }
-        }
-    });
-    //календарь
-    function updateCalendar() {
-        const monthSelect = document.getElementById('month');
-        const yearInput = document.getElementById('year');
-        const monthYear = document.getElementById('month-year');
-        const calendarBody = document.getElementById('calendar-body');
+    //     if (selectedServiceId) {
+    //         try {
+    //             // Отправляем асинхронный запрос на сервер для получения работников, предоставляющих выбранную услугу
+    //             const response = await fetch(`../assets/api/get_worker_data_script.php?service_id=${selectedServiceId}`);
+    //             const workers = await response.json();
+    //             // Обновляем список работников в <select>
+    //             workers.forEach(worker => {
+    //                 console.log(worker);
+    //                 const option = document.createElement('option');
+    //                 option.value = worker[1];
+    //                 option.textContent = worker[0];
+    //                 workerSelect.appendChild(option);
+    //             });
+    //         } catch (error) {
+    //             console.error('Ошибка при получении данных о работниках:', error);
+    //         }
+    //     }
+    // });
+    // //календарь
+    // function updateCalendar() {
+    //     const monthSelect = document.getElementById('month');
+    //     const yearInput = document.getElementById('year');
+    //     const monthYear = document.getElementById('month-year');
+    //     const calendarBody = document.getElementById('calendar-body');
 
-        const monthIndex = parseInt(monthSelect.value);
-        const year = parseInt(yearInput.value);
+    //     const monthIndex = parseInt(monthSelect.value);
+    //     const year = parseInt(yearInput.value);
 
-        const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
-        const firstDayOfMonth = new Date(year, monthIndex, 1).getDay();
+    //     const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+    //     const firstDayOfMonth = new Date(year, monthIndex, 1).getDay();
 
-        calendarBody.innerHTML = '';
-        monthYear.textContent = `${monthSelect.options[monthIndex].text} ${year}`;
+    //     calendarBody.innerHTML = '';
+    //     monthYear.textContent = `${monthSelect.options[monthIndex].text} ${year}`;
 
-        let date = 1;
-        let row = document.createElement('tr');
+    //     let date = 1;
+    //     let row = document.createElement('tr');
 
-        // Устанавливаем начальное значение дня недели
-        let currentDay = firstDayOfMonth === 0 ? 7 : firstDayOfMonth;
+    //     // Устанавливаем начальное значение дня недели
+    //     let currentDay = firstDayOfMonth === 0 ? 7 : firstDayOfMonth;
 
-        for (let i = 1; i < currentDay; i++) {
-            const cell = document.createElement('td');
-            cell.textContent = '';
-            row.appendChild(cell);
-        }
+    //     for (let i = 1; i < currentDay; i++) {
+    //         const cell = document.createElement('td');
+    //         cell.textContent = '';
+    //         row.appendChild(cell);
+    //     }
 
-        for (let i = 0; i < daysInMonth; i++) {
-            const cell = document.createElement('td');
-            cell.textContent = date;
-            row.appendChild(cell);
+    //     for (let i = 0; i < daysInMonth; i++) {
+    //         const cell = document.createElement('td');
+    //         cell.textContent = date;
+    //         row.appendChild(cell);
 
-            currentDay++;
+    //         currentDay++;
 
-            if (currentDay > 7) {
-                calendarBody.appendChild(row);
-                row = document.createElement('tr');
-                currentDay = 1;
-            }
+    //         if (currentDay > 7) {
+    //             calendarBody.appendChild(row);
+    //             row = document.createElement('tr');
+    //             currentDay = 1;
+    //         }
 
-            date++;
-        }
+    //         date++;
+    //     }
 
-        // Завершаем последний ряд
-        if (currentDay !== 1) {
-            for (let i = currentDay; i <= 7; i++) {
-                const cell = document.createElement('td');
-                cell.textContent = '';
-                row.appendChild(cell);
-            }
-            calendarBody.appendChild(row);
-        }
-    }
+    //     // Завершаем последний ряд
+    //     if (currentDay !== 1) {
+    //         for (let i = currentDay; i <= 7; i++) {
+    //             const cell = document.createElement('td');
+    //             cell.textContent = '';
+    //             row.appendChild(cell);
+    //         }
+    //         calendarBody.appendChild(row);
+    //     }
+    // }
 
-    document.getElementById('month').addEventListener('change', updateCalendar);
-    document.getElementById('year').addEventListener('change', updateCalendar);
-    updateCalendar();
+    // document.getElementById('month').addEventListener('change', updateCalendar);
+    // document.getElementById('year').addEventListener('change', updateCalendar);
+    // updateCalendar();
 });

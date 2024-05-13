@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Запись на услугу</title>
     <!-- Подключаем библиотеку jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Подключаем FullCalendar -->
@@ -24,16 +23,6 @@
 
 <body>
     <form id="bookingForm">
-        <label for="service">Выберите услугу:</label>
-        <select name="service" id="service">
-            <!-- Здесь будут варианты услуг -->
-        </select><br><br>
-
-        <label for="master">Выберите мастера:</label>
-        <select name="master" id="master">
-            <!-- Здесь будут варианты мастеров -->
-        </select><br><br>
-
             <!-- Добавляем элемент для календаря -->
             <div id="calendar"></div>
             <a id="book">Записаться</a>
