@@ -347,7 +347,7 @@ function russianMonth($monthNumber)
             </table>
         </div>
         <div class="account-services relations">
-            <table>
+            <table class="relations-table">
                 <thead>
                     <tr>
                         <th>Работник</th>
@@ -357,24 +357,7 @@ function russianMonth($monthNumber)
                     </tr>
                     <thead>
                     <tbody class="relations-table-body">
-                        <?php
-                        foreach ($worker_services as $worker_service) {
-                            echo ("<tr>
-                                <td>" . $worker_service[1] . "</td>
-                                <td>" . $worker_service[3] . "</td>
-                                <td>" . $worker_service[2] . "</td>
-                                <td>
-                                    <div class='delete-relation' data-relation-id='" . $worker_service[0] . "''>
-                                        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
-                                            <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
-                                        </svg>
-                                    </div>
-                                </td>
-                                </tr>
-                                ");
-                        }
-                        ?>
-                        <tr class="add-relation-row">
+                    <tr class="add-relation-row">
                             <td>
                                 <select class="workers-input" name="relation_worker_name" id="relation_worker_name">
                                     <?php
@@ -406,6 +389,23 @@ function russianMonth($monthNumber)
                                 </div>
                             </td>
                         </tr>
+                        <?php
+                        foreach ($worker_services as $worker_service) {
+                            echo ("<tr>
+                                <td>" . $worker_service[1] . "</td>
+                                <td>" . $worker_service[3] . "</td>
+                                <td>" . $worker_service[2] . "</td>
+                                <td>
+                                    <div class='delete-relation' data-relation-id='" . $worker_service[0] . "''>
+                                        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
+                                            <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
+                                        </svg>
+                                    </div>
+                                </td>
+                                </tr>
+                                ");
+                        }
+                        ?>
                     </tbody>
             </table>
         </div>

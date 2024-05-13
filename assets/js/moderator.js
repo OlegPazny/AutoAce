@@ -291,35 +291,37 @@ $(document).ready(function () {
     $('.add-relation-button').click(function () {
         var workerNameRelation = $('#relation_worker_name').val();
         var serviceNameRelation = $('#relation_service_name').val();
-        var workshopNameRelationValue = $('#worker-workshop').text();
-        var serviceNameRelationValue = $('#relation_service_name option:selected').text(); // Получаем текст выбранной опции (название услуги)
-        var workerNameRelationValue = $('#relation_worker_name option:selected').text(); // Получаем текст выбранной опции (название автосервиса)
 
         $.ajax({
             type: 'POST',
             url: '../assets/api/add_relation_script.php',
+            dataType: 'json',
             data: {
                 service_name_relation: serviceNameRelation,
                 worker_name_relation: workerNameRelation,
             },
             success: function (response) {
                 console.log('Услуга успешно добавлена!');
+                var newRelation = response.relation;
+                var tableBody = $('.relations-table').find('tbody'); // находим tbody во второй таблице
                 // Создаем новую строку таблицы на основе полученных данных
                 var newRow = "<tr>" +
-                    "<td>" + workerNameRelationValue + "</td>" +
-                    "<td>" + workshopNameRelationValue + "</td>" +
-                    "<td>" + serviceNameRelationValue + "</td>" +
+                    "<td>" + newRelation.worker_name + "</td>" +
+                    "<td>" + newRelation.workshop_name + "</td>" +
+                    "<td>" + newRelation.service_name + "</td>" +
                     "<td>" +
-                    "<div class='delete-relation' data-relation-id='" + serviceNameRelation + "''>" +
+                    "<div class='delete-relation' data-relation-id='" + newRelation.relation_id + "''>" +
                     "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>" +
                     "<path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>" +
                     "</svg>" +
                     "</div>" +
                     "</td>" +
                     "</tr>";
-                var inputRow = $('.add-relation-row');
                 // Вставляем новую строку перед найденным элементом
-                inputRow.before(newRow);
+                tableBody.find('tr').eq(1).before(newRow);
+                deleteRelationHandler();
+                $('#relation_worker_name:eq(0)').prop('selected', true);
+                $('#relation_service_name:eq(1)').prop('selected', true);
             },
             error: function (xhr, status, error) {
                 // Обработка ошибки AJAX-запроса
@@ -328,29 +330,32 @@ $(document).ready(function () {
         });
     });
     //удаление отношения
-    var deleteRelationButtons = document.querySelectorAll('.delete-relation');
-    deleteRelationButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-            var relationId = this.getAttribute('data-relation-id');
-            deleteRelation(relationId, button); // Передаем ссылку на кнопку вместе с userId
+    function deleteRelationHandler(){
+        var deleteRelationButtons = document.querySelectorAll('.delete-relation');
+        deleteRelationButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var relationId = this.getAttribute('data-relation-id');
+                deleteRelation(relationId, button); // Передаем ссылку на кнопку вместе с userId
+            });
         });
-    });
-    function deleteRelation(relationId, button) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var relationRow = button.parentNode.parentNode; // Используем parentNode для доступа к <td>, а затем к <tr>
-                    relationRow.parentNode.removeChild(relationRow);
-                } else {
-                    console.error('Произошла ошибка при удалении отношения');
+        function deleteRelation(relationId, button) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var relationRow = button.parentNode.parentNode; // Используем parentNode для доступа к <td>, а затем к <tr>
+                        relationRow.parentNode.removeChild(relationRow);
+                    } else {
+                        console.error('Произошла ошибка при удалении отношения');
+                    }
                 }
-            }
-        };
-        xhr.open('POST', '../assets/api/delete_relation_script.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send('relation_id=' + relationId);
+            };
+            xhr.open('POST', '../assets/api/delete_relation_script.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('relation_id=' + relationId);
+        }
     }
+    deleteRelationHandler();
     // Получаем ссылку на элемент <select> для услуги и работника
     var workerSelect = $(".workers-input");
     var serviceSelect = $(".services-input");

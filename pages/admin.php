@@ -212,26 +212,57 @@ function russianMonth($monthNumber) {
             </table>
         </div>
         <div class="account-services services">
-            <table>
+            <table class="services-table">
                 <thead>
                     <tr>
                         <th>id</th>
                         <th>Название</th>
                         <th>Описание</th>
-                        <th>Стоимость</th>
+                        <th>Нормочас</th>
                         <th>Тип услуги</th>
                         <th>Скидка, %</th>
                         <th></th>
                     </tr>
                     <thead>
                     <tbody>
+                        <tr id="new-service-row">
+                            <td></td>
+                            <td><input type="text" class="add-service-input admin-input" name="service_name"
+                                    id="service_name"></td>
+                            <td><input type="text" class="add-service-input admin-input" name="service_description"
+                                    id="service_description"></td>
+                            <td><input type="text" class="add-service-input admin-input" name="service_price"
+                                    id="service_price">
+                            </td>
+                            <td>
+                                <select class="add-service-input" name="service_type" id="service_type">
+                                    <?php
+                                    foreach ($services_types as $services_type) {
+                                        echo ("<option value='" . $services_type[0] . "'>" . $services_type[1] . "</option>");
+                                    }
+                                    ?>
+
+                                </select>
+                            </td>
+                            <td><input type="text" class="add-service-input admin-input" name="service_discount"
+                                    id="service_discount"></td>
+                            <td>
+                                <div class="add-service-button">
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'
+                                        viewBox='0 0 24 24'>
+                                        <path fill='#232323'
+                                            d='M21 7v12q0 .825-.587 1.413T19 21H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h12zm-9 11q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-6-8h9V6H6z' />
+                                    </svg>
+                                </div>
+                            </td>
+                        </tr>
                         <?php
                         foreach ($services as $service) {
                             echo ("<tr>
                                 <td>" . $service[0] . "</td>
                                 <td>" . $service[1] . "</td>
                                 <td>" . $service[2] . "</td>
-                                <td>" . (int) $service[3] . " р.</td>
+                                <td>" . $service[3] . " н/ч</td>
                                 <td>" . $service[4] . "</td>
                                 <td>" . $service[5] . "</td>
                                 <td>
@@ -245,80 +276,37 @@ function russianMonth($monthNumber) {
                                 ");
                         }
                         ?>
-                        <tr id="new-service-row">
-                            <td></td>
-                            <td><input type="text" class="add-service-input" name="service_name" id="service_name"></td>
-                            <td><input type="text" class="add-service-input" name="service_description"
-                                    id="service_description"></td>
-                            <td><input type="text" class="add-service-input" name="service_price" id="service_price">
-                            </td>
-                            <td>
-                                <select class="add-service-input" name="service_type" id="service_type">
-                                    <?php
-                                    foreach ($services_types as $services_type) {
-                                        echo ("<option value='" . $services_type[0] . "'>" . $services_type[1] . "</option>");
-                                    }
-                                    ?>
-
-                                </select>
-                            </td>
-                            <td><input type="text" class="add-service-input" name="service_discount" id="service_discount"></td>
-                            <td>
-                                <div class="add-service-button">
-                                    <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'
-                                        viewBox='0 0 24 24'>
-                                        <path fill='#232323'
-                                            d='M21 7v12q0 .825-.587 1.413T19 21H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h12zm-9 11q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-6-8h9V6H6z' />
-                                    </svg>
-                                </div>
-                            </td>
-                        </tr>
                     </tbody>
             </table>
         </div>
         <div class="account-services relations">
-            <table>
+            <table class="relations-table">
                 <thead>
                     <tr>
+                        <th>Работник</th>
                         <th>Автосервис</th>
                         <th>Услуга</th>
                         <th></th>
                     </tr>
                     <thead>
                     <tbody class="relations-table-body">
-                        <?php
-                        foreach ($relationships as $relationship) {
-                            echo ("<tr>
-                                <td>" . $relationship[1] . "</td>
-                                <td>" . $relationship[2] . "</td>
-                                <td>
-                                    <div class='delete-relation' data-relation-id='" . $relationship[0] . "''>
-                                        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
-                                            <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
-                                        </svg>
-                                    </div>
-                                </td>
-                                </tr>
-                                ");
-                        }
-                        ?>
-                        <tr class="add-relation-row">
+                    <tr class="add-relation-row">
                             <td>
-                                <select class="workshops-input" name="relation_workshop_name"
-                                    id="relation_workshop_name">
+                                <select class="workers-input" name="relation_worker_name" id="relation_worker_name">
                                     <?php
-                                    foreach ($workshops as $workshop) {
-                                        echo ("<option value='" . $workshop[0] . "'>" . $workshop[1] . "</option>");
+                                    foreach ($workers as $worker) {
+                                        echo ("<option value='" . $worker[0] . "'>" . $worker[1] . "</option>");
                                     }
                                     ?>
 
                                 </select>
                             </td>
+                            <td id="worker-workshop"></td>
                             <td>
                                 <select class="services-input" name="relation_service_name" id="relation_service_name">
                                     <?php
-                                    foreach ($services as $service) {
-                                        echo ("<option value='" . $service[0] . "'>" . $service[1] . "</option>");
+                                    foreach ($new_services as $new_service) {
+                                        echo ("<option value='" . $new_service[0] . "'>" . $new_service[1] . "</option>");
                                     }
                                     ?>
 
@@ -334,6 +322,23 @@ function russianMonth($monthNumber) {
                                 </div>
                             </td>
                         </tr>
+                        <?php
+                        foreach ($worker_services as $worker_service) {
+                            echo ("<tr>
+                                <td>" . $worker_service[1] . "</td>
+                                <td>" . $worker_service[3] . "</td>
+                                <td>" . $worker_service[2] . "</td>
+                                <td>
+                                    <div class='delete-relation' data-relation-id='" . $worker_service[0] . "''>
+                                        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
+                                            <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
+                                        </svg>
+                                    </div>
+                                </td>
+                                </tr>
+                                ");
+                        }
+                        ?>
                     </tbody>
             </table>
         </div>
