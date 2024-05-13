@@ -72,59 +72,7 @@ require_once "../assets/api/get_workshop_data_script.php";
             <div id="map"></div>
         </div>
     </section>
-    <section class="book-section">
-        <form class="callback-form" id="bookingForm">
-            <input type="hidden" value="<?php echo $_GET['id']; ?>" name="hash" class="hash">
-            <div>
-                <div class="callback-form__inputs-block">
-
-                    <label class="callback-form__label">Станция технического обслуживания</label>
-                    <h2 style="color:#fff" name="workshop" value="<?php echo ($_GET['id']); ?>">
-                        <?php echo ($workshop_data['name']); ?></h2>
-
-
-                    <label class="callback-form__label">Услуга</label>
-
-
-
-                    <select id="service" name="service"></select>
-
-
-
-                    <label class="callback-form__label">Выберите сотрудника</label>
-
-
-
-                    <select id="master" name="master"></select>
-
-
-
-                </div>
-                <div class="callback-form__textarea-block">
-                    <label class="callback-form__label">Комментарий к заказу</label>
-                    <textarea class="callback-form__textarea" id="message" name="message"></textarea>
-                </div>
-            </div>
-            <div class="callback-form__calendar">
-                    <?php require_once "calendar.php";?>
-                </div>
-            <div class="callback-form__submit-check-block">
-                <div class="callback-form__submit-block button">
-                    <input type="submit" class="callback-form__submit button__content" value="Записаться" <?php if (!isset($_SESSION['user']['id'])) {
-                        echo ("disabled");
-                    } ?>>
-                </div>
-                <div class="callback-form__checkbox-block">
-                    <input type="checkbox" class="callback-form__checkbox" id="book_submit">
-                    <label class="callback-form__checkbox-label">Я даю согласие на обработку персональных
-                        данных</label>
-                </div>
-            </div>
-
-        </form>
-        <div class="form-shadow1"></div>
-        <div class="form-shadow2"></div>
-    </section>
+    <?php require_once "booking.php"?>
     <?php require_once "../includes/footer.php"; ?>
 </body>
 <script src="../assets/js/workshop_location.js"></script>

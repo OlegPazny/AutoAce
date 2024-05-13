@@ -1,18 +1,19 @@
 <?php
+session_start();
 // Подключение к базе данных (замените на свои данные)
 require_once "db_connect.php";
-
+var_dump($_SESSION);
 // Получение данных из POST запроса
 $workerServiceId = $_POST['workerServiceId'];
-// $user_id = $_SESSION['user']['id'];
-$userId=2;
+$userId = $_SESSION['user']['id'];
 $serviceDate = $_POST['serviceDate'];
 $serviceTime = $_POST['serviceTime'];
+$message = $_POST['message'];
 $status = "pending"; // Устанавливаем статус по умолчанию
 
 // Подготовленный запрос для вставки записи в таблицу service_bookings
-$stmt = $db->prepare("INSERT INTO service_bookings (worker_service_id, user_id, service_date, service_time, status) VALUES (?, ?, ?, ?, ?)");
-$stmt->bind_param("iisss", $workerServiceId, $userId, $serviceDate, $serviceTime, $status);
+$stmt = $db->prepare("INSERT INTO service_bookings (worker_service_id, user_id, service_date, service_time, status, message) VALUES (?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("iissss", $workerServiceId, $userId, $serviceDate, $serviceTime, $status, $message);
 
 // Выполнение запроса
 if ($stmt->execute() === TRUE) {

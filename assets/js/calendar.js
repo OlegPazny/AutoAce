@@ -425,12 +425,11 @@ var bookServiceDate;
 var bookServiceTime;
 
 $('#book').click(function () {
-    //console.log(masterId);
-    //console.log(serviceId);
-    //console.log(bookServiceDate);
-    //console.log(bookServiceTime);
-
+    console.log("click");
     if (masterId && serviceId && bookServiceDate && bookServiceTime) {
+
+        var booking_message=$('#message').val();
+
         $.ajax({
             url: '../assets/api/search_worker_service_id.php', // Файл PHP для выполнения запроса
             method: 'POST',
@@ -449,6 +448,7 @@ $('#book').click(function () {
                         workerServiceId: workerServiceId,
                         serviceDate: bookServiceDate,
                         serviceTime: bookServiceTime,
+                        message: booking_message,
                         status: 'pending'
                     },
                     success: function (response) {
