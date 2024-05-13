@@ -78,6 +78,30 @@
     <p>Почта: ".$workerEmail."</p>
     <p>Пароль: ".$password."</p>";
 
-    $insert_worker=mysqli_query($db, "INSERT INTO `workers` (`id`, `name`, `workshop_id`, `max_hours`, `login`, `email`, `password`) VALUES (NULL, '$workerName', '$workerWorkshop', '$workerHours', '$workerLogin', '$workerEmail', '$workerPassword')");
-    var_dump(send_mail($settings['mail_settings'], [$workerEmail], 'Вас зарегистрировали в системе AutoAce!', $body));
+    $query="INSERT INTO `workers` (`id`, `name`, `workshop_id`, `max_hours`, `login`, `email`, `password`) VALUES (NULL, '$workerName', '$workerWorkshop', '$workerHours', '$workerLogin', '$workerEmail', '$workerPassword')";
+    if(mysqli_query($db, $query)){
+        $workerId=mysqli_insert_id($db);
+
+        $workshop_name=mysqli_query($db, "SELECT `name` FROM `workshops` WHERE `id`=$workerWorkshop");
+        $workshop_name=mysqli_fetch_assoc($workshop_name);
+
+        $response = [
+            'success' => true,
+            'worker' => [
+                'id' => $workerId,
+                'worker_login' => $workerLogin,
+                'worker_name' => $workerName,
+                'worker_email' => "$workerEmail",
+                'worker_workshop' => $workshop_name['name'],
+                'worker_hours' => $workerHours
+            ]
+        ];
+        echo json_encode($response);
+
+        send_mail($settings['mail_settings'], [$workerEmail], 'Вас зарегистрировали в системе AutoAce!', $body);
+    }else{
+        $response = ['success' => false];
+        echo json_encode($response);
+    }
+    
 ?>

@@ -109,7 +109,7 @@ function russianMonth($monthNumber)
             </table>
         </div>
         <div class="account-services workers">
-            <table>
+            <table class="workers-table">
                 <thead>
                     <tr>
                         <th>id</th>

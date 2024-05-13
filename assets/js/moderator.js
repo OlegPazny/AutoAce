@@ -139,6 +139,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             url: '../assets/api/add_worker_script.php',
+            dataType: 'json',
             data: {
                 worker_name: workerName,
                 worker_email: workerEmail,
@@ -146,11 +147,30 @@ $(document).ready(function () {
                 worker_hours: workerHours
             },
             success: function (response) {
-                console.log('Услуга успешно добавлена!');
+                console.log('Работник добавлен!');
+
+                var newWorker = response.worker;
+                var tableBody = $('.workers-table').find('tbody'); // находим tbody во второй таблице
+
+                // Создаем новую строку для мастера
+                var newRow = $('<tr></tr>');
+
+                // Создаем ячейки для новой строки
+                newRow.append('<td>' + newWorker.id + '</td>');
+                newRow.append('<td>' + newWorker.worker_login + '</td>');
+                newRow.append('<td>' + newWorker.worker_name + '</td>');
+                newRow.append('<td>' + newWorker.worker_email + '</td>');
+                newRow.append('<td>' + newWorker.worker_workshop + '</td>');
+                newRow.append('<td>' + newWorker.worker_hours + '</td>');
+                newRow.append('<td><div class="block-worker" data-worker-id="'+newWorker.id+'"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
+
+                // Добавляем новую строку в таблицу
+                tableBody.append(newRow);
+
                 // Очищаем поля ввода после успешной отправки
                 $('#worker_name').val('');
                 $('#worker_email').val('');
-                $('#worker_workshops_insert').val('');
+                $('#worker_workshops_insert:eq(0)').prop('selected', true);
                 $('#worker_hours').val('');
             },
             error: function (xhr, status, error) {
@@ -159,6 +179,30 @@ $(document).ready(function () {
             }
         });
     });
+    //блокировка работника
+    var blockButtons = document.querySelectorAll('.block-worker');
+    blockButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var workerId = this.getAttribute('data-worker-id');
+            deleteWorker(workerId, button); // Передаем ссылку на кнопку вместе с userId
+        });
+    });
+    function deleteWorker(workerId, button) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var workerRow = button.parentNode.parentNode; // Используем parentNode для доступа к <td>, а затем к <tr>
+                    workerRow.parentNode.removeChild(workerRow);
+                } else {
+                    console.error('Произошла ошибка при удалении работника');
+                }
+            }
+        };
+        xhr.open('POST', '../assets/api/block_worker_script.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('worker_id=' + workerId);
+    }
     //добавление услуги
     $('.add-service-button').click(function () {
         var serviceName = $('#service_name').val();
