@@ -1,7 +1,7 @@
 <?php
     require_once "db_connect.php";
 
-    $services_data=mysqli_query($db, "SELECT `services`.`id`, `services`.`service_name`, `service_type`.`type`, `services`.`discount`, `services`.`price` FROM `services` inner join `service_type` on `id_service_type`=`service_type`.`id`");
+    $services_data=mysqli_query($db, "SELECT `services`.`id`, `services`.`service_name`, `service_type`.`type`, `services`.`discount`, `services`.`duration` FROM `services` inner join `service_type` on `id_service_type`=`service_type`.`id`");
     $services_data=mysqli_fetch_all($services_data);
 
     $services_arr=array();

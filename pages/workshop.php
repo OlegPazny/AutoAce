@@ -100,45 +100,8 @@ require_once "../assets/api/get_workshop_data_script.php";
                     <label class="callback-form__label">Комментарий к заказу</label>
                     <textarea class="callback-form__textarea" id="message" name="message"></textarea>
                 </div>
-                <div class="calendar-block">
-                <input type="hidden" id="currentMonth" value="<?php echo date('n'); ?>">
-<input type="hidden" id="currentDay" value="<?php echo date('j'); ?>">
-                <div class="controls">
-        <select class="month-select" id="month">
-            <option value="0">Январь</option>
-            <option value="1">Февраль</option>
-            <option value="2">Март</option>
-            <option value="3">Апрель</option>
-            <option value="4">Май</option>
-            <option value="5">Июнь</option>
-            <option value="6">Июль</option>
-            <option value="7">Август</option>
-            <option value="8">Сентябрь</option>
-            <option value="9">Октябрь</option>
-            <option value="10">Ноябрь</option>
-            <option value="11">Декабрь</option>
-        </select>
-        <input type="number" id="year" min="1900" max="2100" step="1" value="2024">
-    </div>
-
-    <table id="calendar">
-        <thead>
-            <tr>
-                <th colspan="7" id="month-year"></th>
-            </tr>
-            <tr>
-                <th>Пн</th>
-                <th>Вт</th>
-                <th>Ср</th>
-                <th>Чт</th>
-                <th>Пт</th>
-                <th>Сб</th>
-                <th>Вс</th>
-            </tr>
-        </thead>
-        <tbody id="calendar-body">
-        </tbody>
-    </table>
+                <div class="callback-form__calendar">
+                    <?php require_once "calendar.php";?>
                 </div>
             </div>
             <div class="callback-form__submit-check-block">

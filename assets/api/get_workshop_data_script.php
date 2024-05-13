@@ -17,7 +17,7 @@ if (isset($_SESSION['workshop_id'])) {
     }
 
     $worker_services_data = mysqli_query($db, "SELECT DISTINCT
-    s.id AS service_id, s.service_name AS service_name, st.type AS service_type, s.price AS service_price, s.discount AS service_discount, ws.id AS workshop_id, ws.name AS workshop_name
+    s.id AS service_id, s.service_name AS service_name, st.type AS service_type, s.duration AS service_duration, s.discount AS service_discount, ws.id AS workshop_id, ws.name AS workshop_name
     FROM workers w
     INNER JOIN worker_service_relationships wsr ON w.id = wsr.worker_id
     INNER JOIN services s ON wsr.service_id = s.id
