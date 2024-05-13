@@ -5,11 +5,11 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.add-service-input{
+.add-service-input, .admin-input{
     border:none !important;
     border-bottom:1px solid #232323 !important;
     color:#232323 !important;
-    width: 6rem !important;
+    width: 5rem !important;
     &:focus{
         border:none !important;
         border-bottom:1px solid #232323 !important;

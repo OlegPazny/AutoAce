@@ -13,7 +13,8 @@
     $client=mysqli_fetch_assoc($client);
 
     $service=mysqli_query($db, "SELECT `services`.`service_name` FROM `service_bookings`
-    INNER JOIN `services` ON `service_bookings`.`service_id`=`services`.`id`
+    INNER JOIN `worker_service_relationships` ON `service_bookings`.`worker_service_id`=`worker_service_relationships`.`service_id`
+    INNER JOIN `services` ON `worker_service_relationships`.`service_id`=`services`.`id`
     WHERE `service_bookings`.`id`=$bookingId");
     $service=mysqli_fetch_assoc($service);
 
@@ -21,7 +22,7 @@
         $move_to_history=mysqli_query($db,"INSERT INTO `service_history` (`id`, `booking_id`, `completion_date`, `completion_time`) VALUES (NULL, '$bookingId', '$date', '$time')");
         $body="
         <p>Здравствуйте, ".$client['name']."</p>
-        <p>Услуга ".$service['service_name']." выполнена!.</p>
+        <p>Услуга ".$service['service_name']." выполнена!</p>
         <p>Приезжайте за автомобилем в удобное для Вас время!</p>
         <p>Спасибо за выбор автосервиса!</p>
         <p>С уважением AutoAce!</p>

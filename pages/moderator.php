@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['user']['id'])){
+if (!isset($_SESSION['user']['id'])) {
     header('Location: ../index.php');
 }
 require_once "../assets/api/isAdmin.php";
@@ -9,12 +9,21 @@ if ($isClient == true) {
 }
 require_once "../assets/api/moderator_info_script.php";
 // Функция для получения русского названия месяца
-function russianMonth($monthNumber) {
+function russianMonth($monthNumber)
+{
     $months = array(
-        'января', 'февраля', 'марта',
-        'апреля', 'мая', 'июня',
-        'июля', 'августа', 'сентября',
-        'октября', 'ноября', 'декабря'
+        'января',
+        'февраля',
+        'марта',
+        'апреля',
+        'мая',
+        'июня',
+        'июля',
+        'августа',
+        'сентября',
+        'октября',
+        'ноября',
+        'декабря'
     );
     return $months[$monthNumber - 1];
 }
@@ -116,10 +125,13 @@ function russianMonth($monthNumber) {
                         <tr class="add-worker-row">
                             <td></td>
                             <td></td>
-                            <td><input type="text" class="add-worker-name-input" name="worker_name" id="worker_name"></td>
-                            <td><input type="email" class="add-worker-email-input" name="worker_email" id="worker_email"></td>
+                            <td><input type="text" class="add-worker-name-input admin-input" name="worker_name"
+                                    id="worker_name"></td>
+                            <td><input type="email" class="add-worker-email-input admin-input" name="worker_email"
+                                    id="worker_email"></td>
                             <td>
-                                <select class="worker-workshops-insert" name="worker_workshops_insert" id="worker_workshops_insert">
+                                <select class="worker-workshops-insert" name="worker_workshops_insert"
+                                    id="worker_workshops_insert">
                                     <?php
                                     foreach ($workshops as $workshop) {
                                         echo ("<option value='" . $workshop[0] . "'>" . $workshop[1] . "</option>");
@@ -127,7 +139,8 @@ function russianMonth($monthNumber) {
                                     ?>
                                 </select>
                             </td>
-                            <td><input type="text" class="add-worker-hours-input" name="worker_hours" id="worker_hours"></td>
+                            <td><input type="text" class="add-worker-hours-input admin-input" name="worker_hours"
+                                    id="worker_hours"></td>
                             <td>
                                 <div class="add-worker-button">
                                     <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'
@@ -184,12 +197,12 @@ function russianMonth($monthNumber) {
                             $month = date('n', $date);
                             $date = $day . ' ' . russianMonth($month);
 
-                            if($account_book[9]==NULL){
-                                $price=$account_book[7]*$account_book[8];
-                            }else{
-                                $price=$account_book[7]*$account_book[8]*(100-$account_book[9])/100;
+                            if ($account_book[9] == NULL) {
+                                $price = $account_book[7] * $account_book[8];
+                            } else {
+                                $price = $account_book[7] * $account_book[8] * (100 - $account_book[9]) / 100;
                             }
-                            
+
                             echo ("<tr>
                                     <td>" . $account_book[1] . "</td>
                                     <td>" . $account_book[2] . "</td>
@@ -279,6 +292,37 @@ function russianMonth($monthNumber) {
                     </tr>
                     <thead>
                     <tbody>
+                        <tr id="new-service-row">
+                            <td></td>
+                            <td><input type="text" class="add-service-input admin-input" name="service_name"
+                                    id="service_name"></td>
+                            <td><input type="text" class="add-service-input admin-input" name="service_description"
+                                    id="service_description"></td>
+                            <td><input type="text" class="add-service-input admin-input" name="service_price"
+                                    id="service_price">
+                            </td>
+                            <td>
+                                <select class="add-service-input" name="service_type" id="service_type">
+                                    <?php
+                                    foreach ($services_types as $services_type) {
+                                        echo ("<option value='" . $services_type[0] . "'>" . $services_type[1] . "</option>");
+                                    }
+                                    ?>
+
+                                </select>
+                            </td>
+                            <td><input type="text" class="add-service-input admin-input" name="service_discount"
+                                    id="service_discount"></td>
+                            <td>
+                                <div class="add-service-button">
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'
+                                        viewBox='0 0 24 24'>
+                                        <path fill='#232323'
+                                            d='M21 7v12q0 .825-.587 1.413T19 21H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h12zm-9 11q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-6-8h9V6H6z' />
+                                    </svg>
+                                </div>
+                            </td>
+                        </tr>
                         <?php
                         foreach ($services as $service) {
                             echo ("<tr>
@@ -299,34 +343,6 @@ function russianMonth($monthNumber) {
                                 ");
                         }
                         ?>
-                        <tr id="new-service-row">
-                            <td></td>
-                            <td><input type="text" class="add-service-input" name="service_name" id="service_name"></td>
-                            <td><input type="text" class="add-service-input" name="service_description"
-                                    id="service_description"></td>
-                            <td><input type="text" class="add-service-input" name="service_price" id="service_price">
-                            </td>
-                            <td>
-                                <select class="add-service-input" name="service_type" id="service_type">
-                                    <?php
-                                    foreach ($services_types as $services_type) {
-                                        echo ("<option value='" . $services_type[0] . "'>" . $services_type[1] . "</option>");
-                                    }
-                                    ?>
-
-                                </select>
-                            </td>
-                            <td><input type="text" class="add-service-input" name="service_discount" id="service_discount"></td>
-                            <td>
-                                <div class="add-service-button">
-                                    <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'
-                                        viewBox='0 0 24 24'>
-                                        <path fill='#232323'
-                                            d='M21 7v12q0 .825-.587 1.413T19 21H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h12zm-9 11q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-6-8h9V6H6z' />
-                                    </svg>
-                                </div>
-                            </td>
-                        </tr>
                     </tbody>
             </table>
         </div>
@@ -344,7 +360,7 @@ function russianMonth($monthNumber) {
                         <?php
                         foreach ($worker_services as $worker_service) {
                             echo ("<tr>
-                                <td>".$worker_service[1]."</td>
+                                <td>" . $worker_service[1] . "</td>
                                 <td>" . $worker_service[3] . "</td>
                                 <td>" . $worker_service[2] . "</td>
                                 <td>

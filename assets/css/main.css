@@ -1257,13 +1257,13 @@ input[type=checkbox] {
   justify-content: space-between;
 }
 
-.add-service-input {
+.add-service-input, .admin-input {
   border: none !important;
   border-bottom: 1px solid #232323 !important;
   color: #232323 !important;
-  width: 6rem !important;
+  width: 5rem !important;
 }
-.add-service-input:focus {
+.add-service-input:focus, .admin-input:focus {
   border: none !important;
   border-bottom: 1px solid #232323 !important;
   outline: none !important;
