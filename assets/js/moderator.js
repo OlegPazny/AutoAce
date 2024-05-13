@@ -165,8 +165,8 @@ $(document).ready(function () {
                 newRow.append('<td><div class="block-worker" data-worker-id="'+newWorker.id+'"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
 
                 // Добавляем новую строку в таблицу
-                tableBody.append(newRow);
-
+                tableBody.find('tr').eq(1).before(newRow);
+                deleteWorkerHandler();
                 // Очищаем поля ввода после успешной отправки
                 $('#worker_name').val('');
                 $('#worker_email').val('');
@@ -180,29 +180,32 @@ $(document).ready(function () {
         });
     });
     //блокировка работника
-    var blockButtons = document.querySelectorAll('.block-worker');
-    blockButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-            var workerId = this.getAttribute('data-worker-id');
-            deleteWorker(workerId, button); // Передаем ссылку на кнопку вместе с userId
+    function deleteWorkerHandler(){
+        var blockButtons = document.querySelectorAll('.block-worker');
+        blockButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var workerId = this.getAttribute('data-worker-id');
+                deleteWorker(workerId, button); // Передаем ссылку на кнопку вместе с userId
+            });
         });
-    });
-    function deleteWorker(workerId, button) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var workerRow = button.parentNode.parentNode; // Используем parentNode для доступа к <td>, а затем к <tr>
-                    workerRow.parentNode.removeChild(workerRow);
-                } else {
-                    console.error('Произошла ошибка при удалении работника');
+        function deleteWorker(workerId, button) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var workerRow = button.parentNode.parentNode; // Используем parentNode для доступа к <td>, а затем к <tr>
+                        workerRow.parentNode.removeChild(workerRow);
+                    } else {
+                        console.error('Произошла ошибка при удалении работника');
+                    }
                 }
-            }
-        };
-        xhr.open('POST', '../assets/api/block_worker_script.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send('worker_id=' + workerId);
+            };
+            xhr.open('POST', '../assets/api/block_worker_script.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('worker_id=' + workerId);
+        }
     }
+    deleteWorkerHandler();
     //добавление услуги
     $('.add-service-button').click(function () {
         var serviceName = $('#service_name').val();
@@ -214,6 +217,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             url: '../assets/api/add_service_script.php',
+            dataType: 'json',
             data: {
                 service_name: serviceName,
                 service_description: serviceDescription,
@@ -223,9 +227,29 @@ $(document).ready(function () {
             },
             success: function (response) {
                 console.log('Услуга успешно добавлена!');
+
+                var newService = response.service;
+                var tableBody = $('.services-table').find('tbody'); // находим tbody во второй таблице
+
+                // Создаем новую строку для услуги
+                var newRow = $('<tr></tr>');
+
+                // Создаем ячейки для новой строки
+                newRow.append('<td>' + newService.id + '</td>');
+                newRow.append('<td>' + newService.service_name + '</td>');
+                newRow.append('<td>' + newService.service_description + '</td>');
+                newRow.append('<td>' + newService.service_hours + ' н/ч</td>');
+                newRow.append('<td>' + newService.service_type + '</td>');
+                newRow.append('<td>' + newService.service_discount + '</td>');
+                newRow.append('<td><div class="delete-service" data-service-id="'+newService.id+'"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
+
+                // Добавляем новую строку в таблицу
+                tableBody.find('tr').eq(1).before(newRow);
+                deleteServiceHandler();
                 // Очищаем поля ввода после успешной отправки
                 $('#service_name').val('');
                 $('#service_description').val('');
+                $('#service_type:eq(0)').prop('selected', true);
                 $('#service_price').val('');
                 $('#service_discount').val('');
             },
@@ -236,29 +260,33 @@ $(document).ready(function () {
         });
     });
     //удаление услуги
-    var deleteButtons = document.querySelectorAll('.delete-service');
-    deleteButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-            var serviceId = this.getAttribute('data-service-id');
-            deleteService(serviceId, button); // Передаем ссылку на кнопку вместе с userId
+    function deleteServiceHandler(){
+        var deleteButtons = document.querySelectorAll('.delete-service');
+        deleteButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var serviceId = this.getAttribute('data-service-id');
+                deleteService(serviceId, button); // Передаем ссылку на кнопку вместе с userId
+            });
         });
-    });
-    function deleteService(serviceId, button) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var serviceRow = button.parentNode.parentNode; // Используем parentNode для доступа к <td>, а затем к <tr>
-                    serviceRow.parentNode.removeChild(serviceRow);
-                } else {
-                    console.error('Произошла ошибка при удалении услуги');
+        function deleteService(serviceId, button) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var serviceRow = button.parentNode.parentNode; // Используем parentNode для доступа к <td>, а затем к <tr>
+                        serviceRow.parentNode.removeChild(serviceRow);
+                    } else {
+                        console.error('Произошла ошибка при удалении услуги');
+                    }
                 }
-            }
-        };
-        xhr.open('POST', '../assets/api/delete_service_script.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send('service_id=' + serviceId);
+            };
+            xhr.open('POST', '../assets/api/delete_service_script.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('service_id=' + serviceId);
+        }
     }
+    
+    deleteServiceHandler();
     //добавление отношения
     $('.add-relation-button').click(function () {
         var workerNameRelation = $('#relation_worker_name').val();
