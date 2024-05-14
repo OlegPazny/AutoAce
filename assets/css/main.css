@@ -420,7 +420,7 @@ input[type=checkbox]:checked {
   background: radial-gradient(circle, rgba(255, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 60%);
 }
 
-table {
+.account-services > table {
   border-spacing: 1;
   border-collapse: collapse;
   background: white;
@@ -430,41 +430,41 @@ table {
   margin: 0 auto;
   position: relative;
 }
-table * {
+.account-services > table * {
   position: relative;
 }
-table td,
-table th {
+.account-services > table td,
+.account-services > table th {
   padding-left: 8px;
 }
-table thead tr {
+.account-services > table thead tr {
   height: 60px;
   background: #242424;
   font-size: 16px;
   color: #fff;
 }
-table tbody tr {
+.account-services > table tbody tr {
   height: 48px;
   border-bottom: 1px solid #E3F1D5;
   font-size: 0.8rem;
 }
-table tbody tr:last-child {
+.account-services > table tbody tr:last-child {
   border: 0;
 }
-table td,
-table th {
+.account-services > table td,
+.account-services > table th {
   text-align: left;
 }
-table td.l,
-table th.l {
+.account-services > table td.l,
+.account-services > table th.l {
   text-align: right;
 }
-table td.c,
-table th.c {
+.account-services > table td.c,
+.account-services > table th.c {
   text-align: center;
 }
-table td.r,
-table th.r {
+.account-services > table td.r,
+.account-services > table th.r {
   text-align: center;
 }
 
@@ -1332,7 +1332,7 @@ input[type=checkbox] {
   border: 1px solid red !important;
 }
 
-.modal {
+.modalpopup {
   position: fixed;
   /* фиксированное положение */
   top: 0;
@@ -1353,7 +1353,7 @@ input[type=checkbox] {
 }
 
 /* При отображении модального окно */
-.modal:target {
+.modalpopup:target {
   opacity: 1;
   /* делаем окно видимым */
   pointer-events: auto;
@@ -1363,14 +1363,14 @@ input[type=checkbox] {
 }
 
 /* ширина модального окна и его отступы от экрана */
-.modal-dialog {
+.modalpopup-dialog {
   position: relative;
   width: auto;
   margin: 10px;
 }
 
 /* Стили для блока с контентом окна */
-.modal-content {
+.modalpopup-content {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -1383,7 +1383,7 @@ input[type=checkbox] {
 }
 
 /* Стили заголовка окна */
-.modal-header {
+.modalpopup-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1391,7 +1391,7 @@ input[type=checkbox] {
   border-bottom: 1px solid #eceeef;
 }
 
-.modal-title {
+.modalpopup-title {
   margin-top: 0;
   margin-bottom: 0;
   line-height: 1.5;
@@ -1422,7 +1422,7 @@ input[type=checkbox] {
 }
 
 /* Стили блока основного содержимого окна */
-.modal-body {
+.modalpopup-body {
   position: relative;
   flex: 1 1 auto;
   padding: 15px;

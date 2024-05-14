@@ -9,11 +9,12 @@
     <!-- Подключаем FullCalendar -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Подключаем FullCalendar -->
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css' rel='stylesheet' />
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/ru.js"></script>
-    <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
     <style>
         .fc-content{
             display: flex;
@@ -55,28 +56,29 @@
                     <textarea class="callback-form__textarea" id="message" name="message"></textarea>
                 </div>
             </div>
-            <div id="openModal" class="modal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">Выбор времени и даты</h3>
+            <div id="openModal" class="modalpopup">
+                <div class="modalpopup-dialog">
+                    <div class="modalpopup-content">
+                    <div class="modalpopup-header">
+                        <h3 class="modalpopup-title">Выбор времени и даты</h3>
                         <a href="#close" title="Close" class="close">×</a>
                     </div>
-                    <div class="modal-body">    
+                    <div class="modalpopup-body">    
                         <div id="calendar"></div>
                     </div>
                     </div>
                 </div>
             </div>
             <a href="#openModal">Выбрать дату и время</a>
+
             <div class="callback-form__calendar">
                 
             </div>
             <div class="callback-form__submit-check-block">
                 <div id="book" class="callback-form__submit-block button">
-                    <input type="submit" class="callback-form__submit button__content" value="Записаться" <?php if (!isset($_SESSION['user']['id'])) {
+                    <button id="book" class="callback-form__submit button__content" <?php if (!isset($_SESSION['user']['id'])) {
                         echo ("disabled");
-                    } ?>>
+                    } ?>>Записаться</button>
                 </div>
                 <div class="callback-form__checkbox-block">
                     <input type="checkbox" class="callback-form__checkbox" id="book_submit">
