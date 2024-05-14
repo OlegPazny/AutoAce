@@ -69,7 +69,12 @@
                     </div>
                 </div>
             </div>
-            <a href="#openModal">Выбрать дату и время</a>
+
+            <a href="#openModal" class="openModal-btn">
+                <div class="callback-form__submit-block button">
+                    <p class="callback-form__submit button__content">Выбрать дату и время</p>
+                </div>
+            </a>
 
             <div class="callback-form__calendar">
                 

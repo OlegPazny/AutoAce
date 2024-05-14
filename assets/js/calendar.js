@@ -426,12 +426,22 @@ var bookServiceTime;
 
 $('#book').click(function (event) {
     event.preventDefault();
+
+    var booking_message=$('#message').val();
+    // Проверяем, был ли отмечен чекбокс
+    var checkBoxChecked = $('#book_submit').is(':checked');
+    if (!checkBoxChecked) {
+        alert('Пожалуйста, дайте согласие на обработку персональных данных');
+        return;
+    }
+    if(!bookServiceDate||!bookServiceTime){
+        alert("Пожалуйста, выберите дату и время записи");
+        return;
+    }
     if (masterId && serviceId && bookServiceDate && bookServiceTime) {
 
-        var booking_message=$('#message').val();
-
         $.ajax({
-            url: '../assets/api/search_worker_service_id.php', // Файл PHP для выполнения запроса
+            url: '../assets/api/search_worker_service_id.php',
             method: 'POST',
             data: {
                 workerId: masterId,
@@ -442,7 +452,7 @@ $('#book').click(function (event) {
 
                 // Вставка записи в таблицу service_bookings
                 $.ajax({
-                    url: '../assets/api/insert_booking.php', // Файл PHP для выполнения запроса
+                    url: '../assets/api/insert_booking.php',
                     method: 'POST',
                     data: {
                         workerServiceId: workerServiceId,

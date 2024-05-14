@@ -310,7 +310,7 @@ $(document).ready(function () {
                     "<td>" + newRelation.workshop_name + "</td>" +
                     "<td>" + newRelation.service_name + "</td>" +
                     "<td>" +
-                    "<div class='delete-relation' data-relation-id='" + newRelation.relation_id + "''>" +
+                    "<div class='delete-relation' data-relation-id='" + newRelation.id + "''>" +
                     "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>" +
                     "<path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>" +
                     "</svg>" +

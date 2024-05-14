@@ -1429,6 +1429,11 @@ input[type=checkbox] {
   overflow: auto;
 }
 
+.openModal-btn {
+  text-decoration: none;
+  color: white;
+}
+
 @font-face {
   font-family: "Soyuz";
   src: url("../fonts/Soyuz/Soyuz Grotesk Bold.otf") format("truetype");
