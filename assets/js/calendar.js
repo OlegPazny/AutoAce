@@ -424,8 +424,8 @@ function defineWorkingHours(busySlots) {
 var bookServiceDate;
 var bookServiceTime;
 
-$('#book').click(function () {
-    console.log("click");
+$('#book').click(function (event) {
+    event.preventDefault();
     if (masterId && serviceId && bookServiceDate && bookServiceTime) {
 
         var booking_message=$('#message').val();
