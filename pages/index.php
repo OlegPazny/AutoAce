@@ -2,6 +2,7 @@
 session_start();
 
 require_once "../assets/api/isAdmin.php";
+require_once "../assets/api/index_info_script.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -169,10 +170,25 @@ require_once "../assets/api/isAdmin.php";
             <section class="discount-offers-section__slider__scetion">
                 <div class="swiper2 mySwiper2 container">
                     <div class="swiper-wrapper content">
-                        <div class="swiper-slide card">
-                            <h5 class="card__head">скидка</h5>
-                            <h3 class="card__discount">10%</h3>
-                            <p class="card__description">Замена банки выхлопа</p>
+                        <?php
+                            foreach($discounts as $discount){
+                                echo"
+                                    <div class='swiper-slide discount-card card'>
+                                        <h5 class='card__head'>".$discount[1]."</h5>
+                                        <h3 class='card__discount'>-".$discount[2]."%</h3>
+                                        <a href='./map.php?discount_service_id=".$discount[0]."'>
+                                            <div class='slider-button'>
+                                                <input type='button' class='slider-button__content' value='Записаться'>
+                                            </div>
+                                        </a>
+                                        <div class='slider__shadow'></div>
+                                    </div>
+                                ";
+                            }
+                        ?>
+                        <!-- <div class="swiper-slide card">
+                            <h5 class="card__head">Замена банки выхлопа</h5>
+                            <h3 class="card__discount">-10%</h3>
                             <div class="slider-button">
                                 <input type="button" class="slider-button__content" value="Записаться">
                             </div>
@@ -231,7 +247,7 @@ require_once "../assets/api/isAdmin.php";
                                 <input type="button" class="slider-button__content" value="Записаться">
                             </div>
                             <div class="slider__shadow"></div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </section>
@@ -290,12 +306,17 @@ require_once "../assets/api/isAdmin.php";
         },
     });
     var swiper2 = new Swiper(".mySwiper2", {
-        slidesPerView: 3,
-        spaceBetween: 135,
-        slidesPerGroup: 3,
+        slidesPerView: 3.5,
+        spaceBetween: 100,
         loop: false,
         grabCursor: false,
-        loopFillGroupWithBlank: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        effect: 'slide',
+        centerInsufficientSlides:true,
+        centeredSlidesBounds:true,
     });
 </script>
 <script src="../assets/js/callback.js"></script>

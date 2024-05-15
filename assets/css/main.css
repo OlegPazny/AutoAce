@@ -329,12 +329,15 @@ template {
 }
 
 .slider-button {
+  position: relative;
   background-color: transparent;
   border: 1px solid #fff;
   border-radius: 45px;
   width: -moz-fit-content;
   width: fit-content;
   padding: 0.83rem 2.3rem;
+  z-index: 1;
+  margin-top: auto;
 }
 .slider-button__content {
   background: none;
@@ -596,7 +599,7 @@ swiper-slide:nth-child(10n) {
   width: 10rem !important;
 }
 .card__head {
-  font-size: 1.67rem;
+  font-size: 1.3rem;
   margin: 0;
   margin-bottom: 2.95rem;
 }
@@ -640,6 +643,11 @@ swiper-slide:nth-child(10n) {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.discount-card {
+  height: 20rem !important;
+  justify-content: space-between;
 }
 
 .offers-slider-elem {
@@ -980,10 +988,6 @@ body {
 }
 .callback-form__checkbox-label {
   font-size: 1rem;
-}
-
-.slider-button {
-  z-index: 10;
 }
 
 .search-section {

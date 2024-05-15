@@ -80,7 +80,7 @@ swiper-slide:nth-child(10n) {
   width: 10rem !important;
 
   &__head {
-    font-size: 1.67rem;
+    font-size: 1.3rem;
     margin: 0;
     margin-bottom: 2.95rem;
   }
@@ -120,6 +120,8 @@ swiper-slide:nth-child(10n) {
   margin-right: auto;
 }
 
+
+
 .swiper-slide {
   text-align: center;
   font-size: 18px;
@@ -130,7 +132,11 @@ swiper-slide:nth-child(10n) {
   justify-content: center;
   align-items: center;
 }
+.discount-card {
+  height: 20rem !important;
 
+  justify-content: space-between;;
+}
 .offers-slider-elem {
   display: flex;
   flex-direction: column;

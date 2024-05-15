@@ -18,11 +18,14 @@
 }
 
 .slider-button{
+    position: relative;
     background-color: transparent;
     border:1px solid #fff;
     border-radius: 45px;
     width:fit-content;
     padding: 0.83rem 2.3rem;
+    z-index:1;
+    margin-top: auto;
 
     &__content{
         background: none;
