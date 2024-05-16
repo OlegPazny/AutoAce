@@ -1030,6 +1030,7 @@ body {
 .filter-block__list__service {
   font-family: "Onest";
   font-size: 1rem;
+  line-height: 170%;
 }
 
 #filterForm {
@@ -1040,9 +1041,6 @@ body {
 
 li > ul {
   margin-top: 0.625rem;
-}
-li > ul > li {
-  margin-bottom: 0.625rem;
 }
 
 input[type=checkbox] {

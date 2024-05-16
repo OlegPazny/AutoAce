@@ -22,28 +22,31 @@ require_once "../assets/api/get_services_script.php";
     <!-- leaflet connection -->
     <title>Выбор автосервиса</title>
 </head>
+<style>
 
+
+</style>
 <body>
     <?php require_once "../includes/header.php"; ?>
     <section class="search-section">
         <div class="filter-block">
             <form id="filterForm">
-            <ul class='filter-block__headlist'>
-<?php
-foreach ($services_arr as $service_type => $services) {
-    echo "<li class='filter-block__headlist__service-type'>";
-    echo "<span class='accordion'>" . $service_type . "</span>"; // Используем span вместо кнопки
-    echo "<ul class='filter-block__list' style='display:none'>";
-    foreach ($services as $service) {
-        echo "<li class='filter-block__list__service'>";
-        echo "<input type='checkbox' name='services' value='" . $service['id'] . "'>" . $service['name'];
-        echo "</li>";
-    }
-    echo "</ul>";
-    echo "</li>";
-}
-?>
-</ul>
+                <ul class='filter-block__headlist'>
+                    <?php
+                    foreach ($services_arr as $service_type => $services) {
+                        echo "<li class='filter-block__headlist__service-type'>";
+                        echo "<span class='accordion'>" . $service_type . "</span>"; // Используем span вместо кнопки
+                        echo "<ul class='filter-block__list' style='display:none'>";
+                        foreach ($services as $service) {
+                            echo "<li class='filter-block__list__service'>";
+                            echo "<input type='checkbox' name='services' value='" . $service['id'] . "'>" . $service['name'];
+                            echo "</li>";
+                        }
+                        echo "</ul>";
+                        echo "</li>";
+                    }
+                    ?>
+                </ul>
             </form>
         </div>
         <div class="map-block">
