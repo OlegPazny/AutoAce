@@ -13,50 +13,59 @@ $selectedServices = isset($data['services']) ? $data['services'] : [];
 // Проверяем, есть ли выбранные услуги
 if (!empty($selectedServices)) {
     // Подготавливаем SQL запрос
-    $sql = "SELECT w.*
+    $sql = "SELECT DISTINCT w.*
             FROM workshops w
-            WHERE NOT EXISTS (
-                SELECT 1 FROM services s
-                WHERE s.id NOT IN (
-                    SELECT service_id FROM service_workshop_relationships swr
-                    WHERE swr.workshop_id = w.id
-                ) AND s.id IN (";
+            JOIN workers wr ON wr.workshop_id = w.id
+            JOIN worker_service_relationships wsr ON wsr.worker_id = wr.id
+            JOIN services s ON s.id = wsr.service_id
+            WHERE s.id IN (";
 
     // Добавляем плейсхолдеры для параметров
     $placeholders = rtrim(str_repeat("?,", count($selectedServices)), ",");
 
     // Завершаем запрос
-    $sql .= $placeholders . "))";
+    $sql .= $placeholders . ")
+            GROUP BY w.id
+            HAVING COUNT(DISTINCT s.id) = ?";
 
     // Подготавливаем запрос
-    $stmt = $db->prepare($sql);
+    if ($stmt = $db->prepare($sql)) {
+        // Привязываем параметры
+        $types = str_repeat("i", count($selectedServices)) . "i";
+        $params = array_merge($selectedServices, [count($selectedServices)]);
+        $stmt->bind_param($types, ...$params);
 
-    // Привязываем параметры
-    $stmt->bind_param(str_repeat("i", count($selectedServices)), ...$selectedServices);
+        // Выполняем запрос
+        if ($stmt->execute()) {
+            // Получаем результаты запроса
+            $result = $stmt->get_result();
 
-    // Выполняем запрос
-    $stmt->execute();
+            // Создаем массив для хранения результатов
+            $filteredData = array();
 
-    // Получаем результаты запроса
-    $result = $stmt->get_result();
+            // Перебираем результаты и добавляем их в массив
+            while ($row = $result->fetch_assoc()) {
+                $filteredData[] = $row;
+            }
 
-    // Создаем массив для хранения результатов
-    $filteredData = array();
+            // Возвращаем отфильтрованные данные в формате JSON
+            echo json_encode($filteredData);
+        } else {
+            // Обработка ошибки выполнения запроса
+            echo json_encode(["error" => "Ошибка выполнения запроса."]);
+        }
 
-    // Перебираем результаты и добавляем их в массив
-    while ($row = $result->fetch_assoc()) {
-        $filteredData[] = $row;
+        // Закрываем запрос
+        $stmt->close();
+    } else {
+        // Обработка ошибки подготовки запроса
+        echo json_encode(["error" => "Ошибка подготовки запроса."]);
     }
-
-    // Возвращаем отфильтрованные данные в формате JSON
-    echo json_encode($filteredData);
-
-    // Закрываем запрос и соединение
-    $stmt->close();
 } else {
     // Если выбранных услуг нет, просто возвращаем пустой массив
     echo json_encode([]);
 }
 
+// Закрываем соединение с базой данных
 $db->close();
 ?>
