@@ -28,19 +28,22 @@ require_once "../assets/api/get_services_script.php";
     <section class="search-section">
         <div class="filter-block">
             <form id="filterForm">
-                <?php
-                echo ("<ul class='filter-block__headlist'>");
-                foreach ($services_arr as $service_type => $services) {
-                    echo ("<li class='filter-block__headlist__service-type'>" . $service_type);
-                    echo ("<ul class='filter-block__list'>");
-                    foreach ($services as $service) {
-                        echo ("<li class='filter-block__list__service'><input type='checkbox' name='services' value='" . $service['id'] . "'>" . $service['name'] ."</li>");
-                    }
-                    echo ("</ul>");
-                    echo ("</li>");
-                }
-                echo ("</ul>");
-                ?>
+            <ul class='filter-block__headlist'>
+<?php
+foreach ($services_arr as $service_type => $services) {
+    echo "<li class='filter-block__headlist__service-type'>";
+    echo "<span class='accordion'>" . $service_type . "</span>"; // Используем span вместо кнопки
+    echo "<ul class='filter-block__list' style='display:none'>";
+    foreach ($services as $service) {
+        echo "<li class='filter-block__list__service'>";
+        echo "<input type='checkbox' name='services' value='" . $service['id'] . "'>" . $service['name'];
+        echo "</li>";
+    }
+    echo "</ul>";
+    echo "</li>";
+}
+?>
+</ul>
             </form>
         </div>
         <div class="map-block">

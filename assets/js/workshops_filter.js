@@ -1,5 +1,27 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+    $('.filter-block__headlist__service-type').click(function(){
+        $(this).toggleClass('active');
+        $(this).find('.filter-block__list').slideToggle('fast');
+    });
+    
+    // Предотвращаем сворачивание аккордеона при клике на элемент внутри него
+    $('.filter-block__list').click(function(event){
+        event.stopPropagation(); // Остановить всплытие события
+    });
+    
+    // Сворачиваем все блоки с услугами при загрузке страницы
+    $('.filter-block__list').hide();
+    
+    // Если передан id чекбокса, открываем соответствующий аккордеон
+    const urlParams = new URLSearchParams(window.location.search);
+    const discountServiceId = urlParams.get('discount_service_id');
+    if (discountServiceId) {
+        var checkboxParent = $('[value="' + discountServiceId + '"]').closest('.filter-block__headlist__service-type');
+        checkboxParent.addClass('active');
+        checkboxParent.find('.filter-block__list').slideDown('fast');
+    }
+    
     function setCheckboxesFromURL() {
         const urlParams = new URLSearchParams(window.location.search);
         const discountServiceId = urlParams.get('discount_service_id');
