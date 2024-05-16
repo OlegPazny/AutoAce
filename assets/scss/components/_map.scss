@@ -34,6 +34,7 @@
         &__service{
             font-family:"Onest";
             font-size:1rem;
+            line-height: 170%;
         }
     }
 }
@@ -45,9 +46,6 @@
 
 li>ul{
     margin-top:0.625rem;
-    >li{
-        margin-bottom:0.625rem;
-    }
 }
 input[type="checkbox"]{
     margin-right:0.625rem;
