@@ -82,21 +82,7 @@ require_once "../assets/api/get_services_script.php";
     </section>
     <?php require_once "../includes/footer.php"; ?>
 </body>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const discountServiceId = urlParams.get('discount_service_id');
-    if (discountServiceId) {
-        const checkboxes = document.querySelectorAll('input[type="checkbox"][name="services"]');
-        checkboxes.forEach(checkbox => {
-            if (checkbox.value === discountServiceId) {
-                checkbox.checked = true;
-            }
-        });
-    }
-});
-</script>
-<!-- <script src="../assets/js/map_init.js"></script> -->
+
 <script src="../assets/js/workshops_filter.js"></script>
 <script src="../assets/js/callback.js"></script>
 
