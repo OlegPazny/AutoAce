@@ -13,7 +13,7 @@
     $client=mysqli_fetch_assoc($client);
 
     $service=mysqli_query($db, "SELECT `services`.`service_name` FROM `service_bookings`
-    INNER JOIN `worker_service_relationships` ON `service_bookings`.`worker_service_id`=`worker_service_relationships`.`service_id`
+    INNER JOIN `worker_service_relationships` ON `service_bookings`.`worker_service_id`=`worker_service_relationships`.`id`
     INNER JOIN `services` ON `worker_service_relationships`.`service_id`=`services`.`id`
     WHERE `service_bookings`.`id`=$bookingId");
     $service=mysqli_fetch_assoc($service);
