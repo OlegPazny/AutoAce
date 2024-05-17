@@ -1,5 +1,41 @@
 document.addEventListener("DOMContentLoaded", function() {
+    var slider = document.getElementById('working-hours-slider');
 
+    noUiSlider.create(slider, {
+        start: [9, 18], // Default working hours
+        connect: true,
+        range: {
+            'min': 0,
+            'max': 24
+        },
+        step: 0.5,
+        format: {
+            to: function(value) {
+                return Math.floor(value) + ':' + (value % 1 === 0 ? '00' : '30');
+            },
+            from: function(value) {
+                var parts = value.split(':');
+                return parseInt(parts[0], 10) + (parts[1] === '30' ? 0.5 : 0);
+            }
+        }
+    });
+    
+    var startTime = document.getElementById('start-time');
+    var endTime = document.getElementById('end-time');
+    
+    slider.noUiSlider.on('update', function(values, handle) {
+        if (handle === 0) {
+            startTime.value = values[0];
+        } else {
+            endTime.value = values[1];
+        }
+    });
+    
+    // Call filterMarkers function when slider value changes
+    slider.noUiSlider.on('change', function() {
+        filterMarkers();
+    });
+    
     $('.filter-block__headlist__service-type').click(function(){
         $(this).toggleClass('active');
         $(this).find('.filter-block__list').slideToggle('fast');
@@ -48,7 +84,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    function filterMarkers() {
+     // Функция для фильтрации меток
+     function filterMarkers() {
+        console.log("Фильтрация маркеров...");
+
         var selectedServices = [];
         var checkboxes = document.querySelectorAll('input[name="services"]:checked');
         console.log("Выбранные чекбоксы:", checkboxes);
@@ -56,9 +95,19 @@ document.addEventListener("DOMContentLoaded", function() {
             selectedServices.push(checkbox.value);
         });
 
-        console.log("Выбранные услуги:", selectedServices);
+        var startTime = document.getElementById('start-time').value;
+        var endTime = document.getElementById('end-time').value;
+        console.log("Выбранное время работы:", startTime, endTime);
 
-        if (selectedServices.length === 0) {
+        var filterData = {
+            services: selectedServices,
+            workingHours: {
+                start: startTime,
+                end: endTime
+            }
+        };
+
+        if (selectedServices.length === 0 && startTime === "" && endTime === "") {
             console.log("Запрос без параметров...");
             var xhr = new XMLHttpRequest();
             xhr.open('GET', '../assets/api/get_coords_script.php', true);
@@ -67,6 +116,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     if (xhr.status === 200) {
                         clearMarkers();
                         var response = JSON.parse(xhr.responseText);
+                        console.log("Ответ сервера без параметров:", response);
                         addMarkers(response);
                     } else {
                         console.error('Ошибка запроса');
@@ -75,6 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
             };
             xhr.send();
         } else {
+            console.log("Запрос с параметрами...");
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '../assets/api/filter_script.php', true);
             xhr.setRequestHeader('Content-Type', 'application/json');
@@ -83,13 +134,14 @@ document.addEventListener("DOMContentLoaded", function() {
                     if (xhr.status === 200) {
                         clearMarkers();
                         var response = JSON.parse(xhr.responseText);
+                        console.log("Ответ сервера с параметрами:", response);
                         addMarkers(response);
                     } else {
                         console.error('Ошибка запроса');
                     }
                 }
             };
-            xhr.send(JSON.stringify({ services: selectedServices }));
+            xhr.send(JSON.stringify(filterData));
         }
     }
 
@@ -104,8 +156,18 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function addMarkers(data) {
+        var defaultIcon = L.icon({
+            iconUrl: '../assets/images/location.png',
+            iconSize: [32, 40], // Размер иконки
+            iconAnchor: [12, 41], // Точка привязки иконки
+            popupAnchor: [5, -40], // Точка привязки всплывающего окна
+            // Устанавливаем тень в виде пустой картинки, чтобы скрыть ее
+            shadowUrl: '../assets/images/empty.png', // Пустая картинка без тени
+            shadowSize: [0, 0], // Устанавливаем размер тени в ноль
+            shadowAnchor: [0, 0] // Устанавливаем точку привязки тени в ноль
+        });
         $(data).each(function (key, value) {
-            var marker = L.marker([value['latitude'], value['longitude']]).addTo(map);
+            var marker = L.marker([value['latitude'], value['longitude']], { icon: defaultIcon }).addTo(map);
             marker.bindPopup("<a href='workshop.php?id=" + value['id'] + "' target='_blank'>" + value['name'] + "</a>");
         });
     }

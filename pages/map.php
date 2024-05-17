@@ -9,6 +9,7 @@ require_once "../assets/api/get_services_script.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.2/nouislider.css" rel="stylesheet">
     <!-- jQuery connection -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
@@ -20,11 +21,14 @@ require_once "../assets/api/get_services_script.php";
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <!-- leaflet connection -->
+
     <title>Выбор автосервиса</title>
 </head>
 <style>
-
-
+#working-hours-slider {
+  width: 300px;
+  margin: 20px;
+}
 </style>
 <body>
     <?php require_once "../includes/header.php"; ?>
@@ -47,6 +51,10 @@ require_once "../assets/api/get_services_script.php";
                     }
                     ?>
                 </ul>
+                <div id="working-hours-slider"></div>
+                <input type="text" id="start-time" readonly>
+                <input type="text" id="end-time" readonly>
+
             </form>
         </div>
         <div class="map-block">
@@ -88,7 +96,13 @@ require_once "../assets/api/get_services_script.php";
     </section>
     <?php require_once "../includes/footer.php"; ?>
 </body>
+     <!-- Подключение JS библиотеки noUiSlider -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.2/nouislider.js"></script>
+<script>
+// Initialize noUiSlider
 
+
+</script>
 <script src="../assets/js/workshops_filter.js"></script>
 <script src="../assets/js/callback.js"></script>
 
