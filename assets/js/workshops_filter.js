@@ -1,54 +1,80 @@
-document.addEventListener("DOMContentLoaded", function() {
-    var slider = document.getElementById('working-hours-slider');
+document.addEventListener("DOMContentLoaded", function () {
+    // Функция для конвертации времени в числовое значение
+    function timeToNumericValue(timeString) {
+        const [hours, minutes] = timeString.split(':').map(Number);
+        return hours * 60 + minutes;
+    }
+var slider;
+    function initializeSlider() {
+        // Отправляем запрос на сервер для получения данных времени
+        fetch('../assets/api/get_minmax_working_time_script.php')
+            .then(response => response.json())
+            .then(data => {
+                // Получаем данные времени из ответа
+                const workingHours = data[0]; // Предполагая, что ответ содержит только один набор времени
+                // Конвертируем время в числовые значения
+                const minOpeningTime = timeToNumericValue(workingHours.min_opening_time)/60;
+                const maxClosingTime = timeToNumericValue(workingHours.max_closing_time)/60;
+                const maxOpeningTime = timeToNumericValue(workingHours.max_opening_time)/60;
+                const minClosingTime = timeToNumericValue(workingHours.min_closing_time)/60;
+                // Инициализируем слайдер с полученными данными
+                const slider = document.getElementById('working-hours-slider');
 
-    noUiSlider.create(slider, {
-        start: [9, 18], // Default working hours
-        connect: true,
-        range: {
-            'min': 0,
-            'max': 24
-        },
-        step: 0.5,
-        format: {
-            to: function(value) {
-                return Math.floor(value) + ':' + (value % 1 === 0 ? '00' : '30');
-            },
-            from: function(value) {
-                var parts = value.split(':');
-                return parseInt(parts[0], 10) + (parts[1] === '30' ? 0.5 : 0);
-            }
-        }
-    });
-    
-    var startTime = document.getElementById('start-time');
-    var endTime = document.getElementById('end-time');
-    
-    slider.noUiSlider.on('update', function(values, handle) {
-        if (handle === 0) {
-            startTime.value = values[0];
-        } else {
-            endTime.value = values[1];
-        }
-    });
-    
-    // Call filterMarkers function when slider value changes
-    slider.noUiSlider.on('change', function() {
-        filterMarkers();
-    });
-    
-    $('.filter-block__headlist__service-type').click(function(){
+                noUiSlider.create(slider, {
+                    start: [maxOpeningTime, minClosingTime],
+                    range: {
+                        'min': minOpeningTime,
+                        'max': maxClosingTime
+                    },
+                    connect: true,
+                    step: 0.5,
+                    format: {
+                        to: function (value) {
+                            return Math.floor(value) + ':' + (value % 1 === 0 ? '00' : '30');
+                        },
+                        from: function (value) {
+                            var parts = value.split(':');
+                            return parseInt(parts[0], 10) + (parts[1] === '30' ? 0.5 : 0);
+                        }
+                    }
+                });
+                var startTime = document.getElementById('start-time');
+                var endTime = document.getElementById('end-time');
+
+                slider.noUiSlider.on('update', function (values, handle) {
+                    if (handle === 0) {
+                        startTime.value = values[0];
+                    } else {
+                        endTime.value = values[1];
+                    }
+                });
+                // Call filterMarkers function when slider value changes
+                slider.noUiSlider.on('change', function () {
+                    filterMarkers();
+                });
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+    }
+    initializeSlider();
+
+
+
+
+    $('.filter-block__headlist__service-type').click(function () {
         $(this).toggleClass('active');
         $(this).find('.filter-block__list').slideToggle('fast');
     });
-    
+
     // Предотвращаем сворачивание аккордеона при клике на элемент внутри него
-    $('.filter-block__list').click(function(event){
+    $('.filter-block__list').click(function (event) {
         event.stopPropagation(); // Остановить всплытие события
     });
-    
+
     // Сворачиваем все блоки с услугами при загрузке страницы
     $('.filter-block__list').hide();
-    
+
     // Если передан id чекбокса, открываем соответствующий аккордеон
     const urlParams = new URLSearchParams(window.location.search);
     const discountServiceId = urlParams.get('discount_service_id');
@@ -57,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
         checkboxParent.addClass('active');
         checkboxParent.find('.filter-block__list').slideDown('fast');
     }
-    
+
     function setCheckboxesFromURL() {
         const urlParams = new URLSearchParams(window.location.search);
         const discountServiceId = urlParams.get('discount_service_id');
@@ -84,8 +110,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-     // Функция для фильтрации меток
-     function filterMarkers() {
+    // Функция для фильтрации меток
+    function filterMarkers() {
         console.log("Фильтрация маркеров...");
 
         var selectedServices = [];
@@ -176,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function() {
     L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=zu81qp5yGvbAgHoNquf3').addTo(map);
 
     document.querySelectorAll('input[name="services"]').forEach(function (checkbox) {
-        checkbox.addEventListener('change', function() {
+        checkbox.addEventListener('change', function () {
             filterMarkers();
         });
     });
