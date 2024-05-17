@@ -1245,6 +1245,10 @@ input[type=checkbox] {
   display: none;
 }
 
+.vehicles {
+  display: none;
+}
+
 .logout-button {
   border: 1px solid #232323;
 }
@@ -1260,13 +1264,13 @@ input[type=checkbox] {
   justify-content: space-between;
 }
 
-.add-service-input, .admin-input {
+.add-service-input, .admin-input, .user-input {
   border: none !important;
   border-bottom: 1px solid #232323 !important;
   color: #232323 !important;
   width: 5rem !important;
 }
-.add-service-input:focus, .admin-input:focus {
+.add-service-input:focus, .admin-input:focus, .user-input:focus {
   border: none !important;
   border-bottom: 1px solid #232323 !important;
   outline: none !important;

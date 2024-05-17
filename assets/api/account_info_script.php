@@ -31,5 +31,8 @@
 
     $account_info=mysqli_query($db, "SELECT `name`, `email` FROM `users` WHERE `id`=$user_id");
     $account_info=mysqli_fetch_assoc($account_info);
+
+    $vehicles=mysqli_query($db, "SELECT * FROM `vehicles` WHERE `user_id`=$user_id");
+    $vehicles=mysqli_fetch_all($vehicles);
     
 ?>

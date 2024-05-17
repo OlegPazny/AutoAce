@@ -26,6 +26,7 @@ function russianMonth($monthNumber) {
     <!-- jQuery connection -->
     <script src="../assets/js/core/jquery.min.js"></script>
     <script src="../assets/js/core/pooper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> -->
     <!-- jQuery connection -->
@@ -41,6 +42,7 @@ function russianMonth($monthNumber) {
                 <li class="nav__list__item info-btn">личные данные</li>
                 <li class="nav__list__item orders-btn">заказанные услуги</li>
                 <li class="nav__list__item history-btn">история заказов</li>
+                <li class="nav__list__item vehicles-btn">мои автомобили</li>
             </ul>
         </div>
         <div class="account-info">
@@ -155,6 +157,56 @@ function russianMonth($monthNumber) {
                                     <td>" . $date . "</td>
                                     <td>" . substr($item[4], 0, 5) . "</td>
                                 </tr>");
+                        }
+                        ?>
+                    </tbody>
+            </table>
+        </div>
+        <div class="account-services vehicles">
+            <table class="vehicles-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Марка</th>
+                        <th>Гос. номер</th>
+                        <th></th>
+                    </tr>
+                    <thead>
+                    <tbody>
+                        <tr id="new-vehicle-row">
+                            <td></td>
+                            <td><input type="text" class="add-vehicle-input user-input" name="vehicle_brand"
+                                    id="vehicle_brand" placeholder="Audi"></td>
+                            <td><input type="text" class="add-vehicle-input user-input" name="number_plate"
+                                    id="number_plate" placeholder="1111 XX-1"></td>
+                            <td>
+                                <div class="add-vehicle-button">
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'
+                                        viewBox='0 0 24 24'>
+                                        <path fill='#232323'
+                                            d='M21 7v12q0 .825-.587 1.413T19 21H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h12zm-9 11q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-6-8h9V6H6z' />
+                                    </svg>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                        $i=1;
+                        foreach ($vehicles as $vehicle) {
+                            echo"
+                                <tr>
+                                    <td>".$i."</td>
+                                    <td>".$vehicle[1]."</td>
+                                    <td>".$vehicle[2]."</td>
+                                    <td>
+                                        <div class='delete-vehicle' data-vehicle-id='" . $vehicle[0] . "''>
+                                            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
+                                                <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
+                                            </svg>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ";
+                            $i=$i+1;
                         }
                         ?>
                     </tbody>
