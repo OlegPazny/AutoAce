@@ -1517,4 +1517,9 @@ body {
 
 html {
   font-size: 24px;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
 }/*# sourceMappingURL=main.css.map */

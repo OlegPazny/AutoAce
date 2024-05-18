@@ -26,7 +26,7 @@
         <p><a href="../pages/map.php">Поиск автосервиса</a></p>
     </div>
     <div class="header__contact-info">
-        <div class="phone-number">+375 (29) 865-79-68</div>
+        <div class="phone-number"><a href="tel:+375298657968">+375 (29) 865-79-68</a></div>
         <div class="account-icon">
             <a href="<?php echo $account_href;?>"><?php echo($account_icon);?></a>
         </div>
