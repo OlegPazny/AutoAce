@@ -12,7 +12,7 @@ $workingHours = isset($data['workingHours']) ? $data['workingHours'] : [];
 $selectedServices = isset($data['services']) ? $data['services'] : [];
 
 // Подготовка SQL запроса с фильтрацией по услугам и времени работы
-$sql = "SELECT w.*
+$sql = "SELECT DISTINCT w.*
         FROM workshops w
         INNER JOIN workers wo ON w.id = wo.workshop_id
         INNER JOIN worker_service_relationships ws ON wo.id = ws.worker_id

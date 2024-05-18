@@ -32,16 +32,13 @@ $working_hours=mysqli_fetch_assoc($working_hours);
     <title>Выбор автосервиса</title>
 </head>
 <style>
-#working-hours-slider {
-  width: 300px;
-  margin: 20px;
-}
+
 </style>
 <body>
     <?php require_once "../includes/header.php"; ?>
     <section class="search-section">
         <div class="filter-block">
-            <form id="filterForm">
+            <form id="filterForm" class="filterForm">
                 <ul class='filter-block__headlist'>
                     <?php
                     foreach ($services_arr as $service_type => $services) {
@@ -58,9 +55,13 @@ $working_hours=mysqli_fetch_assoc($working_hours);
                     }
                     ?>
                 </ul>
-                <div id="working-hours-slider"></div>
-                <input type="text" id="start-time" readonly>
-                <input type="text" id="end-time" readonly>
+                <div class="filterForm__time-filter">
+                    <div id="working-hours-slider"></div>
+                    <div class="filterForm__time-filter__block">
+                        <input type="text" id="start-time" readonly>
+                        <input type="text" id="end-time" readonly>
+                    </div>
+                </div>
 
             </form>
         </div>

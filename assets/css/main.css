@@ -1018,6 +1018,7 @@ body {
 }
 .filter-block__headlist {
   list-style-type: none;
+  margin-bottom: 0;
 }
 .filter-block__headlist__service-type {
   font-family: "Soyuz";
@@ -1038,6 +1039,56 @@ body {
   display: flex;
   flex-direction: column;
   color: #fff;
+  margin-top: 2rem;
+}
+
+#working-hours-slider {
+  width: 300px;
+  margin: 20px;
+}
+
+.filterForm__time-filter {
+  padding-left: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: flex-start;
+}
+.filterForm__time-filter__block {
+  display: flex;
+  flex-direction: row;
+  width: -moz-min-content;
+  width: min-content;
+}
+.filterForm__time-filter__block input[type=text] {
+  width: 6rem;
+  margin: 0;
+  padding: 0.3rem;
+  border-width: 2px;
+}
+
+#start-time {
+  text-align: left;
+  border-radius: 10px 0 0 10px;
+  border-right: 0.5px solid white;
+}
+
+#end-time {
+  text-align: right;
+  border-radius: 0 10px 10px 0;
+  border-left: 0.5px solid white;
+}
+
+.noUi-connect {
+  background-color: #3f3f3f !important;
+}
+
+/* Округление ползунков */
+.noUi-handle {
+  border-radius: 50% !important; /* Делаем ползунок круглым */
+  width: 34px !important;
+  height: 34px !important;
+  top: -8px !important;
 }
 
 li > ul {
