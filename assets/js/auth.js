@@ -4,9 +4,11 @@ $('.login-btn').click(function(e){
 
     $(`input`).removeClass('error');//очищение инпутов от класса error
 
-    let login=$('input[name="login"]').val();
-    let password=$('input[name="password"]').val();
+    let login=$('input[name="signin_login"]').val();
+    let password=$('input[name="signin_password"]').val();
 
+    console.log(login);
+    console.log(password);
     $.ajax({
         url:'../assets/api/signin_script.php',
         type:'POST',

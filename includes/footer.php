@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
-<body>
+
     <footer class="footer">
         <div class="footer__logo">
             <a href="../index.php">
@@ -24,5 +17,3 @@
             <p>г. Минск, ул. Савицкого, 3</p>
         </div>
     </footer>
-</body>
-</html>

@@ -31,3 +31,52 @@
     margin:0;
   }
 }
+/* Стили для иконки аккаунта */
+.account-icon {
+  position: relative;
+}
+
+/* Стили для подменю */
+.header__menu__sub-list {
+  background-color: #232323;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  list-style: none;
+  right: 0;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+  padding: 10px;
+  border-radius: 4px;
+  z-index: 20;
+  border:1px solid white;
+  /* Стили для элементов меню */
+  & li {
+    padding: 0.5rem;
+    width: auto;
+    text-align: right;
+    border-top:1px solid white;
+  }
+  & li:first-child{
+    border:none;
+    width:max-content
+  }
+}
+
+
+/* Показываем подменю при наведении на иконку аккаунта */
+.account-icon:hover .header__menu__sub-list {
+  visibility: visible;
+  opacity: 1;
+}
+
+.logout-btn{
+  background-color: transparent;
+  border:none;
+  color:white;
+  margin:0;
+  padding: 0;
+  cursor: pointer;
+}
+#sign-in__link{
+  cursor: pointer;
+}

@@ -8,11 +8,11 @@
             <div class="signup">
                 <div class="signup__input-block">
                     <label>Логин</label>
-                    <input type="text" name="login" class="login" placeholder="Введите логин">
+                    <input type="text" name="signin_login" class="login" placeholder="Введите логин">
                 </div>
                 <div class="signup__input-block">
                     <label>Пароль</label>
-                    <input type="password" name="password" class="password" placeholder="Введите пароль">
+                    <input type="password" name="signin_password" class="password" placeholder="Введите пароль">
                 </div>
                 <div class="signup__submit-block button">
                     <input type="submit" class="login-btn button__content" value="Войти">

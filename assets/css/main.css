@@ -726,6 +726,32 @@ swiper-slide:nth-child(10n) {
   background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 60%);
 }
 
+.footer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.91rem 11.3rem;
+  background-color: #fff; /* Пример цвета фона */
+  color: #000000; /* Пример цвета текста */
+}
+.footer__logo a h1 {
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 1.083rem;
+}
+.footer__search {
+  text-transform: uppercase;
+  font-size: 1.083rem;
+}
+.footer__search a, .footer__logo a {
+  text-decoration: none;
+  color: inherit;
+}
+.footer__logo h1, .footer__search p, .footer__contact-info {
+  margin: 0;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -760,30 +786,55 @@ swiper-slide:nth-child(10n) {
   margin: 0;
 }
 
-.footer {
+/* Стили для иконки аккаунта */
+.account-icon {
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2.91rem 11.3rem;
-  background-color: #fff; /* Пример цвета фона */
-  color: #000000; /* Пример цвета текста */
 }
-.footer__logo a h1 {
-  text-transform: uppercase;
-  font-weight: normal;
-  font-size: 1.083rem;
+
+/* Стили для подменю */
+.header__menu__sub-list {
+  background-color: #232323;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  list-style: none;
+  right: 0;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+  padding: 10px;
+  border-radius: 4px;
+  z-index: 20;
+  border: 1px solid white;
+  /* Стили для элементов меню */
 }
-.footer__search {
-  text-transform: uppercase;
-  font-size: 1.083rem;
+.header__menu__sub-list li {
+  padding: 0.5rem;
+  width: auto;
+  text-align: right;
+  border-top: 1px solid white;
 }
-.footer__search a, .footer__logo a {
-  text-decoration: none;
-  color: inherit;
+.header__menu__sub-list li:first-child {
+  border: none;
+  width: -moz-max-content;
+  width: max-content;
 }
-.footer__logo h1, .footer__search p, .footer__contact-info {
+
+/* Показываем подменю при наведении на иконку аккаунта */
+.account-icon:hover .header__menu__sub-list {
+  visibility: visible;
+  opacity: 1;
+}
+
+.logout-btn {
+  background-color: transparent;
+  border: none;
+  color: white;
   margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+#sign-in__link {
+  cursor: pointer;
 }
 
 body {

@@ -78,11 +78,6 @@ function russianMonth($monthNumber) {
                             </a>");
                     }
                 ?>
-                <form action="../assets/api/logout.php">
-                    <div class="button logout-button">
-                        <input type="submit" class="button__content logout-button__content" value="Выйти">
-                    </div>
-                </form>
                 <div class="button account-info__button">
                     <input type="button" class="button__content account-info__submit" value="изменить данные">
                 </div>
