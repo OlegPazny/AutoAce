@@ -1,27 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
-    <script src="https://code.jquery.com/jquery-3.7.0.js"
-        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-    <title>Регистрация</title>
-</head>
-<style>
-    .message{
-        color:red;
-    }
-    .none{
-        display:none;
-    }
-</style>
-<body>
-    <section class="signup-section">
+<div class="popup__bg__sign-up">
+    <section class="signup-section signup">
         <form>
+        <svg class="close-popup__sign-up" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
+            <path fill="none" stroke="#3b3b3b" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1" d="m7 7l10 10M7 17L17 7"/>
+        </svg>
+            <h1>Регистрация</h1>
             <div class="signup">
-                <img class="signup__img" src="../assets/images/logo_dark.png">
                 <div class="signup__input-block">
                     <label>Ваше имя</label>
                     <input type="text" name="name" class="name" placeholder="Введите своё имя">
@@ -41,15 +25,13 @@
                 <div class="signup__input-block">
                     <input type="password" name="password_confirm" class="password" placeholder="Повторите пароль">
                 </div>
-                <div class="signup__submit-block button">
+                <div class="signup__submit-block button register-btn-block">
                     <input type="submit" class="register-btn button__content" value="Зарегистрироваться">
                 </div>
-                <a href="signin.php" class="have-acc">Уже есть аккаунт?</a>
+                <a href="signin.php" id="sign-in__link" class="have-acc">Уже есть аккаунт?</a>
                 <p class="message none">error</p>
             </div>
         </form>
     </section>
-</body>
+</div>
 <script src="../assets/js/signup.js"></script>
-
-</html>

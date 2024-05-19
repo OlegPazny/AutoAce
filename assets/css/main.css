@@ -1339,7 +1339,23 @@ input[type=checkbox] {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  height: 100vh;
+  width: 85%;
+  height: 75%;
+  background-color: #fff;
+  margin-top: 2rem;
+  padding: 2rem;
+}
+.signup-section form h1 {
+  font-family: "Montserrat";
+  font-weight: bold;
+}
+
+.message {
+  color: red;
+}
+
+.none {
+  display: none;
 }
 
 .signup {
@@ -1347,12 +1363,6 @@ input[type=checkbox] {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: #acacac;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: auto;
-  padding: 1rem 1.5rem;
-  border-radius: 45px;
 }
 .signup__input-block {
   display: flex;
@@ -1363,15 +1373,16 @@ input[type=checkbox] {
 }
 .signup__input-block label {
   font-size: 0.9rem;
-  font-weight: bold;
+  font-weight: normal;
   margin-bottom: 5px;
+  color: black;
 }
 .signup__input-block input[type=text], .signup__input-block input[type=email], .signup__input-block input[type=password] {
   width: 100% !important;
   margin: 0 !important;
   height: 2rem;
-  border-radius: 10px;
-  border-color: #fff;
+  border: none;
+  border-bottom: 1px solid black;
   background-color: #fff;
   color: #232323;
 }
@@ -1380,11 +1391,19 @@ input[type=checkbox] {
   justify-content: center;
   margin: 1rem 0;
   border-radius: 25px !important;
-  width: 8rem !important;
+}
+
+.register-btn-block {
+  color: black;
+  border: 1px solid black !important;
+}
+
+.register-btn {
+  color: black !important;
 }
 
 .have-acc, .message {
-  color: #fff;
+  color: black;
   text-decoration: none;
   font-size: 0.8rem;
 }
@@ -1493,6 +1512,60 @@ input[type=checkbox] {
 .openModal-btn {
   text-decoration: none;
   color: white;
+}
+
+/*-----------------------------------POP-UP----------------------------------------------*/
+.popup__bg__sign-in, .popup__bg__sign-up {
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0; /*Скрываем фон и сам попап*/
+  pointer-events: none; /*Запрещаем ему быть целью событий*/
+  transition: 0.5s all;
+  z-index: 2000; /*100*/
+}
+
+.popup__bg__sign-in.active, .popup__bg__sign-up.active { /* При добавлении класса 'active'*/
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  opacity: 1; /* Показываем фон и попап*/
+  pointer-events: all; /* Возвращаем события*/
+  transition: 0.5s all;
+  z-index: 3000; /*200*/
+}
+
+.popup__sign-in, .popup__sign-up {
+  border-radius: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0); /* Центрируем и масштабируем в 0 само окно*/
+  background: #fff;
+  width: 840px;
+  padding-top: 18px;
+  padding-bottom: 40px;
+  /* transition: 0.5s all; */
+}
+
+.popup__sign-in.active, .popup__sign-up.active { /* При добавлении класса 'active'*/
+  transform: translate(-50%, -50%) scale(1); /* Так же центрируем и плавно увеличиваем*/
+  /* transition: 0.5s all; */
+}
+
+.close-popup__sign-in, .close-popup__sign-up {
+  position: absolute;
+  top: 5rem;
+  right: 5rem;
+  cursor: pointer;
 }
 
 @font-face {

@@ -30,7 +30,12 @@
         <div class="account-icon">
             <a href="<?php echo $account_href;?>"><?php echo($account_icon);?></a>
         </div>
+        <p id="sign-up__link">reg</p><br>
+        <p id="sign-in__link">auth</p>
     </div>
     </header>
 </body>
 </html>
+<?php require_once "signup.php";?>
+<?php require_once "signin.php";?>
+<script src="../assets/js/showSignPopup.js"></script>

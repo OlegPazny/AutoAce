@@ -1,0 +1,52 @@
+/*-----------------------------------POP-UP----------------------------------------------*/
+
+.popup__bg__sign-in, .popup__bg__sign-up {
+    display: flex;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    opacity: 0; /*Скрываем фон и сам попап*/
+    pointer-events: none; /*Запрещаем ему быть целью событий*/
+    transition: 0.5s all;
+    z-index: 2000;/*100*/
+}
+.popup__bg__sign-in.active, .popup__bg__sign-up.active { /* При добавлении класса 'active'*/
+    display: flex;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    opacity: 1; /* Показываем фон и попап*/
+    pointer-events: all; /* Возвращаем события*/
+    transition: 0.5s all;
+    z-index: 3000;/*200*/
+}
+.popup__sign-in, .popup__sign-up {
+    border-radius: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Центрируем и масштабируем в 0 само окно*/
+    background: #fff;
+    width: 840px;
+    padding-top: 18px;
+    padding-bottom: 40px;
+    /* transition: 0.5s all; */
+}
+.popup__sign-in.active, .popup__sign-up.active { /* При добавлении класса 'active'*/
+    transform: translate(-50%, -50%) scale(1); /* Так же центрируем и плавно увеличиваем*/
+    /* transition: 0.5s all; */
+}
+
+
+.close-popup__sign-in, .close-popup__sign-up {
+    position: absolute;
+    top: 5rem;
+    right: 5rem;
+    cursor: pointer;
+}
