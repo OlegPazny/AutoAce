@@ -71,7 +71,7 @@ $working_hours=mysqli_fetch_assoc($working_hours);
     </section>
     <section class="callback-section">
         <h2 class="callback-section__head">
-            остались вопросы?
+            Остались вопросы?
         </h2>
         <div class="callback-section__block">
             <form class="callback-form">

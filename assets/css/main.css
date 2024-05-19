@@ -797,9 +797,9 @@ body {
   overflow: hidden;
 }
 .prons-section__head {
-  font-family: "Soyuz";
+  font-family: "Montserrat";
+  font-weight: bold;
   font-size: 2.91rem;
-  letter-spacing: 0.15rem;
 }
 .prons-section__body {
   display: flex;
@@ -876,8 +876,8 @@ body {
   width: 50%;
 }
 .info__head {
-  font-family: "Soyuz";
-  letter-spacing: 0.15rem;
+  font-family: "Montserrat";
+  font-weight: bold;
   font-size: 2.91rem;
   line-height: 90%;
 }
@@ -886,6 +886,7 @@ body {
   text-align: justify;
   margin-bottom: 1.67rem;
   line-height: 170%;
+  -webkit-hyphens: auto;
 }
 
 .slider {
@@ -907,8 +908,8 @@ body {
   padding: 5rem 8.33rem;
 }
 .discount-offers-section__head {
-  font-family: "Soyuz";
-  letter-spacing: 0.15rem;
+  font-family: "Montserrat";
+  font-weight: bold;
   font-size: 2.91rem;
   color: #646464;
   line-height: 90%;
@@ -930,8 +931,8 @@ body {
   position: relative;
 }
 .callback-section__head {
-  font-family: "Soyuz";
-  letter-spacing: 0.15rem;
+  font-family: "Montserrat";
+  font-weight: bold;
   font-size: 2.91rem;
   color: #fff;
   line-height: 90%;
@@ -1021,7 +1022,8 @@ body {
   margin-bottom: 0;
 }
 .filter-block__headlist__service-type {
-  font-family: "Soyuz";
+  font-family: "Montserrat";
+  font-weight: 700;
   font-size: 1.45rem;
   margin-bottom: 0.625rem;
   cursor: pointer;
@@ -1031,6 +1033,7 @@ body {
 }
 .filter-block__list__service {
   font-family: "Onest";
+  font-weight: normal;
   font-size: 1rem;
   line-height: 170%;
 }
@@ -1510,6 +1513,26 @@ input[type=checkbox] {
   font-family: "Onest";
   src: url("../fonts/Onest/OnestThin1602-hint.ttf") format("truetype");
   font-weight: lighter;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat/Montserrat-Black.ttf") format("truetype");
+  font-weight: bolder;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat/Montserrat-SemiBold.ttf") format("truetype");
+  font-weight: 700;
 }
 body {
   font-family: "Onest"; /* использование подключенного шрифта */

@@ -5,7 +5,7 @@ require_once "../assets/api/isAdmin.php";
 require_once "../assets/api/index_info_script.php";
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -102,7 +102,7 @@ require_once "../assets/api/index_info_script.php";
         </div>
     </section>
     <section class="prons-section">
-        <h2 class="prons-section__head"> мы это —</h2>
+        <h2 class="prons-section__head">Мы это —</h2>
         <div class="prons-section__body">
             <div class="pron">
                 <h5 class="pron__head">Профессиональные мастера</h5>
@@ -134,7 +134,7 @@ require_once "../assets/api/index_info_script.php";
     </section>
     <section class="about-section">
         <div class="info">
-            <h2 class="info__head">о сети AutoAce</h2>
+            <h2 class="info__head">О сети AutoAce</h2>
             <p class="info__text">
                 Добро пожаловать в AutoAce – ваш надежный партнер в мире автомобильного обслуживания и ремонта. Мы
                 являемся престижным автосервисом, где каждый клиент может рассчитывать на высокое качество услуг и
@@ -255,7 +255,7 @@ require_once "../assets/api/index_info_script.php";
     </section>
     <section class="callback-section">
         <h2 class="callback-section__head">
-            остались вопросы?
+            Остались вопросы?
         </h2>
         <div class="callback-section__block">
             <form class="callback-form">

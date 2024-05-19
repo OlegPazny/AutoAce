@@ -25,7 +25,8 @@
         list-style-type: none;
         margin-bottom: 0;
         &__service-type{
-            font-family: "Soyuz";
+            font-family: "Montserrat";
+            font-weight: 700;
             font-size: 1.45rem;
             margin-bottom:0.625rem;
             cursor:pointer;
@@ -35,6 +36,7 @@
         list-style-type: none;
         &__service{
             font-family:"Onest";
+            font-weight: normal;
             font-size:1rem;
             line-height: 170%;
         }
