@@ -71,9 +71,11 @@ $('#master').change(function () {
     getBookingsByMaster(masterId);
 });
 
-var workingDayHourStart = 8;
+var workingDayHourStart=parseInt($('.start_hour').val());
+var workingDayHourEnd=parseInt($('.end_hour').val());
+console.log(workingDayHourStart);
+console.log(workingDayHourEnd);
 
-var workingDayHourEnd = 18;
 var workingDayPreHolidayHourEnd = workingDayHourEnd - 1;
 
 var workingDayHourEndString = workingDayHourEnd + ":00";

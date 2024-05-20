@@ -1,3 +1,16 @@
+<?php
+    require_once "../assets/api/db_connect.php";
+    $workshopId=$_GET['id'];
+    $working_hours=mysqli_query($db, "SELECT `working_hours` FROM `workshops` WHERE `id`=$workshopId");
+    $working_hours=mysqli_fetch_assoc($working_hours);
+
+    // Разделяем строку по тире
+    list($start_time, $end_time) = explode("-", $working_hours['working_hours']);
+
+    // Разделяем время начала и окончания по двоеточию и берем только часы
+    $start_hour = explode(":", $start_time)[0];
+    $end_hour = explode(":", $end_time)[0];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +38,8 @@
 <body>
 <section class="book-section">
         <form class="callback-form" id="bookingForm">
-            <input type="hidden" value="<?php echo $_GET['id']; ?>" name="hash" class="hash">
+            <input type="hidden" value="<?php echo $start_hour; ?>" name="start_hour" class="start_hour">
+            <input type="hidden" value="<?php echo $end_hour; ?>" name="end_hour" class="end_hour">
             <div>
                 <div class="callback-form__inputs-block">
 
@@ -96,11 +110,6 @@
         <div class="form-shadow1"></div>
         <div class="form-shadow2"></div>
     </section>
-    <!-- <form id="bookingForm">
-            <div id="calendar"></div>
-            <a id="book">Записаться</a>
-    </form> -->
-
     <script src="../assets/js/calendar.js"></script>
 </body>
 
