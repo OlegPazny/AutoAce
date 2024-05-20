@@ -429,6 +429,10 @@ var bookServiceTime;
 $('#book').click(function (event) {
     event.preventDefault();
 
+    if($('#vehicle')){
+        var vehicle=$('#vehicle').val();
+    }
+
     var booking_message=$('#message').val();
     // Проверяем, был ли отмечен чекбокс
     var checkBoxChecked = $('#book_submit').is(':checked');
@@ -440,7 +444,47 @@ $('#book').click(function (event) {
         alert("Пожалуйста, выберите дату и время записи");
         return;
     }
-    if (masterId && serviceId && bookServiceDate && bookServiceTime) {
+    if (masterId && serviceId && bookServiceDate && bookServiceTime && vehicle) {
+
+        $.ajax({
+            url: '../assets/api/search_worker_service_id.php',
+            method: 'POST',
+            data: {
+                workerId: masterId,
+                serviceId: serviceId
+            },
+            success: function (workerServiceId) {
+                //console.log('Найден worker_service_id:', workerServiceId);
+
+                // Вставка записи в таблицу service_bookings
+                $.ajax({
+                    url: '../assets/api/insert_booking.php',
+                    method: 'POST',
+                    data: {
+                        workerServiceId: workerServiceId,
+                        serviceDate: bookServiceDate,
+                        serviceTime: bookServiceTime,
+                        message: booking_message,
+                        vehicleId: vehicle, 
+                        status: 'pending'
+                    },
+                    success: function (response) {
+                        alert('Запись успешно добавлена');
+                        getBookingsByMaster(masterId);
+
+                        $('#message').val('');
+                        $('#book_submit').prop('checked', false);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Произошла ошибка при записи: ', error);
+                    }
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error('Произошла ошибка при поиске механика или услуги: ', error);
+            }
+        });
+    } else if (masterId && serviceId && bookServiceDate && bookServiceTime) {
 
         $.ajax({
             url: '../assets/api/search_worker_service_id.php',
@@ -464,18 +508,19 @@ $('#book').click(function (event) {
                         status: 'pending'
                     },
                     success: function (response) {
-                        alert('Запись успешно добавлена в таблицу service_bookings');
+                        alert('Запись успешно добавлена');
                         getBookingsByMaster(masterId);
 
-                        // Здесь можно выполнить какие-либо дополнительные действия при успешной вставке записи
+                        $('#message').val('');
+                        $('#book_submit').prop('checked', false);
                     },
                     error: function (xhr, status, error) {
-                        console.error('Произошла ошибка при вставке записи в таблицу service_bookings:', error);
+                        console.error('Произошла ошибка при записи: ', error);
                     }
                 });
             },
             error: function (xhr, status, error) {
-                console.error('Произошла ошибка при поиске worker_service_id:', error);
+                console.error('Произошла ошибка при поиске механика или услуги: ', error);
             }
         });
     }

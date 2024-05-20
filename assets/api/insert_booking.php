@@ -10,10 +10,18 @@ $serviceDate = $_POST['serviceDate'];
 $serviceTime = $_POST['serviceTime'];
 $message = $_POST['message'];
 $status = "pending"; // Устанавливаем статус по умолчанию
+if(isset($_POST['vehicleId'])){
+    $vehicle=$_POST['vehicleId'];
+    // Подготовленный запрос для вставки записи в таблицу service_bookings
+    $stmt = $db->prepare("INSERT INTO service_bookings (worker_service_id, user_id, vehicle_id, service_date, service_time, status, message) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("iiissss", $workerServiceId, $userId, $vehicle, $serviceDate, $serviceTime, $status, $message);
+}else{
+    // Подготовленный запрос для вставки записи в таблицу service_bookings
+    $stmt = $db->prepare("INSERT INTO service_bookings (worker_service_id, user_id, service_date, service_time, status, message) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("iissss", $workerServiceId, $userId, $serviceDate, $serviceTime, $status, $message);
+}
 
-// Подготовленный запрос для вставки записи в таблицу service_bookings
-$stmt = $db->prepare("INSERT INTO service_bookings (worker_service_id, user_id, service_date, service_time, status, message) VALUES (?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("iissss", $workerServiceId, $userId, $serviceDate, $serviceTime, $status, $message);
+
 
 // Выполнение запроса
 if ($stmt->execute() === TRUE) {
