@@ -21,11 +21,11 @@
 }
 .button:hover{
     background-color: #fff;
-    border:1px solid #000;
+    border:1px solid #232323;
     transition: 0.5s ease-in-out;
 }
 .button:hover .button__content{
-    color:#000;
+    color:#232323;
     transition: 0.5s ease-in-out;
 }
 
@@ -55,11 +55,11 @@
 }
 .slider-button:hover{
     background-color: #fff;
-    border:1px solid #000;
+    border:1px solid #232323;
     transition: 0.5s ease-in-out;
 }
 .slider-button:hover .slider-button__content{
-    color: #000;
+    color: #232323;
     transition: 0.5s ease-in-out;
 }
 .swiper-slide:nth-child(even) .slider-button{
@@ -69,7 +69,7 @@
     }
 }
 .swiper-slide:nth-child(even) .slider-button:hover{
-    background-color: #000;
+    background-color: #232323;
     border:1px solid #fff;
     transition: 0.5s ease-in-out;
 }
@@ -80,13 +80,13 @@
 .account-info{
 
     &__button{
-        border:1px solid #000;
+        border:1px solid #232323;
         height:fit-content;
         transition: 0.5s ease-in-out;
     }
 }
 .account-info__button:hover{
-    background-color: #000;
+    background-color: #232323;
     border:1px solid #fff;
     transition: 0.5s ease-in-out;
 }
@@ -160,8 +160,8 @@ input[type="checkbox"]:checked {
 }
 
 .register-btn-block, .login-btn-block{
-    color:black;
-    border: 1px solid black !important;
+    color:#232323;
+    border: 1px solid #232323 !important;
     width: 70%;
     transition: 0.5s ease-in-out;
     cursor: pointer;
@@ -176,6 +176,6 @@ input[type="checkbox"]:checked {
     transition: 0.5s ease-in-out;
 }
 .register-btn, .login-btn{
-    color: black !important;
+    color: #232323 !important;
     transition: 0.5s ease-in-out;
 }
