@@ -4,6 +4,8 @@
     border-radius: 45px;
     width:fit-content;
     padding: 0.83rem 2.3rem;
+    transition:0.5s ease-in-out;
+    cursor: pointer;
 
     &__content{
         background: none;
@@ -14,7 +16,17 @@
         color: #fff;
         margin:0;
         font-weight: bold;
+        transition: 0.5s ease-in-out;
     }
+}
+.button:hover{
+    background-color: #fff;
+    border:1px solid #000;
+    transition: 0.5s ease-in-out;
+}
+.button:hover .button__content{
+    color:#000;
+    transition: 0.5s ease-in-out;
 }
 
 .slider-button{
@@ -26,6 +38,8 @@
     padding: 0.83rem 2.3rem;
     z-index:1;
     margin-top: auto;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
 
     &__content{
         background: none;
@@ -36,7 +50,17 @@
         color: #fff;
         margin:0;
         font-weight: bold;
+        transition: 0.5s ease-in-out;
     }
+}
+.slider-button:hover{
+    background-color: #fff;
+    border:1px solid #000;
+    transition: 0.5s ease-in-out;
+}
+.slider-button:hover .slider-button__content{
+    color: #000;
+    transition: 0.5s ease-in-out;
 }
 .swiper-slide:nth-child(even) .slider-button{
     border:1px solid #232323;
@@ -44,8 +68,32 @@
         color: #232323;
     }
 }
+.swiper-slide:nth-child(even) .slider-button:hover{
+    background-color: #000;
+    border:1px solid #fff;
+    transition: 0.5s ease-in-out;
+}
+.swiper-slide:nth-child(even) .slider-button:hover .slider-button__content{
+    color: #fff;
+    transition: 0.5s ease-in-out;
+}
+.account-info{
 
-
+    &__button{
+        border:1px solid #000;
+        height:fit-content;
+        transition: 0.5s ease-in-out;
+    }
+}
+.account-info__button:hover{
+    background-color: #000;
+    border:1px solid #fff;
+    transition: 0.5s ease-in-out;
+}
+.account-info__button:hover .account-info__submit{
+    color:#fff;
+    transition: 0.5s ease-in-out;
+}
 //элементы формы
 $label-font-size: 1.16rem;
 input[type="text"], input[type="email"], input[type="password"], textarea{
@@ -109,4 +157,25 @@ input[type="checkbox"]:checked {
     height:29.2rem;
     width:29.2rem;
     background: radial-gradient(circle, rgb(255 0 0 / 50%) 0%, rgb(255 255 255 / 0%) 60%);
+}
+
+.register-btn-block, .login-btn-block{
+    color:black;
+    border: 1px solid black !important;
+    width: 70%;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+}
+.login-btn-block:hover, .register-btn-block:hover{
+    transition: 0.5s ease-in-out;
+    background-color: #232323;
+    border:1px solid white;
+}
+.login-btn-block:hover .login-btn, .register-btn-block:hover .register-btn{
+    color:white !important;
+    transition: 0.5s ease-in-out;
+}
+.register-btn, .login-btn{
+    color: black !important;
+    transition: 0.5s ease-in-out;
 }

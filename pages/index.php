@@ -25,76 +25,49 @@ require_once "../assets/api/index_info_script.php";
     <section class="offers-section">
         <div class="swiper mySwiper1">
             <div class="swiper-wrapper">
-                <div class="swiper-slide car-maintenance-slide">
+                <div class="swiper-slide offer-slide">
                     <div class="offers-slider-elem">
-                        <h2 class="offers-slider-elem__head">техническое обслуживание автомобиля</h2>
-                        <p class="offers-slider-elem__text">Техническое обслуживание транспорта отличается сроками проведения и характером работ. Но его нельзя вычеркнуть из списка обязательных дел.
-                        </p>
-                        <div class="button to-map">
-                            <input type="button" class="button__content" value="Записаться на ремонт">
+                        <div class="offers-slider-elem__info">
+                            <h2 class="offers-slider-elem__head">техническое обслуживание автомобиля</h2>
+                            <p class="offers-slider-elem__text">Плановое техническое обслуживание рекомендуется проводить в соответствии с регламентом производителя автомобиля, что обычно указывается в руководстве по эксплуатации. Это обеспечивает оптимальную работу всех систем автомобиля и помогает сохранить гарантию на него.
+                            </p>
+                            <div class="button to-map">
+                                <input type="button" class="button__content" value="Записаться на ремонт">
+                            </div>
                         </div>
-                        <img class="car-maintenance-slide__image" src="../assets/images/main_slider1.png">
+                        <img class="offer-slide__image" src="../assets/images/main_slider1.png">
                         <div class="slide-shadow1"></div>
                         <div class="slide-shadow2"></div>
                     </div>
                 </div>
-                <div class="swiper-slide brake-system-slide">
+                <div class="swiper-slide offer-slide">
                     <div class="offers-slider-elem">
-                        <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
-                        <p class="offers-slider-elem__text">Если Ваш автомобиль тормозит плохо или вообще не тормозит записывайтесь к нам на ремонт узлов тормозной системы!</p>
-                        <div class="button to-map">
-                            <input type="button" class="button__content" value="Записаться на ремонт">
+                        <div class="offers-slider-elem__info">
+                            <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
+                            <p class="offers-slider-elem__text">Регулярный ремонт и обслуживание тормозной системы не только продлевают срок службы автомобиля, но и обеспечивают вашу безопасность и безопасность ваших пассажиров на дороге. Пренебрежение этими работами может привести к снижению эффективности торможения и, в конечном итоге, к аварийным ситуациям. Поэтому своевременный ремонт тормозной системы — это залог надежной и безопасной эксплуатации вашего автомобиля.
+                            </p>
+                            <div class="button to-map">
+                                <input type="button" class="button__content" value="Записаться на ремонт">
+                            </div>
                         </div>
-                        <img class="brake-system-slide__image" src="../assets/images/main_slider2.png">
-                        <div class="slide-shadow3"></div>
-                    </div>
-                </div>
-                <div class="swiper-slide car-maintenance-slide">
-                    <div class="offers-slider-elem">
-                        <h2 class="offers-slider-elem__head">техническое обслуживание автомобиля</h2>
-                        <p class="offers-slider-elem__text">Техническое обслуживание транспорта отличается сроками проведения и характером работ. Но его нельзя вычеркнуть из списка обязательных дел.
-                        </p>
-                        <div class="button to-map">
-                            <input type="button" class="button__content" value="Записаться на ремонт">
-                        </div>
-                        <img class="car-maintenance-slide__image" src="../assets/images/main_slider1.png">
+                        <img class="offer-slide__image" src="../assets/images/main_slider2.png">
                         <div class="slide-shadow1"></div>
                         <div class="slide-shadow2"></div>
                     </div>
                 </div>
-                <div class="swiper-slide brake-system-slide">
+                <div class="swiper-slide offer-slide">
                     <div class="offers-slider-elem">
-                        <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
-                        <p class="offers-slider-elem__text">Если Ваш автомобиль тормозит плохо или вообще не тормозит записывайтесь к нам на ремонт узлов тормозной системы!</p>
-                        <div class="button to-map">
-                            <input type="button" class="button__content" value="Записаться на ремонт">
+                        <div class="offers-slider-elem__info">
+                            <h2 class="offers-slider-elem__head">комплексный шиномонтаж</h2>
+                            <p class="offers-slider-elem__text">Комплексный шиномонтаж также может включать проверку состояния дисков и их очистку, что помогает предотвратить коррозию и улучшить внешний вид колес. Специалисты могут порекомендовать наиболее подходящие шины для вашего автомобиля, исходя из стиля вождения и условий эксплуатации.
+                            </p>
+                            <div class="button to-map">
+                                <input type="button" class="button__content" value="Записаться на ремонт">
+                            </div>
                         </div>
-                        <img class="brake-system-slide__image" src="../assets/images/main_slider2.png">
-                        <div class="slide-shadow3"></div>
-                    </div>
-                </div>
-                <div class="swiper-slide car-maintenance-slide">
-                    <div class="offers-slider-elem">
-                        <h2 class="offers-slider-elem__head">техническое обслуживание автомобиля</h2>
-                        <p class="offers-slider-elem__text">Техническое обслуживание транспорта отличается сроками проведения и характером работ. Но его нельзя вычеркнуть из списка обязательных дел.
-                        </p>
-                        <div class="button to-map">
-                            <input type="button" class="button__content" value="Записаться на ремонт">
-                        </div>
-                        <img class="car-maintenance-slide__image" src="../assets/images/main_slider1.png">
+                        <img class="offer-slide__image" src="../assets/images/main_slider3.png">
                         <div class="slide-shadow1"></div>
                         <div class="slide-shadow2"></div>
-                    </div>
-                </div>
-                <div class="swiper-slide brake-system-slide">
-                    <div class="offers-slider-elem">
-                        <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
-                        <p class="offers-slider-elem__text">Если Ваш автомобиль тормозит плохо или вообще не тормозит записывайтесь к нам на ремонт узлов тормозной системы!</p>
-                        <div class="button to-map">
-                            <input type="button" class="button__content" value="Записаться на ремонт">
-                        </div>
-                        <img class="brake-system-slide__image" src="../assets/images/main_slider2.png">
-                        <div class="slide-shadow3"></div>
                     </div>
                 </div>
             </div>
@@ -294,8 +267,8 @@ require_once "../assets/api/index_info_script.php";
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 <script>
     var swiper1 = new Swiper(".mySwiper1", {
-        slidesPerView: 2,
-        slidesPerGroup: 2,
+        slidesPerView: 1,
+        slidesPerGroup: 1,
         grid: {
             rows: 1,
         },

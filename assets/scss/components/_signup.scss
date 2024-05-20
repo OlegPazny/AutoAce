@@ -60,30 +60,7 @@
         border-radius: 25px !important;
     }
 }
-.register-btn-block, .login-btn-block{
-    color:black;
-    border: 1px solid black !important;
-    width: 70%;
-    transition: 0.5s ease-in-out;
-    cursor: pointer;
-}
-// .login-btn-block:hover{
-//     transition: 0.5s ease-in-out;
-//     box-shadow:  0px 0px 19px 9px rgba(0, 0, 0, 0.07)
-// }
-.login-btn-block:hover, .register-btn-block:hover{
-    transition: 0.5s ease-in-out;
-    background-color: #232323;
-    border:1px solid white;
-}
-.login-btn-block:hover .login-btn, .register-btn-block:hover .register-btn{
-    color:white !important;
-    transition: 0.5s ease-in-out;
-}
-.register-btn, .login-btn{
-    color: black !important;
-    transition: 0.5s ease-in-out;
-}
+
 .have-acc, .message{
     color:black;
     text-decoration: none;

@@ -316,6 +316,8 @@ template {
   width: -moz-fit-content;
   width: fit-content;
   padding: 0.83rem 2.3rem;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
 }
 .button__content {
   background: none;
@@ -326,6 +328,18 @@ template {
   color: #fff;
   margin: 0;
   font-weight: bold;
+  transition: 0.5s ease-in-out;
+}
+
+.button:hover {
+  background-color: #fff;
+  border: 1px solid #000;
+  transition: 0.5s ease-in-out;
+}
+
+.button:hover .button__content {
+  color: #000;
+  transition: 0.5s ease-in-out;
 }
 
 .slider-button {
@@ -338,6 +352,8 @@ template {
   padding: 0.83rem 2.3rem;
   z-index: 1;
   margin-top: auto;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
 }
 .slider-button__content {
   background: none;
@@ -348,6 +364,18 @@ template {
   color: #fff;
   margin: 0;
   font-weight: bold;
+  transition: 0.5s ease-in-out;
+}
+
+.slider-button:hover {
+  background-color: #fff;
+  border: 1px solid #000;
+  transition: 0.5s ease-in-out;
+}
+
+.slider-button:hover .slider-button__content {
+  color: #000;
+  transition: 0.5s ease-in-out;
 }
 
 .swiper-slide:nth-child(even) .slider-button {
@@ -355,6 +383,35 @@ template {
 }
 .swiper-slide:nth-child(even) .slider-button__content {
   color: #232323;
+}
+
+.swiper-slide:nth-child(even) .slider-button:hover {
+  background-color: #000;
+  border: 1px solid #fff;
+  transition: 0.5s ease-in-out;
+}
+
+.swiper-slide:nth-child(even) .slider-button:hover .slider-button__content {
+  color: #fff;
+  transition: 0.5s ease-in-out;
+}
+
+.account-info__button {
+  border: 1px solid #000;
+  height: -moz-fit-content;
+  height: fit-content;
+  transition: 0.5s ease-in-out;
+}
+
+.account-info__button:hover {
+  background-color: #000;
+  border: 1px solid #fff;
+  transition: 0.5s ease-in-out;
+}
+
+.account-info__button:hover .account-info__submit {
+  color: #fff;
+  transition: 0.5s ease-in-out;
 }
 
 input[type=text], input[type=email], input[type=password], textarea {
@@ -421,6 +478,30 @@ input[type=checkbox]:checked {
   height: 29.2rem;
   width: 29.2rem;
   background: radial-gradient(circle, rgba(255, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 60%);
+}
+
+.register-btn-block, .login-btn-block {
+  color: black;
+  border: 1px solid black !important;
+  width: 70%;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.login-btn-block:hover, .register-btn-block:hover {
+  transition: 0.5s ease-in-out;
+  background-color: #232323;
+  border: 1px solid white;
+}
+
+.login-btn-block:hover .login-btn, .register-btn-block:hover .register-btn {
+  color: white !important;
+  transition: 0.5s ease-in-out;
+}
+
+.register-btn, .login-btn {
+  color: black !important;
+  transition: 0.5s ease-in-out;
 }
 
 .account-services > table {
@@ -537,46 +618,6 @@ swiper-slide {
   height: 100% !important;
 }
 
-swiper-slide:nth-child(1n) {
-  background-color: rgb(206, 17, 17);
-}
-
-swiper-slide:nth-child(2n) {
-  background-color: rgb(0, 140, 255);
-}
-
-swiper-slide:nth-child(3n) {
-  background-color: rgb(10, 184, 111);
-}
-
-swiper-slide:nth-child(4n) {
-  background-color: rgb(211, 122, 7);
-}
-
-swiper-slide:nth-child(5n) {
-  background-color: rgb(118, 163, 12);
-}
-
-swiper-slide:nth-child(6n) {
-  background-color: rgb(180, 10, 47);
-}
-
-swiper-slide:nth-child(7n) {
-  background-color: rgb(35, 99, 19);
-}
-
-swiper-slide:nth-child(8n) {
-  background-color: rgb(0, 68, 255);
-}
-
-swiper-slide:nth-child(9n) {
-  background-color: rgb(218, 12, 218);
-}
-
-swiper-slide:nth-child(10n) {
-  background-color: rgb(54, 94, 77);
-}
-
 .swiper2 {
   width: 100%;
   overflow: hidden;
@@ -652,18 +693,25 @@ swiper-slide:nth-child(10n) {
 
 .offers-slider-elem {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   color: #fff;
-  width: 30.4rem;
-  height: 700px;
-  padding-left: 6rem;
-  padding-left: 6rem;
+  height: 18rem;
+  padding: 5rem 8.33rem;
+}
+.offers-slider-elem__info {
+  display: flex;
+  flex-direction: column;
+  line-height: 150%;
+  width: 50%;
 }
 .offers-slider-elem__head {
-  font-family: "Soyuz";
+  font-family: "Montserrat";
+  text-transform: uppercase;
   text-align: left;
-  letter-spacing: 0.15rem;
-  font-size: 2.91rem;
+  letter-spacing: 0.06rem;
+  font-size: 2.2rem;
   line-height: 95%;
   margin-bottom: 1.67rem;
   margin-top: 0;
@@ -675,22 +723,13 @@ swiper-slide:nth-child(10n) {
   margin-bottom: 1.67rem;
 }
 
-.car-maintenance-slide {
+.offer-slide {
   background-color: #232323;
 }
-.car-maintenance-slide__image {
+.offer-slide__image {
   width: 20.83rem;
   align-self: flex-end;
   margin-top: 0.5rem;
-}
-
-.brake-system-slide {
-  background-color: #474747;
-}
-.brake-system-slide__image {
-  width: 18.8rem;
-  align-self: flex-end;
-  margin-top: -2rem;
 }
 
 .slide-shadow1 {
@@ -708,7 +747,7 @@ swiper-slide:nth-child(10n) {
   filter: blur(7.2em);
   position: absolute;
   top: -11.5rem;
-  right: 21rem;
+  right: 60rem;
   height: 29.2rem;
   width: 29.2rem;
   z-index: -1;
@@ -1311,11 +1350,6 @@ input[type=checkbox] {
   width: 18rem;
   height: 3rem;
 }
-.account-info__button {
-  border: 1px solid #232323;
-  height: -moz-fit-content;
-  height: fit-content;
-}
 .account-info__submit, .account-info__moderate {
   color: #232323;
 }
@@ -1506,30 +1540,6 @@ input[type=checkbox] {
   justify-content: center;
   margin: 1rem 0;
   border-radius: 25px !important;
-}
-
-.register-btn-block, .login-btn-block {
-  color: black;
-  border: 1px solid black !important;
-  width: 70%;
-  transition: 0.5s ease-in-out;
-  cursor: pointer;
-}
-
-.login-btn-block:hover, .register-btn-block:hover {
-  transition: 0.5s ease-in-out;
-  background-color: #232323;
-  border: 1px solid white;
-}
-
-.login-btn-block:hover .login-btn, .register-btn-block:hover .register-btn {
-  color: white !important;
-  transition: 0.5s ease-in-out;
-}
-
-.register-btn, .login-btn {
-  color: black !important;
-  transition: 0.5s ease-in-out;
 }
 
 .have-acc, .message {
