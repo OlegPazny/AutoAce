@@ -1508,13 +1508,28 @@ input[type=checkbox] {
   border-radius: 25px !important;
 }
 
-.register-btn-block {
+.register-btn-block, .login-btn-block {
   color: black;
   border: 1px solid black !important;
+  width: 70%;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
 }
 
-.register-btn {
+.login-btn-block:hover, .register-btn-block:hover {
+  transition: 0.5s ease-in-out;
+  background-color: #232323;
+  border: 1px solid white;
+}
+
+.login-btn-block:hover .login-btn, .register-btn-block:hover .register-btn {
+  color: white !important;
+  transition: 0.5s ease-in-out;
+}
+
+.register-btn, .login-btn {
   color: black !important;
+  transition: 0.5s ease-in-out;
 }
 
 .have-acc, .message {
