@@ -28,7 +28,7 @@ if (!isset($_SESSION['user'])) {
         <div class="phone-number"><a href="tel:+375298657968">+375 (29) 865-79-68</a></div>
 
             <div class="account-icon">
-                <a class="account-button" href="<?php echo $account_href; ?>"><?php echo ($account_icon); ?></a>
+                <?php echo ($account_icon); ?>
                 <ul class="header__menu__sub-list">
             <!-- Список элементов меню -->
             <?php echo $header_list; ?>

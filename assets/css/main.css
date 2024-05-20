@@ -1290,6 +1290,7 @@ input[type=checkbox] {
 }
 
 .account-info {
+  margin-top: 2rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -1299,6 +1300,7 @@ input[type=checkbox] {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin-bottom: -5rem;
 }
 .account-info__data__label {
   color: #232323;
@@ -1321,7 +1323,7 @@ input[type=checkbox] {
   width: 80%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .account-services {
