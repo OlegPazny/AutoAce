@@ -1,6 +1,10 @@
 <?php
     require_once "../assets/api/db_connect.php";
+    $userId=$_SESSION['user']['id'];
     $workshopId=$_GET['id'];
+
+    $user_vehicles=mysqli_query($db, "SELECT `id`, `brand`, `num_plate` FROM `vehicles` WHERE `user_id`=$userId");
+
     $working_hours=mysqli_query($db, "SELECT `working_hours` FROM `workshops` WHERE `id`=$workshopId");
     $working_hours=mysqli_fetch_assoc($working_hours);
 
@@ -49,21 +53,24 @@
 
 
                     <label class="callback-form__label">Услуга</label>
-
-
-
                     <select id="service" name="service"></select>
 
 
 
                     <label class="callback-form__label">Выберите сотрудника</label>
-
-
-
                     <select id="master" name="master"></select>
 
-
-
+                    <?php if(mysqli_num_rows($user_vehicles)>0){
+                        $user_vehicles=mysqli_fetch_all($user_vehicles);?>
+                    <label class="callback-form__label">Выберите автомобиль</label>
+                    <select id="vehicle" name="vehicle">
+                        <?php
+                            foreach($user_vehicles as $vehicle){
+                                echo("<option value='".$vehicle[0]."'>".$vehicle[1]." ".$vehicle[2]."</option>");
+                            }
+                        ?>
+                    </select>
+                    <?php }?>
                 </div>
                 <div class="callback-form__textarea-block">
                     <label class="callback-form__label">Комментарий к заказу</label>
