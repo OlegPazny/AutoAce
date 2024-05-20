@@ -1,19 +1,19 @@
 <?php
-    require_once "../assets/api/db_connect.php";
-    $userId=$_SESSION['user']['id'];
-    $workshopId=$_GET['id'];
+require_once "../assets/api/db_connect.php";
+$userId = $_SESSION['user']['id'];
+$workshopId = $_GET['id'];
 
-    $user_vehicles=mysqli_query($db, "SELECT `id`, `brand`, `num_plate` FROM `vehicles` WHERE `user_id`=$userId");
+$user_vehicles = mysqli_query($db, "SELECT `id`, `brand`, `num_plate` FROM `vehicles` WHERE `user_id`=$userId");
 
-    $working_hours=mysqli_query($db, "SELECT `working_hours` FROM `workshops` WHERE `id`=$workshopId");
-    $working_hours=mysqli_fetch_assoc($working_hours);
+$working_hours = mysqli_query($db, "SELECT `working_hours` FROM `workshops` WHERE `id`=$workshopId");
+$working_hours = mysqli_fetch_assoc($working_hours);
 
-    // Разделяем строку по тире
-    list($start_time, $end_time) = explode("-", $working_hours['working_hours']);
+// Разделяем строку по тире
+list($start_time, $end_time) = explode("-", $working_hours['working_hours']);
 
-    // Разделяем время начала и окончания по двоеточию и берем только часы
-    $start_hour = explode(":", $start_time)[0];
-    $end_hour = explode(":", $end_time)[0];
+// Разделяем время начала и окончания по двоеточию и берем только часы
+$start_hour = explode(":", $start_time)[0];
+$end_hour = explode(":", $end_time)[0];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,83 +33,76 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/ru.js"></script>
     <style>
-        .fc-content{
+        .fc-content {
             display: flex;
         }
     </style>
 </head>
 
 <body>
-<section class="book-section">
-        <form class="callback-form" id="bookingForm">
+    <section class="book-section">
+        <form id="bookingForm" class="booking-form">
             <input type="hidden" value="<?php echo $start_hour; ?>" name="start_hour" class="start_hour">
             <input type="hidden" value="<?php echo $end_hour; ?>" name="end_hour" class="end_hour">
-            <div>
-                <div class="callback-form__inputs-block">
-
-                    <label class="callback-form__label">Станция технического обслуживания</label>
-                    <h2 style="color:#fff" name="workshop" value="<?php echo ($_GET['id']); ?>">
-                        <?php echo ($workshop_data['name']); ?></h2>
-
-
-                    <label class="callback-form__label">Услуга</label>
+            <div class="booking-form__data-block">
+                <div class="booking-form__data-block__selects">
+                    <label>Услуга</label>
                     <select id="service" name="service"></select>
 
 
 
-                    <label class="callback-form__label">Выберите сотрудника</label>
+                    <label>Выберите сотрудника</label>
                     <select id="master" name="master"></select>
 
-                    <?php if(mysqli_num_rows($user_vehicles)>0){
-                        $user_vehicles=mysqli_fetch_all($user_vehicles);?>
-                    <label class="callback-form__label">Выберите автомобиль</label>
-                    <select id="vehicle" name="vehicle">
-                        <?php
-                            foreach($user_vehicles as $vehicle){
-                                echo("<option value='".$vehicle[0]."'>".$vehicle[1]." ".$vehicle[2]."</option>");
+                    <?php if (mysqli_num_rows($user_vehicles) > 0) {
+                        $user_vehicles = mysqli_fetch_all($user_vehicles); ?>
+                        <label>Выберите автомобиль</label>
+                        <select id="vehicle" name="vehicle">
+                            <?php
+                            foreach ($user_vehicles as $vehicle) {
+                                echo ("<option value='" . $vehicle[0] . "'>" . $vehicle[1] . " " . $vehicle[2] . "</option>");
                             }
-                        ?>
-                    </select>
-                    <?php }?>
+                            ?>
+                        </select>
+                    <?php } ?>
                 </div>
-                <div class="callback-form__textarea-block">
-                    <label class="callback-form__label">Комментарий к заказу</label>
-                    <textarea class="callback-form__textarea" id="message" name="message"></textarea>
+                <div class="booking-form__data-block__comment">
+                    <label>Комментарий к заказу</label>
+                    <textarea id="message" name="message"></textarea>
                 </div>
             </div>
             <div id="openModal" class="modalpopup">
                 <div class="modalpopup-dialog">
                     <div class="modalpopup-content">
-                    <div class="modalpopup-header">
-                        <h3 class="modalpopup-title">Выбор времени и даты</h3>
-                        <a href="#close" title="Close" class="close">×</a>
-                    </div>
-                    <div class="modalpopup-body">    
-                        <div id="calendar"></div>
-                    </div>
+                        <div class="modalpopup-header">
+                            <h3 class="modalpopup-title">Выбор времени и даты</h3>
+                            <a href="#close" title="Close" class="close">×</a>
+                        </div>
+                        <div class="modalpopup-body">
+                            <div id="calendar"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <a href="#openModal" class="openModal-btn">
-                <div class="callback-form__submit-block button">
-                    <p class="callback-form__submit button__content">Выбрать дату и время</p>
-                </div>
-            </a>
+            <div class="booking-form__controls-block">
+                <div class="booking-form__controls-block__btns-block">
+                    <a href="#openModal" class="openModal-btn">
+                        <div class="callback-form__submit-block button">
+                            <p class="callback-form__submit button__content">Выбрать дату и время</p>
+                        </div>
+                    </a>
 
-            <div class="callback-form__calendar">
-                
-            </div>
-            <div class="callback-form__submit-check-block">
-                <div id="book" class="callback-form__submit-block button">
-                    <button id="book" class="callback-form__submit button__content" <?php if (!isset($_SESSION['user']['id'])) {
-                        echo ("disabled");
-                    } ?>>Записаться</button>
+                    <div id="book" class="callback-form__submit-block button">
+                        <p id="book" class="callback-form__submit button__content">Записаться</p>
+                    </div>
                 </div>
-                <div class="callback-form__checkbox-block">
-                    <input type="checkbox" class="callback-form__checkbox" id="book_submit">
-                    <label class="callback-form__checkbox-label">Я даю согласие на обработку персональных
-                        данных</label>
+                <div class="booking-form__submit-check-block">
+                    <div class="booking-form__checkbox-block">
+                        <input type="checkbox" class="booking-form__checkbox" id="book_submit">
+                        <label class="booking-form__checkbox-label">Я даю согласие на обработку персональных
+                            данных</label>
+                    </div>
                 </div>
             </div>
 

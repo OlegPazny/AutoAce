@@ -1387,6 +1387,68 @@ input[type=checkbox] {
   cursor: pointer;
 }
 
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.booking-form__data-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+}
+.booking-form__data-block__selects {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+.booking-form__data-block__comment {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-left: 2rem;
+}
+.booking-form__data-block__comment textarea {
+  height: 100%;
+}
+.booking-form__controls-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  margin-top: 1rem;
+  align-items: center;
+}
+.booking-form__controls-block__btns-block {
+  width: 45%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.booking-form__submit-check-block {
+  width: 50%;
+}
+.booking-form__submit {
+  align-self: flex-start;
+}
+.booking-form__submit-block {
+  display: block !important;
+  flex: none !important;
+}
+.booking-form__checkbox-block {
+  flex-direction: row !important;
+  right: 0;
+  align-items: baseline;
+}
+.booking-form__checkbox {
+  margin-right: 1rem;
+}
+.booking-form__checkbox-label {
+  font-size: 1rem;
+}
+
 .signup-section {
   display: flex;
   flex-direction: row;
