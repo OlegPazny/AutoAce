@@ -23,11 +23,11 @@ require_once "../assets/api/get_hash_script.php";
 </style>
 
 <body>
-    <section class="signup-section">
+    <section class="reset-pass-section">
         <form>
             <input type="hidden" value="<?php echo $hash; ?>" name="hash" class="hash">
+            <h1>Восстановление пароля</h1>
             <div class="signup">
-                <img class="signup__img" src="../assets/images/logo_dark.png">
                 <div class="signup__input-block">
                     <label>Новый пароль</label>
                     <input type="password" name="password" class="password" placeholder="Введите новый пароль">
@@ -36,14 +36,13 @@ require_once "../assets/api/get_hash_script.php";
                     <input type="password" name="password_confirm" class="password"
                         placeholder="Повторите новый пароль">
                 </div>
-                <div class="signup__submit-block button">
-                    <input type="submit" class="reset-btn button__content" value="Подтвердить">
+                <div class="signup__submit-block button reset-btn-block">
+                    <input type="button" class="reset-btn button__content" value="Подтвердить">
                 </div>
                 <p class="message none">error</p>
             </div>
         </form>
     </section>
-    <p class="message none">error</p>
 </body>
 <script src="../assets/js/reset_pass.js"></script>
 

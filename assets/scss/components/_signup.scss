@@ -1,4 +1,4 @@
-.signup-section{
+.signup-section, .reset-pass-section{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -16,6 +16,9 @@
             font-weight: bold;
         }
     }
+}
+.reset-pass-section{
+    width: 100%;
 }
 .message{
     color:red;
