@@ -65,8 +65,16 @@
     color:black;
     text-decoration: none;
     font-size:0.8rem;
+    cursor: pointer;
 }
 
 .error{
     border:1px solid red !important;
+}
+
+.reset-pass-block{
+    display: none;
+}
+.reset-pass-message{
+    font-size: 0.5rem;
 }

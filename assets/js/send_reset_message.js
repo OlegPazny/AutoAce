@@ -1,10 +1,10 @@
 //смена пароля
-$('.send-btn').click(function(e){
+$('.reset-pass-btn').click(function(e){
     e.preventDefault();//не обновляет страницу при клике(отключение стандартного поведения)
 
     $(`input`).removeClass('error');//очищение инпутов от класса error
 
-    let email=$('input[name="email"]').val();
+    let email=$('input[name="reset_email"]').val();
     
     let formData=new FormData();
     formData.append('email', email);
@@ -20,14 +20,14 @@ $('.send-btn').click(function(e){
 
         success:function(data){
             if(data.status){
-                window.location.href=data.redirect_url;
+                $('.reset-pass-message').removeClass('none').text(data.message);
             }else{
                 if(data.type===1){
                     data.fields.forEach(function(field){
                         $(`input[name="${field}"]`).addClass('error');
                     });
                 }
-                $('.message').removeClass('none').text(data.message);
+                $('.reset-pass-message').removeClass('none').text(data.message);
             }
         }
     })

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const [hours, minutes] = timeString.split(':').map(Number);
         return hours * 60 + minutes;
     }
-var slider;
+    var slider;
     function initializeSlider() {
         // Отправляем запрос на сервер для получения данных времени
         fetch('../assets/api/get_minmax_working_time_script.php')
@@ -13,10 +13,10 @@ var slider;
                 // Получаем данные времени из ответа
                 const workingHours = data[0]; // Предполагая, что ответ содержит только один набор времени
                 // Конвертируем время в числовые значения
-                const minOpeningTime = timeToNumericValue(workingHours.min_opening_time)/60;
-                const maxClosingTime = timeToNumericValue(workingHours.max_closing_time)/60;
-                const maxOpeningTime = timeToNumericValue(workingHours.max_opening_time)/60;
-                const minClosingTime = timeToNumericValue(workingHours.min_closing_time)/60;
+                const minOpeningTime = timeToNumericValue(workingHours.min_opening_time) / 60;
+                const maxClosingTime = timeToNumericValue(workingHours.max_closing_time) / 60;
+                const maxOpeningTime = timeToNumericValue(workingHours.max_opening_time) / 60;
+                const minClosingTime = timeToNumericValue(workingHours.min_closing_time) / 60;
                 // Инициализируем слайдер с полученными данными
                 const slider = document.getElementById('working-hours-slider');
 
@@ -69,7 +69,7 @@ var slider;
 
     // Предотвращаем сворачивание аккордеона при клике на элемент внутри него
     $('.filter-block__list').click(function (event) {
-        event.stopPropagation(); // Остановить всплытие события
+        event.stopPropagation();
     });
 
     // Сворачиваем все блоки с услугами при загрузке страницы
@@ -184,13 +184,12 @@ var slider;
     function addMarkers(data) {
         var defaultIcon = L.icon({
             iconUrl: '../assets/images/location.png',
-            iconSize: [32, 40], // Размер иконки
-            iconAnchor: [12, 41], // Точка привязки иконки
-            popupAnchor: [5, -40], // Точка привязки всплывающего окна
-            // Устанавливаем тень в виде пустой картинки, чтобы скрыть ее
-            shadowUrl: '../assets/images/empty.png', // Пустая картинка без тени
-            shadowSize: [0, 0], // Устанавливаем размер тени в ноль
-            shadowAnchor: [0, 0] // Устанавливаем точку привязки тени в ноль
+            iconSize: [32, 40],
+            iconAnchor: [12, 41],
+            popupAnchor: [5, -40],
+            shadowUrl: '../assets/images/empty.png',
+            shadowSize: [0, 0],
+            shadowAnchor: [0, 0]
         });
         $(data).each(function (key, value) {
             var marker = L.marker([value['latitude'], value['longitude']], { icon: defaultIcon }).addTo(map);

@@ -20,7 +20,8 @@
                     <input type="submit" class="login-btn button__content" value="Войти">
                 </div>
                 <a href="signup.php" id="sign-up__link" class="have-acc">Нет аккаунта?</a>
-                <a href="send_reset_message.php" class="have-acc">Забыли пароль?</a>
+                <a class="have-acc" id="forgot-pass">Забыли пароль?</a>
+                <div class="reset-pass-block"><?php require_once "../pages/send_reset_message.php";?></div>
                 <p class="message none">error</p>
             </div>
         </form>

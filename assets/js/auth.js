@@ -32,3 +32,13 @@ $('.login-btn').click(function(e){
         }
     })
 });
+
+$('#forgot-pass').click(function(e){
+    e.preventDefault;
+
+    if($('.reset-pass-block').css("display")=="none"){
+        $('.reset-pass-block').fadeIn('slow');    
+    }else if($('.reset-pass-block').css("display")=="block"){
+        $('.reset-pass-block').fadeOut('slow');
+    }
+});
