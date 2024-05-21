@@ -39,6 +39,7 @@ function russianMonth($monthNumber) {
         <div class="nav">
             <ul class="nav__list">
                 <li class="nav__list__item info-btn">пользователи</li>
+                <li class="nav__list__item workers-btn">работники</li>
                 <li class="nav__list__item orders-btn">заказанные услуги</li>
                 <li class="nav__list__item history-btn">архив заказов</li>
                 <li class="nav__list__item services-btn">услуги</li>
@@ -107,6 +108,71 @@ function russianMonth($monthNumber) {
                                     ");
                             }
                             echo (" 
+                                    </td>
+                                </tr>");
+                        }
+                        ?>
+                    </tbody>
+            </table>
+        </div>
+        <div class="account-services workers">
+            <table class="workers-table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Логин</th>
+                        <th>Имя</th>
+                        <th>Почта</th>
+                        <th>Автосервис</th>
+                        <th>Кол-во часов</th>
+                        <th></th>
+                    </tr>
+                    <thead>
+                    <tbody>
+                        <tr class="add-worker-row">
+                            <td></td>
+                            <td></td>
+                            <td><input type="text" class="add-worker-name-input admin-input" name="worker_name"
+                                    id="worker_name"></td>
+                            <td><input type="email" class="add-worker-email-input admin-input" name="worker_email"
+                                    id="worker_email"></td>
+                            <td>
+                                <select class="worker-workshops-insert" name="worker_workshops_insert"
+                                    id="worker_workshops_insert">
+                                    <?php
+                                    foreach ($workshops as $workshop) {
+                                        echo ("<option value='" . $workshop[0] . "'>" . $workshop[1] . "</option>");
+                                    }
+                                    ?>
+                                </select>
+                            </td>
+                            <td><input type="text" class="add-worker-hours-input admin-input" name="worker_hours"
+                                    id="worker_hours"></td>
+                            <td>
+                                <div class="add-worker-button">
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'
+                                        viewBox='0 0 24 24'>
+                                        <path fill='#232323'
+                                            d='M21 7v12q0 .825-.587 1.413T19 21H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h12zm-9 11q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-6-8h9V6H6z' />
+                                    </svg>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                        foreach ($workers as $worker) {
+                            echo ("<tr>
+                                    <td>" . $worker[0] . "</td>
+                                    <td>" . $worker[4] . "</td>
+                                    <td>" . $worker[1] . "</td>
+                                    <td>" . $worker[5] . "</td>
+                                    <td>" . $worker[2] . "</td>
+                                    <td>" . $worker[3] . "</td>
+                                    <td>
+                                        <div class='block-worker' data-worker-id='" . $worker[0] . "''>
+                                            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
+                                                <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
+                                            </svg>
+                                        </div>
                                     </td>
                                 </tr>");
                         }
