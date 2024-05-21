@@ -42,6 +42,7 @@ $end_hour = explode(":", $end_time)[0];
 <body>
     <section class="book-section">
         <form id="bookingForm" class="booking-form">
+            <input type="hidden" value="<?php echo $_GET['id'];?>" name="workshop_id" class="workshop_id">
             <input type="hidden" value="<?php echo $start_hour; ?>" name="start_hour" class="start_hour">
             <input type="hidden" value="<?php echo $end_hour; ?>" name="end_hour" class="end_hour">
             <div class="booking-form__data-block">

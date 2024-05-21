@@ -8,21 +8,22 @@ if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error);
 }
 
-// Получаем id выбранной услуги
+// Получаем id выбранной услуги и автосервиса
 $serviceId = $_POST['serviceId'];
+$workshopId = $_POST['workshopId'];
 
-$sql = "SELECT DISTINCT w.id, w.name AS master_name FROM workers w
-        INNER JOIN service_workshop_relationships swr ON swr.workshop_id = w.workshop_id
-        WHERE swr.service_id = $serviceId";$sql = "SELECT DISTINCT w.id, w.name AS master_name FROM workers w
-        INNER JOIN service_workshop_relationships swr ON swr.workshop_id = w.workshop_id
-        WHERE swr.service_id = $serviceId";
+$sql = "SELECT `workers`.`id`, `workers`.`name`
+FROM `worker_service_relationships`
+INNER JOIN `workers` ON `worker_service_relationships`.`worker_id`=`workers`.`id`
+INNER JOIN `workshops` ON `workers`.`workshop_id`=`workshops`.`id`
+WHERE `worker_service_relationships`.`service_id`=$serviceId AND `workshops`.`id`=$workshopId;";
         
 $result = $db->query($sql);
 
 if ($result->num_rows > 0) {
     // Создаем опции для выбора мастера в HTML-форме
     while($row = $result->fetch_assoc()) {
-        echo "<option value='" . $row["id"] . "'>" . $row["master_name"] . "</option>";
+        echo "<option value='" . $row["id"] . "'>" . $row["name"] . "</option>";
     }
 } else {
     echo "<option value=''>Мастеры не найдены</option>";

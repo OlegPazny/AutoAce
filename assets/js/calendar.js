@@ -15,6 +15,7 @@ const holidays = [
 
 var serviceId;
 var masterId;
+var workshopId=$('.workshop_id').val();
 // Функция для загрузки списка услуг
 function loadServices() {
     $.ajax({
@@ -37,7 +38,10 @@ function loadMastersByService(serviceId) {
     $.ajax({
         url: '../assets/api/get_workers_by_service.php', // Файл PHP для запроса списка мастеров
         method: 'POST',
-        data: { serviceId: serviceId },
+        data: { 
+            serviceId: serviceId,
+            workshopId: workshopId
+        },
         success: function (response) {
             $('#master').html(response);
 
