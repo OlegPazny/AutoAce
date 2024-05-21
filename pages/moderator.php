@@ -117,7 +117,6 @@ function russianMonth($monthNumber)
                         <th>Имя</th>
                         <th>Почта</th>
                         <th>Автосервис</th>
-                        <th>Кол-во часов</th>
                         <th></th>
                     </tr>
                     <thead>
@@ -139,9 +138,6 @@ function russianMonth($monthNumber)
                                     ?>
                                 </select>
                             </td>
-                            <td><input type="text" class="add-worker-hours-input admin-input" name="worker_hours"
-                                    id="worker_hours"></td>
-                            <td>
                                 <div class="add-worker-button">
                                     <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'
                                         viewBox='0 0 24 24'>
@@ -155,11 +151,10 @@ function russianMonth($monthNumber)
                         foreach ($workers as $worker) {
                             echo ("<tr>
                                     <td>" . $worker[0] . "</td>
-                                    <td>" . $worker[4] . "</td>
-                                    <td>" . $worker[1] . "</td>
-                                    <td>" . $worker[5] . "</td>
-                                    <td>" . $worker[2] . "</td>
                                     <td>" . $worker[3] . "</td>
+                                    <td>" . $worker[1] . "</td>
+                                    <td>" . $worker[4] . "</td>
+                                    <td>" . $worker[2] . "</td>
                                     <td>
                                         <div class='block-worker' data-worker-id='" . $worker[0] . "''>
                                             <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>

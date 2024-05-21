@@ -1417,7 +1417,7 @@ input[type=checkbox] {
   outline: none !important;
 }
 
-.add-service-button, .block-user, .delete-service {
+.add-service-button, .block-user, .delete-service, .block-worker, .delete-relation, .add-worker-button, .add-service-button, .add-relation-button {
   cursor: pointer;
 }
 

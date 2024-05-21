@@ -134,7 +134,6 @@ $(document).ready(function () {
         var workerName = $('#worker_name').val();
         var workerEmail = $('#worker_email').val();
         var workerWorkshop = $('#worker_workshops_insert').val();
-        var workerHours = $('#worker_hours').val();
 
         $.ajax({
             type: 'POST',
@@ -144,10 +143,9 @@ $(document).ready(function () {
                 worker_name: workerName,
                 worker_email: workerEmail,
                 worker_workshop: workerWorkshop,
-                worker_hours: workerHours
             },
             success: function (response) {
-                console.log('Работник добавлен!');
+                alert('Работник добавлен!');
 
                 var newWorker = response.worker;
                 var tableBody = $('.workers-table').find('tbody'); // находим tbody во второй таблице
@@ -161,7 +159,6 @@ $(document).ready(function () {
                 newRow.append('<td>' + newWorker.worker_name + '</td>');
                 newRow.append('<td>' + newWorker.worker_email + '</td>');
                 newRow.append('<td>' + newWorker.worker_workshop + '</td>');
-                newRow.append('<td>' + newWorker.worker_hours + '</td>');
                 newRow.append('<td><div class="block-worker" data-worker-id="'+newWorker.id+'"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
 
                 // Добавляем новую строку в таблицу
@@ -171,7 +168,6 @@ $(document).ready(function () {
                 $('#worker_name').val('');
                 $('#worker_email').val('');
                 $('#worker_workshops_insert:eq(0)').prop('selected', true);
-                $('#worker_hours').val('');
             },
             error: function (xhr, status, error) {
                 // Обработка ошибки AJAX-запроса
@@ -226,7 +222,7 @@ $(document).ready(function () {
                 service_discount: serviceDiscount
             },
             success: function (response) {
-                console.log('Услуга успешно добавлена!');
+                alert('Услуга успешно добавлена!');
 
                 var newService = response.service;
                 var tableBody = $('.services-table').find('tbody'); // находим tbody во второй таблице
@@ -301,7 +297,7 @@ $(document).ready(function () {
                 worker_name_relation: workerNameRelation,
             },
             success: function (response) {
-                console.log('Услуга успешно добавлена!');
+                alert('Услуга успешно добавлена!');
                 var newRelation = response.relation;
                 var tableBody = $('.relations-table').find('tbody'); // находим tbody во второй таблице
                 // Создаем новую строку таблицы на основе полученных данных

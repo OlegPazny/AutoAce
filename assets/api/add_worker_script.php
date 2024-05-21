@@ -72,13 +72,12 @@
 
     $workerEmail = $_POST['worker_email'];
     $workerWorkshop = $_POST['worker_workshop'];
-    $workerHours = $_POST['worker_hours'];
 
     $body="<p>Логин: ".$workerLogin."</p>
     <p>Почта: ".$workerEmail."</p>
     <p>Пароль: ".$password."</p>";
 
-    $query="INSERT INTO `workers` (`id`, `name`, `workshop_id`, `max_hours`, `login`, `email`, `password`) VALUES (NULL, '$workerName', '$workerWorkshop', '$workerHours', '$workerLogin', '$workerEmail', '$workerPassword')";
+    $query="INSERT INTO `workers` (`id`, `name`, `workshop_id`, `login`, `email`, `password`) VALUES (NULL, '$workerName', '$workerWorkshop', '$workerLogin', '$workerEmail', '$workerPassword')";
     if(mysqli_query($db, $query)){
         $workerId=mysqli_insert_id($db);
 
@@ -92,8 +91,7 @@
                 'worker_login' => $workerLogin,
                 'worker_name' => $workerName,
                 'worker_email' => "$workerEmail",
-                'worker_workshop' => $workshop_name['name'],
-                'worker_hours' => $workerHours
+                'worker_workshop' => $workshop_name['name']
             ]
         ];
         echo json_encode($response);
