@@ -1,17 +1,45 @@
-const holidays = [
-    { name: "Новый год", date: "2024-01-01" },
-    { name: "Новый год", date: "2024-01-02" },
-    { name: "Рождество Христово (православное)", date: "2024-01-07" },
-    { name: "День женщин", date: "2024-03-08" },
-    { name: "Праздник труда", date: "2024-05-01" },
-    { name: "День Победы", date: "2024-05-09" },
-    { name: "Перенос", date: "2024-05-13" },
-    { name: "Радуница (православная)", date: "2024-05-14" },
-    { name: "День Независимости Республики Беларусь", date: "2024-07-03" },
-    { name: "День Октябрьской революции", date: "2024-11-07" },
-    { name: "Перенос", date: "2024-11-08" },
-    { name: "Рождество Христово (католическое)", date: "2024-12-25" }
-];
+const holidaysList = (year) => {
+    // Функция для получения даты Пасхи
+    const getOrthodoxEaster = (year) => {
+        const a = year % 19;
+        const b = year % 7;
+        const c = year % 4;
+        const d = (19 * a + 15) % 30;
+        const e = (2 * c + 4 * b + 6 * d + 6) % 7;
+        const day = d + e;
+
+        const date = new Date(year, 2, 21); // 21 марта по Юлианскому календарю
+        date.setDate(date.getDate() + day + 13); // переводим в Григорианский календарь (+13 дней)
+        return date;
+    };
+
+    // Получаем дату Радуницы
+    const getRadunitsa = (easterDate) => {
+        const radunitsa = new Date(easterDate);
+        radunitsa.setDate(radunitsa.getDate() + 9); // Радуница через 9 дней после Пасхи
+        return radunitsa;
+    };
+
+    const orthodoxEaster = getOrthodoxEaster(year);
+    const radunitsa = getRadunitsa(orthodoxEaster);
+
+    return [
+        { name: "Новый год", date: `${year}-01-01` },
+        { name: "Новый год", date: `${year}-01-02` },
+        { name: "Рождество Христово (православное)", date: `${year}-01-07` },
+        { name: "День женщин", date: `${year}-03-08` },
+        { name: "Праздник труда", date: `${year}-05-01` },
+        { name: "День Победы", date: `${year}-05-09` },
+        { name: "Радуница (православная)", date: radunitsa.toISOString().split('T')[0] },
+        { name: "День Независимости Республики Беларусь", date: `${year}-07-03` },
+        { name: "День Октябрьской революции", date: `${year}-11-07` },
+        { name: "Рождество Христово (католическое)", date: `${year}-12-25` }
+    ];
+};
+
+// Пример использования
+const year = 2024;
+const holidays = holidaysList(year);
 
 var serviceId;
 var masterId;

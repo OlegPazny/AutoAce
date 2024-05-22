@@ -6,18 +6,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     var slider;
     function initializeSlider() {
-        // Отправляем запрос на сервер для получения данных времени
+        // получение данных времени
         fetch('../assets/api/get_minmax_working_time_script.php')
             .then(response => response.json())
             .then(data => {
-                // Получаем данные времени из ответа
-                const workingHours = data[0]; // Предполагая, что ответ содержит только один набор времени
-                // Конвертируем время в числовые значения
+                const workingHours = data[0];
+                // конвертация времени в числовые значения
                 const minOpeningTime = timeToNumericValue(workingHours.min_opening_time) / 60;
                 const maxClosingTime = timeToNumericValue(workingHours.max_closing_time) / 60;
                 const maxOpeningTime = timeToNumericValue(workingHours.max_opening_time) / 60;
                 const minClosingTime = timeToNumericValue(workingHours.min_closing_time) / 60;
-                // Инициализируем слайдер с полученными данными
+                // инициализация слайдера с полученными данными
                 const slider = document.getElementById('working-hours-slider');
 
                 noUiSlider.create(slider, {
@@ -48,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         endTime.value = values[1];
                     }
                 });
-                // Call filterMarkers function when slider value changes
                 slider.noUiSlider.on('change', function () {
                     filterMarkers();
                 });
@@ -58,9 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
     initializeSlider();
-
-
-
 
     $('.filter-block__headlist__service-type').click(function () {
         $(this).toggleClass('active');
@@ -110,7 +105,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Функция для фильтрации меток
     function filterMarkers() {
         console.log("Фильтрация маркеров...");
 
@@ -134,7 +128,6 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         if (selectedServices.length === 0 && startTime === "" && endTime === "") {
-            console.log("Запрос без параметров...");
             var xhr = new XMLHttpRequest();
             xhr.open('GET', '../assets/api/get_coords_script.php', true);
             xhr.onreadystatechange = function () {
@@ -142,7 +135,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (xhr.status === 200) {
                         clearMarkers();
                         var response = JSON.parse(xhr.responseText);
-                        console.log("Ответ сервера без параметров:", response);
                         addMarkers(response);
                     } else {
                         console.error('Ошибка запроса');
@@ -151,7 +143,6 @@ document.addEventListener("DOMContentLoaded", function () {
             };
             xhr.send();
         } else {
-            console.log("Запрос с параметрами...");
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '../assets/api/filter_script.php', true);
             xhr.setRequestHeader('Content-Type', 'application/json');
@@ -160,7 +151,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (xhr.status === 200) {
                         clearMarkers();
                         var response = JSON.parse(xhr.responseText);
-                        console.log("Ответ сервера с параметрами:", response);
                         addMarkers(response);
                     } else {
                         console.error('Ошибка запроса');
@@ -208,9 +198,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Инициализация первоначальных маркеров на карте
     $.getJSON('../assets/api/get_coords_script.php', function (data) {
-        console.log("Первоначальные данные маркеров:", data);
         addMarkers(data);
     });
 
-    filterMarkers();
+    setTimeout(filterMarkers, 1000);
 });
