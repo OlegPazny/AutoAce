@@ -8,14 +8,6 @@ if (isset($_SESSION['workshop_id'])) {
     $workshop_data=mysqli_query($db, "SELECT * FROM `workshops` WHERE `id`=$workshop_id");
     $workshop_data=mysqli_fetch_assoc($workshop_data);
 
-    $workshop_hours=mysqli_query($db, "SELECT `workers`.`max_hours` FROM `workers` WHERE `workshop_id`=$workshop_id");
-    $workshop_hours=mysqli_fetch_all($workshop_hours);
-
-    $hours=0;
-    foreach($workshop_hours as $hour){
-        $hours=$hours+$hour[0];
-    }
-
     $worker_services_data = mysqli_query($db, "SELECT DISTINCT
     s.id AS service_id, s.service_name AS service_name, st.type AS service_type, s.duration AS service_duration, s.discount AS service_discount, ws.id AS workshop_id, ws.name AS workshop_name
     FROM workers w

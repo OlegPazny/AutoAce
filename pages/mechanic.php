@@ -36,63 +36,88 @@ function russianMonth($monthNumber) {
 </head>
 
 <body>
-    <form action="../assets/api/logout.php">
-        <div class="button logout-button">
-            <input type="submit" class="button__content logout-button__content" value="Выйти">
+    <?php require_once "../includes/header.php";?>
+    <section class="account-section">
+        <div class="nav">
+            <ul class="nav__list">
+                <li class="nav__list__item info-btn">личные данные</li>
+                <li class="nav__list__item works-btn">список работ</li>
+            </ul>
         </div>
-    </form>
-    <div class="account-services works">
-        <table>
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Услуга</th>
-                    <th>Клиент</th>
-                    <th>Комментарий</th>
-                    <th>Дата записи</th>
-                    <th>Время записи</th>
-                    <th>Статус</th>
-                </tr>
+        <div class="account-info mechanic-info">
+            <div class="account-info__data">
+                <label class="account-info__data__label">Имя</label>
+                <input class="account-info__data__input" type="text" name="name" value="<?php echo($mechanic['name']);?>">
+            </div>
+            <div class="account-info__data">
+                <label class="account-info__data__label">Пароль</label>
+                <input class="account-info__data__input" type="password" name="password">
+            </div>
+            <div class="account-info__data">
+                <label class="account-info__data__label">Почта</label>
+                <input class="account-info__data__input" type="email" name="email" value="<?php echo($mechanic['email']);?>">
+            </div>
+            <div class="account-info__data">
+                <label class="account-info__data__label">Новый пароль</label>
+                <input class="account-info__data__input" type="password" name="new_password">
+            </div>
+            <div class="account-info__btn-block">
+                <div class="button account-info__button">
+                    <input type="button" class="button__content account-info__submit" value="изменить данные">
+                </div>
+            </div>
+        </div>
+        <div class="account-services works">
+            <table>
                 <thead>
-                <tbody>
-                    <?php
-                    foreach ($works as $work) {
-                        if($work[6]=="completed"){
-                            continue;
+                    <tr>
+                        <th>id</th>
+                        <th>Услуга</th>
+                        <th>Клиент</th>
+                        <th>Комментарий</th>
+                        <th>Дата записи</th>
+                        <th>Время записи</th>
+                        <th>Статус</th>
+                    </tr>
+                    <thead>
+                    <tbody>
+                        <?php
+                        foreach ($works as $work) {
+                            if($work[6]=="completed"){
+                                continue;
+                            }
+                            $date = strtotime($work[4]); // Преобразование строки в дату
+                            $day = date('j', $date);
+                            $month = date('n', $date);
+                            $date = $day . ' ' . russianMonth($month);
+                            echo ("<tr>
+                                        <td>" . $work[0] . "</td>
+                                        <td>" . $work[1] . "</td>
+                                        <td>" . $work[2] . "</td>
+                                        <td>" . $work[3] . "</td>
+                                        <td>" . $date . "</td>
+                                        <td>" . substr($work[5], 0, 5) . "</td>
+                                        <td>");
+                                ?>
+                                <select class='status-select' data-booking-id="<?php echo $work[0]; ?>">
+                                    <option value='pending' <?php if ($work[6] == "pending")
+                                        echo "selected"; ?>>В
+                                        обработке</option>
+                                    <option value='confirmed' <?php if ($work[6] == "confirmed")
+                                        echo "selected"; ?>>
+                                        Принято в работу</option>
+                                    <option value='completed' <?php if ($work[6] == "completed")
+                                        echo "selected"; ?>>
+                                        Выполнено</option>
+                                </select>
+                                <?php echo ("</td>
+                                </tr>");
                         }
-
-                        $date = strtotime($work[4]); // Преобразование строки в дату
-                        $day = date('j', $date);
-                        $month = date('n', $date);
-                        $date = $day . ' ' . russianMonth($month);
-
-                        echo ("<tr>
-                                    <td>" . $work[0] . "</td>
-                                    <td>" . $work[1] . "</td>
-                                    <td>" . $work[2] . "</td>
-                                    <td>" . $work[3] . "</td>
-                                    <td>" . $date . "</td>
-                                    <td>" . substr($work[5], 0, 5) . "</td>
-                                    <td>");
-                            ?>
-                            <select class='status-select' data-booking-id="<?php echo $work[0]; ?>">
-                                <option value='pending' <?php if ($work[6] == "pending")
-                                    echo "selected"; ?>>В
-                                    обработке</option>
-                                <option value='confirmed' <?php if ($work[6] == "confirmed")
-                                    echo "selected"; ?>>
-                                    Принято в работу</option>
-                                <option value='completed' <?php if ($work[6] == "completed")
-                                    echo "selected"; ?>>
-                                    Выполнено</option>
-                            </select>
-                            <?php echo ("</td>
-                            </tr>");
-                    }
-                    ?>
-                </tbody>
-        </table>
-    </div>
+                        ?>
+                    </tbody>
+            </table>
+        </div>
+    </section>
 </body>
 <script src="../assets/js/mechanic.js"></script>
 </html>

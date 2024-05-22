@@ -10,6 +10,12 @@ require_once "../assets/api/index_info_script.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/images/favicon.svg" />
+    <meta
+      name="description"
+      content="Добро пожаловать в AutoAce – сеть автомастерских, где качество и надежность на первом месте! Наши профессиональные механики обеспечат ваш автомобиль всем необходимым для безупречной работы. От обслуживания до ремонта, мы предлагаем полный спектр услуг по доступным ценам. Найдите ближайший к вам автосервис AutoAce и доверьте свой автомобиль в надежные руки!"
+    />
+
     <!-- jQuery connection -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
@@ -17,7 +23,7 @@ require_once "../assets/api/index_info_script.php";
     <!-- jQuery connection -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
-    <title>главная</title>
+    <title>Сеть AutoAce</title>
 </head>
 
 <body>
@@ -159,68 +165,6 @@ require_once "../assets/api/index_info_script.php";
                                 ";
                             }
                         ?>
-                        <!-- <div class="swiper-slide card">
-                            <h5 class="card__head">Замена банки выхлопа</h5>
-                            <h3 class="card__discount">-10%</h3>
-                            <div class="slider-button">
-                                <input type="button" class="slider-button__content" value="Записаться">
-                            </div>
-                            <div class="slider__shadow"></div>
-                        </div>
-                        <div class="swiper-slide card">
-                            <h5 class="card__head">скидка</h5>
-                            <h3 class="card__discount">30%</h3>
-                            <p class="card__description">Замена сцепления</p>
-                            <div class="slider-button">
-                                <input type="button" class="slider-button__content" value="Записаться">
-                            </div>
-                            <div class="slider__shadow"></div>
-                        </div>
-                        <div class="swiper-slide card">
-                            <h5 class="card__head">скидка</h5>
-                            <h3 class="card__discount">30%</h3>
-                            <p class="card__description">Озонирование салона</p>
-                            <div class="slider-button">
-                                <input type="button" class="slider-button__content" value="Записаться">
-                            </div>
-                            <div class="slider__shadow"></div>
-                        </div>
-                        <div class="swiper-slide card">
-                            <h5 class="card__head">скидка</h5>
-                            <h3 class="card__discount">50%</h3>
-                            <p class="card__description">Диагностика подвески</p>
-                            <div class="slider-button">
-                                <input type="button" class="slider-button__content" value="Записаться">
-                            </div>
-                            <div class="slider__shadow"></div>
-                        </div>
-                        <div class="swiper-slide card">
-                            <h5 class="card__head">скидка</h5>
-                            <h3 class="card__discount">15%</h3>
-                            <p class="card__description">Реставрация дисков</p>
-                            <div class="slider-button">
-                                <input type="button" class="slider-button__content" value="Записаться">
-                            </div>
-                            <div class="slider__shadow"></div>
-                        </div>
-                        <div class="swiper-slide card">
-                            <h5 class="card__head">скидка</h5>
-                            <h3 class="card__discount">25%</h3>
-                            <p class="card__description">Комплексный шиномонтаж</p>
-                            <div class="slider-button">
-                                <input type="button" class="slider-button__content" value="Записаться">
-                            </div>
-                            <div class="slider__shadow"></div>
-                        </div>
-                        <div class="swiper-slide card">
-                            <h5 class="card__head">скидка</h5>
-                            <h3 class="card__discount">5%</h3>
-                            <p class="card__description">Ремонт<br>шин</p>
-                            <div class="slider-button">
-                                <input type="button" class="slider-button__content" value="Записаться">
-                            </div>
-                            <div class="slider__shadow"></div>
-                        </div> -->
                     </div>
                 </div>
             </section>

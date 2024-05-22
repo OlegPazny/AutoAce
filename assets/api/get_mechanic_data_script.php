@@ -4,6 +4,9 @@
 
     $mechanicId=$_SESSION['user']['id'];
 
+    $mechanic=mysqli_query($db, "SELECT `name`, `email` FROM `workers` WHERE `id`=$mechanicId");
+    $mechanic=mysqli_fetch_assoc($mechanic);
+
     $works=mysqli_query($db, "SELECT `service_bookings`.`id`, `services`.`service_name`, `users`.`name`, `service_bookings`.`message`, `service_bookings`.`service_date`, `service_bookings`.`service_time`, `service_bookings`.`status`
     FROM `service_bookings`
     INNER JOIN `worker_service_relationships` ON `service_bookings`.`worker_service_id`=`worker_service_relationships`.`id`

@@ -1,4 +1,31 @@
 $(document).ready(function () {
+    // Функция для скрытия всех контейнеров, кроме переданного
+    function hideContainers(exceptContainer) {
+        $('.account-info, .works').not(exceptContainer).hide();
+    }
+    // Функция для установки стилей кнопок
+    function setButtonStyles(activeButton) {
+        $('.info-btn, .works-btn').css({
+            'background': '#232323',
+            'color': '#fff'
+        });
+        activeButton.css({
+            'background': '#fff',
+            'color': '#232323'
+        });
+    }
+    // Обработчики кликов
+    $('.info-btn').on('click', function () {
+        hideContainers('.account-info');
+        $('.account-info').fadeIn('slow');
+        setButtonStyles($(this));
+    });
+
+    $('.works-btn').on('click', function () {
+        hideContainers('.orders');
+        $('.works').fadeIn('slow');
+        setButtonStyles($(this));
+    });
     //изменение статуса заказа 
 
     var statusSelects = document.querySelectorAll('.status-select');
