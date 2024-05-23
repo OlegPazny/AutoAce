@@ -21,8 +21,9 @@
                 </div>
                 <a href="signup.php" id="sign-up__link" class="have-acc">Нет аккаунта?</a>
                 <a class="have-acc" id="forgot-pass">Забыли пароль?</a>
-                <div class="reset-pass-block"><?php require_once "../pages/send_reset_message.php";?></div>
                 <p class="message none">error</p>
+                <div class="reset-pass-block"><?php require_once "../pages/send_reset_message.php";?></div>
+
             </div>
         </form>
     </section>

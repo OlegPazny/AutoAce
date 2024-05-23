@@ -1491,6 +1491,10 @@ input[type=checkbox] {
   font-size: 1rem;
 }
 
+.record_email {
+  margin-right: 0 !important;
+}
+
 .signup-section, .reset-pass-section {
   display: flex;
   flex-direction: row;

@@ -1,9 +1,13 @@
 <?php
 require_once "../assets/api/db_connect.php";
-$userId = $_SESSION['user']['id'];
+
+if(isset($_SESSION['user'])){
+    $userId = $_SESSION['user']['id'];
+    $user_vehicles = mysqli_query($db, "SELECT `id`, `brand`, `num_plate` FROM `vehicles` WHERE `user_id`=$userId");
+}
 $workshopId = $_GET['id'];
 
-$user_vehicles = mysqli_query($db, "SELECT `id`, `brand`, `num_plate` FROM `vehicles` WHERE `user_id`=$userId");
+
 
 $working_hours = mysqli_query($db, "SELECT `working_hours` FROM `workshops` WHERE `id`=$workshopId");
 $working_hours = mysqli_fetch_assoc($working_hours);
@@ -55,7 +59,7 @@ $end_hour = explode(":", $end_time)[0];
                     <label>Выберите сотрудника</label>
                     <select id="master" name="master"></select>
 
-                    <?php if (mysqli_num_rows($user_vehicles) > 0) {
+                    <?php if (isset($user_vehicles) && mysqli_num_rows($user_vehicles) > 0) {
                         $user_vehicles = mysqli_fetch_all($user_vehicles); ?>
                         <label>Выберите автомобиль</label>
                         <select id="vehicle" name="vehicle">
@@ -65,6 +69,9 @@ $end_hour = explode(":", $end_time)[0];
                             }
                             ?>
                         </select>
+                    <?php }else{ ?>
+                        <label>Почта</label>
+                        <input type="email" id="record_email" class="record_email">
                     <?php } ?>
                 </div>
                 <div class="booking-form__data-block__comment">
