@@ -50,7 +50,6 @@ while ($row = $result->fetch_assoc()) {
     $filteredData[] = $row;
 }
 
-// Возвращаем отфильтрованные данные в формате JSON
 echo json_encode($filteredData);
 
 // Закрываем запрос и соединение
