@@ -8,7 +8,7 @@
         justify-content: space-between;
 
         &__info {
-            width: 45%;
+            width: 50%;
 
             &__head{
                 font-size:2.5rem;
@@ -27,8 +27,8 @@
                 text-align: justify;
             }
             &__description-head{
-                font-family: "Soyuz";
-                text-transform: lowercase;
+                font-family: "Montserrat";
+                text-transform: capitalize;
             }
         }
 
@@ -69,11 +69,15 @@
     background-size: cover;
 }
 .list-container{
-    width:50%;
+    width:45%;
     &__head{
-        font-family: "Soyuz";
+        font-family: "Montserrat";
         font-size: 1.45;
-        text-transform: lowercase;
+        text-transform: capitalize;
+        margin-bottom: 0.2rem;
+    }
+    ul{
+        margin-top:0.5rem;
     }
     ul li{
         font-weight: normal !important;

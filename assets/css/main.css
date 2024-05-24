@@ -1202,7 +1202,7 @@ input[type=checkbox] {
   justify-content: space-between;
 }
 .about-workshop-section__container__info {
-  width: 45%;
+  width: 50%;
 }
 .about-workshop-section__container__info__head {
   font-size: 2.5rem;
@@ -1221,8 +1221,8 @@ input[type=checkbox] {
   text-align: justify;
 }
 .about-workshop-section__container__info__description-head {
-  font-family: "Soyuz";
-  text-transform: lowercase;
+  font-family: "Montserrat";
+  text-transform: capitalize;
 }
 .about-workshop-section__container__img {
   display: flex;
@@ -1259,12 +1259,16 @@ input[type=checkbox] {
 }
 
 .list-container {
-  width: 50%;
+  width: 45%;
 }
 .list-container__head {
-  font-family: "Soyuz";
+  font-family: "Montserrat";
   font-size: 1.45;
-  text-transform: lowercase;
+  text-transform: capitalize;
+  margin-bottom: 0.2rem;
+}
+.list-container ul {
+  margin-top: 0.5rem;
 }
 .list-container ul li {
   font-weight: normal !important;
