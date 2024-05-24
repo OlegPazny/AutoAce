@@ -28,7 +28,15 @@ $('.register-btn').click(function(e){
 
         success:function(data){
             if(data.status){
-                document.location.href='signin.php';
+                document.querySelector('.popup__bg__sign-in').classList.add('active'); // Добавляем класс 'active' для фона
+                document.querySelector('.signup-section.signin').classList.add('active'); // И для самого окна
+
+                if(document.querySelector('.popup__bg__sign-up').classList.contains('active')){
+                    document.querySelector('.popup__bg__sign-up').classList.remove('active'); // Убираем активный класс с фона
+                }
+                if(document.querySelector('.signup-section.signup').classList.contains('active')){
+                    document.querySelector('.signup-section.signup').classList.remove('active'); // И с окна
+                }  
             }else{
                 if(data.type===1){
                     data.fields.forEach(function(field){

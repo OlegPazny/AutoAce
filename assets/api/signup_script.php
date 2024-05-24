@@ -10,6 +10,7 @@
     $password=$_POST['password'];
     $password_confirm=$_POST['password_confirm'];
 
+    $recorded_user=false;
     //проверка на существование логина
     $check_login=mysqli_query($db, "SELECT * FROM `users` WHERE `login`='$login'");
 
@@ -27,14 +28,20 @@
     $check_email=mysqli_query($db, "SELECT * FROM `users` WHERE `email`='$email'");
 
     if(mysqli_num_rows($check_email)>0){
-        $response=[
-            "status"=>false,
-            "type"=>1,
-            "message"=>"Пользователь с такой почтой уже зарегистрирован",
-            "fields"=>['email']
-        ];
-        echo json_encode($response);
-        die();
+        $check_other_data=mysqli_fetch_assoc($check_email);
+        if($check_other_data['name']!=NULL && $check_other_data['login']!=NULL && $check_other_data['password']!=NULL){
+            $response=[
+                "status"=>false,
+                "type"=>1,
+                "message"=>"Пользователь с такой почтой уже зарегистрирован",
+                "fields"=>['email']
+            ];
+            echo json_encode($response);
+            die();
+        }else{
+            $recorded_user_id=$check_other_data['id'];
+            $recorded_user=true;
+        }
     }
     //валидация
     $error_fields=[];
@@ -74,8 +81,12 @@
     
     if($password===$password_confirm){
         $password=md5($password);
+        if($recorded_user==false){
+            mysqli_query($db, "INSERT INTO `USERS` (`id`, `login`, `name`, `email`, `password`, `role`, `isVerified`) VALUES (NULL, '$login', '$name', '$email', '$password', 'client', 0)");
+        }else if($recorded_user==true){
+            mysqli_query($db, "UPDATE `users` SET `login`='$login', `name`='$login', `password`='$password' WHERE `id`=$recorded_user_id");
+        }
 
-        mysqli_query($db, "INSERT INTO `USERS` (`id`, `login`, `name`, `email`, `password`, `role`, `isVerified`) VALUES (NULL, '$login', '$name', '$email', '$password', 'client', 0)");
 
         $hash=md5($login.$name.$email);
         $body="<h1>Пожалуйста, перейдите по <a href='autoace/pages/verify.php?hash=$hash' target='_blank'>ссылке</a>, если вы хотите подтвердить регистрацию!</h1>";
