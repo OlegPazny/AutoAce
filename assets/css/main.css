@@ -1402,6 +1402,10 @@ input[type=checkbox] {
   height: 23rem;
 }
 
+.workshops {
+  display: none;
+}
+
 .logout-button {
   border: 1px solid #232323;
 }

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['user']['id'])){
+if (!isset($_SESSION['user']['id'])) {
     header('Location: ../index.php');
 }
 require_once "../assets/api/isAdmin.php";
@@ -9,12 +9,21 @@ if ($isClient == true || $isWorker == true) {
 }
 require_once "../assets/api/moderator_info_script.php";
 // Функция для получения русского названия месяца
-function russianMonth($monthNumber) {
+function russianMonth($monthNumber)
+{
     $months = array(
-        'января', 'февраля', 'марта',
-        'апреля', 'мая', 'июня',
-        'июля', 'августа', 'сентября',
-        'октября', 'ноября', 'декабря'
+        'января',
+        'февраля',
+        'марта',
+        'апреля',
+        'мая',
+        'июня',
+        'июля',
+        'августа',
+        'сентября',
+        'октября',
+        'ноября',
+        'декабря'
     );
     return $months[$monthNumber - 1];
 }
@@ -29,9 +38,48 @@ function russianMonth($monthNumber) {
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!-- jQuery connection -->
+    <!-- leaflet connection -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- leaflet connection -->
     <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
     <title>Панель администратора</title>
 </head>
+<style>
+/* Стили для модального окна */
+.modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        /* Стили для карты */
+        .map-block {
+            height: 400px; /* Установите подходящую высоту для модального окна */
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+</style>
 
 <body>
     <?php require_once "../includes/header.php"; ?>
@@ -44,6 +92,7 @@ function russianMonth($monthNumber) {
                 <li class="nav__list__item history-btn">архив заказов</li>
                 <li class="nav__list__item services-btn">услуги</li>
                 <li class="nav__list__item relations-btn">назначить услуги</li>
+                <li class="nav__list__item workshops-btn">автосервисы</li>
             </ul>
         </div>
         <div class="account-services accounts">
@@ -81,19 +130,19 @@ function russianMonth($monthNumber) {
                                     <td>" . $user[1] . "</td>
                                     <td>" . $user[2] . "</td>
                                     <td>" . $user[3] . "</td>
-                                    <td>"); 
-                            if($user[5]!="admin"){?>
-                            <select class='role-select' data-user-id="<?php echo $user[0]; ?>">
-                                <option value='client' <?php if ($user[5] == "client")
-                                    echo "selected"; ?>>
-                                    Клиент</option>
-                                <option value='worker' <?php if ($user[5] == "worker")
-                                    echo "selected"; ?>>
-                                    Работник</option>
-                            </select>
-                            <?php }else{
-                                echo("Администратор");
-                            } 
+                                    <td>");
+                            if ($user[5] != "admin") { ?>
+                                <select class='role-select' data-user-id="<?php echo $user[0]; ?>">
+                                    <option value='client' <?php if ($user[5] == "client")
+                                        echo "selected"; ?>>
+                                        Клиент</option>
+                                    <option value='worker' <?php if ($user[5] == "worker")
+                                        echo "selected"; ?>>
+                                        Работник</option>
+                                </select>
+                            <?php } else {
+                                echo ("Администратор");
+                            }
                             echo ("
                                     </td>
                                     <td>" . $isVerified . "</td>
@@ -124,6 +173,7 @@ function russianMonth($monthNumber) {
                         <th>Имя</th>
                         <th>Почта</th>
                         <th>Автосервис</th>
+                        <th>Карта</th>
                         <th></th>
                     </tr>
                     <thead>
@@ -352,7 +402,7 @@ function russianMonth($monthNumber) {
                     </tr>
                     <thead>
                     <tbody class="relations-table-body">
-                    <tr class="add-relation-row">
+                        <tr class="add-relation-row">
                             <td>
                                 <select class="workers-input" name="relation_worker_name" id="relation_worker_name">
                                     <?php
@@ -403,6 +453,79 @@ function russianMonth($monthNumber) {
                         ?>
                     </tbody>
             </table>
+        </div>
+        <div class="account-services workshops">
+            <table class="workshops-table">
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Адрес</th>
+                        <th>Время работы</th>
+                        <th>Стоимость нормочаса</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <thead>
+                    <tbody class="workshops-table-body">
+                        <tr class="add-workshop-row">
+                            <td><input type="text" class="add-workshop-name-input admin-input" name="workshop_name"
+                                    id="workshop_name"></td>
+                            <td><input type="text" class="add-workshop-address-input admin-input"
+                                    name="workshop_address" id="workshop_address"></td>
+                            <td><input type="text" class="add-workshop-working-hours-input admin-input"
+                                    name="workshop_hours" id="workshop_hours"></td>
+                            <td><input type="text" class="add-workshop-hour-price-input admin-input"
+                                    name="workshop_price" id="workshop_price"></td>
+                            <td onclick="openModal()">
+                                Открыть карту
+                            </td>
+                            <td>
+                                <div class="add-workshop-button">
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'
+                                        viewBox='0 0 24 24'>
+                                        <path fill='#232323'
+                                            d='M21 7v12q0 .825-.587 1.413T19 21H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h12zm-9 11q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-6-8h9V6H6z' />
+                                    </svg>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                        foreach ($workshops as $workshop) {
+                            echo ("<tr id='".$workshop[0]."'>
+                                <td><input type='text' name='workshop_name' class='admin-input' value='" . $workshop[1] . "'/></td>
+                                <td><input type='text' name='workshop_address' class='admin-input' value='" . $workshop[2] . "'/></td>
+                                <td><input type='text' name='workshop_time' class='admin-input' value='" . $workshop[5] . "'/></td>
+                                <td><input type='text' name='workshop_price' class='admin-input' value='" . $workshop[6] . "'/></td>
+                                <td></td>
+                                <td>
+                                    <div class='update-workshop' data-workshop-id='" . $workshop[0] . "''>
+                                        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'>
+                                            <path fill='none' stroke='#232323' stroke-width='2' d='M1.75 16.002C3.353 20.098 7.338 23 12 23c6.075 0 11-4.925 11-11m-.75-4.002C20.649 3.901 16.663 1 12 1C5.925 1 1 5.925 1 12m8 4H1v8M23 0v8h-8'/>
+                                        </svg>
+                                    </div>
+                                    <div class='delete-workshop' data-workshop-id='" . $workshop[0] . "''>
+                                        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
+                                            <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
+                                        </svg>
+                                    </div>
+                                </td>
+                                </tr>
+                                ");
+                        }
+                        ?>
+                    </tbody>
+            </table>
+            <!-- Модальное окно для карты -->
+    <div id="mapModal" class="modal">
+        <div class="modal-content">
+            <div class="map-block">
+                <div id="map"></div>
+            </div>
+            <div class="modal-buttons">
+                <button onclick="saveLocation()">Сохранить</button>
+            </div>
+        </div>
+    </div>
         </div>
     </section>
     <?php require_once "../includes/footer.php"; ?>

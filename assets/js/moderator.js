@@ -2,12 +2,12 @@
 $(document).ready(function () {
     // Функция для скрытия всех контейнеров, кроме переданного
     function hideContainers(exceptContainer) {
-        $('.accounts, .orders, .history, .services, .relations, .workers').not(exceptContainer).hide();
+        $('.accounts, .orders, .history, .services, .relations, .workers, .workshops').not(exceptContainer).hide();
     }
 
     // Функция для установки стилей кнопок
     function setButtonStyles(activeButton) {
-        $('.info-btn, .orders-btn, .history-btn, .services-btn, .relations-btn, .workers-btn').css({
+        $('.info-btn, .orders-btn, .history-btn, .services-btn, .relations-btn, .workers-btn, .workshops-btn').css({
             'background': '#232323',
             'color': '#fff'
         });
@@ -50,6 +50,11 @@ $(document).ready(function () {
     $('.workers-btn').on('click', function () {
         hideContainers('.workers');
         $('.workers').fadeIn('slow');
+        setButtonStyles($(this));
+    });
+    $('.workshops-btn').on('click', function () {
+        hideContainers('.workshops');
+        $('.workshops').fadeIn('slow');
         setButtonStyles($(this));
     });
 
