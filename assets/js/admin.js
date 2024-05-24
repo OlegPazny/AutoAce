@@ -32,7 +32,6 @@ function initializeMap() {
         map = L.map('map').setView([53.9, 27.5667], 10); // Минск как начальная точка
 
         L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=zu81qp5yGvbAgHoNquf3', {
-            attribution: '© MapTiler © OpenStreetMap contributors',
             tileSize: 512,
             zoomOffset: -1,
             crossOrigin: true,
@@ -43,7 +42,16 @@ function initializeMap() {
             if (marker) {
                 map.removeLayer(marker);
             }
-            marker = L.marker(e.latlng).addTo(map);
+            var defaultIcon = L.icon({
+                iconUrl: '../assets/images/location.png',
+                iconSize: [32, 40],
+                iconAnchor: [12, 41],
+                popupAnchor: [5, -40],
+                shadowUrl: '../assets/images/empty.png',
+                shadowSize: [0, 0],
+                shadowAnchor: [0, 0]
+            });
+            marker = L.marker(e.latlng, { icon: defaultIcon }).addTo(map);
             console.log('Latitude:', e.latlng.lat, 'Longitude:', e.latlng.lng);
         });
     } else {

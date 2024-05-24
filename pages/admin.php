@@ -70,7 +70,10 @@ function russianMonth($monthNumber)
         width: 80%;
         max-width: 600px;
     }
-
+    .add-location-btn-block{
+        margin-top:0.5rem;
+        padding:0.4rem 1rem;
+    }
     /* Стили для карты */
     .map-block {
         height: 400px;
@@ -524,7 +527,9 @@ function russianMonth($monthNumber)
                         <div id="map"></div>
                     </div>
                     <div class="modal-buttons">
-                        <button onclick="saveLocation()">Сохранить</button>
+                        <div class="button account-info__button add-location-btn-block">
+                            <input type="button" class="button__content account-info__submit" value="Сохранить" onclick="saveLocation()">
+                        </div>
                     </div>
                 </div>
             </div>
