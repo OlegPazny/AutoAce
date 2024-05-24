@@ -133,6 +133,7 @@ function russianMonth($monthNumber) {
                     <tr>
                         <th>Автосервис</th>
                         <th>Работник</th>
+                        <th>Автомобиль</th>
                         <th>Услуга</th>
                         <th>Комментарий</th>
                         <th>Дата завершения</th>
@@ -149,6 +150,7 @@ function russianMonth($monthNumber) {
                             echo ("<tr>
                                     <td>" . $item[7] . "</td>
                                     <td>" . $item[0] . "</td>
+                                    <td>" . $item[8] . "</td>
                                     <td>" . $item[1] . "</td>
                                     <td>" . $item[2] . "</td>
                                     <td>" . $date . "</td>
