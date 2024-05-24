@@ -38,6 +38,7 @@ function russianMonth($monthNumber)
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!-- jQuery connection -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <!-- leaflet connection -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -48,37 +49,38 @@ function russianMonth($monthNumber)
     <title>Панель администратора</title>
 </head>
 <style>
-/* Стили для модального окна */
-.modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
+    /* Стили для модального окна */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
 
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
-        }
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+    }
 
-        /* Стили для карты */
-        .map-block {
-            height: 400px; /* Установите подходящую высоту для модального окна */
-        }
+    /* Стили для карты */
+    .map-block {
+        height: 400px;
+        /* Установите подходящую высоту для модального окна */
+    }
 
-        #map {
-            height: 100%;
-            width: 100%;
-        }
+    #map {
+        height: 100%;
+        width: 100%;
+    }
 </style>
 
 <body>
@@ -476,8 +478,8 @@ function russianMonth($monthNumber)
                                     name="workshop_hours" id="workshop_hours"></td>
                             <td><input type="text" class="add-workshop-hour-price-input admin-input"
                                     name="workshop_price" id="workshop_price"></td>
-                            <td onclick="openModal()">
-                                Открыть карту
+                            <td onclick="openModal()" style="cursor:pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="#232323" stroke-width="2.8" d="M15 15h4l3 7H2l3-7h4m4-7a1 1 0 1 1-2 0a1 1 0 0 1 2 0M6 8c0 5 6 10 6 10s6-5 6-10c0-3.417-2.686-6-6-6S6 4.583 6 8Z"/></svg>
                             </td>
                             <td>
                                 <div class="add-workshop-button">
@@ -491,7 +493,7 @@ function russianMonth($monthNumber)
                         </tr>
                         <?php
                         foreach ($workshops as $workshop) {
-                            echo ("<tr id='".$workshop[0]."'>
+                            echo ("<tr id='" . $workshop[0] . "'>
                                 <td><input type='text' name='workshop_name' class='admin-input' value='" . $workshop[1] . "'/></td>
                                 <td><input type='text' name='workshop_address' class='admin-input' value='" . $workshop[2] . "'/></td>
                                 <td><input type='text' name='workshop_time' class='admin-input' value='" . $workshop[5] . "'/></td>
@@ -516,16 +518,16 @@ function russianMonth($monthNumber)
                     </tbody>
             </table>
             <!-- Модальное окно для карты -->
-    <div id="mapModal" class="modal">
-        <div class="modal-content">
-            <div class="map-block">
-                <div id="map"></div>
+            <div id="mapModal" class="modal">
+                <div class="modal-content">
+                    <div class="map-block">
+                        <div id="map"></div>
+                    </div>
+                    <div class="modal-buttons">
+                        <button onclick="saveLocation()">Сохранить</button>
+                    </div>
+                </div>
             </div>
-            <div class="modal-buttons">
-                <button onclick="saveLocation()">Сохранить</button>
-            </div>
-        </div>
-    </div>
         </div>
     </section>
     <?php require_once "../includes/footer.php"; ?>

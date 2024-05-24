@@ -1,3 +1,20 @@
+$('#workshop_hours').mask('00:00-00:00', {
+    placeholder: "чч:мм-чч:мм",
+    translation: {
+        '0': {
+            pattern: /[0-9]/, optional: false
+        }
+    }
+});
+$('#workshop_price').mask('000000', {
+    placeholder: "0",
+    translation: {
+        '0': {
+            pattern: /[0-9]/, optional: true
+        }
+    }
+});
+
 var map;
 var marker;
 
