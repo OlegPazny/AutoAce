@@ -31,16 +31,7 @@ require_once "../assets/api/get_workshop_data_script.php";
     <section class="about-workshop-section">
         <div class="about-workshop-section__container">
             <div class="about-workshop-section__container__img">
-                <div class="about-workshop-section__container__img__main">
-
-                </div>
-                <div class="about-workshop-section__container__img__secondary">
-                    <div class="about-workshop-section__container__img__secondary__img second">
-
-                    </div>
-                    <div class="about-workshop-section__container__img__secondary__img third">
-
-                    </div>
+                <div class="about-workshop-section__container__img__main" style="background-image: url(<?php echo $workshop_data['photo'];?>)">
                 </div>
             </div>
             <div class="about-workshop-section__container__info">
