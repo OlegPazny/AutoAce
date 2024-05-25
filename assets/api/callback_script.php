@@ -1,6 +1,6 @@
 <?php
     require_once "mail_client_connect.php";
-
+var_dump($_POST);
     $name=$_POST['name'];
     $user_email=htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
     $message=$_POST['message'];

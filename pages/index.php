@@ -179,13 +179,13 @@ require_once "../assets/api/index_info_script.php";
                 <div>
                     <div class="callback-form__inputs-block">
                         <label class="callback-form__label">Имя</label>
-                        <input class="callback-form__input" type="text" name="name">
+                        <input class="callback-form__input" type="text" name="callback_name">
                         <label class="callback-form__label">Почта</label>
-                        <input class="callback-form__input" type="email" name="email">
+                        <input class="callback-form__input" type="email" name="callback_email">
                     </div>
                     <div class="callback-form__textarea-block">
                         <label class="callback-form__label">Текст сообщения</label>
-                        <textarea class="callback-form__textarea" name="message"></textarea>
+                        <textarea class="callback-form__textarea" name="callback_message"></textarea>
                     </div>
                 </div>
                 <div class="callback-form__submit-check-block">
