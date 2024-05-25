@@ -213,8 +213,13 @@ require_once "../assets/api/index_info_script.php";
     var swiper1 = new Swiper(".mySwiper1", {
         slidesPerView: 1,
         slidesPerGroup: 1,
+        loop: true,
         grid: {
             rows: 1,
+        },
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
         },
         spaceBetween: 1,
         pagination: {
