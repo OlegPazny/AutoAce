@@ -54,11 +54,12 @@
 }
 .filterForm{
     &__time-filter{
-        padding-left: 25px;
+        padding-left: 1rem;
         display: flex;
         flex-direction: column;
         align-items: center;
         align-self: flex-start;
+        padding-bottom:1rem;
         &__block{
             display:flex;
             flex-direction: row;

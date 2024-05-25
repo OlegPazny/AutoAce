@@ -1,16 +1,16 @@
 <?php
 session_start();
 require_once "../assets/api/get_services_script.php";
-$working_hours=mysqli_query($db, "SELECT
+$working_hours = mysqli_query($db, "SELECT
 MIN(TIME(STR_TO_DATE(SUBSTRING_INDEX(working_hours, '-', 1), '%H:%i'))) AS min_opening_time, 
 MAX(TIME(STR_TO_DATE(SUBSTRING_INDEX(working_hours, '-', -1), '%H:%i'))) AS max_closing_time, 
 MAX(TIME(STR_TO_DATE(SUBSTRING_INDEX(working_hours, '-', 1), '%H:%i'))) AS max_opening_time, 
 MIN(TIME(STR_TO_DATE(SUBSTRING_INDEX(working_hours, '-', -1), '%H:%i'))) AS min_closing_time
 FROM workshops;");
-$working_hours=mysqli_fetch_assoc($working_hours);
+$working_hours = mysqli_fetch_assoc($working_hours);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -31,9 +31,6 @@ $working_hours=mysqli_fetch_assoc($working_hours);
 
     <title>Выбор автосервиса</title>
 </head>
-<style>
-
-</style>
 <body>
     <?php require_once "../includes/header.php"; ?>
     <section class="search-section">

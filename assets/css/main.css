@@ -1157,11 +1157,12 @@ body {
 }
 
 .filterForm__time-filter {
-  padding-left: 25px;
+  padding-left: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   align-self: flex-start;
+  padding-bottom: 1rem;
 }
 .filterForm__time-filter__block {
   display: flex;
