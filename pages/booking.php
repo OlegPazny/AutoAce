@@ -54,8 +54,6 @@ $end_hour = explode(":", $end_time)[0];
                     <label>Услуга</label>
                     <select id="service" name="service"></select>
 
-
-
                     <label>Выберите сотрудника</label>
                     <select id="master" name="master"></select>
 
