@@ -178,7 +178,6 @@ function russianMonth($monthNumber)
                         <th>Имя</th>
                         <th>Почта</th>
                         <th>Автосервис</th>
-                        <th>Карта</th>
                         <th></th>
                     </tr>
                     <thead>
@@ -467,6 +466,7 @@ function russianMonth($monthNumber)
                         <th>Адрес</th>
                         <th>Время работы</th>
                         <th>Стоимость нормочаса</th>
+                        <th>Фото</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -481,6 +481,7 @@ function russianMonth($monthNumber)
                                     name="workshop_hours" id="workshop_hours"></td>
                             <td><input type="text" class="add-workshop-hour-price-input admin-input"
                                     name="workshop_price" id="workshop_price"></td>
+                            <td><input type="file" class="add-workshop-photo-input" name="workshop_photo" id="workshop_photo"></td>
                             <td onclick="openModal()" style="cursor:pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="#232323" stroke-width="2.8" d="M15 15h4l3 7H2l3-7h4m4-7a1 1 0 1 1-2 0a1 1 0 0 1 2 0M6 8c0 5 6 10 6 10s6-5 6-10c0-3.417-2.686-6-6-6S6 4.583 6 8Z"/></svg>
                             </td>
@@ -501,6 +502,10 @@ function russianMonth($monthNumber)
                                 <td><input type='text' name='workshop_address' class='admin-input' value='" . $workshop[2] . "'/></td>
                                 <td><input type='text' name='workshop_time' class='admin-input' value='" . $workshop[5] . "'/></td>
                                 <td><input type='text' name='workshop_price' class='admin-input' value='" . $workshop[6] . "'/></td>
+                                <td>
+                                    <img src='" . $workshop[7] . "' class='workshop-photo' style='width:150px; height:auto; cursor:pointer'>
+                                    <input type='hidden' name='workshop_photo' class='workshop-photo-hidden'>
+                                </td>
                                 <td></td>
                                 <td>
                                     <div class='update-workshop' data-workshop-id='" . $workshop[0] . "''>
@@ -520,6 +525,7 @@ function russianMonth($monthNumber)
                         ?>
                     </tbody>
             </table>
+            <input type="file" id="hidden_file_input" style="display: none;">
             <!-- Модальное окно для карты -->
             <div id="mapModal" class="modal">
                 <div class="modal-content">

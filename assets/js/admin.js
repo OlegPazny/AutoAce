@@ -136,101 +136,150 @@ $(document).ready(function () {
     deleteWorkshopHandler();
     //добавление автосервиса
     $('.add-workshop-button').click(function () {
-        var name = $('#workshop_name').val();
-        var address = $('#workshop_address').val();
-        var hours = $('#workshop_hours').val();
-        var price = $('#workshop_price').val();
-        var latitude = null;
-        var longitude = null;
-        if (marker) {
-            var latlng = marker.getLatLng();
-            latitude = latlng.lat;
-            longitude = latlng.lng;
-        }
-        if (!name || !address || !hours || !price || !latitude || !longitude) {
-            alert("Заполните все поля!");
+        var photoInput = document.getElementById('workshop_photo');
+        var file = photoInput.files[0];
 
-            return 0;
+        if (file) {
+            // Проверки на размер и тип файла...
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var base64Image = e.target.result.split(',')[1];
+                var mimeType = file.type;
+                var name = $('#workshop_name').val();
+                var address = $('#workshop_address').val();
+                var hours = $('#workshop_hours').val();
+                var price = $('#workshop_price').val();
+                var latitude = null;
+                var longitude = null;
+                if (marker) {
+                    var latlng = marker.getLatLng();
+                    latitude = latlng.lat;
+                    longitude = latlng.lng;
+                }
+                if (!name || !address || !hours || !price || !latitude || !longitude || !base64Image) {
+                    alert("Заполните все поля!");
+                    return;
+                }
+
+                // Отправка данных на сервер...
+                $.ajax({
+                    type: 'POST',
+                    url: '../assets/api/add_workshop_script.php',
+                    dataType: 'json',
+                    data: {
+                        workshop_name: name,
+                        workshop_address: address,
+                        workshop_hours: hours,
+                        workshop_price: price,
+                        latitude: latitude,
+                        longitude: longitude,
+                        photo: 'data:' + mimeType + ';base64,' + base64Image
+                    },
+                    success: function (response) {
+                        alert('Автосервис успешно добавлен!');
+
+                        // Добавляем новую запись в таблицу
+                        var newWorkshop = response.workshop;
+                        var tableBody = $('.workshops-table').find('tbody');
+                        var newRow = $('<tr id="' + newWorkshop.id + '"></tr>');
+                        newRow.append('<td><input type="text" name="workshop_name" class="admin-input" value="' + newWorkshop.workshop_name + '"/></td>');
+                        newRow.append('<td><input type="text" name="workshop_address" class="admin-input" value="' + newWorkshop.workshop_address + '"/></td>');
+                        newRow.append('<td><input type="text" name="workshop_time" class="admin-input" value="' + newWorkshop.workshop_hours + '"/></td>');
+                        newRow.append('<td><input type="text" name="workshop_price" class="admin-input" value="' + newWorkshop.workshop_price + '"/></td>');
+                        newRow.append('<td><img src="' + newWorkshop.photo + '" class="workshop-photo" style="width:150px; height:auto; cursor:pointer"><input type="hidden" name="workshop_photo" class="workshop-photo-hidden"></td>');
+                        newRow.append('<td><div class="update-workshop" data-workshop-id="' + newWorkshop.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="#232323" stroke-width="2" d="M1.75 16.002C3.353 20.098 7.338 23 12 23c6.075 0 11-4.925 11-11m-.75-4.002C20.649 3.901 16.663 1 12 1C5.925 1 1 5.925 1 12m8 4H1v8M23 0v8h-8"/></svg></div><div class="delete-workshop" data-workshop-id="' + newWorkshop.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
+
+                        tableBody.append(newRow);
+                        deleteWorkshopHandler();
+                        updateWorkshopHandler();
+
+                        // Очищаем поля ввода после успешной отправки
+                        $('#workshop_name').val('');
+                        $('#workshop_address').val('');
+                        $('#workshop_hours').val('');
+                        $('#workshop_price').val('');
+                        $('#workshop_photo').val(''); // Очищаем поле загрузки фотографии
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                        alert("Ошибка при добавлении автосервиса!");
+                    }
+                });
+            };
+            reader.readAsDataURL(file); // Чтение файла и преобразование в base64
+        } else {
+            alert("Выберите файл для загрузки!");
         }
-        $.ajax({
-            type: 'POST',
-            url: '../assets/api/add_workshop_script.php',
-            dataType: 'json',
-            data: {
+    });
+
+    function updateWorkshopHandler() {
+        let currentPhotoInput = null;
+
+        // Обработчик клика на фотографию
+        $(document).on('click', '.workshop-photo', function () {
+            currentPhotoInput = $(this).siblings('.workshop-photo-hidden');
+            $('#hidden_file_input').click();
+        });
+
+        // Обработчик изменения файла фотографии
+        $('#hidden_file_input').change(function () {
+            const file = this.files[0];
+
+            if (file) {
+                if (file.size > 2 * 1024 * 1024) { // Проверка размера файла
+                    alert("Размер файла не должен превышать 2 МБ");
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const base64Image = e.target.result;
+                    currentPhotoInput.val(base64Image);
+                    currentPhotoInput.siblings('.workshop-photo').attr('src', base64Image);
+                };
+                reader.readAsDataURL(file); // Чтение файла и преобразование в base64
+            }
+        });
+
+        // Обработчик клика на кнопку обновить данные автосервиса
+        $(document).on('click', '.update-workshop', function () {
+            const workshopId = $(this).data('workshop-id');
+            const row = $('#' + workshopId);
+            const name = row.find("input[name='workshop_name']").val();
+            const address = row.find("input[name='workshop_address']").val();
+            const hours = row.find("input[name='workshop_time']").val();
+            const price = row.find("input[name='workshop_price']").val();
+            const photo = row.find("input[name='workshop_photo']").val();
+
+            // Отправляем данные на сервер...
+            const data = {
+                workshop_id: workshopId,
                 workshop_name: name,
                 workshop_address: address,
                 workshop_hours: hours,
                 workshop_price: price,
-                latitude: latitude,
-                longitude: longitude
-            },
-            success: function (response) {
-                alert('Автосервис успешно добавлен!');
+                photo: photo
+            };
 
-                var newWorkshop = response.workshop;
-                var tableBody = $('.workshops-table').find('tbody');
-
-                var newRow = $('<tr id="' + newWorkshop.id + '"></tr>');
-                newRow.append('<td><input type="text" name="workshop_name" class="admin-input" value="' + newWorkshop.workshop_name + '"/></td>');
-                newRow.append('<td><input type="text" name="workshop_address" class="admin-input" value="' + newWorkshop.workshop_address + '"/></td>');
-                newRow.append('<td><input type="text" name="workshop_time" class="admin-input" value="' + newWorkshop.workshop_hours + '"/></td>');
-                newRow.append('<td><input type="text" name="workshop_price" class="admin-input" value="' + newWorkshop.workshop_price + '"/></td>');
-                newRow.append('<td></td>');
-                newRow.append('<td><div class="update-workshop" data-workshop-id="' + newWorkshop.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="#232323" stroke-width="2" d="M1.75 16.002C3.353 20.098 7.338 23 12 23c6.075 0 11-4.925 11-11m-.75-4.002C20.649 3.901 16.663 1 12 1C5.925 1 1 5.925 1 12m8 4H1v8M23 0v8h-8"/></svg></div><div class="delete-workshop" data-workshop-id="' + newWorkshop.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
-
-                tableBody.append(newRow);
-                deleteWorkshopHandler();
-                updateWorkshopHandler();
-                // Очищаем поля ввода после успешной отправки
-                $('#workshop_name').val('');
-                $('#workshop_address').val('');
-                $('#workshop_hours').val('');
-                $('#workshop_price').val('');
-            },
-            error: function (xhr, status, error) {
-                // Обработка ошибки AJAX-запроса
-                console.error(xhr.responseText);
-            }
-        });
-    });
-    function updateWorkshopHandler() {
-        document.querySelectorAll(".update-workshop").forEach(button => {
-            button.addEventListener("click", function () {
-                const workshopId = this.getAttribute("data-workshop-id");
-                const row = document.getElementById(workshopId);
-                const name = row.querySelector("input[name='workshop_name']").value;
-                const address = row.querySelector("input[name='workshop_address']").value;
-                const hours = row.querySelector("input[name='workshop_time']").value;
-                const price = row.querySelector("input[name='workshop_price']").value;
-
-                const data = {
-                    workshop_id: workshopId,
-                    workshop_name: name,
-                    workshop_address: address,
-                    workshop_hours: hours,
-                    workshop_price: price
-                };
-
-                fetch('../assets/api/update_workshop_script.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
+            fetch('../assets/api/update_workshop_script.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Автомастерская обновлена успешно!");
+                    } else {
+                        alert("Ошибка при обновлении!");
+                    }
                 })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            alert("Автомастерская обновлена успешно!");
-                        } else {
-                            alert("Ошибка при обновлении!");
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert("Error updating workshop!");
-                    });
-            });
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("Error updating workshop!");
+                });
         });
     }
     updateWorkshopHandler();
