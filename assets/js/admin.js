@@ -6,6 +6,41 @@ $('#workshop_hours').mask('00:00-00:00', {
         }
     }
 });
+// Проверка времени
+$('#workshop_hours').on('blur', function () {
+    var value = $(this).val();
+    var times = value.split('-');
+    if (times.length === 2) {
+        var startTime = times[0].split(':');
+        var endTime = times[1].split(':');
+
+        var startHour = parseInt(startTime[0], 10);
+        var startMinute = parseInt(startTime[1], 10);
+        var endHour = parseInt(endTime[0], 10);
+        var endMinute = parseInt(endTime[1], 10);
+
+        if (isNaN(startHour) || isNaN(startMinute) || isNaN(endHour) || isNaN(endMinute) ||
+            startHour > 23 || startMinute > 59 || endHour > 23 || endMinute > 59) {
+            alert('Неверное время. Убедитесь, что часы не превышают 23, а минуты не превышают 59.');
+            $(this).val('');
+            return;
+        }
+
+        var start = new Date();
+        start.setHours(startHour, startMinute);
+
+        var end = new Date();
+        end.setHours(endHour, endMinute);
+
+        if (start >= end) {
+            alert('Левая часть времени не может быть больше или равна правой части.');
+            $(this).val('');
+        }
+    } else {
+        alert('Неверный формат времени. Пожалуйста, используйте формат чч:мм-чч:мм.');
+        $(this).val('');
+    }
+});
 $('#workshop_price').mask('000000', {
     placeholder: "0",
     translation: {
