@@ -774,10 +774,19 @@ swiper-slide {
   background-color: #fff; /* Пример цвета фона */
   color: #000000; /* Пример цвета текста */
 }
-.footer__logo a h1 {
-  text-transform: uppercase;
-  font-weight: normal;
-  font-size: 1.083rem;
+.footer__logo__block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 10.3rem;
+}
+.footer__logo__block img:first-child {
+  transition: 0.5s ease-in-out;
+}
+.footer__logo:hover .footer__logo__block img:first-child {
+  transform: rotate(20deg);
+  transition: 0.5s ease-in-out;
 }
 .footer__search {
   text-transform: uppercase;

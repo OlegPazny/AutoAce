@@ -2,7 +2,10 @@
     <footer class="footer">
         <div class="footer__logo">
             <a href="../index.php">
-                <img src="../assets/images/logo_dark.png">
+                <div class="footer__logo__block">
+                    <img src="../assets/images/gear_icon_dark.svg">
+                    <img src="../assets/images/logo_text_dark.svg">
+                </div>
             </a>
         </div>
         <div class="footer__search">

@@ -6,10 +6,26 @@
     padding: 2.91rem 11.3rem;
     background-color: #fff; /* Пример цвета фона */
     color: #000000; /* Пример цвета текста */
-    &__logo a h1{
-      text-transform: uppercase;
-      font-weight: normal;
-      font-size:1.083rem;
+    &__logo{
+
+      &__block{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width:10.3rem;
+      }
+      &__block img:first-child{
+        transition: 0.5s ease-in-out;
+      }
+    }
+  
+    &__logo:hover &__logo{
+  
+      &__block img:first-child{
+        transform: rotate(20deg);
+        transition: 0.5s ease-in-out;
+      }
     }
     &__search{
       text-transform: uppercase;
