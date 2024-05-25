@@ -77,7 +77,7 @@ require_once "../assets/api/get_workshop_data_script.php";
         </div>
     </section>
     <section class="map-section">
-        <h2 class="map-section__head">мы на карте</h2>
+        <h2 class="map-section__head">Мы на карте</h2>
         <div class="map-block">
             <div id="map"></div>
         </div>

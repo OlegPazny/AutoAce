@@ -1291,7 +1291,8 @@ input[type=checkbox] {
 }
 
 .map-section__head {
-  font-family: "Soyuz";
+  font-family: "Montserrat";
+  font-weight: bold;
   font-size: 2.91rem;
   text-align: center;
 }
