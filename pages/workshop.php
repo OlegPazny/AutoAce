@@ -87,44 +87,6 @@ require_once "../assets/api/get_workshop_data_script.php";
 </body>
 <script src="../assets/js/workshop_location.js"></script>
 <script src="../assets/js/book.js"></script>
-<script>
-    window.scrollTo(0, 0);
-            //Получаем ссылку для открытия модального окна
-    var openModalLink = document.querySelector('a[href="#openModal"]');
-
-    // Получаем ссылку для закрытия модального окна
-    var closeModalLink = document.querySelector('.modalpopup .close');
-
-    // Получаем модальное окно
-    var modal = document.getElementById('openModal');
-
-    // Получаем высоту прокрутки страницы перед открытием модального окна
-    var scrollTopPos = 0;
-
-    // Обработчик клика по ссылке для открытия модального окна
-    openModalLink.addEventListener('click', function(e) {
-        // Запоминаем текущую позицию прокрутки страницы
-        scrollTopPos = window.pageYOffset || document.documentElement.scrollTop;
-        // Прокручиваем страницу вверх
-        window.scrollTo(0, 0);
-        document.body.style.overflowY = "hidden";
-        // // Добавляем класс, чтобы показать модальное окно
-    });
-
-    // // Обработчик клика по ссылке для закрытия модального окна
-    closeModalLink.addEventListener('click', function() {
-        // Прокручиваем страницу к позиции, которая была до открытия модального окна
-        window.scrollTo(0, scrollTopPos);
-        document.body.style.overflowY = "auto";
-    });
-
-    // Обработчик клика по фону модального окна для его закрытия
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            // Прокручиваем страницу к позиции, которая была до открытия модального окна
-            window.scrollTo(0, scrollTopPos);
-        }
-    });
-    </script>
+<script src="../assets/js/calendar_modal.js"></script>
 
 </html>
