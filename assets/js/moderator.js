@@ -288,116 +288,131 @@ $(document).ready(function () {
     }
     
     deleteServiceHandler();
-    //добавление отношения
-    $('.add-relation-button').click(function () {
+    // Обработчик добавления отношения
+    $('.add-relation-button').click(async function () {
         var workerNameRelation = $('#relation_worker_name').val();
         var serviceNameRelation = $('#relation_service_name').val();
 
-        $.ajax({
-            type: 'POST',
-            url: '../assets/api/add_relation_script.php',
-            dataType: 'json',
-            data: {
-                service_name_relation: serviceNameRelation,
-                worker_name_relation: workerNameRelation,
-            },
-            success: function (response) {
-                alert('Услуга успешно добавлена!');
-                var newRelation = response.relation;
-                var tableBody = $('.relations-table').find('tbody'); // находим tbody во второй таблице
-                // Создаем новую строку таблицы на основе полученных данных
-                var newRow = "<tr>" +
-                    "<td>" + newRelation.worker_name + "</td>" +
-                    "<td>" + newRelation.workshop_name + "</td>" +
-                    "<td>" + newRelation.service_name + "</td>" +
-                    "<td>" +
-                    "<div class='delete-relation' data-relation-id='" + newRelation.id + "''>" +
-                    "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>" +
-                    "<path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>" +
-                    "</svg>" +
-                    "</div>" +
-                    "</td>" +
-                    "</tr>";
-                // Вставляем новую строку перед найденным элементом
-                tableBody.find('tr').eq(1).before(newRow);
-                deleteRelationHandler();
-                $('#relation_worker_name:eq(0)').prop('selected', true);
-                $('#relation_service_name:eq(1)').prop('selected', true);
-            },
-            error: function (xhr, status, error) {
-                // Обработка ошибки AJAX-запроса
-                console.error(xhr.responseText);
-            }
-        });
-    });
-    //удаление отношения
-    function deleteRelationHandler(){
-        var deleteRelationButtons = document.querySelectorAll('.delete-relation');
-        deleteRelationButtons.forEach(function (button) {
-            button.addEventListener('click', function () {
-                var relationId = this.getAttribute('data-relation-id');
-                deleteRelation(relationId, button); // Передаем ссылку на кнопку вместе с userId
-            });
-        });
-        function deleteRelation(relationId, button) {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        var relationRow = button.parentNode.parentNode; // Используем parentNode для доступа к <td>, а затем к <tr>
-                        relationRow.parentNode.removeChild(relationRow);
-                    } else {
-                        console.error('Произошла ошибка при удалении отношения');
-                    }
-                }
-            };
-            xhr.open('POST', '../assets/api/delete_relation_script.php', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send('relation_id=' + relationId);
+        if (!workerNameRelation || !serviceNameRelation) {
+            alert('Пожалуйста, выберите работника и услугу.');
+            return;
         }
-    }
-    deleteRelationHandler();
+
+        try {
+            const response = await $.ajax({
+                type: 'POST',
+                url: '../assets/api/add_relation_script.php',
+                dataType: 'json',
+                data: {
+                    service_name_relation: serviceNameRelation,
+                    worker_name_relation: workerNameRelation,
+                }
+            });
+
+            alert('Услуга успешно добавлена!');
+            var newRelation = response.relation;
+            var addRelationRow = $('.add-relation-row');
+
+            // Создаем новую строку таблицы на основе полученных данных
+            var newRow = `
+                <tr>
+                    <td>${newRelation.worker_name}</td>
+                    <td>${newRelation.workshop_name}</td>
+                    <td>${newRelation.service_name}</td>
+                    <td>
+                        <div class='delete-relation' data-relation-id='${newRelation.id}'>
+                            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
+                                <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
+                            </svg>
+                        </div>
+                    </td>
+                </tr>
+            `;
+            // Вставляем новую строку после строки ввода
+            addRelationRow.after(newRow);
+            // Привязываем обработчик удаления к новой строке
+            deleteRelationHandler();
+
+            // Сбрасываем выбранные значения в селектах
+            $('#relation_worker_name').prop('selectedIndex', 0);
+            $('#relation_service_name').prop('selectedIndex', 0);
+
+            // Обновляем список услуг для выбранного работника
+            await loadServices(workerNameRelation);
+
+        } catch (error) {
+            console.error('Ошибка при добавлении услуги:', error);
+        }
+    });
+        // Функция привязки обработчиков удаления
+        function deleteRelationHandler() {
+            $('.delete-relation').off('click').on('click', async function () {
+                var relationId = $(this).data('relation-id');
+    
+                try {
+                    const response = await $.ajax({
+                        type: 'POST',
+                        url: '../assets/api/delete_relation_script.php',
+                        dataType: 'json',
+                        data: { relation_id: relationId }
+                    });
+    
+                    if (response.success) {
+                        alert('Услуга успешно удалена!');
+                        $(this).closest('tr').remove();
+                    } else {
+                        alert('Ошибка при удалении услуги.');
+                    }
+                } catch (error) {
+                    console.error('Ошибка при удалении услуги:', error);
+                }
+            });
+        }
+    
+        // Привязываем обработчики к существующим элементам при загрузке страницы
+        deleteRelationHandler();
     // Получаем ссылку на элемент <select> для услуги и работника
     var workerSelect = $(".workers-input");
     var serviceSelect = $(".services-input");
     var workshop_block = $("#worker-workshop");
 
-    // Слушаем изменения в выборе услуги
-    for (var i = 0; i < workerSelect.length; i++) {
-        workerSelect[i].addEventListener("change", async function () {
-            // Получаем выбранное значение услуги
-            var selectedWorkerId = this.value;
-            // Очищаем список автосервисов
-            workshop_block.innerText = '';
-            // Очищаем список услуг
-            serviceSelect[0].innerHTML = '<option selected disabled>Выберите услугу</option>';
-
-            if (selectedWorkerId) {
-                try {
-                    // Отправляем асинхронный запрос на сервер для получения работников, предоставляющих выбранную услугу
-                    const response = await fetch(`../assets/api/get_worker_workshop_script.php?worker_id=${selectedWorkerId}`);
-                    const workshop = await response.json();
-                    // Обновляем список работников в <select>
-                    workshop_block.text(workshop)
-                } catch (error) {
-                    console.error('Ошибка при получении данных о работнике:', error);
-                }
-                try {
-                    // Отправляем асинхронный запрос на сервер для получения услуг, которых нет у работников
-                    const response = await fetch(`../assets/api/get_new_worker_service_script.php?worker_id=${selectedWorkerId}`);
-                    const services = await response.json();
-                    // Обновляем список работников в <select>
-                    services.forEach(service => {
-                        const option = document.createElement('option');
-                        option.value = service[0];
-                        option.textContent = service[1];
-                        serviceSelect[0].appendChild(option);
-                    });
-                } catch (error) {
-                    console.error('Ошибка при получении данных о работниках:', error);
-                }
-            }
-        });
+    /// Функция для загрузки услуг по выбранному работнику
+    async function loadServices(workerId) {
+        try {
+            const servicesResponse = await fetch(`../assets/api/get_new_worker_service_script.php?worker_id=${workerId}`);
+            const services = await servicesResponse.json();
+            // Очищаем список услуг и добавляем опцию по умолчанию
+            serviceSelect.html('<option selected disabled>Выберите услугу</option>');
+            // Заполняем список услуг
+            services.forEach(service => {
+                serviceSelect.append(new Option(service[1], service[0]));
+            });
+        } catch (error) {
+            console.error('Ошибка при получении данных об услугах:', error);
+        }
     }
+
+    // Слушаем изменения в выборе работника
+    workerSelect.on("change", async function () {
+        var selectedWorkerId = $(this).val();
+        
+        // Очищаем список автосервисов
+        workshop_block.text('');
+
+        if (selectedWorkerId) {
+            try {
+                // Запрос на сервер для получения автосервиса
+                const workshopResponse = await fetch(`../assets/api/get_worker_workshop_script.php?worker_id=${selectedWorkerId}`);
+                const workshop = await workshopResponse.json();
+                // Обновляем блок автосервиса
+                workshop_block.text(workshop);
+            } catch (error) {
+                console.error('Ошибка при получении данных об автосервисе:', error);
+            }
+
+            // Загружаем услуги для выбранного работника
+            await loadServices(selectedWorkerId);
+        }
+    });
 
 });

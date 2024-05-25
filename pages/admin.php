@@ -409,6 +409,7 @@ function russianMonth($monthNumber)
                         <tr class="add-relation-row">
                             <td>
                                 <select class="workers-input" name="relation_worker_name" id="relation_worker_name">
+                                    <option selected disabled>Выберите механика</option>
                                     <?php
                                     foreach ($workers as $worker) {
                                         echo ("<option value='" . $worker[0] . "'>" . $worker[1] . "</option>");
