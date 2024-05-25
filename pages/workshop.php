@@ -1,9 +1,28 @@
 <?php
+require_once "../assets/api/db_connect.php";
 session_start();
-if (isset($_SESSION['workshop_id'])) {
-    unset($_SESSION['workshop_id']);
+// Проверка, если параметр не передался или содержит некорректные символы
+if (!isset($_GET['id']) || !ctype_digit($_GET['id'])) {
+    header('Location: ./map.php');
+    exit;
+} else {
+    $current_workshop_id = (int)$_GET['id']; // Преобразование параметра к целому числу для дополнительной безопасности
 }
-$_SESSION['workshop_id'] = $_GET['id'];
+
+// Проверка, если не существует такого id
+$query = "SELECT * FROM `workshops` WHERE id = $current_workshop_id";
+$result = mysqli_query($db, $query);
+
+if (mysqli_num_rows($result) > 0) {
+    if (isset($_SESSION['workshop_id'])) {
+        unset($_SESSION['workshop_id']);
+    }
+    $_SESSION['workshop_id'] = $current_workshop_id;
+} else {
+    header('Location: ./map.php');
+    exit;
+}
+
 require_once "../assets/api/get_workshop_data_script.php";
 ?>
 <!DOCTYPE html>
