@@ -95,6 +95,8 @@ $(document).ready(function () {
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send('user_id=' + userId + '&new_role=' + newRole);
     }
+    var workshopTable = document.querySelector('.relations-table');
+
     function deleteWorkshopHandler() {
         var deleteButtons = document.querySelectorAll('.delete-workshop');
 
@@ -105,31 +107,32 @@ $(document).ready(function () {
             // Добавляем новый обработчик
             button.addEventListener('click', handleDeleteButtonClick);
         });
+    }
 
-        function handleDeleteButtonClick() {
-            var workshopId = this.getAttribute('data-workshop-id');
-            if (confirm("Вы уверены, что хотите удалить этот автосервис?")) {
-                deleteWorkshop(workshopId, this);
-            }
+    function handleDeleteButtonClick(event) {
+        event.stopPropagation(); // Останавливаем распространение события
+        var workshopId = this.getAttribute('data-workshop-id');
+        if (confirm("Вы уверены, что хотите удалить этот автосервис?")) {
+            deleteWorkshop(workshopId, this);
         }
+    }
 
-        function deleteWorkshop(workshopId, button) {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        var workshopRow = button.parentNode.parentNode; // Используем parentNode для доступа к <td>, а затем к <tr>
-                        workshopRow.parentNode.removeChild(workshopRow);
-                        alert("Автосервис удален!");
-                    } else {
-                        console.error('Произошла ошибка при удалении автосервиса');
-                    }
+    function deleteWorkshop(workshopId, button) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var workshopRow = button.closest('tr'); // Используем closest для нахождения ближайшего <tr>
+                    workshopRow.parentNode.removeChild(workshopRow);
+                    alert("Автосервис удален!");
+                } else {
+                    console.error('Произошла ошибка при удалении автосервиса');
                 }
-            };
-            xhr.open('POST', '../assets/api/delete_workshop_script.php', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send('workshop_id=' + workshopId);
-        }
+            }
+        };
+        xhr.open('POST', '../assets/api/delete_workshop_script.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('workshop_id=' + workshopId);
     }
 
     // Вызов функции для инициализации обработчиков
@@ -188,6 +191,7 @@ $(document).ready(function () {
                         newRow.append('<td><input type="text" name="workshop_time" class="admin-input" value="' + newWorkshop.workshop_hours + '"/></td>');
                         newRow.append('<td><input type="text" name="workshop_price" class="admin-input" value="' + newWorkshop.workshop_price + '"/></td>');
                         newRow.append('<td><img src="' + newWorkshop.photo + '" class="workshop-photo" style="width:150px; height:auto; cursor:pointer"><input type="hidden" name="workshop_photo" class="workshop-photo-hidden"></td>');
+                        newRow.append("<td></td>");
                         newRow.append('<td><div class="update-workshop" data-workshop-id="' + newWorkshop.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="#232323" stroke-width="2" d="M1.75 16.002C3.353 20.098 7.338 23 12 23c6.075 0 11-4.925 11-11m-.75-4.002C20.649 3.901 16.663 1 12 1C5.925 1 1 5.925 1 12m8 4H1v8M23 0v8h-8"/></svg></div><div class="delete-workshop" data-workshop-id="' + newWorkshop.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
 
                         tableBody.append(newRow);
