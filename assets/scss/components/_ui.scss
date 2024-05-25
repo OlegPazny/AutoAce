@@ -92,7 +92,7 @@
     border:1px solid #fff;
     transition: 0.5s ease-in-out;
 }
-.account-info__button:hover .account-info__submit{
+.account-info__button:hover .account-info__submit, .account-info__button:hover .account-info__moderate{
     color:#fff;
     transition: 0.5s ease-in-out;
 }

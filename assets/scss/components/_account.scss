@@ -54,8 +54,10 @@
     &__submit, &__moderate{
         color:#232323;
     }
+    &__button{
+        margin-left:0.5rem;
+    }
     &__btn-block{
-        width: 80%;
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
@@ -93,11 +95,4 @@
 }
 .workshops{
     display: none;
-}
-.logout-button{
-    border: 1px solid #232323;
-
-    &__content{
-        color:#232323;
-    }
 }
