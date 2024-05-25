@@ -7,8 +7,25 @@
   color: #fff; /* Пример цвета текста */
   border-bottom: 1px solid #fff;
   &__logo{
-    font-size: 1.1rem;
-    text-transform: uppercase;
+
+    &__block{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width:10.3rem;
+    }
+    &__block img:first-child{
+      transition: 0.5s ease-in-out;
+    }
+  }
+
+  &__logo:hover &__logo{
+
+    &__block img:first-child{
+      transform: rotate(20deg);
+      transition: 0.5s ease-in-out;
+    }
   }
   &__search{
     text-transform: uppercase;
@@ -24,7 +41,8 @@
         margin-right: 1.5rem;
       }
       .account-icon {
-        /* Стили для иконки аккаунта */
+        position: relative;
+        cursor: pointer;
       }
   }
   &__logo h1, &__search p, &__contact-info{
@@ -32,9 +50,7 @@
   }
 }
 /* Стили для иконки аккаунта */
-.account-icon {
-  position: relative;
-}
+
 
 /* Стили для подменю */
 .header__menu__sub-list {

@@ -31,7 +31,10 @@ if (!isset($_SESSION['user'])) {
             <?php } else { ?>
                 <a href="../pages/index.php">
                 <?php } ?>
-                <img src="../assets/images/logo_light.png">
+                <div class="header__logo__block">
+                    <img src="../assets/images/gear_icon.svg">
+                    <img src="../assets/images/logo_text.svg">
+                </div>
             </a>
     </div>
     <?php if ($isMechanic == true || $isAdmin == true || $isWorker == true) {

@@ -800,9 +800,19 @@ swiper-slide {
   color: #fff; /* Пример цвета текста */
   border-bottom: 1px solid #fff;
 }
-.header__logo {
-  font-size: 1.1rem;
-  text-transform: uppercase;
+.header__logo__block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 10.3rem;
+}
+.header__logo__block img:first-child {
+  transition: 0.5s ease-in-out;
+}
+.header__logo:hover .header__logo__block img:first-child {
+  transform: rotate(20deg);
+  transition: 0.5s ease-in-out;
 }
 .header__search {
   text-transform: uppercase;
@@ -819,17 +829,14 @@ swiper-slide {
   margin-right: 1.5rem;
 }
 .header__contact-info .account-icon {
-  /* Стили для иконки аккаунта */
+  position: relative;
+  cursor: pointer;
 }
 .header__logo h1, .header__search p, .header__contact-info {
   margin: 0;
 }
 
 /* Стили для иконки аккаунта */
-.account-icon {
-  position: relative;
-}
-
 /* Стили для подменю */
 .header__menu__sub-list {
   background-color: #232323;
