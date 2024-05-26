@@ -31,6 +31,9 @@ require_once "../assets/api/get_workshop_data_script.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/images/favicon.svg" />
+    <meta name="description"
+        content="Добро пожаловать в AutoAce – сеть автомастерских, где качество и надежность на первом месте! Наши профессиональные механики обеспечат ваш автомобиль всем необходимым для безупречной работы. От обслуживания до ремонта, мы предлагаем полный спектр услуг по доступным ценам. Найдите ближайший к вам автосервис AutoAce и доверьте свой автомобиль в надежные руки!" />
     <!-- jQuery connection -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>

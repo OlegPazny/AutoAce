@@ -15,6 +15,9 @@ $working_hours = mysqli_fetch_assoc($working_hours);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/images/favicon.svg" />
+    <meta name="description"
+        content="Добро пожаловать в AutoAce – сеть автомастерских, где качество и надежность на первом месте! Наши профессиональные механики обеспечат ваш автомобиль всем необходимым для безупречной работы. От обслуживания до ремонта, мы предлагаем полный спектр услуг по доступным ценам. Найдите ближайший к вам автосервис AutoAce и доверьте свой автомобиль в надежные руки!" />
     <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.2/nouislider.css" rel="stylesheet">
     <!-- jQuery connection -->

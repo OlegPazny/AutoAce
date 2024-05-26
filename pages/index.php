@@ -11,10 +11,8 @@ require_once "../assets/api/index_info_script.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/images/favicon.svg" />
-    <meta
-      name="description"
-      content="Добро пожаловать в AutoAce – сеть автомастерских, где качество и надежность на первом месте! Наши профессиональные механики обеспечат ваш автомобиль всем необходимым для безупречной работы. От обслуживания до ремонта, мы предлагаем полный спектр услуг по доступным ценам. Найдите ближайший к вам автосервис AutoAce и доверьте свой автомобиль в надежные руки!"
-    />
+    <meta name="description"
+        content="Добро пожаловать в AutoAce – сеть автомастерских, где качество и надежность на первом месте! Наши профессиональные механики обеспечат ваш автомобиль всем необходимым для безупречной работы. От обслуживания до ремонта, мы предлагаем полный спектр услуг по доступным ценам. Найдите ближайший к вам автосервис AutoAce и доверьте свой автомобиль в надежные руки!" />
 
     <!-- jQuery connection -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"
@@ -35,7 +33,10 @@ require_once "../assets/api/index_info_script.php";
                     <div class="offers-slider-elem">
                         <div class="offers-slider-elem__info">
                             <h2 class="offers-slider-elem__head">техническое обслуживание автомобиля</h2>
-                            <p class="offers-slider-elem__text">Плановое техническое обслуживание рекомендуется проводить в соответствии с регламентом производителя автомобиля, что обычно указывается в руководстве по эксплуатации. Это обеспечивает оптимальную работу всех систем автомобиля и помогает сохранить гарантию на него.
+                            <p class="offers-slider-elem__text">Плановое техническое обслуживание рекомендуется
+                                проводить в соответствии с регламентом производителя автомобиля, что обычно указывается
+                                в руководстве по эксплуатации. Это обеспечивает оптимальную работу всех систем
+                                автомобиля и помогает сохранить гарантию на него.
                             </p>
                             <div class="button to-map">
                                 <input type="button" class="button__content" value="Записаться на ремонт">
@@ -50,7 +51,12 @@ require_once "../assets/api/index_info_script.php";
                     <div class="offers-slider-elem">
                         <div class="offers-slider-elem__info">
                             <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
-                            <p class="offers-slider-elem__text">Регулярный ремонт и обслуживание тормозной системы не только продлевают срок службы автомобиля, но и обеспечивают вашу безопасность и безопасность ваших пассажиров на дороге. Пренебрежение этими работами может привести к снижению эффективности торможения и, в конечном итоге, к аварийным ситуациям. Поэтому своевременный ремонт тормозной системы — это залог надежной и безопасной эксплуатации вашего автомобиля.
+                            <p class="offers-slider-elem__text">Регулярный ремонт и обслуживание тормозной системы не
+                                только продлевают срок службы автомобиля, но и обеспечивают вашу безопасность и
+                                безопасность ваших пассажиров на дороге. Пренебрежение этими работами может привести к
+                                снижению эффективности торможения и, в конечном итоге, к аварийным ситуациям. Поэтому
+                                своевременный ремонт тормозной системы — это залог надежной и безопасной эксплуатации
+                                вашего автомобиля.
                             </p>
                             <div class="button to-map">
                                 <input type="button" class="button__content" value="Записаться на ремонт">
@@ -65,7 +71,10 @@ require_once "../assets/api/index_info_script.php";
                     <div class="offers-slider-elem">
                         <div class="offers-slider-elem__info">
                             <h2 class="offers-slider-elem__head">комплексный шиномонтаж</h2>
-                            <p class="offers-slider-elem__text">Комплексный шиномонтаж также может включать проверку состояния дисков и их очистку, что помогает предотвратить коррозию и улучшить внешний вид колес. Специалисты могут порекомендовать наиболее подходящие шины для вашего автомобиля, исходя из стиля вождения и условий эксплуатации.
+                            <p class="offers-slider-elem__text">Комплексный шиномонтаж также может включать проверку
+                                состояния дисков и их очистку, что помогает предотвратить коррозию и улучшить внешний
+                                вид колес. Специалисты могут порекомендовать наиболее подходящие шины для вашего
+                                автомобиля, исходя из стиля вождения и условий эксплуатации.
                             </p>
                             <div class="button to-map">
                                 <input type="button" class="button__content" value="Записаться на ремонт">
@@ -86,7 +95,8 @@ require_once "../assets/api/index_info_script.php";
             <div class="pron">
                 <h5 class="pron__head">Профессиональные мастера</h5>
                 <p class="pron__text">
-                    Наши мастера осуществляют качественный ремонт и обслуживание вашего автомобиля с использованием передовых технологий и лучших практик в автомобильной индустрии.
+                    Наши мастера осуществляют качественный ремонт и обслуживание вашего автомобиля с использованием
+                    передовых технологий и лучших практик в автомобильной индустрии.
                 </p>
                 <img class="pron__img" src="../assets/images/pron_arrow.png">
             </div>
@@ -96,14 +106,15 @@ require_once "../assets/api/index_info_script.php";
                     <img class="pron__img up" src="../assets/images/pron_arrow.png">
                     <h5 class="pron__head">Индивидуальный подход</h5>
                     <p class="pron__text">
-                    Мы работаем с каждым клиентом индивидуально, чтобы полностью удовлетворить его потребности.
+                        Мы работаем с каждым клиентом индивидуально, чтобы полностью удовлетворить его потребности.
                     </p>
                 </div>
                 <div class="pron">
                     <img class="pron__img up" src="../assets/images/pron_arrow.png">
                     <h5 class="pron__head">Современное оборудование</h5>
                     <p class="pron__text">
-                    Мы используем передовое оборудование для точной диагностики и эффективного ремонта вашего автомобиля.
+                        Мы используем передовое оборудование для точной диагностики и эффективного ремонта вашего
+                        автомобиля.
                     </p>
                 </div>
             </div>
@@ -150,12 +161,12 @@ require_once "../assets/api/index_info_script.php";
                 <div class="swiper2 mySwiper2 container">
                     <div class="swiper-wrapper content">
                         <?php
-                            foreach($discounts as $discount){
-                                echo"
+                        foreach ($discounts as $discount) {
+                            echo "
                                     <div class='swiper-slide discount-card card'>
-                                        <h5 class='card__head'>".$discount[1]."</h5>
-                                        <h3 class='card__discount'>-".$discount[2]."%</h3>
-                                        <a href='./map.php?discount_service_id=".$discount[0]."'>
+                                        <h5 class='card__head'>" . $discount[1] . "</h5>
+                                        <h3 class='card__discount'>-" . $discount[2] . "%</h3>
+                                        <a href='./map.php?discount_service_id=" . $discount[0] . "'>
                                             <div class='slider-button'>
                                                 <input type='button' class='slider-button__content' value='Записаться'>
                                             </div>
@@ -163,7 +174,7 @@ require_once "../assets/api/index_info_script.php";
                                         <div class='slider__shadow'></div>
                                     </div>
                                 ";
-                            }
+                        }
                         ?>
                     </div>
                 </div>
@@ -237,8 +248,8 @@ require_once "../assets/api/index_info_script.php";
             disableOnInteraction: false,
         },
         effect: 'slide',
-        centerInsufficientSlides:true,
-        centeredSlidesBounds:true,
+        centerInsufficientSlides: true,
+        centeredSlidesBounds: true,
     });
 </script>
 <script src="../assets/js/callback.js"></script>
