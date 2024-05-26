@@ -23,7 +23,7 @@ if (isset($_SESSION['workshop_id'])) {
         INNER JOIN services s ON wsr.service_id = s.id
         INNER JOIN service_type st ON s.id_service_type=st.id
         INNER JOIN workshops ws ON w.workshop_id = ws.id
-        WHERE w.workshop_id=$workshop_id;");
+        WHERE w.workshop_id=$workshop_id AND w.vacation=0;");
     $services_data = mysqli_fetch_all($worker_services_data);
 
     if ($services_data) {

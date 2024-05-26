@@ -16,7 +16,7 @@ $sql = "SELECT `workers`.`id`, `workers`.`name`
 FROM `worker_service_relationships`
 INNER JOIN `workers` ON `worker_service_relationships`.`worker_id`=`workers`.`id`
 INNER JOIN `workshops` ON `workers`.`workshop_id`=`workshops`.`id`
-WHERE `worker_service_relationships`.`service_id`=$serviceId AND `workshops`.`id`=$workshopId;";
+WHERE `worker_service_relationships`.`service_id`=$serviceId AND `workshops`.`id`=$workshopId AND `workers`.`vacation`=0;";
         
 $result = $db->query($sql);
 
