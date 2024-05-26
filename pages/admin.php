@@ -190,6 +190,7 @@ function russianMonth($monthNumber)
                         <th>Имя</th>
                         <th>Почта</th>
                         <th>Автосервис</th>
+                        <th>Отпуск</th>
                         <th></th>
                     </tr>
                     <thead>
@@ -211,6 +212,7 @@ function russianMonth($monthNumber)
                                     ?>
                                 </select>
                             </td>
+                            <td></td>
                             <td>
                                 <div class="add-worker-button">
                                     <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'
@@ -229,6 +231,16 @@ function russianMonth($monthNumber)
                                     <td>" . $worker[1] . "</td>
                                     <td>" . $worker[4] . "</td>
                                     <td>" . $worker[2] . "</td>
+                                    <td>");
+                                    ?>
+                                        <select class='vacation-select' data-worker-id="<?php echo $worker[0]; ?>">
+                                            <option value='0' <?php if ($worker[5] == "0")
+                                                echo "selected"; ?>>Работает</option>
+                                            <option value='1' <?php if ($worker[5] == "1")
+                                                echo "selected"; ?>>
+                                                В отпуске</option>
+                                        </select>
+                        <?php echo ("</td>
                                     <td>
                                         <div class='block-worker' data-worker-id='" . $worker[0] . "''>
                                             <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>

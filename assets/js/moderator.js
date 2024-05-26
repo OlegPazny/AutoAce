@@ -199,11 +199,13 @@ $(document).ready(function () {
                 newRow.append('<td>' + newWorker.worker_name + '</td>');
                 newRow.append('<td>' + newWorker.worker_email + '</td>');
                 newRow.append('<td>' + newWorker.worker_workshop + '</td>');
+                newRow.append('<td>' + newWorker.select + '</td>');
                 newRow.append('<td><div class="block-worker" data-worker-id="' + newWorker.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
 
                 // Добавляем новую строку в таблицу
                 tableBody.find('tr').eq(1).before(newRow);
                 deleteWorkerHandler();
+                updateVacationHandler();
                 // Очищаем поля ввода после успешной отправки
                 $('#worker_name').val('');
                 $('#worker_email').val('');
@@ -242,6 +244,34 @@ $(document).ready(function () {
         }
     }
     deleteWorkerHandler();
+    //изменение отпуска работника 
+    function updateVacationHandler(){
+        var vacationSelects = document.querySelectorAll('.vacation-select');
+        vacationSelects.forEach(function (select) {
+            select.addEventListener('change', function () {
+                var workerId = this.getAttribute('data-worker-id');
+                var newStatus = this.value;
+                updateVacation(workerId, newStatus);
+            });
+        });
+    
+        function updateVacation(workerId, newStatus) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // Обработка успешного ответа
+                    } else {
+                        console.error('Произошла ошибка при обновлении статуса работника');
+                    }
+                }
+            };
+            xhr.open('POST', '../assets/api/update_vacation_script.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('worker_id=' + workerId + '&new_status=' + newStatus);
+        }
+    }
+    updateVacationHandler();
     //добавление услуги
     $('.add-service-button').click(function () {
         var serviceName = $('#service_name').val();

@@ -77,13 +77,17 @@
     <p>Почта: ".$workerEmail."</p>
     <p>Пароль: ".$password."</p>";
 
-    $query="INSERT INTO `workers` (`id`, `name`, `workshop_id`, `login`, `email`, `password`) VALUES (NULL, '$workerName', '$workerWorkshop', '$workerLogin', '$workerEmail', '$workerPassword')";
+    $query="INSERT INTO `workers` (`id`, `name`, `workshop_id`, `login`, `email`, `password`, `vacation`) VALUES (NULL, '$workerName', '$workerWorkshop', '$workerLogin', '$workerEmail', '$workerPassword', 0)";
     if(mysqli_query($db, $query)){
         $workerId=mysqli_insert_id($db);
 
         $workshop_name=mysqli_query($db, "SELECT `name` FROM `workshops` WHERE `id`=$workerWorkshop");
         $workshop_name=mysqli_fetch_assoc($workshop_name);
 
+        $select="<select class='vacation-select' data-worker-id='".$workerId."'>
+                    <option value='0' selected>Работает</option>
+                    <option value='1'>В отпуске</option>
+                </select>";
         $response = [
             'success' => true,
             'worker' => [
@@ -91,7 +95,8 @@
                 'worker_login' => $workerLogin,
                 'worker_name' => $workerName,
                 'worker_email' => "$workerEmail",
-                'worker_workshop' => $workshop_name['name']
+                'worker_workshop' => $workshop_name['name'],
+                'select' => $select
             ]
         ];
         echo json_encode($response);
