@@ -232,7 +232,11 @@ $(document).ready(function () {
                         tableBody.append(newRow);
                         deleteWorkshopHandler();
                         updateWorkshopHandler();
-
+                        // Удаляем маркер с карты
+                        if (marker) {
+                            marker.remove();
+                            marker = null;
+                        }
                         // Очищаем поля ввода после успешной отправки
                         $('#workshop_name').val('');
                         $('#workshop_address').val('');
