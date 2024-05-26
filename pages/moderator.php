@@ -75,32 +75,59 @@ function russianMonth($monthNumber)
                         foreach ($users as $user) {
                             if ($user[6] == "1") {
                                 $isVerified = "Подтвержден";
-                            } else if ($user[6] == "confirmed") {
+                            } else if ($user[6] == "0") {
                                 $isVerified = "Не подтвержден";
                             }
 
                             if ($user[5] == "admin") {
                                 $role = "Администратор";
-                                continue;
                             } else if ($user[5] == "client") {
                                 $role = "Клиент";
                             } else if ($user[5] == "worker") {
                                 $role = "Работник";
                             }
 
+                            $name="Клиент";
+                            if($user[2]!=NULL){
+                                $name=$user[2];
+                            }
+                            $login="Client";
+                            if($user[1]!=NULL){
+                                $login=$user[1];
+                            }
+
                             echo ("<tr>
                                     <td>" . $user[0] . "</td>
-                                    <td>" . $user[1] . "</td>
-                                    <td>" . $user[2] . "</td>
+                                    <td>" . $login . "</td>
+                                    <td>" . $name . "</td>
                                     <td>" . $user[3] . "</td>
-                                    <td>" . $role . "</td>
+                                    <td>");
+                            if ($user[5] != "admin") { ?>
+                                <select class='role-select' data-user-id="<?php echo $user[0]; ?>">
+                                    <option value='client' <?php if ($user[5] == "client")
+                                        echo "selected"; ?>>
+                                        Клиент</option>
+                                    <option value='worker' <?php if ($user[5] == "worker")
+                                        echo "selected"; ?>>
+                                        Работник</option>
+                                </select>
+                            <?php } else {
+                                echo ("Администратор");
+                            }
+                            echo ("
+                                    </td>
                                     <td>" . $isVerified . "</td>
-                                    <td>
-                                        <div class='block-user' data-user-id='" . $user[0] . "''>
-                                            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
-                                                <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
-                                            </svg>
-                                        </div>
+                                    <td>");
+                            if ($user[5] != "admin") {
+                                echo ("
+                                    <div class='block-user' data-user-id='" . $user[0] . "''>
+                                        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
+                                            <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
+                                        </svg>
+                                    </div>
+                                    ");
+                            }
+                            echo (" 
                                     </td>
                                 </tr>");
                         }
@@ -138,6 +165,7 @@ function russianMonth($monthNumber)
                                     ?>
                                 </select>
                             </td>
+                            <td>
                                 <div class="add-worker-button">
                                     <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'
                                         viewBox='0 0 24 24'>
@@ -175,10 +203,13 @@ function russianMonth($monthNumber)
                         <th>Автосервис</th>
                         <th>Услуга</th>
                         <th>Стоимость</th>
+                        <th>Клиент</th>
+                        <th>Автомобиль</th>
                         <th>Комментарий</th>
                         <th>Дата записи</th>
                         <th>Время записи</th>
                         <th>Статус</th>
+                        <th></th>
                     </tr>
                     <thead>
                     <tbody>
@@ -187,21 +218,25 @@ function russianMonth($monthNumber)
                             if ($account_book[6] == "completed") {
                                 continue;
                             }
+                            $name="Клиент";
+                            if($account_book[10]!=NULL){
+                                $name=$account_book[10];
+                            }
                             $date = strtotime($account_book[4]); // Преобразование строки в дату
                             $day = date('j', $date);
                             $month = date('n', $date);
                             $date = $day . ' ' . russianMonth($month);
 
-                            if ($account_book[9] == NULL) {
-                                $price = $account_book[7] * $account_book[8];
-                            } else {
-                                $price = $account_book[7] * $account_book[8] * (100 - $account_book[9]) / 100;
+                            $price=(int) $account_book[7]*(int)$account_book[11];
+                            if($account_book[9]!=NULL){
+                                $price=$price*(100-(int)$account_book[9])/100;
                             }
-
                             echo ("<tr>
                                     <td>" . $account_book[1] . "</td>
                                     <td>" . $account_book[2] . "</td>
                                     <td>" . $price . " р.</td>
+                                    <td>" . $name . "</td>
+                                    <td>" . $account_book[12] . "</td>
                                     <td>" . $account_book[3] . "</td>
                                     <td>" . $date . "</td>
                                     <td>" . substr($account_book[5], 0, 5) . "</td>
@@ -219,6 +254,13 @@ function russianMonth($monthNumber)
                                     Выполнено</option>
                             </select>
                             <?php echo ("</td>
+                                    <td>
+                                        <div class='delete-book' data-book-id='" . $account_book[0] . "''>
+                                            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
+                                                <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
+                                            </svg>
+                                        </div>
+                                    </td>
                             </tr>");
                         }
                         ?>
