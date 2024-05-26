@@ -3,16 +3,25 @@ session_start();
 
 require_once "../assets/api/account_info_script.php";
 require_once "../assets/api/isAdmin.php";
-if(!isset($_SESSION['user']['id'])||$isMechanic==true){
+if (!isset($_SESSION['user']['id']) || $isMechanic == true) {
     header('Location: ../index.php');
 }
 // Функция для получения русского названия месяца
-function russianMonth($monthNumber) {
+function russianMonth($monthNumber)
+{
     $months = array(
-        'января', 'февраля', 'марта',
-        'апреля', 'мая', 'июня',
-        'июля', 'августа', 'сентября',
-        'октября', 'ноября', 'декабря'
+        'января',
+        'февраля',
+        'марта',
+        'апреля',
+        'мая',
+        'июня',
+        'июля',
+        'августа',
+        'сентября',
+        'октября',
+        'ноября',
+        'декабря'
     );
     return $months[$monthNumber - 1];
 }
@@ -48,7 +57,8 @@ function russianMonth($monthNumber) {
         <div class="account-info">
             <div class="account-info__data">
                 <label class="account-info__data__label">Имя</label>
-                <input class="account-info__data__input" type="text" name="name" value="<?php echo($account_info['name']);?>">
+                <input class="account-info__data__input" type="text" name="name"
+                    value="<?php echo ($account_info['name']); ?>">
             </div>
             <div class="account-info__data">
                 <label class="account-info__data__label">Пароль</label>
@@ -56,7 +66,8 @@ function russianMonth($monthNumber) {
             </div>
             <div class="account-info__data">
                 <label class="account-info__data__label">Почта</label>
-                <input class="account-info__data__input" type="email" name="email" value="<?php echo($account_info['email']);?>">
+                <input class="account-info__data__input" type="email" name="email"
+                    value="<?php echo ($account_info['email']); ?>">
             </div>
             <div class="account-info__data">
                 <label class="account-info__data__label">Новый пароль</label>
@@ -64,19 +75,19 @@ function russianMonth($monthNumber) {
             </div>
             <div class="account-info__btn-block">
                 <?php
-                    if($isWorker==true){
-                        echo("<a href='../pages/moderator.php'>
+                if ($isWorker == true) {
+                    echo ("<a href='../pages/moderator.php'>
                                 <div class='button account-info__button'>
                                     <input type='button' class='button__content account-info__moderate' value='панель модератора'>
                                 </div>
                             </a>");
-                    }else if($isAdmin==true){
-                        echo("<a href='../pages/admin.php'>
+                } else if ($isAdmin == true) {
+                    echo ("<a href='../pages/admin.php'>
                                 <div class='button account-info__button'>
                                     <input type='button' class='button__content account-info__moderate' value='панель администратора'>
                                 </div>
                             </a>");
-                    }
+                }
                 ?>
                 <div class="button account-info__button">
                     <input type="button" class="button__content account-info__submit" value="изменить данные">
@@ -84,48 +95,52 @@ function russianMonth($monthNumber) {
             </div>
         </div>
         <div class="account-services orders">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Автосервис</th>
-                        <th>Работник</th>
-                        <th>Автомобиль</th>
-                        <th>Услуга</th>
-                        <th>Комментарий</th>
-                        <th>Дата записи</th>
-                        <th>Время записи</th>
-                        <th>Статус</th>
-                    </tr>
-                    <thead>
-                    <tbody>
-                        <?php
-                        foreach ($account_books as $account_book) {
-                            $date = strtotime($account_book[4]); // Преобразование строки в дату
-                            $day = date('j', $date);
-                            $month = date('n', $date);
-                            $date = $day . ' ' . russianMonth($month);
-                            if ($account_book[6] == "pending") {
-                                $status = "В обработке";
-                            } else if ($account_book[6] == "confirmed") {
-                                $status = "Принято в работу";
-                            } else if ($account_book[6] == "completed") {
-                                $status = "Выполнено";
-                                continue;
-                            }
+            <h2>Мои записи</h2>
+            <div class="order-cards-container">
+                
+                <?php
+                foreach ($account_books as $account_book) {
+                    $date = strtotime($account_book[4]); // Преобразование строки в дату
+                    $day = date('j', $date);
+                    $month = date('n', $date);
+                    $date = $day . ' ' . russianMonth($month);
+                    if ($account_book[6] == "pending") {
+                        $status = "В обработке";
+                    } else if ($account_book[6] == "confirmed") {
+                        $status = "Принято в работу";
+                    } else if ($account_book[6] == "completed") {
+                        $status = "Выполнено";
+                        continue;
+                    }
 
-                            echo ("<tr>
-                                <td>" . $account_book[1] . "</td>
-                                <td>" . $account_book[2] . "</td>
-                                <td>" . $account_book[7] . "</td>
-                                <td>" . $account_book[0] . "</td>
-                                <td>" . $account_book[3] . "</td>
-                                <td>" . $date . "</td>
-                                <td>" . substr($account_book[5], 0, 5) . "</td>
-                                <td>" . $status . "</td></tr>");
-                        }
-                        ?>
-                    </tbody>
-            </table>
+                    $car_row="";
+                    if($account_book[7]!=""){
+                        $car_row="<p class='order-card__bottom-block__details__vehicle'>Автомобиль: ".$account_book[7]."</p>";
+                    }
+                    echo("
+                        <div class='order-card'>
+                            <div class='order-card__head'>
+                                <img class='order-card__head__img' src='../assets/images/location.png'>
+                                <p class='order-card__head__workshop'>".$account_book[1]."</p>
+                            </div>
+                            <h2 class='order-card__service'>".$account_book[0]."</h2>
+                            <h3 class='order-card__worker'>".$account_book[2]."</h3>
+                            <div class='order-card__bottom-block'>
+                                <div class='order-card__bottom-block__details'>
+                                    ".$car_row."
+                                    <p class='order-card__bottom-block__details__status'>".$status."</p>
+                                </div>
+                                <div class='order-card__bottom-block__datetime'>
+                                    <p class='order-card__bottom-block__datetime__value'>".$date.", ".substr($account_book[5], 0, 5)."</p>
+                                </div>
+                            </div>
+                        </div>
+                    ");
+
+                }
+                ?>
+                
+            </div>
         </div>
         <div class="account-services history">
             <table>
@@ -189,13 +204,13 @@ function russianMonth($monthNumber) {
                             </td>
                         </tr>
                         <?php
-                        $i=1;
+                        $i = 1;
                         foreach ($vehicles as $vehicle) {
-                            echo"
+                            echo "
                                 <tr>
-                                    <td>".$i."</td>
-                                    <td>".$vehicle[1]."</td>
-                                    <td>".$vehicle[2]."</td>
+                                    <td>" . $i . "</td>
+                                    <td>" . $vehicle[1] . "</td>
+                                    <td>" . $vehicle[2] . "</td>
                                     <td>
                                         <div class='delete-vehicle' data-vehicle-id='" . $vehicle[0] . "''>
                                             <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
@@ -205,7 +220,7 @@ function russianMonth($monthNumber) {
                                     </td>
                                 </tr>
                             ";
-                            $i=$i+1;
+                            $i = $i + 1;
                         }
                         ?>
                     </tbody>
