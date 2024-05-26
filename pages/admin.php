@@ -70,10 +70,12 @@ function russianMonth($monthNumber)
         width: 80%;
         max-width: 600px;
     }
-    .add-location-btn-block{
-        margin-top:0.5rem;
-        padding:0.4rem 1rem;
+
+    .add-location-btn-block {
+        margin-top: 0.5rem;
+        padding: 0.4rem 1rem;
     }
+
     /* Стили для карты */
     .map-block {
         height: 400px;
@@ -118,7 +120,7 @@ function russianMonth($monthNumber)
                         foreach ($users as $user) {
                             if ($user[6] == "1") {
                                 $isVerified = "Подтвержден";
-                            } else if ($user[6] == "confirmed") {
+                            } else if ($user[6] == "0") {
                                 $isVerified = "Не подтвержден";
                             }
 
@@ -130,10 +132,19 @@ function russianMonth($monthNumber)
                                 $role = "Работник";
                             }
 
+                            $name="Клиент";
+                            if($user[2]!=NULL){
+                                $name=$user[2];
+                            }
+                            $login="Client";
+                            if($user[1]!=NULL){
+                                $login=$user[1];
+                            }
+
                             echo ("<tr>
                                     <td>" . $user[0] . "</td>
-                                    <td>" . $user[1] . "</td>
-                                    <td>" . $user[2] . "</td>
+                                    <td>" . $login . "</td>
+                                    <td>" . $name . "</td>
                                     <td>" . $user[3] . "</td>
                                     <td>");
                             if ($user[5] != "admin") { ?>
@@ -237,10 +248,13 @@ function russianMonth($monthNumber)
                         <th>Автосервис</th>
                         <th>Услуга</th>
                         <th>Стоимость</th>
+                        <th>Клиент</th>
+                        <th>Автомобиль</th>
                         <th>Комментарий</th>
                         <th>Дата записи</th>
                         <th>Время записи</th>
                         <th>Статус</th>
+                        <th></th>
                     </tr>
                     <thead>
                     <tbody>
@@ -249,15 +263,25 @@ function russianMonth($monthNumber)
                             if ($account_book[6] == "completed") {
                                 continue;
                             }
+                            $name="Клиент";
+                            if($account_book[10]!=NULL){
+                                $name=$account_book[10];
+                            }
                             $date = strtotime($account_book[4]); // Преобразование строки в дату
                             $day = date('j', $date);
                             $month = date('n', $date);
                             $date = $day . ' ' . russianMonth($month);
 
+                            $price=(int) $account_book[7]*(int)$account_book[11];
+                            if($account_book[9]!=NULL){
+                                $price=$price*(100-(int)$account_book[9])/100;
+                            }
                             echo ("<tr>
                                     <td>" . $account_book[1] . "</td>
                                     <td>" . $account_book[2] . "</td>
-                                    <td>" . (int) $account_book[7] . " р.</td>
+                                    <td>" . $price . " р.</td>
+                                    <td>" . $name . "</td>
+                                    <td>" . $account_book[12] . "</td>
                                     <td>" . $account_book[3] . "</td>
                                     <td>" . $date . "</td>
                                     <td>" . substr($account_book[5], 0, 5) . "</td>
@@ -275,6 +299,13 @@ function russianMonth($monthNumber)
                                     Выполнено</option>
                             </select>
                             <?php echo ("</td>
+                                    <td>
+                                        <div class='delete-book' data-book-id='" . $account_book[0] . "''>
+                                            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
+                                                <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
+                                            </svg>
+                                        </div>
+                                    </td>
                             </tr>");
                         }
                         ?>
@@ -288,8 +319,8 @@ function russianMonth($monthNumber)
                         <th>Автосервис</th>
                         <th>Услуга</th>
                         <th>Комментарий</th>
-                        <th>Дата записи</th>
-                        <th>Время записи</th>
+                        <th>Дата выполнения</th>
+                        <th>Время выполнения</th>
                         <th>Статус</th>
                     </tr>
                     <thead>
@@ -482,9 +513,13 @@ function russianMonth($monthNumber)
                                     name="workshop_hours" id="workshop_hours"></td>
                             <td><input type="text" class="add-workshop-hour-price-input admin-input"
                                     name="workshop_price" id="workshop_price"></td>
-                            <td><input type="file" class="add-workshop-photo-input" name="workshop_photo" id="workshop_photo"></td>
+                            <td><input type="file" class="add-workshop-photo-input" name="workshop_photo"
+                                    id="workshop_photo"></td>
                             <td onclick="openModal()" style="cursor:pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="#232323" stroke-width="2.8" d="M15 15h4l3 7H2l3-7h4m4-7a1 1 0 1 1-2 0a1 1 0 0 1 2 0M6 8c0 5 6 10 6 10s6-5 6-10c0-3.417-2.686-6-6-6S6 4.583 6 8Z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="#232323" stroke-width="2.8"
+                                        d="M15 15h4l3 7H2l3-7h4m4-7a1 1 0 1 1-2 0a1 1 0 0 1 2 0M6 8c0 5 6 10 6 10s6-5 6-10c0-3.417-2.686-6-6-6S6 4.583 6 8Z" />
+                                </svg>
                             </td>
                             <td>
                                 <div class="add-workshop-button">
@@ -535,7 +570,8 @@ function russianMonth($monthNumber)
                     </div>
                     <div class="modal-buttons">
                         <div class="button account-info__button add-location-btn-block">
-                            <input type="button" class="button__content account-info__submit" value="Сохранить" onclick="saveLocation()">
+                            <input type="button" class="button__content account-info__submit" value="Сохранить"
+                                onclick="saveLocation()">
                         </div>
                     </div>
                 </div>

@@ -10,11 +10,13 @@
     ");
     $workers=mysqli_fetch_all($workers);
 //записи на услуги
-    $accounts_books=mysqli_query($db, "SELECT `service_bookings`.`id`, `workshops`.`name`, `services`.`service_name`, `message`, `service_date`, `service_time`, `status`, `services`.`duration`, `workshops`.`standart_hour`, `services`.`discount` FROM `service_bookings`
+    $accounts_books=mysqli_query($db, "SELECT `service_bookings`.`id`, `workshops`.`name`, `services`.`service_name`, `message`, `service_date`, `service_time`, `status`, `services`.`duration`, `workshops`.`standart_hour`, `services`.`discount`, `users`.`name`, `workshops`.`standart_hour`, `vehicles`.`brand` FROM `service_bookings`
     INNER JOIN `worker_service_relationships` ON `service_bookings`.`worker_service_id`=`worker_service_relationships`.`id`
     inner join `services` on `worker_service_relationships`.`service_id`=`services`.`id`
     INNER JOIN `workers` ON `worker_service_relationships`.`worker_id`=`workers`.`id`
     INNER JOIN `workshops` ON `workers`.`workshop_id`=`workshops`.`id`
+    LEFT JOIN `users` ON `service_bookings`.`user_id`=`users`.`id`
+    LEFT JOIN `vehicles` ON `service_bookings`.`vehicle_id`=`vehicles`.`id`
     ORDER BY `service_date` ASC, `service_time` ASC");
     $accounts_books=mysqli_fetch_all($accounts_books);
 //история записей

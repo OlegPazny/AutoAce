@@ -108,6 +108,35 @@ $(document).ready(function () {
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send('booking_id=' + bookingId + '&new_status=' + newStatus);
     }
+    //удаление записи
+    function deleteBookHandler() {
+        var deleteButtons = document.querySelectorAll('.delete-book');
+        deleteButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var bookId = this.getAttribute('data-book-id');
+                deleteBook(bookId, button); // Передаем ссылку на кнопку вместе с userId
+            });
+        });
+        function deleteBook(bookId, button) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        alert("Запись удалена!")
+                        var bookRow = button.parentNode.parentNode;
+                        bookRow.parentNode.removeChild(bookRow);
+                    } else {
+                        console.error('Произошла ошибка при удалении записи');
+                    }
+                }
+            };
+            xhr.open('POST', '../assets/api/delete_book_script.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('book_id=' + bookId);
+        }
+    }
+
+    deleteBookHandler();
     //изменение статуса заказа из истории заказов
 
     var statusSelects = document.querySelectorAll('.history-status-select');
