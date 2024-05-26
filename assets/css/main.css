@@ -1406,6 +1406,19 @@ input[type=checkbox] {
   border: 2px solid #c2c2c2;
   margin: 1rem;
 }
+.order-card__delete {
+  align-self: flex-end;
+  margin-right: 1rem;
+  position: absolute;
+  cursor: pointer;
+}
+.order-card__delete path {
+  transition: 0.5s ease-in-out;
+}
+.order-card__delete:hover path {
+  stroke: #232323;
+  transition: 0.5s ease-in-out;
+}
 .order-card__head {
   display: flex;
   flex-direction: row;

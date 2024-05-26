@@ -4,7 +4,7 @@
 
     $user_id=$_SESSION['user']['id'];
 
-    $account_books=mysqli_query($db, "SELECT `services`.`service_name`, `workshops`.`name`, `workers`.`name`, `message`, `service_date`, `service_time`, `status`, `vehicles`.`brand` FROM `service_bookings`
+    $account_books=mysqli_query($db, "SELECT `services`.`service_name`, `workshops`.`name`, `workers`.`name`, `message`, `service_date`, `service_time`, `status`, `vehicles`.`brand`, `service_bookings`.`id` FROM `service_bookings`
     INNER JOIN `worker_service_relationships` ON `service_bookings`.`worker_service_id`=`worker_service_relationships`.`id`
     inner join `services` on `worker_service_relationships`.`service_id`=`services`.`id`
     INNER JOIN `workers` ON `worker_service_relationships`.`worker_id`=`workers`.`id`

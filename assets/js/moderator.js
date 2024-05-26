@@ -164,7 +164,7 @@ $(document).ready(function () {
                 newRow.append('<td>' + newWorker.worker_name + '</td>');
                 newRow.append('<td>' + newWorker.worker_email + '</td>');
                 newRow.append('<td>' + newWorker.worker_workshop + '</td>');
-                newRow.append('<td><div class="block-worker" data-worker-id="'+newWorker.id+'"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
+                newRow.append('<td><div class="block-worker" data-worker-id="' + newWorker.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
 
                 // Добавляем новую строку в таблицу
                 tableBody.find('tr').eq(1).before(newRow);
@@ -181,7 +181,7 @@ $(document).ready(function () {
         });
     });
     //блокировка работника
-    function deleteWorkerHandler(){
+    function deleteWorkerHandler() {
         var blockButtons = document.querySelectorAll('.block-worker');
         blockButtons.forEach(function (button) {
             button.addEventListener('click', function () {
@@ -242,7 +242,7 @@ $(document).ready(function () {
                 newRow.append('<td>' + newService.service_hours + ' н/ч</td>');
                 newRow.append('<td>' + newService.service_type + '</td>');
                 newRow.append('<td>' + newService.service_discount + '</td>');
-                newRow.append('<td><div class="delete-service" data-service-id="'+newService.id+'"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
+                newRow.append('<td><div class="delete-service" data-service-id="' + newService.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
 
                 // Добавляем новую строку в таблицу
                 tableBody.find('tr').eq(1).before(newRow);
@@ -261,7 +261,7 @@ $(document).ready(function () {
         });
     });
     //удаление услуги
-    function deleteServiceHandler(){
+    function deleteServiceHandler() {
         var deleteButtons = document.querySelectorAll('.delete-service');
         deleteButtons.forEach(function (button) {
             button.addEventListener('click', function () {
@@ -286,7 +286,7 @@ $(document).ready(function () {
             xhr.send('service_id=' + serviceId);
         }
     }
-    
+
     deleteServiceHandler();
     // Обработчик добавления отношения
     $('.add-relation-button').click(async function () {
@@ -344,33 +344,33 @@ $(document).ready(function () {
             console.error('Ошибка при добавлении услуги:', error);
         }
     });
-        // Функция привязки обработчиков удаления
-        function deleteRelationHandler() {
-            $('.delete-relation').off('click').on('click', async function () {
-                var relationId = $(this).data('relation-id');
-    
-                try {
-                    const response = await $.ajax({
-                        type: 'POST',
-                        url: '../assets/api/delete_relation_script.php',
-                        dataType: 'json',
-                        data: { relation_id: relationId }
-                    });
-    
-                    if (response.success) {
-                        alert('Услуга успешно удалена!');
-                        $(this).closest('tr').remove();
-                    } else {
-                        alert('Ошибка при удалении услуги.');
-                    }
-                } catch (error) {
-                    console.error('Ошибка при удалении услуги:', error);
+    // Функция привязки обработчиков удаления
+    function deleteRelationHandler() {
+        $('.delete-relation').off('click').on('click', async function () {
+            var relationId = $(this).data('relation-id');
+
+            try {
+                const response = await $.ajax({
+                    type: 'POST',
+                    url: '../assets/api/delete_relation_script.php',
+                    dataType: 'json',
+                    data: { relation_id: relationId }
+                });
+
+                if (response.success) {
+                    alert('Услуга успешно удалена!');
+                    $(this).closest('tr').remove();
+                } else {
+                    alert('Ошибка при удалении услуги.');
                 }
-            });
-        }
-    
-        // Привязываем обработчики к существующим элементам при загрузке страницы
-        deleteRelationHandler();
+            } catch (error) {
+                console.error('Ошибка при удалении услуги:', error);
+            }
+        });
+    }
+
+    // Привязываем обработчики к существующим элементам при загрузке страницы
+    deleteRelationHandler();
     // Получаем ссылку на элемент <select> для услуги и работника
     var workerSelect = $(".workers-input");
     var serviceSelect = $(".services-input");
@@ -395,7 +395,7 @@ $(document).ready(function () {
     // Слушаем изменения в выборе работника
     workerSelect.on("change", async function () {
         var selectedWorkerId = $(this).val();
-        
+
         // Очищаем список автосервисов
         workshop_block.text('');
 

@@ -119,6 +119,11 @@ function russianMonth($monthNumber)
                     }
                     echo("
                         <div class='order-card'>
+                            <svg class='order-card__delete' data-book-id='".$account_book[8]."' xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em'
+                                viewBox='0 0 24 24'>
+                                <path fill='none' stroke='#7e7e7e' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.1'
+                                    d='m7 7l10 10M7 17L17 7' />
+                            </svg>
                             <div class='order-card__head'>
                                 <img class='order-card__head__img' src='../assets/images/location.png'>
                                 <p class='order-card__head__workshop'>".$account_book[1]."</p>
@@ -232,6 +237,7 @@ function russianMonth($monthNumber)
 <!-- <script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/popper.min.js" type="text/javascript"></script> -->
 <script src="../assets/js/account_navigation.js"></script>
-<script src="../assets/js/change_user_data.js"></script>
+<script src="../assets/js/account_navigation.js"></script>
+<script src="../assets/js/delete_account_book.js"></script>
 
 </html>
