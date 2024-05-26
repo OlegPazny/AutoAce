@@ -97,6 +97,7 @@ function russianMonth($monthNumber)
                 <li class="nav__list__item workers-btn">работники</li>
                 <li class="nav__list__item orders-btn">заказанные услуги</li>
                 <li class="nav__list__item history-btn">архив заказов</li>
+                <li class="nav__list__item service-types-btn">тип услуги</li>
                 <li class="nav__list__item services-btn">услуги</li>
                 <li class="nav__list__item relations-btn">назначить услуги</li>
                 <li class="nav__list__item workshops-btn">автосервисы</li>
@@ -419,6 +420,50 @@ function russianMonth($monthNumber)
                                         </svg>
                                     </div>
                                 </td>
+                                </tr>
+                                ");
+                        }
+                        ?>
+                    </tbody>
+            </table>
+        </div>
+        <div class="account-services service-types">
+            <table class="service-types-table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Название</th>
+                        <th></th>
+                    </tr>
+                    <thead>
+                    <tbody>
+                        <tr id="new-service-type-row">
+                            <td></td>
+                            <td><input type="text" class="add-service-input admin-input" name="service-type_name"
+                                    id="service-type_name"></td>
+                            </td>
+                            <td>
+                                <div class="add-service-type-button">
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'
+                                        viewBox='0 0 24 24'>
+                                        <path fill='#232323'
+                                            d='M21 7v12q0 .825-.587 1.413T19 21H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h12zm-9 11q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-6-8h9V6H6z' />
+                                    </svg>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                        foreach ($services_types as $service_type) {
+                            echo ("<tr>
+                                    <td>" . $service_type[0] . "</td>
+                                    <td>" . $service_type[1] . "</td>
+                                    <td>
+                                        <div class='delete-service-type' data-service-type-id='" . $service_type[0] . "''>
+                                            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
+                                                <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
+                                            </svg>
+                                        </div>
+                                    </td>
                                 </tr>
                                 ");
                         }

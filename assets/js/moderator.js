@@ -2,12 +2,12 @@
 $(document).ready(function () {
     // Функция для скрытия всех контейнеров, кроме переданного
     function hideContainers(exceptContainer) {
-        $('.accounts, .orders, .history, .services, .relations, .workers, .workshops').not(exceptContainer).hide();
+        $('.accounts, .orders, .history, .services, .service-types, .relations, .workers, .workshops').not(exceptContainer).hide();
     }
 
     // Функция для установки стилей кнопок
     function setButtonStyles(activeButton) {
-        $('.info-btn, .orders-btn, .history-btn, .services-btn, .relations-btn, .workers-btn, .workshops-btn').css({
+        $('.info-btn, .orders-btn, .history-btn, .services-btn, .service-types-btn, .relations-btn, .workers-btn, .workshops-btn').css({
             'background': '#232323',
             'color': '#fff'
         });
@@ -39,6 +39,12 @@ $(document).ready(function () {
     $('.services-btn').on('click', function () {
         hideContainers('.services');
         $('.services').fadeIn('slow');
+        setButtonStyles($(this));
+    });
+
+    $('.service-types-btn').on('click', function () {
+        hideContainers('.service-types');
+        $('.service-types').fadeIn('slow');
         setButtonStyles($(this));
     });
 
@@ -317,6 +323,72 @@ $(document).ready(function () {
     }
 
     deleteServiceHandler();
+    //добавление типа услуги
+    $('.add-service-type-button').click(function () {
+        var serviceTypeName = $('#service-type_name').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '../assets/api/add_service-type_script.php',
+            dataType: 'json',
+            data: {
+                service_type_name: serviceTypeName,
+            },
+            success: function (response) {
+                alert('Тип услуги успешно добавлен!');
+
+                var newServiceType = response.serviceType;
+                var tableBody = $('.service-types-table').find('tbody'); // находим tbody во второй таблице
+
+                // Создаем новую строку для услуги
+                var newRow = $('<tr></tr>');
+
+                // Создаем ячейки для новой строки
+                newRow.append('<td>' + newServiceType.id + '</td>');
+                newRow.append('<td>' + newServiceType.type + '</td>');
+                newRow.append('<td><div class="delete-service-type" data-service-type-id="' + newServiceType.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
+
+                // Добавляем новую строку в таблицу
+                tableBody.find('tr').eq(1).before(newRow);
+                deleteServiceTypeHandler();
+                // Очищаем поля ввода после успешной отправки
+                $('#service-type_name').val('');
+            },
+            error: function (xhr, status, error) {
+                // Обработка ошибки AJAX-запроса
+                console.error(xhr.responseText);
+            }
+        });
+    });
+    //удаление типа услуги
+    function deleteServiceTypeHandler() {
+        var deleteButtons = document.querySelectorAll('.delete-service-type');
+        deleteButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var serviceTypeId = this.getAttribute('data-service-type-id');
+                deleteServiceType(serviceTypeId, button); // Передаем ссылку на кнопку вместе с userId
+            });
+        });
+        function deleteServiceType(serviceTypeId, button) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        alert("Тип услуги удален успешно!");
+                        var serviceTypeRow = button.parentNode.parentNode; // Используем parentNode для доступа к <td>, а затем к <tr>
+                        serviceTypeRow.parentNode.removeChild(serviceTypeRow);
+                    } else {
+                        console.error('Произошла ошибка при удалении типа услуги');
+                    }
+                }
+            };
+            xhr.open('POST', '../assets/api/delete_service-type_script.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('service_type_id=' + serviceTypeId);
+        }
+    }
+
+    deleteServiceTypeHandler();
     // Обработчик добавления отношения
     $('.add-relation-button').click(async function () {
         var workerNameRelation = $('#relation_worker_name').val();
