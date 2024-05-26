@@ -13,11 +13,24 @@
 </head>
 <body>
     <?php
-        if($isVerified===true){
-            echo("подтверждено");
+        if($isVerified==true){
+            echo("<input id='accountStatus' type='hidden' value='1'>");
         }else{
-            echo("не подтверждено");
+            echo("<input id='accountStatus' type='hidden' value='0'>");
         }
     ?>
 </body>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var accountStatus = document.getElementById('accountStatus').value;
+
+    if (accountStatus === '1') {
+        alert('Аккаунт подтвержден!');
+        window.location.href = '../index.php';
+    }else{
+        alert('Аккаунт не подтвержден!');
+        window.location.href = '../index.php';
+    }
+});
+</script>
 </html>
