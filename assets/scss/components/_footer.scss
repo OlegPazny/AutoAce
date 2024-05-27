@@ -95,10 +95,21 @@
           }
         }
       }
+      &__search{
+        display: none;
+      }
     }
   }
   @media screen and (max-width: 736px) {
   
+  }
+  @media screen and (max-width: 540px) {
+    .footer{
+      padding: 1rem 1.5rem;
+      &__address{
+        display: none;
+      }
+    }
   }
   @media screen and (max-width: 414px) {
   

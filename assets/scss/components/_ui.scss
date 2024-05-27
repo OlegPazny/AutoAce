@@ -211,11 +211,32 @@ input[type="checkbox"]:checked {
 @media screen and (max-width: 736px) {
 
 }
+@media screen and (max-width: 540px) {
+    .button, .slider-button{
+        padding:0.4rem 1rem;
+
+        &__content{
+            font-size:0.5rem;
+            letter-spacing: 1px;
+        }
+    }
+}
 @media screen and (max-width: 414px) {
 
 }
 @media screen and (max-width: 375px) {
+    .button, .slider-button{
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        padding:0.4rem 0.7rem !important;
 
+        &__content{
+            line-height: normal !important;
+            font-size:0.4rem !important;
+            letter-spacing: 1px !important;
+        }
+    }
 }
 @media screen and (max-width: 320px) {
 

@@ -227,10 +227,10 @@ require_once "../assets/api/index_info_script.php";
         grid: {
             rows: 1,
         },
-        // autoplay: {
-        //     delay: 2500,
-        //     disableOnInteraction: false,
-        // },
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
         spaceBetween: 1,
         pagination: {
             el: ".swiper-pagination",
@@ -242,10 +242,10 @@ require_once "../assets/api/index_info_script.php";
         spaceBetween: 100,
         loop: false,
         grabCursor: false,
-        // autoplay: {
-        //     delay: 2500,
-        //     disableOnInteraction: false,
-        // },
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
         effect: 'slide',
         centerInsufficientSlides: true,
         centeredSlidesBounds: true,

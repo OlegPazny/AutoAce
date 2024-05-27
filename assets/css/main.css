@@ -523,6 +523,28 @@ input[type=checkbox]:checked {
     margin-right: 0rem !important;
   }
 }
+@media screen and (max-width: 540px) {
+  .button, .slider-button {
+    padding: 0.4rem 1rem;
+  }
+  .button__content, .slider-button__content {
+    font-size: 0.5rem;
+    letter-spacing: 1px;
+  }
+}
+@media screen and (max-width: 375px) {
+  .button, .slider-button {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: 0.4rem 0.7rem !important;
+  }
+  .button__content, .slider-button__content {
+    line-height: normal !important;
+    font-size: 0.4rem !important;
+    letter-spacing: 1px !important;
+  }
+}
 .account-services > table {
   border-spacing: 1;
   border-collapse: collapse;
@@ -841,6 +863,27 @@ swiper-slide {
     font-size: 3rem;
   }
 }
+@media screen and (max-width: 736px) {
+  swiper-container {
+    width: 10rem;
+    height: 17rem;
+  }
+  swiper-slide {
+    border-radius: 40px;
+  }
+  .card__head {
+    font-size: 0.8rem;
+  }
+  .card__discount {
+    font-size: 2rem;
+  }
+  .discount-card {
+    width: 8rem !important;
+    height: 11.5rem !important;
+    border-radius: 25px;
+    padding: 0.7rem;
+  }
+}
 .footer {
   position: relative;
   display: flex;
@@ -918,6 +961,17 @@ swiper-slide {
   .footer__logo__block img {
     height: 0.8rem;
     margin-right: 0.2rem;
+  }
+  .footer__search {
+    display: none;
+  }
+}
+@media screen and (max-width: 540px) {
+  .footer {
+    padding: 1rem 1.5rem;
+  }
+  .footer__address {
+    display: none;
   }
 }
 .header {
@@ -1129,6 +1183,11 @@ swiper-slide {
     flex-direction: row;
   }
 }
+@media screen and (max-width: 540px) {
+  .header {
+    padding: 1rem 1.5rem;
+  }
+}
 body {
   background-color: #fff;
 }
@@ -1317,7 +1376,6 @@ body {
   align-self: flex-start;
 }
 .callback-form__submit-block {
-  display: block !important;
   flex: none !important;
 }
 .callback-form__checkbox-block {
@@ -1469,6 +1527,122 @@ body {
   }
   .prons-section__head, .info__head, .discount-offers-section__head, .callback-section__head {
     font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 736px) {
+  .offers-slider-elem__text {
+    margin: 0.4rem 0;
+    width: 100%;
+  }
+  .offers-slider-elem__head {
+    font-size: 1rem;
+  }
+  .offers-slider-elem__info {
+    width: 70%;
+  }
+  .pron {
+    max-width: 12rem;
+  }
+  .pron__text {
+    font-size: 0.5rem;
+  }
+  .pron__img {
+    height: 2rem;
+  }
+  .pron:first-child {
+    margin-bottom: 2rem;
+  }
+  .prons-section__img {
+    width: 100%;
+  }
+  .slider {
+    display: none;
+  }
+  .info {
+    width: 100%;
+  }
+  label {
+    font-size: 0.7rem;
+  }
+  .callback-form__textarea-block {
+    height: 8rem;
+  }
+  .callback-form__checkbox-block {
+    width: 60%;
+  }
+  .callback-form__checkbox-label {
+    font-size: 0.5rem !important;
+  }
+  .callback-form__checkbox {
+    width: 10px !important;
+    height: 10px !important;
+  }
+  .callback-form__input {
+    margin-right: 1rem !important;
+  }
+  .callback-form__submit-check-block {
+    margin-top: 1rem;
+  }
+}
+@media screen and (max-width: 540px) {
+  .offers-slider-elem {
+    height: 17rem;
+    padding: 1.5rem;
+  }
+  .offers-slider-elem__info {
+    width: 100%;
+  }
+  .offers-slider-elem__text {
+    width: 100%;
+    line-height: 140%;
+  }
+  .offer-slide__image {
+    display: none;
+  }
+  .info__text {
+    margin-bottom: 0.4rem;
+    line-height: 140%;
+  }
+  .prons-section, .about-section, .callback-section, .discount-offers-section {
+    padding: 1rem 1.5rem;
+  }
+  .callback-form > div {
+    flex-direction: column;
+  }
+  .callback-form__input, .callback-form__textarea {
+    margin: 0;
+    width: 100%;
+  }
+  .callback-form__textarea-block {
+    height: 10rem;
+  }
+  .callback-form__checkbox-label {
+    margin: 0;
+    margin-left: 5px;
+  }
+  .slide-shadow1 {
+    top: -5rem;
+    right: 10rem;
+    width: 20rem;
+    height: 20rem;
+  }
+  .slide-shadow2 {
+    top: -1rem;
+    right: -7rem;
+    width: 20rem;
+    height: 20rem;
+  }
+  .form-shadow1 {
+    top: -5rem;
+    right: 10rem;
+    width: 20rem;
+    height: 20rem;
+  }
+  .form-shadow2 {
+    top: -1rem;
+    right: -7rem;
+    width: 20rem;
+    height: 20rem;
   }
 }
 .search-section {

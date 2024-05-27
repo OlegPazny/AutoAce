@@ -242,7 +242,27 @@ swiper-slide {
   }
 }
 @media screen and (max-width: 736px) {
-
+  swiper-container{
+    width:10rem;
+    height:17rem;
+  }
+  swiper-slide{
+    border-radius:40px;
+  }
+  .card{
+    &__head{
+      font-size: 0.8rem;
+    }
+    &__discount{
+      font-size: 2rem;
+    }
+  }
+  .discount-card{
+    width:8rem !important;
+    height:11.5rem !important;
+    border-radius: 25px;
+    padding:0.7rem;
+  }
 }
 @media screen and (max-width: 414px) {
 
