@@ -37,6 +37,11 @@ $working_hours = mysqli_fetch_assoc($working_hours);
 <body>
     <?php require_once "../includes/header.php"; ?>
     <section class="search-section">
+    <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
         <div class="filter-block">
             <form id="filterForm" class="filterForm">
                 <ul class='filter-block__headlist'>
@@ -107,5 +112,15 @@ $working_hours = mysqli_fetch_assoc($working_hours);
 <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.2/nouislider.js"></script>
 <script src="../assets/js/workshops_filter.js"></script>
 <script src="../assets/js/callback.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var burgerMenu = document.querySelector('.burger-menu');
+    var filterBlock = document.querySelector('.filter-block');
 
+    burgerMenu.addEventListener('click', function() {
+        filterBlock.classList.toggle('open');
+        burgerMenu.classList.toggle('open');
+    });
+});
+</script>
 </html>

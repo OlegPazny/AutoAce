@@ -186,8 +186,19 @@ document.addEventListener("DOMContentLoaded", function () {
             marker.bindPopup("<a href='workshop.php?id=" + value['id'] + "' target='_blank'>" + value['name'] + "</a>");
         });
     }
-
-    var map = L.map('map').setView([53.902292, 27.561821], 12.3);
+    const windowInnerWidth = window.innerWidth;
+    
+    var mapScale=12.3;
+    if(windowInnerWidth>=1500){
+        mapScale=12.3;
+    }else if(windowInnerWidth>=1250&&windowInnerWidth<1500){
+        mapScale=11.5;
+    }else if(windowInnerWidth>=800&&windowInnerWidth<1250){
+        mapScale=11;
+    }else if(windowInnerWidth>=376&&windowInnerWidth<800){
+        mapScale=10.5;
+    }
+    var map = L.map('map').setView([53.902292, 27.561821], mapScale);
     L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=zu81qp5yGvbAgHoNquf3').addTo(map);
 
     document.querySelectorAll('input[name="services"]').forEach(function (checkbox) {

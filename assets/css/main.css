@@ -1652,6 +1652,7 @@ body {
   background-color: #232323;
   border-bottom: 1px solid #fff;
   height: 70vh;
+  position: relative; /* Добавлено для относительного позиционирования */
 }
 
 #map {
@@ -1670,6 +1671,7 @@ body {
   padding-right: 0.5rem;
   height: 70vh;
   overflow-y: auto;
+  transition: transform 0.8s ease-in-out; /* Добавлен переход для плавного выезда */
 }
 .filter-block__headlist {
   list-style-type: none;
@@ -1749,6 +1751,10 @@ body {
   top: -8px !important;
 }
 
+.noUi-handle::after, .noUi-handle::before {
+  display: none !important;
+}
+
 li > ul {
   margin-top: 0.625rem;
 }
@@ -1757,6 +1763,174 @@ input[type=checkbox] {
   margin-right: 0.625rem;
 }
 
+/* Стиль для кнопки-бургера */
+.burger-menu {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 1002;
+}
+
+.burger-menu span {
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: white;
+  margin: 5px 0;
+  transition: 0.3s;
+}
+
+.burger-menu.open span:nth-child(1) {
+  transform: rotate(45deg) translate(9px, 9px);
+}
+
+.burger-menu.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-menu.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(3px, -3px);
+}
+
+@media screen and (max-width: 1536px) {
+  .filter-block {
+    width: 40%;
+    padding-right: 1rem;
+  }
+  .filter-block__headlist__service-type {
+    font-size: 1.3rem;
+  }
+  .search-section {
+    padding-left: 6rem;
+  }
+  #filterForm {
+    margin-top: 1rem;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .filter-block__headlist__service-type {
+    font-size: 1rem;
+  }
+  .filter-block__list__service {
+    font-size: 0.8rem;
+  }
+  .filter-block__list__service input[type=checkbox] {
+    margin-right: 0.5rem !important;
+    height: 15px;
+    width: 15px;
+  }
+  .search-section {
+    padding-left: 6rem;
+  }
+  #filterForm {
+    margin-top: 0.8rem;
+  }
+  #working-hours-slider {
+    width: 250px;
+  }
+  .filterForm__time-filter__block input[type=text] {
+    width: 5rem;
+  }
+  .noUi-handle {
+    width: 25px !important;
+    height: 25px !important;
+    top: -5px !important;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .search-section {
+    padding-left: 0;
+  }
+  .burger-menu {
+    display: block;
+  }
+  .filter-block {
+    position: absolute;
+    left: -100%;
+    background-color: #232323;
+    z-index: 1001;
+    transition: transform 0.3s ease-in-out;
+    padding-left: 1rem;
+  }
+  .filter-block.open {
+    transform: translateX(220%);
+  }
+}
+@media screen and (max-width: 736px) {
+  .filter-block__headlist__service-type {
+    font-size: 0.8rem;
+  }
+  .filter-block__list {
+    padding-left: 1rem;
+  }
+  .filter-block__list__service {
+    font-size: 0.5rem;
+  }
+  .filter-block__list__service input[type=checkbox] {
+    margin-right: 0.5rem !important;
+    height: 10px;
+    width: 10px;
+  }
+  #filterForm {
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  #working-hours-slider {
+    width: 150px;
+  }
+  .filterForm__time-filter__block input[type=text] {
+    width: 3rem;
+  }
+  #start-time, #end-time {
+    font-size: 0.8rem !important;
+  }
+  .noUi-horizontal {
+    height: 10px !important;
+  }
+  .noUi-handle {
+    width: 20px !important;
+    height: 20px !important;
+    top: -5px !important;
+  }
+  .filter-block.open {
+    transform: translateX(205%);
+  }
+}
+@media screen and (max-width: 540px) {
+  #working-hours-slider {
+    width: 100%;
+  }
+  .filterForm__time-filter {
+    padding-left: 0;
+  }
+  .filter-block__headlist {
+    padding-left: 0;
+  }
+}
+@media screen and (max-width: 375px) {
+  .filter-block.open {
+    transform: translateX(200%);
+  }
+}
+@media screen and (max-width: 320px) {
+  .filter-block.open {
+    transform: translateX(105%);
+  }
+  .filter-block {
+    width: 100%;
+    left: -120%;
+  }
+  .filterForm__time-filter {
+    width: 90%;
+  }
+  #start-time, #end-time {
+    width: 7rem;
+  }
+}
 .about-workshop-section {
   padding: 5rem 8.33rem;
   background-color: #fff;
