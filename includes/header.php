@@ -57,7 +57,28 @@ if (!isset($_SESSION['user'])) {
 
 
     </div>
+    <button class="header__burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <nav class="header__nav">
+        <ul>
+            <li><a href="../pages/map.php">Поиск автосервиса</a></li>
+            <?php echo $header_list;?>
+        </ul>
+    </nav>
 </header>
 <?php require_once "signup.php"; ?>
 <?php require_once "signin.php"; ?>
 <script src="../assets/js/showSignPopup.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const burgerMenu = document.querySelector('.header__burger-menu');
+  const navMenu = document.querySelector('.header__nav');
+
+  burgerMenu.addEventListener('click', function() {
+    navMenu.classList.toggle('active');
+  });
+});
+</script>

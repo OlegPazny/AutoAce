@@ -1,80 +1,87 @@
-body{
+body {
     background-color: #fff;
 }
 
-.prons-section{
+.prons-section {
     position: relative;
     background-color: #fff;
     padding: 5rem 8.33rem;
     overflow: hidden;
 
-    &__head{
+    &__head {
         font-family: "Montserrat";
         font-weight: bold;
-        font-size:2.91rem;
+        font-size: 2.91rem;
 
     }
-    &__body{
+
+    &__body {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
     }
-    &__img{
-        margin:-2rem 0;
+
+    &__img {
+        margin: -2rem 0;
     }
-    &__shadow1{
+
+    &__shadow1 {
         filter: blur(7.2em);
         position: absolute;
-        top:-5rem;
-        right:80rem;
-        height:29.2rem;
-        width:29.2rem;
+        top: -5rem;
+        right: 80rem;
+        height: 29.2rem;
+        width: 29.2rem;
         background: radial-gradient(circle, rgb(255 255 255 / 50%) 0%, rgb(0, 0, 0) 60%);
     }
-    &__shadow2{
+
+    &__shadow2 {
         filter: blur(7.2em);
         position: absolute;
-        top:30rem;
-        right:-15rem;
-        height:29.2rem;
-        width:29.2rem;
+        top: 30rem;
+        right: -15rem;
+        height: 29.2rem;
+        width: 29.2rem;
         background: radial-gradient(circle, rgb(255 0 0 / 50%) 0%, rgb(255 255 255 / 0%) 60%);
     }
 }
 
-.bottom-prons{
+.bottom-prons {
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     justify-content: space-around;
-    width:70%;
+    width: 70%;
 }
 
-.pron{
+.pron {
     display: flex;
     flex-direction: column;
     align-items: center;
     max-width: 15.8rem;
     text-align: center;
 
-    &__head{
-        font-size:1.25rem;
+    &__head {
+        font-size: 1.25rem;
         margin: 1rem 0;
     }
-    &__text{
-        font-size:0.75rem;
-        margin:0;
+
+    &__text {
+        font-size: 0.75rem;
+        margin: 0;
         line-height: 170%;
     }
-    &__img{
-        height:4.45rem;
+
+    &__img {
+        height: 4.45rem;
     }
-    .up{
+
+    .up {
         transform: rotate(180deg);
     }
 }
 
-.about-section{
+.about-section {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -86,19 +93,21 @@ body{
 
 
 }
-.info{
+
+.info {
     display: flex;
     flex-direction: column;
     color: #fff;
-    width:50%;
+    width: 50%;
 
-    &__head{
+    &__head {
         font-family: "Montserrat";
         font-weight: bold;
-        font-size:2.91rem;
+        font-size: 2.91rem;
         line-height: 90%;
     }
-    &__text{
+
+    &__text {
         font-size: 0.75rem;
         text-align: justify;
         margin-bottom: 1.67rem;
@@ -107,112 +116,325 @@ body{
     }
 }
 
-.slider{
+.slider {
     width: 50%;
     position: relative;
 
-    &__shadow{
+    &__shadow {
         filter: blur(7.2em);
         position: absolute;
-        top:-3.54rem;
-        right:-2rem;
-        height:29.2rem;
-        width:29.2rem;
+        top: -3.54rem;
+        right: -2rem;
+        height: 29.2rem;
+        width: 29.2rem;
         background: radial-gradient(circle, rgb(255 255 255 / 50%) 0%, rgb(255 255 255 / 0%) 60%);
     }
 }
 
-.discount-offers-section{
+.discount-offers-section {
     background-color: #fff;
     padding: 5rem 8.33rem;
 
 
-    &__head{
+    &__head {
         font-family: "Montserrat";
         font-weight: bold;
-        font-size:2.91rem;
-        color:#646464;
+        font-size: 2.91rem;
+        color: #646464;
         line-height: 90%;
     }
 }
 
 .discount-offers-section__slider__scetion {
-  position: relative;
-  width: 100%;
-  display: flex;
-  align-items: center;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
 }
 
-.callback-section{
+.callback-section {
     padding: 5rem 8.33rem;
     background-color: #232323;
     overflow: hidden;
 
-    &__block{
+    &__block {
         position: relative;
     }
 
-    &__head{
+    &__head {
         font-family: "Montserrat";
         font-weight: bold;
-        font-size:2.91rem;
-        color:#fff;
+        font-size: 2.91rem;
+        color: #fff;
         line-height: 90%;
         text-align: center;
     }
 }
+
 .callback-form {
     display: flex;
     flex-direction: column;
 
-  
-    > div {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-  
-      > div {
-        flex: 1;
+
+    >div {
         display: flex;
-        flex-direction: column;
-      }
-    }
-  
-    &__textarea-block{
-        height:12.5rem;
-    }
-    &__textarea{
-        height:100%;
-    }
-    &__inputs-block{
-        display:flex;
+        flex-direction: row;
         justify-content: space-between;
-        height:auto;
+
+        >div {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
     }
-    &__input{
-        height:100%;
+
+    &__textarea-block {
+        height: 12.5rem;
     }
-    &__submit-check-block{
-        margin-top:3rem;
+
+    &__textarea {
+        height: 100%;
     }
+
+    &__inputs-block {
+        display: flex;
+        justify-content: space-between;
+        height: auto;
+    }
+
+    &__input {
+        height: 100%;
+    }
+
+    &__submit-check-block {
+        margin-top: 3rem;
+    }
+
     &__submit {
-      align-self: flex-start;
+        align-self: flex-start;
     }
-    &__submit-block{
-        display:block !important;
+
+    &__submit-block {
+        display: block !important;
         flex: none !important;
     }
-    &__checkbox-block{
+
+    &__checkbox-block {
         flex-direction: row !important;
-        width:50%;
+        width: 50%;
         position: absolute;
         right: 0;
         align-items: baseline;
     }
-    &__checkbox{
+
+    &__checkbox {
         margin-right: 1rem;
     }
-    &__checkbox-label{
+
+    &__checkbox-label {
         font-size: 1rem;
     }
-  }
+}
+
+@media screen and (max-width: 1536px) {
+    .offer-slide{
+
+        &__image{
+            width:15rem;
+        }
+    }
+    .offers-slider-elem{
+
+        &__head{
+            margin-bottom:0.5rem;
+        }
+        &__text{
+            margin-bottom:0.9rem;
+        }
+    }
+    .prons-section{
+
+        &__img{
+            width:40rem;
+        }
+        &__shadow1{
+            top:-20rem;
+            right:55rem;
+        }
+    }
+    .bottom-prons{
+        width:80%;
+    }
+    .pron{
+
+        &__text{
+            font-size:0.6rem;
+        }
+    }
+    .slider{
+        width:40%;
+    }
+    .info{
+        width:60%;
+        &__head{
+            margin:1rem 0;
+        }
+    }
+    .discount-offers-section{
+
+        &__head{
+            margin:1.5rem 0;
+        }
+    }
+    .callback-section{
+
+        &__head{
+            margin:1rem 0;
+        }
+    }
+}
+@media screen and (max-width: 1440px) {
+    .offers-slider-elem{
+        justify-content: space-between;
+        &__head{
+            font-size:1.8rem;
+        }
+    }
+    .prons-section{
+
+        &__head{
+            font-size:2rem;
+        }
+    }
+    .pron{
+
+        &__head{
+            font-size:1rem;
+        }
+    }
+    .bottom-prons{
+        margin-top:1.5rem;
+    }
+    .info{
+        &__head{
+            font-size:2rem;
+        }
+    }
+    .discount-offers-section{
+        &__head{
+            font-size: 2rem;
+        }
+    }
+    .callback-section{
+
+        &__head{
+            font-size:2rem;
+        }
+    }
+    .callback-form{
+        &__checkbox-label{
+            font-size:0.8rem !important;
+        }
+    }
+}
+@media screen and (max-width: 1280px) {
+    .info{
+        width:50%;
+    }
+    .callback-form{
+
+        &__submit-check-block{
+            margin-top:1.5rem;
+        }
+        &__checkbox-block{
+            align-items: center;
+        }
+    }
+    
+}
+@media screen and (max-width: 1024px) {
+    .prons-section, .about-section, .discount-offers-section, .callback-section{
+        padding:3rem 5rem;
+    }
+    .offers-slider-elem{
+        &__text{
+            font-size: 0.7rem;
+        }
+    }
+    .pron{
+        &__head{
+            font-size:0.8rem;
+        }
+        &__img{
+            height:3.5rem;
+        }
+        &__text{
+            font-size:0.4rem;
+        }
+    }
+    .prons-section{
+        &__img{
+            width:30rem;
+        }
+    }
+    .info{
+        &__text{
+            font-size: 0.7rem;
+        }
+    }
+    .slider{
+        &__shadow{
+            top:-5rem;
+            right:0;
+            height:20rem;
+            width:20rem;
+        }
+    }
+    .callback-form{
+        &__textarea-block{
+            height:9rem;
+        }
+        &__checkbox-label{
+            font-size:0.7rem !important;
+        }
+    }
+    label{
+        font-size:0.8rem;
+    }
+}
+@media screen and (max-width: 834px) {
+    .prons-section, .about-section, .discount-offers-section, .callback-section{
+        padding:2rem 3rem;
+    }
+    .offer-slide{
+        &__image{
+            width:10rem;
+        }
+    }
+    .offers-slider-elem{
+        padding:3rem 3rem;
+        &__head{
+            font-size:1.5rem;
+        }
+        &__info{
+            width:60%;
+        }
+    }
+    .prons-section, .info, .discount-offers-section, .callback-section{
+        &__head{
+            font-size: 1.5rem;
+        }
+    }
+}
+@media screen and (max-width: 736px) {
+
+}
+@media screen and (max-width: 414px) {
+
+}
+@media screen and (max-width: 375px) {
+
+}
+@media screen and (max-width: 320px) {
+
+}

@@ -53,8 +53,7 @@ require_once "../assets/api/index_info_script.php";
                             <h2 class="offers-slider-elem__head">ремонт тормозной системы</h2>
                             <p class="offers-slider-elem__text">Регулярный ремонт и обслуживание тормозной системы не
                                 только продлевают срок службы автомобиля, но и обеспечивают вашу безопасность и
-                                безопасность ваших пассажиров на дороге. Пренебрежение этими работами может привести к
-                                снижению эффективности торможения и, в конечном итоге, к аварийным ситуациям. Поэтому
+                                безопасность ваших пассажиров на дороге. Поэтому
                                 своевременный ремонт тормозной системы — это залог надежной и безопасной эксплуатации
                                 вашего автомобиля.
                             </p>
@@ -228,10 +227,10 @@ require_once "../assets/api/index_info_script.php";
         grid: {
             rows: 1,
         },
-        autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
-        },
+        // autoplay: {
+        //     delay: 2500,
+        //     disableOnInteraction: false,
+        // },
         spaceBetween: 1,
         pagination: {
             el: ".swiper-pagination",
@@ -243,10 +242,10 @@ require_once "../assets/api/index_info_script.php";
         spaceBetween: 100,
         loop: false,
         grabCursor: false,
-        autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
-        },
+        // autoplay: {
+        //     delay: 2500,
+        //     disableOnInteraction: false,
+        // },
         effect: 'slide',
         centerInsufficientSlides: true,
         centeredSlidesBounds: true,

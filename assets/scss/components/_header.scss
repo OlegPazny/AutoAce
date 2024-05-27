@@ -3,56 +3,143 @@
   justify-content: space-between;
   align-items: center;
   padding: 2.91rem 11.3rem;
-  background-color: #232323; /* Пример цвета фона */
-  color: #fff; /* Пример цвета текста */
+  background-color: #232323;
+  color: #fff;
   border-bottom: 1px solid #fff;
-  &__logo{
+  position: relative;
 
-    &__block{
+  &__logo {
+    &__block {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      width:10.3rem;
+      width: 10.3rem;
     }
-    &__block img:first-child{
+    &__block img:first-child {
       transition: 0.5s ease-in-out;
     }
   }
 
-  &__logo:hover &__logo{
-
-    &__block img:first-child{
+  &__logo:hover &__logo {
+    &__block img:first-child {
       transform: rotate(20deg);
       transition: 0.5s ease-in-out;
     }
   }
-  &__search{
+
+  &__search {
     text-transform: uppercase;
   }
-  &__search a, &__logo a{
+
+  &__search a,
+  &__logo a {
     text-decoration: none;
     color: inherit;
   }
-  &__contact-info{
+
+  &__contact-info {
     display: flex;
     align-items: center;
+
     .phone-number {
-        margin-right: 1.5rem;
-      }
-      .account-icon {
-        position: relative;
-        cursor: pointer;
-      }
+      margin-right: 1.5rem;
+    }
+
+    .account-icon {
+      position: relative;
+      cursor: pointer;
+    }
   }
-  &__logo h1, &__search p, &__contact-info{
-    margin:0;
+
+  &__logo h1,
+  &__search p,
+  &__contact-info {
+    margin: 0;
+  }
+
+  &__burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 500;
+
+    span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: white; // Белая кнопка
+      transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    }
+  }
+
+  &__nav {
+    display: none;
+
+    ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        margin-left: 1rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: 736px) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 2rem;
+
+    &__search,
+    &__contact-info {
+      display: none; // Скрываем поиск и контактную информацию для маленьких экранов
+    }
+
+    &__burger-menu {
+      display: flex;
+    }
+
+    &__nav {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      background: #232323;
+      width: 100%;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.8s ease-in-out;
+      z-index: 450;
+
+      ul {
+        flex-direction: column;
+        width: 100%;
+
+        li {
+          margin: 0;
+          width: 100%;
+          padding: 1rem 2rem;
+          border-bottom: 1px solid white;
+        }
+      }
+    }
+
+    &__nav.active {
+      max-height: 500px; // Значение достаточно большое для полного раскрытия меню
+    }
   }
 }
-/* Стили для иконки аккаунта */
 
-
-/* Стили для подменю */
 .header__menu__sub-list {
   background-color: #232323;
   position: absolute;
@@ -64,35 +151,114 @@
   padding: 10px;
   border-radius: 4px;
   z-index: 450;
-  border:1px solid white;
-  /* Стили для элементов меню */
+  border: 1px solid white;
+
   & li {
     padding: 0.5rem;
     width: auto;
     text-align: right;
-    border-top:1px solid white;
+    border-top: 1px solid white;
   }
-  & li:first-child{
-    border:none;
-    width:max-content
+
+  & li:first-child {
+    border: none;
+    width: max-content;
   }
 }
 
-
-/* Показываем подменю при наведении на иконку аккаунта */
 .account-icon:hover .header__menu__sub-list {
   visibility: visible;
   opacity: 1;
 }
 
-.logout-btn{
+.logout-btn {
   background-color: transparent;
-  border:none;
-  color:white;
-  margin:0;
+  border: none;
+  color: white;
+  margin: 0;
   padding: 0;
   cursor: pointer;
 }
-#sign-in__link{
+
+#sign-in__link {
   cursor: pointer;
 }
+
+// RESPONSIVE
+@media screen and (max-width: 1536px) {
+  .header {
+    font-size: 0.8rem;
+
+    &__logo {
+      &__block {
+        width: auto;
+
+        & img {
+          height: 1.1rem;
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .header {
+    padding: 2.91rem 8.33rem;
+  }
+}
+
+@media screen and (max-width: 1280px) {}
+
+@media screen and (max-width: 1024px) {
+  .header {
+    padding: 2rem 5rem;
+
+    &__logo {
+      &__block {
+        width: auto;
+
+        & img {
+          height: 1rem;
+          margin-right: 0.4rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 834px) {
+  .header {
+    padding: 1.5rem 3rem;
+
+    &__logo {
+      &__block {
+        width: auto;
+
+        & img {
+          height: 0.8rem;
+          margin-right: 0.2rem;
+        }
+      }
+    }
+
+    .account-icon {
+      & img {
+        width: 0.8em !important;
+        height: 0.8em !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .header {
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 414px) {}
+
+@media screen and (max-width: 375px) {}
+
+@media screen and (max-width: 320px) {}

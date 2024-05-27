@@ -50,3 +50,33 @@
     right: 5rem;
     cursor: pointer;
 }
+
+@media screen and (max-width: 1280px) {
+    .close-popup{
+        &__sign-up, &__sign-in{
+            top:6rem;
+        }
+    }
+}
+@media screen and (max-width: 1024px) {
+    .close-popup{
+        &__sign-up, &__sign-in{
+            right:4rem;
+        }
+    }
+}
+@media screen and (max-width: 834px) {
+
+}
+@media screen and (max-width: 736px) {
+
+}
+@media screen and (max-width: 414px) {
+
+}
+@media screen and (max-width: 375px) {
+
+}
+@media screen and (max-width: 320px) {
+
+}
