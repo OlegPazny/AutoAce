@@ -1777,6 +1777,10 @@ input[type=checkbox] {
   z-index: 1002;
 }
 
+.burger-menu svg path {
+  transition: 0.5s ease-in-out;
+}
+
 .burger-menu.open span:nth-child(1) {
   transform: rotate(45deg) translate(9px, 9px);
 }
@@ -1922,6 +1926,10 @@ input[type=checkbox] {
   }
   #start-time, #end-time {
     width: 7rem;
+  }
+  .burger-menu.open svg path {
+    fill: #fff;
+    transition: 0.5s ease-in-out;
   }
 }
 .about-workshop-section {

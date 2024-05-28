@@ -119,6 +119,10 @@ input[type="checkbox"]{
     height: 30px;
     cursor: pointer;
     z-index: 1002;
+    
+}
+.burger-menu svg path{
+    transition: 0.5s ease-in-out;
 }
 
 .burger-menu.open span:nth-child(1) {
@@ -309,5 +313,9 @@ input[type="checkbox"]{
     }
     #start-time, #end-time{
         width:7rem;
+    }
+    .burger-menu.open svg path{
+        fill: #fff;
+        transition: 0.5s ease-in-out;
     }
 }
