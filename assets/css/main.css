@@ -419,6 +419,7 @@ input[type=text], input[type=email], input[type=password], textarea {
   border: 1px solid #fff;
   resize: none;
   color: #fff;
+  z-index: 2;
 }
 
 input[type=text], input[type=email] {
@@ -444,6 +445,7 @@ input[type=checkbox] {
   cursor: pointer; /* Курсор при наведении */
   border-radius: 3px; /* Закругленные углы */
   transition: 0.5s ease-in-out;
+  z-index: 2;
 }
 
 /* Стилизация метки чекбокса */
