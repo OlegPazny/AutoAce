@@ -197,6 +197,8 @@ document.addEventListener("DOMContentLoaded", function () {
         mapScale=11;
     }else if(windowInnerWidth>=376&&windowInnerWidth<800){
         mapScale=10.5;
+    }else if(windowInnerWidth<376){
+        mapScale=10;
     }
     var map = L.map('map').setView([53.902292, 27.561821], mapScale);
     L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=zu81qp5yGvbAgHoNquf3').addTo(map);

@@ -78,6 +78,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const navMenu = document.querySelector('.header__nav');
 
   burgerMenu.addEventListener('click', function() {
+    if(document.querySelector('.burger-menu')&&document.querySelector('.filter-block')){
+        if(document.querySelector('.burger-menu').classList.contains('open')&&document.querySelector('.filter-block').classList.contains('open')){
+            document.querySelector('.burger-menu').classList.remove('open');
+            document.querySelector('.filter-block').classList.remove('open');
+        }
+    }
+
     navMenu.classList.toggle('active');
   });
 });

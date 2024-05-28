@@ -63,7 +63,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: 30px;
-    height: 21px;
+    height: 15px;
     background: none;
     border: none;
     cursor: pointer;
@@ -71,7 +71,7 @@
 
     span {
       display: block;
-      height: 3px;
+      height: 2px;
       width: 100%;
       background: white; // Белая кнопка
       transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -119,7 +119,7 @@
       overflow: hidden;
       max-height: 0;
       transition: max-height 0.8s ease-in-out;
-      z-index: 450;
+      z-index: 1001;
 
       ul {
         flex-direction: column;
@@ -150,7 +150,7 @@
   transition: opacity 0.8s ease, visibility 0.8s ease;
   padding: 10px;
   border-radius: 4px;
-  z-index: 450;
+  z-index: 1001;
   border: 1px solid white;
 
   & li {
