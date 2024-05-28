@@ -1914,6 +1914,9 @@ input[type=checkbox] {
   }
 }
 @media screen and (max-width: 320px) {
+  .search-section {
+    overflow: hidden;
+  }
   .filter-block.open {
     transform: translateX(105%);
   }
