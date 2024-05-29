@@ -58,6 +58,10 @@ require_once "../assets/api/get_workshop_data_script.php";
             </div>
             <div class="about-workshop-section__container__info">
                 <h2 class="about-workshop-section__container__info__head"><?php echo ($workshop_data['name']); ?></h2>
+                <div class="about-workshop-section__container__img responsive-workshop-img">
+                    <div class="about-workshop-section__container__img__main" style="background-image: url(<?php echo $workshop_data['photo'];?>)">
+                    </div>
+                </div>
                 <div class="about-workshop-section__container__info__services-block">
                     <?php foreach ($services_arr as $service_type => $services) {
                         echo ("<div class='list-container'>");

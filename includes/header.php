@@ -84,8 +84,14 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.filter-block').classList.remove('open');
         }
     }
-
-    navMenu.classList.toggle('active');
+    if(document.querySelector('.modalpopup')){
+        if(getComputedStyle(document.querySelector('.modalpopup')).opacity==0){
+            navMenu.classList.toggle('active');
+        }
+    }else{
+        navMenu.classList.toggle('active');
+    }
+    
   });
 });
 </script>

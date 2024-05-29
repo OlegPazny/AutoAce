@@ -35,10 +35,11 @@
         &__img {
             display: flex;
             flex-direction: column;
+            width: 40%;
 
             &__main {
                 height: 25.4rem;
-                width: 25.125rem;
+                width: 100%;
                 background-size: cover;
                 border-radius: 2.91rem;
                 margin-bottom:2.97rem;
@@ -71,7 +72,7 @@
     width:45%;
     &__head{
         font-family: "Montserrat";
-        font-size: 1.45;
+        font-size: 1.17rem;
         text-transform: capitalize;
         margin-bottom: 0.2rem;
     }
@@ -110,4 +111,192 @@
 
 .disabled-option{
     font-weight: bold;
+}
+.responsive-workshop-img{
+    display: none;
+}
+//responsive
+@media screen and (max-width: 1536px) {
+    .about-workshop-section{
+        &__container{
+            &__img{
+                &__main{
+                    height:20rem;
+                }
+            }
+            &__info{
+                &__head{
+                    font-size: 2rem;
+                    margin-bottom: 0.9rem;
+                }
+                &__description-head{
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+    .list-container{
+        &__head{
+            font-size: 1rem;
+        }
+        & ul{
+            margin-bottom: 0.5rem;
+        }
+    }
+}
+@media screen and (max-width: 1440px) {
+    .map-section{
+        &__head{
+            font-size: 2rem;
+        }
+    }
+    .about-workshop-section{
+        &__container{
+            &__info{
+                &__head{
+                    font-size: 1.8rem;
+                    margin-bottom: 0.5rem;
+                }
+            }
+        }
+    }
+    .list-container{
+        & ul{
+            & li{
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+}
+@media screen and (max-width: 1280px) {
+
+    .about-workshop-section{
+        padding: 3rem 5rem;
+        &__container{
+            &__img{
+                display: none;
+                &__main{
+                    margin-bottom: 0;
+                }
+            }
+            &__info{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                &__head{
+                    margin-bottom: 1rem;
+                }
+                &__description{
+                    margin: 0;
+                }
+            }
+        }
+    }
+    .responsive-workshop-img{
+        display: block;
+        width: 90%;
+        align-self: center;
+        margin-bottom: 0.5rem;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .list-container{
+        & ul{
+            & li{
+                font-size:0.7rem;
+            }
+        }
+    }
+    .about-workshop-section{
+        padding: 2rem 3rem;
+        &__container{
+            &__info{
+                &__description{
+                    font-size: 0.7rem;
+                }
+            }
+            &__img{
+                &__main{
+                    border-radius: 1.5rem;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 834px) {
+    .about-workshop-section{
+        padding: 2rem 3rem;
+        &__container{
+            &__info{
+                &__head{
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+    .map-section{
+        &__head{
+            font-size: 1.5rem;
+        }
+    }
+}
+@media screen and (max-width: 736px) {
+    .list-container{
+        & ul{
+            & li{
+                font-size: 0.7rem;
+            }
+        }
+    }
+    .about-workshop-section{
+        &__container{
+            &__info{
+                &__description{
+                    font-size: 0.7rem;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 540px) {
+    .about-workshop-section{
+        padding: 1rem 1.5rem;
+    }
+    .list-container{
+        &__head{
+            font-size: 0.8rem;
+        }
+    }
+}
+@media screen and (max-width: 414px) {
+    .about-workshop-section{
+        &__container{
+            &__info{
+                &__services-block{
+                    flex-direction: column;
+                }
+                &__description-head{
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+    .list-container{
+        width: 100%;
+        &__head{
+            font-size: 1rem;
+        }
+        & ul{
+            & li{
+                font-size: 0.8rem;
+            }
+        }
+    }
+}
+@media screen and (max-width: 375px) {
+
+}
+@media screen and (max-width: 320px) {
+
 }

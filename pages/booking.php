@@ -95,7 +95,7 @@ $end_hour = explode(":", $end_time)[0];
                 <div class="booking-form__controls-block__btns-block">
                     <a href="#openModal" class="openModal-btn">
                         <div class="callback-form__submit-block button">
-                            <p class="callback-form__submit button__content">Выбрать дату и время</p>
+                            <p class="callback-form__submit button__content">Дата</p>
                         </div>
                     </a>
 
@@ -117,6 +117,9 @@ $end_hour = explode(":", $end_time)[0];
         <div class="form-shadow2"></div>
     </section>
     <script src="../assets/js/calendar.js"></script>
+    <script>
+
+    </script>
 </body>
 
 </html>

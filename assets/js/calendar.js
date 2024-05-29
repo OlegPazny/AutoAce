@@ -562,27 +562,31 @@ $('#book').click(function (event) {
 
 // Функция для загрузки календаря
 function loadCalendar(freeSlots) {
-    $('#calendar').fullCalendar('destroy'); // Уничтожаем текущий календарь
+    function setCalendarView() {
+        // Изменяет вид календаря в зависимости от ширины окна
+        if (window.innerWidth < 736) {
+            $('#calendar').fullCalendar('changeView', 'listWeek'); // Меняет вид на список при ширине окна меньше 736px
+        } else {
+            $('#calendar').fullCalendar('changeView', 'month'); // Меняет вид на месяц при ширине окна больше 736px
+        }
+    }
+    $('#calendar').fullCalendar('destroy');
     $('#calendar').fullCalendar({
         // Настройки календаря
-        defaultView: 'month', // Отображение по месяцам
-        locale: 'ru', // Устанавливаем русскую локаль
+        defaultView: 'month',
+        locale: 'ru',
         editable: false,
         eventLimit: true, // Показывать "плюс" при слишком многих событиях
         timezone: 'Europe/Moscow',
         eventClick: function (event, jsEvent, view) {
-            // Здесь можно обработать клик по событию в календаре
-            // Например, вывести информацию о выбранном событии или открыть модальное окно для записи на услугу
-            //console.log('Кликнуто на событие c началом:', event.start.format('YYYY-MM-DD HH:mm'));
+
             bookServiceDate = event.start.format('YYYY-MM-DD');
             bookServiceTime = event.start.format('HH:mm:00');
-            //console.log('bookServiceDate loadCalendar', bookServiceDate);
-            //console.log('bookServiceTime loadCalendar', bookServiceTime);
 
         },
         eventBackgroundColor: "green",
         eventBorderColor: "green",
-        timeFormat: 'HH:mm', // Формат времени для событий
+        timeFormat: 'HH:mm',
         events: function (start, end, timezone, callback) {
             var events = [];
             var monthNames = [
@@ -619,9 +623,12 @@ function loadCalendar(freeSlots) {
                 }
             });
             callback(events);
+        },
+        windowResize: function(view) {
+            setCalendarView(); // Изменяет вид календаря при изменении размера окна
         }
     });
-
+    setCalendarView(); // Устанавливаем начальный вид календаря при загрузке страницы
     // Функция для сброса стилей у всех кнопок
     eventClickStyles();
 }
