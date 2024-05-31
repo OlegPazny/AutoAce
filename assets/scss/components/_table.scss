@@ -8,7 +8,7 @@ $gl-lg : "screen and (max-width: 80em)"; // max 1280px
 
 // table style
 
-.account-services > table {
+.account-services>table {
     border-spacing: 1;
     border-collapse: collapse;
     background: white;
@@ -37,7 +37,7 @@ $gl-lg : "screen and (max-width: 80em)"; // max 1280px
     tbody tr {
         height: 48px;
         border-bottom: 1px solid #E3F1D5;
-        font-size:0.8rem;
+        font-size: 0.8rem;
 
         &:last-child {
             border: 0;
@@ -62,62 +62,54 @@ $gl-lg : "screen and (max-width: 80em)"; // max 1280px
     }
 }
 
+@media screen and (max-width: 736px) {
+    .account-services>table {
+        border-spacing: 1;
+        border-collapse: collapse;
+        background: white;
+        overflow: hidden;
+        margin: 0 auto;
+        position: relative;
 
-@media #{$gl-xs} {
-
-    table {
-        display: block;
-
-        >*,
-        tr,
-        td,
-        th {
-            display: block
+        * {
+            position: relative
         }
 
-        thead {
-            display: none
+        td,
+        th {
+            padding-left: 3px
+        }
+
+        thead tr {
+            height: 30px;
+            background: #242424;
+            font-size: 8px;
+            color: #fff;
         }
 
         tbody tr {
-            height: auto;
-            padding: 8px 0;
+            height: 36px;
+            font-size: 0.5rem;
 
-            td {
-                padding-left: 45%;
-                margin-bottom: 12px;
+            &:last-child {
+                border: 0;
+            }
+        }
 
-                &:last-child {
-                    margin-bottom: 0
-                }
+        td,
+        th {
+            text-align: left;
 
-                &:before {
-                    position: absolute;
-                    font-weight: 700;
-                    width: 40%;
-                    left: 10px;
-                    top: 0
-                }
+            &.l {
+                text-align: right
+            }
 
-                &:nth-child(1):before {
-                    content: "Code";
-                }
+            &.c {
+                text-align: center
+            }
 
-                &:nth-child(2):before {
-                    content: "Stock";
-                }
-
-                &:nth-child(3):before {
-                    content: "Cap";
-                }
-
-                &:nth-child(4):before {
-                    content: "Inch";
-                }
-
-                &:nth-child(5):before {
-                    content: "Box Type";
-                }
+            &.r {
+                text-align: center
             }
         }
     }

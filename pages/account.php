@@ -48,6 +48,11 @@ function russianMonth($monthNumber)
     <?php require_once "../includes/header.php"; ?>
     <section class="account-section">
         <div class="nav">
+            <div class="burger-menu-account">
+                <span class="burger-menu-account__line"></span>
+                <span class="burger-menu-account__line"></span>
+                <span class="burger-menu-account__line"></span>
+            </div>
             <ul class="nav__list">
                 <li class="nav__list__item info-btn">личные данные</li>
                 <li class="nav__list__item orders-btn">заказанные услуги</li>
@@ -56,23 +61,26 @@ function russianMonth($monthNumber)
             </ul>
         </div>
         <div class="account-info">
-            <div class="account-info__data">
-                <label class="account-info__data__label">Имя</label>
-                <input class="account-info__data__input" type="text" name="name"
-                    value="<?php echo ($account_info['name']); ?>">
-            </div>
-            <div class="account-info__data">
-                <label class="account-info__data__label">Пароль</label>
-                <input class="account-info__data__input" type="password" name="password">
-            </div>
-            <div class="account-info__data">
-                <label class="account-info__data__label">Почта</label>
-                <input class="account-info__data__input" type="email" name="email"
-                    value="<?php echo ($account_info['email']); ?>">
-            </div>
-            <div class="account-info__data">
-                <label class="account-info__data__label">Новый пароль</label>
-                <input class="account-info__data__input" type="password" name="new_password">
+            <h2>Личные данные</h2>
+            <div class="account-info__data-block">
+                <div class="account-info__data">
+                    <label class="account-info__data__label">Имя</label>
+                    <input class="account-info__data__input" type="text" name="name"
+                        value="<?php echo ($account_info['name']); ?>">
+                </div>
+                <div class="account-info__data">
+                    <label class="account-info__data__label">Пароль</label>
+                    <input class="account-info__data__input" type="password" name="password">
+                </div>
+                <div class="account-info__data">
+                    <label class="account-info__data__label">Почта</label>
+                    <input class="account-info__data__input" type="email" name="email"
+                        value="<?php echo ($account_info['email']); ?>">
+                </div>
+                <div class="account-info__data">
+                    <label class="account-info__data__label">Новый пароль</label>
+                    <input class="account-info__data__input" type="password" name="new_password">
+                </div>
             </div>
             <div class="account-info__btn-block">
                 <?php
@@ -149,6 +157,7 @@ function russianMonth($monthNumber)
             </div>
         </div>
         <div class="account-services history">
+            <h2>История заказов</h2>
             <table>
                 <thead>
                     <tr>
@@ -183,6 +192,7 @@ function russianMonth($monthNumber)
             </table>
         </div>
         <div class="account-services vehicles">
+            <h2>Мои автомобили</h2>
             <table class="vehicles-table">
                 <thead>
                     <tr>
@@ -240,5 +250,42 @@ function russianMonth($monthNumber)
 <script src="../assets/js/account_navigation.js"></script>
 <script src="../assets/js/account_navigation.js"></script>
 <script src="../assets/js/delete_account_book.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const burger = document.querySelector('.burger-menu-account'); // Получить элемент бургер-кнопки
+    const navList = document.querySelector('.nav__list'); // Получить элемент списка навигации
+    const mediaQuery = window.matchMedia('(max-width: 736px)'); // Создать медиа-запрос для ширины экрана до 736px
+    const navItems = document.querySelectorAll('.nav__list__item'); // Получить все элементы списка навигации
 
+    function updateBurgerPosition() {
+        if (navList.classList.contains('active')) {
+            const navWidth = navList.getBoundingClientRect().width; // Получить ширину списка навигации
+            burger.style.left = `${navWidth+10}px`; // Установить новое значение left для бургер-кнопки
+        } else {
+            burger.style.left = '1rem'; // Восстановить начальное значение left для бургер-кнопки
+        }
+    }
+
+    burger.addEventListener('click', function() {
+        navList.classList.toggle('active'); // Переключить класс active для списка
+        burger.classList.toggle('active'); // Переключить класс active для бургер-кнопки
+        updateBurgerPosition(); // Обновить позицию бургер-кнопки
+    });
+
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            navList.classList.remove('active'); // Удалить класс active для списка при клике на элемент меню
+            burger.style.left = '1rem'; // Восстановить начальное значение left для бургер-кнопки
+            burger.classList.toggle('active'); // Переключить класс active для бургер-кнопки
+        });
+    });
+
+    mediaQuery.addListener(function(e) {
+        if (!e.matches) {
+            navList.classList.remove('active'); // Удалить класс active для списка на больших экранах
+            burger.style.left = '1rem'; // Восстановить начальное значение left для бургер-кнопки
+        }
+    });
+});
+</script>
 </html>
