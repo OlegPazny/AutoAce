@@ -45,22 +45,27 @@ function russianMonth($monthNumber) {
                 <li class="nav__list__item works-btn">список работ</li>
             </ul>
         </div>
-        <div class="account-info mechanic-info">
-            <div class="account-info__data">
-                <label class="account-info__data__label">Имя</label>
-                <input class="account-info__data__input" type="text" name="mechan_name" value="<?php echo($mechanic['name']);?>">
-            </div>
-            <div class="account-info__data">
-                <label class="account-info__data__label">Пароль</label>
-                <input class="account-info__data__input" type="password" name="mechan_password">
-            </div>
-            <div class="account-info__data">
-                <label class="account-info__data__label">Почта</label>
-                <input class="account-info__data__input" type="email" name="mechan_email" value="<?php echo($mechanic['email']);?>">
-            </div>
-            <div class="account-info__data">
-                <label class="account-info__data__label">Новый пароль</label>
-                <input class="account-info__data__input" type="password" name="mechan_new_password">
+        <div class="account-info">
+            <h2>Личные данные</h2>
+            <div class="account-info__data-block">
+                <div class="account-info__data">
+                    <label class="account-info__data__label">Имя</label>
+                    <input class="account-info__data__input" type="text" name="mechan_name"
+                        value="<?php echo ($mechanic['name']); ?>">
+                </div>
+                <div class="account-info__data">
+                    <label class="account-info__data__label">Пароль</label>
+                    <input class="account-info__data__input" type="password" name="mechan_password">
+                </div>
+                <div class="account-info__data">
+                    <label class="account-info__data__label">Почта</label>
+                    <input class="account-info__data__input" type="email" name="mechan_email"
+                        value="<?php echo ($mechanic['email']); ?>">
+                </div>
+                <div class="account-info__data">
+                    <label class="account-info__data__label">Новый пароль</label>
+                    <input class="account-info__data__input" type="password" name="mechan_new_password">
+                </div>
             </div>
             <div class="account-info__btn-block">
                 <div class="button account-info__button">
