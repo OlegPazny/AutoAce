@@ -8,11 +8,11 @@ $login = $_POST['login'];
 $password = $_POST['password'];
 
 if ($login === '' || preg_match("/^[A-Za-z]+$/", $login) == 0) {
-    $error_fields[] = 'login';
+    $error_fields[] = 'signin_login';
 }
 
 if ($password === '') {
-    $error_fields[] = 'password';
+    $error_fields[] = 'signin_password';
 }
 
 if (!empty($error_fields)) {

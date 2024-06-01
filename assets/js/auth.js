@@ -25,7 +25,7 @@ $('.login-btn').click(function(e){
                         $(`input[name="${field}"]`).addClass('error');
                     });
                 }
-                $('.message').removeClass('none').text(data.message);
+                $('.signin-message').removeClass('none').text(data.message);
             }
         }
     })
