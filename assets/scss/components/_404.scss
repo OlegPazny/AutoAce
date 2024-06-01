@@ -1,0 +1,83 @@
+.section-404{
+    display:flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+.block-404{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__head{
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        &__number{
+            position: relative;
+            z-index: 2;
+            font-family: "Krona One";
+            font-size: 12rem;
+            margin: 0;
+        }
+        &__number::before{
+            content: "4";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        &__icon-block{
+            position: relative;
+            width:200px;
+            height: 200px;
+        }
+        &__icon{
+            position: absolute;
+            top:0;
+            left:0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            animation: spin 10s linear infinite;
+
+            & img{
+                width: 100%;
+            }
+        }
+        &__shadow{
+            position: absolute;
+            top:10px;
+            left:10px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            animation: spin 10s linear infinite;
+            
+            & img{
+                width: 100%;
+            }
+        }
+    }
+    &__text{
+        font-family: "Onest";
+        font-size: 1rem;
+    }
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
