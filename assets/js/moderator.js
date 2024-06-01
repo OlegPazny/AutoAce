@@ -245,7 +245,7 @@ $(document).ready(function () {
     }
     deleteWorkerHandler();
     //изменение отпуска работника 
-    function updateVacationHandler(){
+    function updateVacationHandler() {
         var vacationSelects = document.querySelectorAll('.vacation-select');
         vacationSelects.forEach(function (select) {
             select.addEventListener('change', function () {
@@ -254,7 +254,7 @@ $(document).ready(function () {
                 updateVacation(workerId, newStatus);
             });
         });
-    
+
         function updateVacation(workerId, newStatus) {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
@@ -545,5 +545,109 @@ $(document).ready(function () {
             await loadServices(selectedWorkerId);
         }
     });
+    //наполнение селекта автосервисов
+    function loadWorkshopSelect() {
+        const workshopSelect = $('#worker_workshops_insert');
 
+        // Функция для заполнения select
+        function fillSelect(options) {
+            workshopSelect.empty(); // Очищаем текущие опции
+
+            // Создаем и добавляем опцию "Выберите автосервис"
+            const defaultOption = $('<option></option>').text('Выберите автосервис').prop('disabled', true).prop('selected', true);
+            workshopSelect.append(defaultOption);
+
+            // Заполняем select остальными опциями
+            options.forEach(option => {
+                const newOption = $('<option></option>').val(option.value).text(option.text);
+                workshopSelect.append(newOption);
+            });
+        }
+
+        // Обработчик клика на select
+        workshopSelect.on('mousedown', async (event) => {
+            if (event.target.tagName.toLowerCase() === 'option') {
+                event.stopPropagation(); // Останавливаем распространение события
+            }else{
+                try {
+                    const response = await fetch('../assets/api/get_workshops_script.php');
+                    const options = await response.json();
+                    fillSelect(options);
+                } catch (error) {
+                    console.error('Ошибка при загрузке данных:', error);
+                }
+            }
+        });
+    }
+    loadWorkshopSelect();
+    //наполнение селекта типа услуги
+    function loadServiceTypesSelect() {
+        const serviceTypeSelect = $('#service_type');
+
+        // Функция для заполнения select
+        function fillSelect(options) {
+            serviceTypeSelect.empty(); // Очищаем текущие опции
+
+            // Создаем и добавляем опцию "Выберите тип услуги"
+            const defaultOption = $('<option></option>').text('Выберите тип услуги').prop('disabled', true).prop('selected', true);
+            serviceTypeSelect.append(defaultOption);
+
+            // Заполняем select остальными опциями
+            options.forEach(option => {
+                const newOption = $('<option></option>').val(option.value).text(option.text);
+                serviceTypeSelect.append(newOption);
+            });
+        }
+
+        // Обработчик клика на select
+        serviceTypeSelect.on('mousedown', async (event) => {
+            if (event.target.tagName.toLowerCase() === 'option') {
+                event.stopPropagation(); // Останавливаем распространение события
+            }else{
+                try {
+                    const response = await fetch('../assets/api/get_service_types_script.php');
+                    const options = await response.json();
+                    fillSelect(options);
+                } catch (error) {
+                    console.error('Ошибка при загрузке данных:', error);
+                }
+            }
+        });
+    }
+    loadServiceTypesSelect();
+    //наполнение селекта работников
+    function loadWorkersSelect() {
+        const workerSelect = $('#relation_worker_name');
+
+        // Функция для заполнения select
+        function fillSelect(options) {
+            workerSelect.empty(); // Очищаем текущие опции
+
+            // Создаем и добавляем опцию "Выберите работника"
+            const defaultOption = $('<option></option>').text('Выберите механика').prop('disabled', true).prop('selected', true);
+            workerSelect.append(defaultOption);
+
+            // Заполняем select остальными опциями
+            options.forEach(option => {
+                const newOption = $('<option></option>').val(option.value).text(option.text);
+                workerSelect.append(newOption);
+            });
+        }
+
+        // Обработчик клика на select
+        workerSelect.on('mousedown', async (event) => {
+            if (event.target.tagName.toLowerCase() === 'option') {
+                event.stopPropagation(); // Останавливаем распространение события
+            }else{
+                try {
+                    const response = await fetch('../assets/api/get_workers_script.php');
+                    const options = await response.json();
+                    fillSelect(options);
+                } catch (error) {
+                    console.error('Ошибка при загрузке данных:', error);
+                }
+            }
+        });
+    }
+    loadWorkersSelect();
 });

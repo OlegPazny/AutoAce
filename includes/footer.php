@@ -20,7 +20,7 @@
             <p>г. Минск, ул. Савицкого, 3</p>
         </div>
     </footer>
-<script>
+<!-- <script>
 function adjustSectionsHeight() {
             // Получаем высоты элементов
             const headerHeight = getComputedStyle(document.querySelector('header')).height.slice(0, -2);
@@ -45,4 +45,4 @@ function adjustSectionsHeight() {
         window.addEventListener('load', adjustSectionsHeight);
         window.addEventListener('resize', adjustSectionsHeight);
         window.addEventListener('click', adjustSectionsHeight);
-</script>
+</script> -->

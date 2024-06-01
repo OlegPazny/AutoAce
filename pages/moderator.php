@@ -161,11 +161,7 @@ function russianMonth($monthNumber)
                             <td>
                                 <select class="worker-workshops-insert" name="worker_workshops_insert"
                                     id="worker_workshops_insert">
-                                    <?php
-                                    foreach ($workshops as $workshop) {
-                                        echo ("<option value='" . $workshop[0] . "'>" . $workshop[1] . "</option>");
-                                    }
-                                    ?>
+                                    <option selected disabled>Выберите автосервис</option>
                                 </select>
                             </td>
                             <td></td>
@@ -398,12 +394,7 @@ function russianMonth($monthNumber)
                             </td>
                             <td>
                                 <select class="add-service-input" name="service_type" id="service_type">
-                                    <?php
-                                    foreach ($services_types as $services_type) {
-                                        echo ("<option value='" . $services_type[0] . "'>" . $services_type[1] . "</option>");
-                                    }
-                                    ?>
-
+                                    <option selected disabled>Выберите тип услуги</option>
                                 </select>
                             </td>
                             <td><input type="text" class="add-service-input admin-input" name="service_discount"
@@ -455,12 +446,7 @@ function russianMonth($monthNumber)
                     <tr class="add-relation-row">
                             <td>
                                 <select class="workers-input" name="relation_worker_name" id="relation_worker_name">
-                                    <?php
-                                    foreach ($workers as $worker) {
-                                        echo ("<option value='" . $worker[0] . "'>" . $worker[1] . "</option>");
-                                    }
-                                    ?>
-
+                                    <option selected disabled>Выберите механика</option>
                                 </select>
                             </td>
                             <td id="worker-workshop"></td>
