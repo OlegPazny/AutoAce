@@ -11,7 +11,7 @@ if ($login === '' || preg_match("/^[A-Za-z]+$/", $login) == 0) {
     $error_fields[] = 'signin_login';
 }
 
-if ($password === '') {
+if ($password === '' || preg_match("/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/", $password) == 0) {
     $error_fields[] = 'signin_password';
 }
 

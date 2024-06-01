@@ -52,4 +52,44 @@ $(document).ready(function () {
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send('booking_id=' + bookingId + '&new_status=' + newStatus);
     }
+    $('.account-info__submit').click(function (e) {
+        e.preventDefault();//не обновляет страницу при клике(отключение стандартного поведения)
+    
+        $(`input`).removeClass('error');//очищение инпутов от класса error
+    
+        let mechan_name = $('input[name="mechan_name"]').val();
+        let mechan_email = $('input[name="mechan_email"]').val();
+        let mechan_password = $('input[name="mechan_password"]').val();
+        let mechan_new_password = $('input[name="mechan_new_password"]').val();
+        console.log(mechan_name);
+        console.log(mechan_email);
+        console.log(mechan_password);
+        console.log(mechan_new_password);
+        $.ajax({
+            url: '../assets/api/change_mechanic_data_script.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                mechan_name: mechan_name,
+                mechan_email: mechan_email,
+                mechan_password: mechan_password,
+                mechan_new_password: mechan_new_password
+            },
+    
+            success: function (data) {
+                if (data.status) {
+                    alert("Данные изменены!");
+                    $('input[name="mechan_password"]').val('');
+                    $('input[name="mechan_new_password"]').val('');
+                } else {
+                    if (data.type === 1) {
+                        data.fields.forEach(function (field) {
+                            $(`input[name="${field}"]`).addClass('error');
+                        });
+                    }
+                    $('.message').removeClass('none').text(data.message);
+                }
+            }
+        })
+    });
 })

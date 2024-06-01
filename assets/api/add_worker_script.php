@@ -48,19 +48,37 @@
         return $login;
     }
     function generateRandomPassword($length = 8) {
-        // Строка символов, из которых будет состоять пароль
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomPassword = '';
-    
-        // Генерируем случайный пароль
-        for ($i = 0; $i < $length; $i++) {
-            $randomPassword .= $characters[random_int(0, $charactersLength - 1)];
+        // Проверяем, чтобы длина пароля была не меньше 3
+        if ($length < 3) {
+            throw new Exception("Длина пароля должна быть не менее 3 символов.");
         }
+        
+        // Строки символов для каждой категории
+        $digits = '0123456789';
+        $lowercase = 'abcdefghijklmnopqrstuvwxyz';
+        $uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     
+        // Генерируем по одному символу из каждой категории
+        $randomPassword = '';
+        $randomPassword .= $digits[random_int(0, strlen($digits) - 1)];
+        $randomPassword .= $lowercase[random_int(0, strlen($lowercase) - 1)];
+        $randomPassword .= $uppercase[random_int(0, strlen($uppercase) - 1)];
+        
+        // Строка всех символов для оставшейся части пароля
+        $allCharacters = $digits . $lowercase . $uppercase;
+        $charactersLength = strlen($allCharacters);
+        
+        // Генерируем оставшуюся часть пароля
+        for ($i = 3; $i < $length; $i++) {
+            $randomPassword .= $allCharacters[random_int(0, $charactersLength - 1)];
+        }
+        
+        // Перемешиваем результат
+        $randomPassword = str_shuffle($randomPassword);
+        
         return $randomPassword;
     }
-
+    
     $workerName = $_POST['worker_name'];
 
     $firstName=explode(" ", $workerName)[0];

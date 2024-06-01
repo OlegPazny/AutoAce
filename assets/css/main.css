@@ -2821,7 +2821,6 @@ input[type=checkbox] {
   }
 }
 .signup-section, .reset-pass-section {
-  overflow: scroll;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -2853,7 +2852,7 @@ input[type=checkbox] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 .signup__input-block {
   display: flex;
@@ -2884,7 +2883,7 @@ input[type=checkbox] {
   border-radius: 25px !important;
 }
 
-.have-acc, .message {
+.have-acc, .message, .signin-message {
   color: black;
   text-decoration: none;
   font-size: 0.8rem;
@@ -3068,6 +3067,7 @@ input[type=checkbox] {
 @media screen and (max-width: 1024px) {
   .close-popup__sign-up, .close-popup__sign-in {
     right: 4rem;
+    top: 10rem;
   }
 }
 .section-404 {

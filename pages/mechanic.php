@@ -29,7 +29,7 @@ function russianMonth($monthNumber) {
     <title>Страница механика</title>
     <!-- jQuery connection -->
     <script src="../assets/js/core/jquery.min.js"></script>
-    <script src="../assets/js/core/pooper.min.js"></script>
+    <script src="../assets/js/core/popper.min.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> -->
     <!-- jQuery connection -->
@@ -48,19 +48,19 @@ function russianMonth($monthNumber) {
         <div class="account-info mechanic-info">
             <div class="account-info__data">
                 <label class="account-info__data__label">Имя</label>
-                <input class="account-info__data__input" type="text" name="name" value="<?php echo($mechanic['name']);?>">
+                <input class="account-info__data__input" type="text" name="mechan_name" value="<?php echo($mechanic['name']);?>">
             </div>
             <div class="account-info__data">
                 <label class="account-info__data__label">Пароль</label>
-                <input class="account-info__data__input" type="password" name="password">
+                <input class="account-info__data__input" type="password" name="mechan_password">
             </div>
             <div class="account-info__data">
                 <label class="account-info__data__label">Почта</label>
-                <input class="account-info__data__input" type="email" name="email" value="<?php echo($mechanic['email']);?>">
+                <input class="account-info__data__input" type="email" name="mechan_email" value="<?php echo($mechanic['email']);?>">
             </div>
             <div class="account-info__data">
                 <label class="account-info__data__label">Новый пароль</label>
-                <input class="account-info__data__input" type="password" name="new_password">
+                <input class="account-info__data__input" type="password" name="mechan_new_password">
             </div>
             <div class="account-info__btn-block">
                 <div class="button account-info__button">

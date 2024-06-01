@@ -17,6 +17,15 @@ $error_fields = [];
 
 if ($name != '') {
     $change_name = mysqli_query($db, "UPDATE `users` SET `name`='$name' WHERE `id`=$current_user");
+} else {
+    $response = [
+        "status" => false,
+        "type" => 1,
+        "message" => "Имя не может быть пустым",
+        "fields" => ['name']
+    ];
+    echo json_encode($response);
+    die();
 }
 
 if ($email != '' && filter_var($email, FILTER_VALIDATE_EMAIL) && preg_match("/^[\w\.-]+@[a-z]+\.[a-z]+$/", $email) != 0) {
@@ -36,12 +45,34 @@ if ($email != '' && filter_var($email, FILTER_VALIDATE_EMAIL) && preg_match("/^[
     $change_email = mysqli_query($db, "UPDATE `users` SET `email`='$email' WHERE `id`=$current_user");
 }
 
-if (md5($password) === $current_password['password']) {
-    echo("пароли совпали");
-    if (preg_match("/^[a-zA-Z0-9]{8,}$/", $new_password) != 0) {
-        $new_password=md5($new_password);
-        $change_password = mysqli_query($db, "UPDATE `users` SET `password`='$new_password' WHERE `id`=$current_user");
+if ($password != "" && $new_password != "") {
+    if (md5($password) === $current_password['password']) {
+        if (preg_match("/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/", $new_password) != 0) {
+            $new_password = md5($new_password);
+            $change_password = mysqli_query($db, "UPDATE `users` SET `password`='$new_password' WHERE `id`=$current_user");
+        } else {
+            $response = [
+                "status" => false,
+                "type" => 1,
+                "message" => "Пароль должен состоять из 8 символов, а также содержать прописную и строчные буквы и цифры.",
+                "fields" => ['new_password']
+            ];
+            echo json_encode($response);
+            die();
+        }
+    } else {
+        $response = [
+            "status" => false,
+            "type" => 1,
+            "message" => "Неверно введен текущий пароль",
+            "fields" => ['password']
+        ];
+        echo json_encode($response);
+        die();
     }
-
 }
+$response = [
+    "status" => true
+];
+echo json_encode($response);
 ?>
