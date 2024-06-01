@@ -2821,6 +2821,7 @@ input[type=checkbox] {
   }
 }
 .signup-section, .reset-pass-section {
+  overflow: scroll;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

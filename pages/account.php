@@ -248,7 +248,7 @@ function russianMonth($monthNumber)
 <!-- <script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/popper.min.js" type="text/javascript"></script> -->
 <script src="../assets/js/account_navigation.js"></script>
-<script src="../assets/js/account_navigation.js"></script>
+<script src="../assets/js/change_user_data.js"></script>
 <script src="../assets/js/delete_account_book.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
