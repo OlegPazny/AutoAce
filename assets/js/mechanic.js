@@ -87,7 +87,7 @@ $(document).ready(function () {
                             $(`input[name="${field}"]`).addClass('error');
                         });
                     }
-                    $('.message').removeClass('none').text(data.message);
+                    alert(data.message);
                 }
             }
         })

@@ -7,6 +7,8 @@ require_once "mail_client_connect.php";
 $current_user = $_SESSION['user']['id'];
 $current_password = mysqli_query($db, "SELECT `password` FROM `users` WHERE `id`=$current_user");
 $current_password = mysqli_fetch_assoc($current_password);
+$current_email = mysqli_query($db, "SELECT `email` FROM `users` WHERE `id`=$current_user");
+$current_email = mysqli_fetch_assoc($current_email);
 $name = $_POST['name'];
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -22,29 +24,29 @@ if ($name != '') {
         "status" => false,
         "type" => 1,
         "message" => "Имя не может быть пустым",
-        "fields" => ['name']
+        "fields" => ['user_name']
     ];
     echo json_encode($response);
     die();
 }
+if ($current_email['email'] != $email) {
+    if ($email != '' && filter_var($email, FILTER_VALIDATE_EMAIL) && preg_match("/^[\w\.-]+@[a-z]+\.[a-z]+$/", $email) != 0) {
+        //проверка на существование почты
+        $check_email = mysqli_query($db, "SELECT `email` FROM `users` WHERE `email`='$email'");
 
-if ($email != '' && filter_var($email, FILTER_VALIDATE_EMAIL) && preg_match("/^[\w\.-]+@[a-z]+\.[a-z]+$/", $email) != 0) {
-    //проверка на существование почты
-    $check_email = mysqli_query($db, "SELECT `email` FROM `users` WHERE `email`='$email'");
-
-    if (mysqli_num_rows($check_email) > 0) {
-        $response = [
-            "status" => false,
-            "type" => 1,
-            "message" => "Пользователь с такой почтой уже зарегистрирован",
-            "fields" => ['email']
-        ];
-        echo json_encode($response);
-        die();
+        if (mysqli_num_rows($check_email) > 0) {
+            $response = [
+                "status" => false,
+                "type" => 1,
+                "message" => "Пользователь с такой почтой уже зарегистрирован",
+                "fields" => ['user_email']
+            ];
+            echo json_encode($response);
+            die();
+        }
+        $change_email = mysqli_query($db, "UPDATE `users` SET `email`='$email' WHERE `id`=$current_user");
     }
-    $change_email = mysqli_query($db, "UPDATE `users` SET `email`='$email' WHERE `id`=$current_user");
 }
-
 if ($password != "" && $new_password != "") {
     if (md5($password) === $current_password['password']) {
         if (preg_match("/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/", $new_password) != 0) {
@@ -55,17 +57,18 @@ if ($password != "" && $new_password != "") {
                 "status" => false,
                 "type" => 1,
                 "message" => "Пароль должен состоять из 8 символов, а также содержать прописную и строчные буквы и цифры.",
-                "fields" => ['new_password']
+                "fields" => ['user_new_password']
             ];
             echo json_encode($response);
             die();
         }
+
     } else {
         $response = [
             "status" => false,
             "type" => 1,
             "message" => "Неверно введен текущий пароль",
-            "fields" => ['password']
+            "fields" => ['user_password']
         ];
         echo json_encode($response);
         die();

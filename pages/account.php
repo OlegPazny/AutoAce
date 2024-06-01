@@ -65,21 +65,21 @@ function russianMonth($monthNumber)
             <div class="account-info__data-block">
                 <div class="account-info__data">
                     <label class="account-info__data__label">Имя</label>
-                    <input class="account-info__data__input" type="text" name="name"
+                    <input class="account-info__data__input" type="text" name="user_name"
                         value="<?php echo ($account_info['name']); ?>">
                 </div>
                 <div class="account-info__data">
                     <label class="account-info__data__label">Пароль</label>
-                    <input class="account-info__data__input" type="password" name="password">
+                    <input class="account-info__data__input" type="password" name="user_password">
                 </div>
                 <div class="account-info__data">
                     <label class="account-info__data__label">Почта</label>
-                    <input class="account-info__data__input" type="email" name="email"
+                    <input class="account-info__data__input" type="email" name="user_email"
                         value="<?php echo ($account_info['email']); ?>">
                 </div>
                 <div class="account-info__data">
                     <label class="account-info__data__label">Новый пароль</label>
-                    <input class="account-info__data__input" type="password" name="new_password">
+                    <input class="account-info__data__input" type="password" name="user_new_password">
                 </div>
             </div>
             <div class="account-info__btn-block">
