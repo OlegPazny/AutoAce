@@ -212,7 +212,7 @@
     align-items: flex-start;
     overflow: scroll;
 }
-.account-info, .orders, .history, .vehicles{
+.account-info, .orders, .history, .vehicles, .works{
     & h2{
         display: none;
     }
@@ -359,7 +359,7 @@
     }
 }
 @media screen and (max-width: 736px) {
-    .account-info, .orders, .history, .vehicles{
+    .account-info, .orders, .history, .vehicles, .works{
         & h2{
             display: block;
             margin-left: 1rem;

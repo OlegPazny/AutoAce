@@ -2377,7 +2377,7 @@ input[type=checkbox] {
   overflow: scroll;
 }
 
-.account-info h2, .orders h2, .history h2, .vehicles h2 {
+.account-info h2, .orders h2, .history h2, .vehicles h2, .works h2 {
   display: none;
 }
 
@@ -2509,7 +2509,7 @@ input[type=checkbox] {
   }
 }
 @media screen and (max-width: 736px) {
-  .account-info h2, .orders h2, .history h2, .vehicles h2 {
+  .account-info h2, .orders h2, .history h2, .vehicles h2, .works h2 {
     display: block;
     margin-left: 1rem;
     font-size: 1rem;
