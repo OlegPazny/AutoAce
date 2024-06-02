@@ -67,7 +67,15 @@ deleteVehicleHandler();
 // Применение маски для номера
 $('#number_plate').mask('0000 AA-0', {
     translation: {
-        'A': { pattern: /[A-Za-z]/ }
+        'A': { pattern: /[A-Za-z]/ },
+        '0': { pattern: /[0-9]/ }
+    },
+    onComplete: function(value, event, currentField, options) {
+        const region = parseInt(value.slice(-1), 10);
+        if (region < 1 || region > 7) {
+            alert("Регион должен быть числом от 1 до 7.");
+            currentField.val(value.slice(0, -1)); // Стираем неправильный регион
+        }
     }
 });
 
@@ -101,7 +109,15 @@ $('#vehicle_brand').on('input', function() {
 $('.add-vehicle-button').click(function () {
     var vehicleBrand = $('#vehicle_brand').val();
     var numberPlate = $('#number_plate').val();
-
+    
+    if(vehicleBrand==""){
+        alert("Введите название марки автомобиля!");
+        return;
+    }
+    if(numberPlate.length!=9){
+        alert("Введите корректно гос. номер!");
+        return;
+    }
     $.ajax({
         type: 'POST',
         url: '../assets/api/add_vehicle_script.php',
@@ -117,9 +133,14 @@ $('.add-vehicle-button').click(function () {
             var tableBody = $('.vehicles-table').find('tbody'); // находим tbody во второй таблице
             // Находим последнюю строку таблицы
             var lastRow = $('.vehicles-table tr').last();
-            // Получаем значение ячейки нужного столбца в последней строке
-            var cellValue = lastRow.find('td').eq(0).text();
-            currentIndex = parseInt(cellValue) + 1;
+            if(lastRow.find('td').eq(0).text()!=""){
+                // Получаем значение ячейки нужного столбца в последней строке
+                var cellValue = lastRow.find('td').eq(0).text();
+                var currentIndex = parseInt(cellValue) + 1;
+            }else{
+                var currentIndex=1;
+            }
+            
 
             // Создаем новую строку для мастера
             var newRow = $('<tr></tr>');
