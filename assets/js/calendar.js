@@ -533,6 +533,7 @@ $('#book').click(function (event) {
                 $.ajax({
                     url: '../assets/api/insert_booking.php',
                     method: 'POST',
+                    dataType: 'json',
                     data: {
                         workerServiceId: workerServiceId,
                         serviceDate: bookServiceDate,
@@ -542,11 +543,16 @@ $('#book').click(function (event) {
                         email: email
                     },
                     success: function (response) {
-                        alert('Запись успешно добавлена');
-                        getBookingsByMaster(masterId);
-
-                        $('#message').val('');
-                        $('#book_submit').prop('checked', false);
+                        if(response.status){
+                            alert(response.message);
+                            getBookingsByMaster(masterId);
+    
+                            $('#message').val('');
+                            $('#record_email').val('');
+                            $('#book_submit').prop('checked', false);
+                        }else{
+                            alert(response.message);
+                        }
                     },
                     error: function (xhr, status, error) {
                         console.error('Произошла ошибка при записи: ', error);
