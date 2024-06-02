@@ -272,59 +272,74 @@ $(document).ready(function () {
         }
     }
     updateVacationHandler();
+    //проверка скидки
+    function validateDiscountInput(inputElement) {
+        let discount = inputElement.val().trim(); // Получаем значение поля и удаляем лишние пробелы
+        if (!/^(?:[1-9]?[0-9])$/.test(discount)&&discount!=="") {
+            alert("Некорректное значение скидки. Введите число от 1 до 99.");
+            inputElement.val(''); // Очищаем поле ввода
+            throw new Error("Некорректное значение скидки"); // Останавливаем выполнение скрипта
+        }
+    }
     //добавление услуги
     $('.add-service-button').click(function () {
-        var serviceName = $('#service_name').val();
-        var serviceDescription = $('#service_description').val();
-        var servicePrice = $('#service_price').val();
-        var serviceType = $('#service_type').val();
-        var serviceDiscount = $('#service_discount').val();
+        try {
+            validateDiscountInput($('#service_discount')); // Проверяем корректность скидки
+            var serviceName = $('#service_name').val();
+            var serviceDescription = $('#service_description').val();
+            var servicePrice = $('#service_price').val();
+            var serviceType = $('#service_type').val();
+            var serviceDiscount = $('#service_discount').val();
 
-        $.ajax({
-            type: 'POST',
-            url: '../assets/api/add_service_script.php',
-            dataType: 'json',
-            data: {
-                service_name: serviceName,
-                service_description: serviceDescription,
-                service_price: servicePrice,
-                service_type: serviceType,
-                service_discount: serviceDiscount
-            },
-            success: function (response) {
-                alert('Услуга успешно добавлена!');
+            $.ajax({
+                type: 'POST',
+                url: '../assets/api/add_service_script.php',
+                dataType: 'json',
+                data: {
+                    service_name: serviceName,
+                    service_description: serviceDescription,
+                    service_price: servicePrice,
+                    service_type: serviceType,
+                    service_discount: serviceDiscount
+                },
+                success: function (response) {
+                    alert('Услуга успешно добавлена!');
 
-                var newService = response.service;
-                var tableBody = $('.services-table').find('tbody'); // находим tbody во второй таблице
+                    var newService = response.service;
+                    var tableBody = $('.services-table').find('tbody'); // находим tbody во второй таблице
 
-                // Создаем новую строку для услуги
-                var newRow = $('<tr></tr>');
+                    // Создаем новую строку для услуги
+                    var newRow = $('<tr></tr>');
 
-                // Создаем ячейки для новой строки
-                newRow.append('<td>' + newService.id + '</td>');
-                newRow.append('<td>' + newService.service_name + '</td>');
-                newRow.append('<td>' + newService.service_description + '</td>');
-                newRow.append('<td>' + newService.service_hours + ' н/ч</td>');
-                newRow.append('<td>' + newService.service_type + '</td>');
-                newRow.append('<td><input type="text" name="service_discount" class="admin-input" value="' + newService.service_discount + '"/></td>');
-                newRow.append('<td><div class="update-service" data-service-id="' + newService.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="#232323" stroke-width="2" d="M1.75 16.002C3.353 20.098 7.338 23 12 23c6.075 0 11-4.925 11-11m-.75-4.002C20.649 3.901 16.663 1 12 1C5.925 1 1 5.925 1 12m8 4H1v8M23 0v8h-8"/></svg></div><div class="delete-service" data-service-id="' + newService.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
+                    // Создаем ячейки для новой строки
+                    newRow.append('<td>' + newService.id + '</td>');
+                    newRow.append('<td>' + newService.service_name + '</td>');
+                    newRow.append('<td>' + newService.service_description + '</td>');
+                    newRow.append('<td>' + newService.service_hours + ' н/ч</td>');
+                    newRow.append('<td>' + newService.service_type + '</td>');
+                    newRow.append('<td><input type="text" name="service_discount" class="admin-input" value="' + newService.service_discount + '"/></td>');
+                    newRow.append('<td><div class="update-service" data-service-id="' + newService.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="#232323" stroke-width="2" d="M1.75 16.002C3.353 20.098 7.338 23 12 23c6.075 0 11-4.925 11-11m-.75-4.002C20.649 3.901 16.663 1 12 1C5.925 1 1 5.925 1 12m8 4H1v8M23 0v8h-8"/></svg></div><div class="delete-service" data-service-id="' + newService.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
 
-                // Добавляем новую строку в таблицу
-                tableBody.find('tr').eq(1).before(newRow);
-                deleteServiceHandler();
-                updateServiceHandler();
-                // Очищаем поля ввода после успешной отправки
-                $('#service_name').val('');
-                $('#service_description').val('');
-                $('#service_type:eq(0)').prop('selected', true);
-                $('#service_price').val('');
-                $('#service_discount').val('');
-            },
-            error: function (xhr, status, error) {
-                // Обработка ошибки AJAX-запроса
-                console.error(xhr.responseText);
-            }
-        });
+                    // Добавляем новую строку в таблицу
+                    tableBody.find('tr').eq(1).before(newRow);
+                    deleteServiceHandler();
+                    updateServiceHandler();
+                    // Очищаем поля ввода после успешной отправки
+                    $('#service_name').val('');
+                    $('#service_description').val('');
+                    $('#service_type:eq(0)').prop('selected', true);
+                    $('#service_price').val('');
+                    $('#service_discount').val('');
+                },
+                error: function (xhr, status, error) {
+                    // Обработка ошибки AJAX-запроса
+                    console.error(xhr.responseText);
+                }
+            });
+        } catch (error) {
+            console.error(error);
+        }
+
     });
     //обновление услуги
     function updateServiceHandler() {
@@ -332,36 +347,41 @@ $(document).ready(function () {
         $(document).off('click', '.update-service');
         // Обработчик клика на кнопку обновить данные автосервиса
         $(document).on('click', '.update-service', function () {
-            const serviceId = $(this).data('service-id');
-            const row = $(this).closest('tr');
-            const discount = row.find("input[name='service_discount']").val();
-            console.log(serviceId);
-            console.log(discount);
-            // Отправляем данные на сервер...
-            const data = {
-                service_id: serviceId,
-                discount: discount
-            };
+            try {
+                const serviceId = $(this).data('service-id');
+                const row = $(this).closest('tr');
+                const discount = row.find("input[name='service_discount']").val();
+                let discountInput = row.find("input[name='service_discount']");
+                validateDiscountInput(discountInput); // Проверяем корректность скидки
+                // Отправляем данные на сервер...
+                const data = {
+                    service_id: serviceId,
+                    discount: discount
+                };
 
-            fetch('../assets/api/update_service_script.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert("Услуга обновлена успешно!");
-                    } else {
-                        alert("Ошибка при обновлении услуги!");
-                    }
+                fetch('../assets/api/update_service_script.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert("Error updating service!");
-                });
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert("Услуга обновлена успешно!");
+                        } else {
+                            alert("Ошибка при обновлении услуги!");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert("Error updating service!");
+                    });
+            } catch (error) {
+                console.error(error);
+            }
+
         });
     }
     updateServiceHandler();

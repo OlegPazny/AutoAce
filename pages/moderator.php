@@ -513,6 +513,8 @@ function russianMonth($monthNumber)
     </section>
     <?php require_once "../includes/footer.php"; ?>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.9/jquery.inputmask.min.js"></script>
+
 <script src="../assets/js/moderator.js"></script>
 <script src="../assets/js/account_burger.js"></script>
 
