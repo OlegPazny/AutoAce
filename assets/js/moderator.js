@@ -306,12 +306,13 @@ $(document).ready(function () {
                 newRow.append('<td>' + newService.service_description + '</td>');
                 newRow.append('<td>' + newService.service_hours + ' н/ч</td>');
                 newRow.append('<td>' + newService.service_type + '</td>');
-                newRow.append('<td>' + newService.service_discount + '</td>');
-                newRow.append('<td><div class="delete-service" data-service-id="' + newService.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
+                newRow.append('<td><input type="text" name="service_discount" class="admin-input" value="' + newService.service_discount + '"/></td>');
+                newRow.append('<td><div class="update-service" data-service-id="' + newService.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="#232323" stroke-width="2" d="M1.75 16.002C3.353 20.098 7.338 23 12 23c6.075 0 11-4.925 11-11m-.75-4.002C20.649 3.901 16.663 1 12 1C5.925 1 1 5.925 1 12m8 4H1v8M23 0v8h-8"/></svg></div><div class="delete-service" data-service-id="' + newService.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
 
                 // Добавляем новую строку в таблицу
                 tableBody.find('tr').eq(1).before(newRow);
                 deleteServiceHandler();
+                updateServiceHandler();
                 // Очищаем поля ввода после успешной отправки
                 $('#service_name').val('');
                 $('#service_description').val('');
@@ -325,8 +326,50 @@ $(document).ready(function () {
             }
         });
     });
+    //обновление услуги
+    function updateServiceHandler() {
+        // Сначала удаляем все существующие обработчики
+        $(document).off('click', '.update-service');
+        // Обработчик клика на кнопку обновить данные автосервиса
+        $(document).on('click', '.update-service', function () {
+            const serviceId = $(this).data('service-id');
+            const row = $(this).closest('tr');
+            const discount = row.find("input[name='service_discount']").val();
+            console.log(serviceId);
+            console.log(discount);
+            // Отправляем данные на сервер...
+            const data = {
+                service_id: serviceId,
+                discount: discount
+            };
+
+            fetch('../assets/api/update_service_script.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Услуга обновлена успешно!");
+                    } else {
+                        alert("Ошибка при обновлении услуги!");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("Error updating service!");
+                });
+        });
+    }
+    updateServiceHandler();
     //удаление услуги
     function deleteServiceHandler() {
+        // Сначала удаляем все существующие обработчики
+        $(document).off('click', '.delete-service');
+
         var deleteButtons = document.querySelectorAll('.delete-service');
         deleteButtons.forEach(function (button) {
             button.addEventListener('click', function () {
@@ -568,7 +611,7 @@ $(document).ready(function () {
         workshopSelect.on('mousedown', async (event) => {
             if (event.target.tagName.toLowerCase() === 'option') {
                 event.stopPropagation(); // Останавливаем распространение события
-            }else{
+            } else {
                 try {
                     const response = await fetch('../assets/api/get_workshops_script.php');
                     const options = await response.json();
@@ -603,7 +646,7 @@ $(document).ready(function () {
         serviceTypeSelect.on('mousedown', async (event) => {
             if (event.target.tagName.toLowerCase() === 'option') {
                 event.stopPropagation(); // Останавливаем распространение события
-            }else{
+            } else {
                 try {
                     const response = await fetch('../assets/api/get_service_types_script.php');
                     const options = await response.json();
@@ -638,7 +681,7 @@ $(document).ready(function () {
         workerSelect.on('mousedown', async (event) => {
             if (event.target.tagName.toLowerCase() === 'option') {
                 event.stopPropagation(); // Останавливаем распространение события
-            }else{
+            } else {
                 try {
                     const response = await fetch('../assets/api/get_workers_script.php');
                     const options = await response.json();

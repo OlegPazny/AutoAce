@@ -431,8 +431,13 @@ function russianMonth($monthNumber)
                                 <td>" . $service[2] . "</td>
                                 <td>" . $service[3] . " н/ч</td>
                                 <td>" . $service[4] . "</td>
-                                <td>" . $service[5] . "</td>
+                                <td><input class='admin-input' type='text' name='service_discount' value='" . $service[5] . "'></td>
                                 <td>
+                                    <div class='update-service' data-service-id='" . $service[0] . "''>
+                                        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'>
+                                            <path fill='none' stroke='#232323' stroke-width='2' d='M1.75 16.002C3.353 20.098 7.338 23 12 23c6.075 0 11-4.925 11-11m-.75-4.002C20.649 3.901 16.663 1 12 1C5.925 1 1 5.925 1 12m8 4H1v8M23 0v8h-8'/>
+                                        </svg>
+                                    </div>
                                     <div class='delete-service' data-service-id='" . $service[0] . "''>
                                         <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
                                             <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
