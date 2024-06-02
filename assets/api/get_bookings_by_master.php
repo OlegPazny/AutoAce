@@ -15,7 +15,7 @@ $sql = "SELECT sb.id, sb.service_date, sb.service_time, sb.status, s.duration
 FROM service_bookings sb
 INNER JOIN worker_service_relationships wsr ON sb.worker_service_id = wsr.id
 INNER JOIN services s ON wsr.service_id = s.id
-WHERE wsr.worker_id = $masterId";
+WHERE wsr.worker_id = $masterId AND NOT sb.status='completed'";
 
 $result = $db->query($sql);
 
