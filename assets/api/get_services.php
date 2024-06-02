@@ -33,6 +33,12 @@ if (isset($_SESSION['workshop_id'])) {
             $service_id = $service_data[0];
             $service_name = $service_data[1];
             $service_duration = $service_data[3];
+            $service_discount = $service_data[4];
+
+            $price=$service_duration*$workshop_price['standart_hour'];
+            if($service_discount!=NULL){
+                $price=$price*(100-$service_discount)/100;
+            }
             if (!isset($services_arr[$service_type])) {
                 $services_arr[$service_type] = [];
             }
@@ -40,7 +46,7 @@ if (isset($_SESSION['workshop_id'])) {
                 'id' => $service_id,
                 'name' => $service_name,
                 'duration' => $service_duration,
-                'price' => $service_duration*$workshop_price['standart_hour']
+                'price' => $price
             ];
         }
 

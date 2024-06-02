@@ -1,6 +1,6 @@
 <?php
 require_once "../assets/api/db_connect.php";
-
+session_start();
 if(isset($_SESSION['user'])){
     $userId = $_SESSION['user']['id'];
     $user_vehicles = mysqli_query($db, "SELECT `id`, `brand`, `num_plate` FROM `vehicles` WHERE `user_id`=$userId");
@@ -67,7 +67,7 @@ $end_hour = explode(":", $end_time)[0];
                             }
                             ?>
                         </select>
-                    <?php }else{ ?>
+                    <?php }else if(!isset($userId)){ ?>
                         <label>Почта</label>
                         <input type="email" id="record_email" class="record_email">
                     <?php } ?>
