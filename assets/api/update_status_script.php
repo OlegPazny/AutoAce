@@ -27,7 +27,7 @@
         <p>Спасибо за выбор автосервиса!</p>
         <p>С уважением AutoAce!</p>
     ";
-        var_dump(send_mail($settings['mail_settings'], [$client['email']], 'Статус выполнения изменен!!', $body));
+        var_dump(send_mail($settings['mail_settings'], [$client['email']], 'Статус выполнения изменен!', $body));
     }else if($newStatus=="pending"){
         $delete_from_history=mysqli_query($db,"DELETE FROM `service_history` WHERE `booking_id`=$bookingId");
     }else if($newStatus=="confirmed"){
