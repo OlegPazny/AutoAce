@@ -197,9 +197,9 @@ swiper-slide {
   }
 }
 @media screen and (max-width: 1280px) {
-  .discount-card{
-    margin-right:2rem !important;
-  }
+  // .discount-card{
+  //   margin-right:2rem !important;
+  // }
 }
 @media screen and (max-width: 1024px) {
   .offers-slider-elem{
@@ -230,7 +230,7 @@ swiper-slide {
   .discount-card{
     height: 12rem !important;
     padding:1rem;
-    margin-right: 1rem !important;
+    //margin-right: 1rem !important;
   }
   .card{
     &__head{

@@ -249,6 +249,31 @@ require_once "../assets/api/index_info_script.php";
         effect: 'slide',
         centerInsufficientSlides: true,
         centeredSlidesBounds: true,
+        breakpoints: {
+            // when window width is >= 320px
+            0: {
+            slidesPerView: 1.8,
+            spaceBetween: 5
+            },
+            414: {
+            slidesPerView: 2.3,
+            spaceBetween: 10
+            },
+            834: {
+            slidesPerView: 2.2,
+            spaceBetween: 20
+            },
+            // when window width is >= 480px
+            1280: {
+            slidesPerView: 2.5,
+            spaceBetween: 50
+            },
+            // when window width is >= 640px
+            1500: {
+            slidesPerView: 3.5,
+            spaceBetween: 100
+            }
+        }
     });
 </script>
 <script src="../assets/js/callback.js"></script>

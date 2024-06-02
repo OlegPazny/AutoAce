@@ -823,11 +823,6 @@ swiper-slide {
     padding: 1.5rem 2rem;
   }
 }
-@media screen and (max-width: 1280px) {
-  .discount-card {
-    margin-right: 2rem !important;
-  }
-}
 @media screen and (max-width: 1024px) {
   .offers-slider-elem {
     padding: 5rem 5rem;
@@ -855,7 +850,6 @@ swiper-slide {
   .discount-card {
     height: 12rem !important;
     padding: 1rem;
-    margin-right: 1rem !important;
   }
   .card__head {
     font-size: 1rem;
