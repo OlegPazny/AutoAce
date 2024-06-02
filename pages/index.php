@@ -42,7 +42,7 @@ require_once "../assets/api/index_info_script.php";
                                 <input type="button" class="button__content" value="Записаться на ремонт">
                             </div>
                         </div>
-                        <img class="offer-slide__image" src="../assets/images/main_slider1.png">
+                        <img alt="Рисунок машины" class="offer-slide__image" src="../assets/images/main_slider1.png">
                         <div class="slide-shadow1"></div>
                         <div class="slide-shadow2"></div>
                     </div>
@@ -61,7 +61,7 @@ require_once "../assets/api/index_info_script.php";
                                 <input type="button" class="button__content" value="Записаться на ремонт">
                             </div>
                         </div>
-                        <img class="offer-slide__image" src="../assets/images/main_slider2.png">
+                        <img alt="Рисунок тормозов" class="offer-slide__image" src="../assets/images/main_slider2.png">
                         <div class="slide-shadow1"></div>
                         <div class="slide-shadow2"></div>
                     </div>
@@ -79,7 +79,7 @@ require_once "../assets/api/index_info_script.php";
                                 <input type="button" class="button__content" value="Записаться на ремонт">
                             </div>
                         </div>
-                        <img class="offer-slide__image" src="../assets/images/main_slider3.png">
+                        <img alt="Рисунок шиномонтажа" class="offer-slide__image" src="../assets/images/main_slider3.png">
                         <div class="slide-shadow1"></div>
                         <div class="slide-shadow2"></div>
                     </div>
@@ -99,7 +99,7 @@ require_once "../assets/api/index_info_script.php";
                 </p>
                 <img class="pron__img" src="../assets/images/pron_arrow.png">
             </div>
-            <img class="prons-section__img" src="../assets/images/wrench.png">
+            <img alt="Рисунок гаечного ключа" class="prons-section__img" src="../assets/images/wrench.png">
             <div class="bottom-prons">
                 <div class="pron">
                     <img class="pron__img up" src="../assets/images/pron_arrow.png">
@@ -140,15 +140,15 @@ require_once "../assets/api/index_info_script.php";
         </div>
         <div class="slider">
             <swiper-container class="mySwiper" effect="cards" grab-cursor="true">
-                <swiper-slide><img class="swiper-img" src="../assets/images/slider1.jpg"></swiper-slide>
-                <swiper-slide><img class="swiper-img" src="../assets/images/slider2.jpg"></swiper-slide>
-                <swiper-slide><img class="swiper-img" src="../assets/images/slider3.jpg"></swiper-slide>
-                <swiper-slide><img class="swiper-img" src="../assets/images/slider4.jpg"></swiper-slide>
-                <swiper-slide><img class="swiper-img" src="../assets/images/slider5.jpg"></swiper-slide>
-                <swiper-slide><img class="swiper-img" src="../assets/images/slider6.jpg"></swiper-slide>
-                <swiper-slide><img class="swiper-img" src="../assets/images/slider7.jpg"></swiper-slide>
-                <swiper-slide><img class="swiper-img" src="../assets/images/slider8.jpg"></swiper-slide>
-                <swiper-slide><img class="swiper-img" src="../assets/images/slider9.jpg"></swiper-slide>
+                <swiper-slide><img alt="Работа в автосервисе" class="swiper-img" src="../assets/images/slider1.jpg"></swiper-slide>
+                <swiper-slide><img alt="Работа в автосервисе" class="swiper-img" src="../assets/images/slider2.jpg"></swiper-slide>
+                <swiper-slide><img alt="Работа в автосервисе" class="swiper-img" src="../assets/images/slider3.jpg"></swiper-slide>
+                <swiper-slide><img alt="Работа в автосервисе" class="swiper-img" src="../assets/images/slider4.jpg"></swiper-slide>
+                <swiper-slide><img alt="Работа в автосервисе" class="swiper-img" src="../assets/images/slider5.jpg"></swiper-slide>
+                <swiper-slide><img alt="Работа в автосервисе" class="swiper-img" src="../assets/images/slider6.jpg"></swiper-slide>
+                <swiper-slide><img alt="Работа в автосервисе" class="swiper-img" src="../assets/images/slider7.jpg"></swiper-slide>
+                <swiper-slide><img alt="Работа в автосервисе" class="swiper-img" src="../assets/images/slider8.jpg"></swiper-slide>
+                <swiper-slide><img alt="Работа в автосервисе" class="swiper-img" src="../assets/images/slider9.jpg"></swiper-slide>
             </swiper-container>
             <div class="slider__shadow"></div>
         </div>
@@ -250,7 +250,6 @@ require_once "../assets/api/index_info_script.php";
         centerInsufficientSlides: true,
         centeredSlidesBounds: true,
         breakpoints: {
-            // when window width is >= 320px
             0: {
             slidesPerView: 1.8,
             spaceBetween: 5
@@ -263,12 +262,10 @@ require_once "../assets/api/index_info_script.php";
             slidesPerView: 2.2,
             spaceBetween: 20
             },
-            // when window width is >= 480px
             1280: {
             slidesPerView: 2.5,
             spaceBetween: 50
             },
-            // when window width is >= 640px
             1500: {
             slidesPerView: 3.5,
             spaceBetween: 100

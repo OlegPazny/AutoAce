@@ -2,7 +2,7 @@
 require_once "../assets/api/isAdmin.php";
 if (!isset($_SESSION['user'])) {
     $account_href = "../pages/signin.php";
-    $account_icon = "<img src='../assets/images/login_icon.svg' style='width: 1.5em; height:1.5em'>";
+    $account_icon = "<img alt='Иконка аккаунта' src='../assets/images/login_icon.svg' style='width: 1.5em; height:1.5em'>";
     $header_list = "<li id='sign-in__link'>Войти</li>";
 } else if (isset($_SESSION['user']) && $isMechanic == false) {
     $account_href = "../pages/account.php";
@@ -32,8 +32,8 @@ if (!isset($_SESSION['user'])) {
                 <a href="../pages/index.php">
                 <?php } ?>
                 <div class="header__logo__block">
-                    <img src="../assets/images/gear_icon.svg">
-                    <img src="../assets/images/logo_text.svg">
+                    <img alt="Иконка логотипа светлая" src="../assets/images/gear_icon.svg">
+                    <img alt="Текст логотипа светлый" src="../assets/images/logo_text.svg">
                 </div>
             </a>
     </div>

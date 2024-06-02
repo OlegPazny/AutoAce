@@ -3,8 +3,8 @@
         <div class="footer__logo">
             <a href="../index.php">
                 <div class="footer__logo__block">
-                    <img src="../assets/images/gear_icon_dark.svg">
-                    <img src="../assets/images/logo_text_dark.svg">
+                    <img alt="Иконка логотипа темная" src="../assets/images/gear_icon_dark.svg">
+                    <img alt="Текст логотипа темный" src="../assets/images/logo_text_dark.svg">
                 </div>
             </a>
         </div>
