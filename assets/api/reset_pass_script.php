@@ -26,6 +26,13 @@
     }
 //если не найдено пользователей отключаемся
     if(!isset($trusted_id)){
+        $response=[
+            "status"=>false,
+            "type"=>0,
+            "message"=>"В ссылке содержится ошибка, попробуйте еще раз.",
+        ];
+
+        echo json_encode($response);
         die();
     }
 

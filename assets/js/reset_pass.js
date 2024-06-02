@@ -24,7 +24,7 @@ $('.reset-btn').click(function(e){
 
         success:function(data){
             if(data.status){
-                document.location.href='signin.php';
+                document.location.href='index.php';
             }else{
                 if(data.type===1){
                     data.fields.forEach(function(field){
