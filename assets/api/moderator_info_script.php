@@ -20,7 +20,7 @@
     ORDER BY `service_date` ASC, `service_time` ASC");
     $accounts_books=mysqli_fetch_all($accounts_books);
 //история записей
-    $accounts_history=mysqli_query($db, "SELECT `workers`.`name`, `services`.`service_name`, `service_bookings`.`message`, `service_history`.`completion_date`, `service_history`.`completion_time`, `service_bookings`.`status`, `service_history`.`booking_id`, `workshops`.`name` FROM `service_history`
+    $accounts_history=mysqli_query($db, "SELECT `workers`.`name`, `services`.`service_name`, `service_bookings`.`message`, `service_history`.`completion_date`, `service_history`.`completion_time`, `service_bookings`.`status`, `service_history`.`booking_id`, `workshops`.`name`, `services`.`duration`, `workshops`.`standart_hour`, `services`.`discount`, `users`.`name` FROM `service_history`
     INNER JOIN `service_bookings` ON `service_history`.`booking_id`=`service_bookings`.`id`
     INNER JOIN `worker_service_relationships` ON `service_bookings`.`worker_service_id`=`worker_service_relationships`.`id`
     inner join `services` on `worker_service_relationships`.`service_id`=`services`.`id`

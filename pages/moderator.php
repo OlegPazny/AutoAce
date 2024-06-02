@@ -287,11 +287,12 @@ function russianMonth($monthNumber)
                 <thead>
                     <tr>
                         <th>Автосервис</th>
-                        <th>Работник</th>
                         <th>Услуга</th>
+                        <th>Стоимость</th>
+                        <th>Клиент</th>
                         <th>Комментарий</th>
-                        <th>Дата записи</th>
-                        <th>Время записи</th>
+                        <th>Дата выполнения</th>
+                        <th>Время выполнения</th>
                         <th>Статус</th>
                     </tr>
                     <thead>
@@ -302,10 +303,16 @@ function russianMonth($monthNumber)
                             $day = date('j', $date);
                             $month = date('n', $date);
                             $date = $day . ' ' . russianMonth($month);
+
+                            $price=$account_history[8]*$account_history[9];
+                            if($account_history[10]!=NULL){
+                                $price=$price*(100-$account_history[10])/100;
+                            }
                             echo ("<tr>
-                                <td>" . $account_history[7] . "</td>
                                 <td>" . $account_history[0] . "</td>
                                 <td>" . $account_history[1] . "</td>
+                                <td>" . $price . " р.</td>
+                                <td>" . $account_history[11] . "</td>
                                 <td>" . $account_history[2] . "</td>
                                 <td>" . $date . "</td>
                                 <td>" . substr($account_history[4], 0, 5) . "</td>
