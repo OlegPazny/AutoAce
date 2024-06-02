@@ -157,6 +157,7 @@
         }
     }
     &__service{
+        display: block !important;
         text-transform: uppercase;
         text-align: center;
         border-bottom: 1px solid black;
@@ -187,20 +188,22 @@
         }
         &__datetime{
             display: flex;
-            flex-direction: row;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-end;
             height: fit-content;
-            justify-content: center;
+            justify-content: right;
             padding:0.8rem 1rem;
             background-color: #232323;
             font-family: "Montserrat";
             font-weight: bolder;
             color:#fff;
-            align-items: center;
             border-radius:2rem 0 0 2rem;
 
-            &__value{
+            &__value, &__price{
                 margin:0;
+            }
+            &__value{
+                margin-bottom: 0.2rem;
             }
         }
     }
@@ -313,7 +316,7 @@
             }
             &__datetime{
                 padding: 0.7rem 0.9rem;
-                &__value{
+                &__value, &__price{
                     font-size: 0.6rem;
                 }
             }

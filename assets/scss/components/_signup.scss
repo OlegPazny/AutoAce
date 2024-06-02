@@ -81,3 +81,10 @@
 .reset-pass-message{
     font-size: 0.5rem;
 }
+@media screen and (max-width: 540px) {
+    .signup{
+        &__submit-block{
+            padding: 0.5rem 1.5rem !important;
+        }
+    }
+}

@@ -2318,6 +2318,7 @@ input[type=checkbox] {
   font-size: 0.8rem;
 }
 .order-card__service {
+  display: block !important;
   text-transform: uppercase;
   text-align: center;
   border-bottom: 1px solid black;
@@ -2347,21 +2348,23 @@ input[type=checkbox] {
 }
 .order-card__bottom-block__datetime {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
   height: -moz-fit-content;
   height: fit-content;
-  justify-content: center;
+  justify-content: right;
   padding: 0.8rem 1rem;
   background-color: #232323;
   font-family: "Montserrat";
   font-weight: bolder;
   color: #fff;
-  align-items: center;
   border-radius: 2rem 0 0 2rem;
 }
-.order-card__bottom-block__datetime__value {
+.order-card__bottom-block__datetime__value, .order-card__bottom-block__datetime__price {
   margin: 0;
+}
+.order-card__bottom-block__datetime__value {
+  margin-bottom: 0.2rem;
 }
 
 .account-services {
@@ -2468,7 +2471,7 @@ input[type=checkbox] {
   .order-card__bottom-block__datetime {
     padding: 0.7rem 0.9rem;
   }
-  .order-card__bottom-block__datetime__value {
+  .order-card__bottom-block__datetime__value, .order-card__bottom-block__datetime__price {
     font-size: 0.6rem;
   }
 }
@@ -2898,6 +2901,11 @@ input[type=checkbox] {
   font-size: 0.5rem;
 }
 
+@media screen and (max-width: 540px) {
+  .signup__submit-block {
+    padding: 0.5rem 1.5rem !important;
+  }
+}
 .modalpopup {
   position: fixed;
   /* фиксированное положение */

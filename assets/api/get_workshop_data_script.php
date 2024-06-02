@@ -15,7 +15,8 @@ if (isset($_SESSION['workshop_id'])) {
                                                 service_duration,
                                                 service_discount,
                                                 workshop_id,
-                                                workshop_name
+                                                workshop_name,
+                                                service_description
                                             FROM (
                                                 SELECT
                                                     s.id AS service_id,
@@ -25,7 +26,8 @@ if (isset($_SESSION['workshop_id'])) {
                                                     s.discount AS service_discount,
                                                     ws.id AS workshop_id,
                                                     ws.name AS workshop_name,
-                                                    COUNT(s.id) OVER (PARTITION BY st.id) AS service_count
+                                                    COUNT(s.id) OVER (PARTITION BY st.id) AS service_count,
+                                                    s.description AS service_description
                                                 FROM workers w
                                                 INNER JOIN worker_service_relationships wsr ON w.id = wsr.worker_id
                                                 INNER JOIN services s ON wsr.service_id = s.id
@@ -41,11 +43,13 @@ if (isset($_SESSION['workshop_id'])) {
         $service_id=$service_data[0];
         $service_name=$service_data[1];
         $service_price=$service_data[3];
+        $service_description=$service_data[7];
         if(!in_array($service_type, $services_arr)){
             $services_arr[$service_type][]=array(
                 'id'=>$service_id,
                 'name'=>$service_name,
-                'price'=>$service_price
+                'price'=>$service_price,
+                'description'=>$service_description
             );
         }
     }

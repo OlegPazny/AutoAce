@@ -68,7 +68,7 @@ require_once "../assets/api/get_workshop_data_script.php";
                         echo ("<h3 class='list-container__head'>" . $service_type . "</h3>");
                         echo ("<ul>");
                         foreach ($services as $service) {
-                            echo ("<li>" . $service['name'] . "</li>");
+                            echo ("<li title='".$service['description']."'>" . $service['name'] . "</li>");
                         }
                         echo ("</ul>");
                         echo ("</div>");

@@ -121,7 +121,11 @@ function russianMonth($monthNumber)
                         $status = "Выполнено";
                         continue;
                     }
-
+                    
+                    $price=$account_book[9]*$account_book[10];
+                    if($account_book[11]!=NULL){
+                        $price=$price*(100-$account_book[11])/100;
+                    }
                     $car_row = "";
                     if ($account_book[7] != "") {
                         $car_row = "<p class='order-card__bottom-block__details__vehicle'>Автомобиль: " . $account_book[7] . "</p>";
@@ -146,6 +150,7 @@ function russianMonth($monthNumber)
                                 </div>
                                 <div class='order-card__bottom-block__datetime'>
                                     <p class='order-card__bottom-block__datetime__value'>" . $date . ", " . substr($account_book[5], 0, 5) . "</p>
+                                    <p class='order-card__bottom-block__datetime__price'>".$price." р.</p>
                                 </div>
                             </div>
                         </div>
