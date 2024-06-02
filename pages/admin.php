@@ -77,10 +77,8 @@ function russianMonth($monthNumber)
         padding: 0.4rem 1rem;
     }
 
-    /* Стили для карты */
     .map-block {
         height: 400px;
-        /* Установите подходящую высоту для модального окна */
     }
 
     #map {
@@ -91,20 +89,22 @@ function russianMonth($monthNumber)
 
 <body>
     <?php require_once "../includes/header.php"; ?>
-    <section class="moderator-section">
+    <section class="account-section">
         <div class="nav">
+            <div class="burger-menu-account"></div>
             <ul class="nav__list">
                 <li class="nav__list__item info-btn">пользователи</li>
                 <li class="nav__list__item workers-btn">работники</li>
                 <li class="nav__list__item orders-btn">заказанные услуги</li>
                 <li class="nav__list__item history-btn">архив заказов</li>
-                <li class="nav__list__item service-types-btn">тип услуги</li>
+                <li class="nav__list__item service-types-btn">типы услуг</li>
                 <li class="nav__list__item services-btn">услуги</li>
                 <li class="nav__list__item relations-btn">назначить услуги</li>
                 <li class="nav__list__item workshops-btn">автосервисы</li>
             </ul>
         </div>
         <div class="account-services accounts">
+            <h2>Аккаунты пользователей</h2>
             <table>
                 <thead>
                     <tr>
@@ -134,13 +134,13 @@ function russianMonth($monthNumber)
                                 $role = "Работник";
                             }
 
-                            $name="Клиент";
-                            if($user[2]!=NULL){
-                                $name=$user[2];
+                            $name = "Клиент";
+                            if ($user[2] != NULL) {
+                                $name = $user[2];
                             }
-                            $login="Client";
-                            if($user[1]!=NULL){
-                                $login=$user[1];
+                            $login = "Client";
+                            if ($user[1] != NULL) {
+                                $login = $user[1];
                             }
 
                             echo ("<tr>
@@ -183,6 +183,7 @@ function russianMonth($monthNumber)
             </table>
         </div>
         <div class="account-services workers">
+            <h2>Работники</h2>
             <table class="workers-table">
                 <thead>
                     <tr>
@@ -229,15 +230,15 @@ function russianMonth($monthNumber)
                                     <td>" . $worker[4] . "</td>
                                     <td>" . $worker[2] . "</td>
                                     <td>");
-                                    ?>
-                                        <select class='vacation-select' data-worker-id="<?php echo $worker[0]; ?>">
-                                            <option value='0' <?php if ($worker[5] == "0")
-                                                echo "selected"; ?>>Работает</option>
-                                            <option value='1' <?php if ($worker[5] == "1")
-                                                echo "selected"; ?>>
-                                                В отпуске</option>
-                                        </select>
-                        <?php echo ("</td>
+                            ?>
+                            <select class='vacation-select' data-worker-id="<?php echo $worker[0]; ?>">
+                                <option value='0' <?php if ($worker[5] == "0")
+                                    echo "selected"; ?>>Работает</option>
+                                <option value='1' <?php if ($worker[5] == "1")
+                                    echo "selected"; ?>>
+                                    В отпуске</option>
+                            </select>
+                            <?php echo ("</td>
                                     <td>
                                         <div class='block-worker' data-worker-id='" . $worker[0] . "''>
                                             <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
@@ -252,6 +253,7 @@ function russianMonth($monthNumber)
             </table>
         </div>
         <div class="account-services orders">
+            <h2>Заказанные услуги</h2>
             <table>
                 <thead>
                     <tr>
@@ -273,18 +275,18 @@ function russianMonth($monthNumber)
                             if ($account_book[6] == "completed") {
                                 continue;
                             }
-                            $name="Клиент";
-                            if($account_book[10]!=NULL){
-                                $name=$account_book[10];
+                            $name = "Клиент";
+                            if ($account_book[10] != NULL) {
+                                $name = $account_book[10];
                             }
                             $date = strtotime($account_book[4]); // Преобразование строки в дату
                             $day = date('j', $date);
                             $month = date('n', $date);
                             $date = $day . ' ' . russianMonth($month);
 
-                            $price=(int) $account_book[7]*(int)$account_book[11];
-                            if($account_book[9]!=NULL){
-                                $price=$price*(100-(int)$account_book[9])/100;
+                            $price = (int) $account_book[7] * (int) $account_book[11];
+                            if ($account_book[9] != NULL) {
+                                $price = $price * (100 - (int) $account_book[9]) / 100;
                             }
                             echo ("<tr>
                                     <td>" . $account_book[1] . "</td>
@@ -323,6 +325,7 @@ function russianMonth($monthNumber)
             </table>
         </div>
         <div class="account-services history">
+            <h2>Архив заказов</h2>
             <table>
                 <thead>
                     <tr>
@@ -369,6 +372,7 @@ function russianMonth($monthNumber)
             </table>
         </div>
         <div class="account-services services">
+            <h2>Услуги</h2>
             <table class="services-table">
                 <thead>
                     <tr>
@@ -432,6 +436,7 @@ function russianMonth($monthNumber)
             </table>
         </div>
         <div class="account-services service-types">
+            <h2>Типы услуг</h2>
             <table class="service-types-table">
                 <thead>
                     <tr>
@@ -476,6 +481,7 @@ function russianMonth($monthNumber)
             </table>
         </div>
         <div class="account-services relations">
+            <h2>Назначить услуги</h2>
             <table class="relations-table">
                 <thead>
                     <tr>
@@ -534,6 +540,7 @@ function russianMonth($monthNumber)
             </table>
         </div>
         <div class="account-services workshops">
+            <h2>Автосервисы</h2>
             <table class="workshops-table">
                 <thead>
                     <tr>
@@ -625,5 +632,6 @@ function russianMonth($monthNumber)
 </body>
 <script src="../assets/js/moderator.js"></script>
 <script src="../assets/js/admin.js"></script>
+<script src="../assets/js/account_burger.js"></script>
 
 </html>

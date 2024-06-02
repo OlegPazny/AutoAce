@@ -2368,10 +2368,9 @@ input[type=checkbox] {
   width: 85%;
   display: flex;
   align-items: flex-start;
-  overflow: scroll;
 }
 
-.account-info h2, .orders h2, .history h2, .vehicles h2, .works h2 {
+.account-info h2, .orders h2, .history h2, .vehicles h2, .works h2, .accounts h2, .workers h2, .workshops h2, .history h2, .services h2, .service-types h2, .relations h2 {
   display: none;
 }
 
@@ -2477,6 +2476,9 @@ input[type=checkbox] {
   .order-card {
     zoom: 0.8;
   }
+  .account-services {
+    overflow: scroll;
+  }
 }
 @media screen and (max-width: 1280px) {
   .nav__list {
@@ -2503,7 +2505,7 @@ input[type=checkbox] {
   }
 }
 @media screen and (max-width: 736px) {
-  .account-info h2, .orders h2, .history h2, .vehicles h2, .works h2 {
+  .account-info h2, .orders h2, .history h2, .vehicles h2, .works h2, .accounts h2, .workers h2, .workshops h2, .history h2, .services h2, .service-types h2, .relations h2 {
     display: block;
     margin-left: 1rem;
     font-size: 1rem;
@@ -2554,6 +2556,10 @@ input[type=checkbox] {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.accounts {
+  flex-direction: column;
 }
 
 .add-service-input, .admin-input, .user-input {

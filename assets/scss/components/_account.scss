@@ -210,9 +210,8 @@
     width:85%;
     display: flex;
     align-items: flex-start;
-    overflow: scroll;
 }
-.account-info, .orders, .history, .vehicles, .works{
+.account-info, .orders, .history, .vehicles, .works, .accounts, .workers, .workshops, .history, .services, .service-types, .relations{
     & h2{
         display: none;
     }
@@ -325,6 +324,9 @@
     .order-card{
         zoom: 0.8;
     }
+    .account-services{
+        overflow: scroll;
+    }
 }
 @media screen and (max-width: 1280px) {
     .nav{
@@ -359,7 +361,7 @@
     }
 }
 @media screen and (max-width: 736px) {
-    .account-info, .orders, .history, .vehicles, .works{
+    .account-info, .orders, .history, .vehicles, .works, .accounts, .workers, .workshops, .history, .services, .service-types, .relations{
         & h2{
             display: block;
             margin-left: 1rem;

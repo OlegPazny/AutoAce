@@ -35,7 +35,7 @@ function russianMonth($monthNumber)
     <link rel="icon" href="../assets/images/favicon.svg" />
     <!-- jQuery connection -->
     <script src="../assets/js/core/jquery.min.js"></script>
-    <script src="../assets/js/core/pooper.min.js"></script>
+    <script src="../assets/js/core/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> -->
@@ -106,7 +106,7 @@ function russianMonth($monthNumber)
         <div class="account-services orders">
             <h2>Мои записи</h2>
             <div class="order-cards-container">
-                
+
                 <?php
                 foreach ($account_books as $account_book) {
                     $date = strtotime($account_book[4]); // Преобразование строки в дату
@@ -122,30 +122,30 @@ function russianMonth($monthNumber)
                         continue;
                     }
 
-                    $car_row="";
-                    if($account_book[7]!=""){
-                        $car_row="<p class='order-card__bottom-block__details__vehicle'>Автомобиль: ".$account_book[7]."</p>";
+                    $car_row = "";
+                    if ($account_book[7] != "") {
+                        $car_row = "<p class='order-card__bottom-block__details__vehicle'>Автомобиль: " . $account_book[7] . "</p>";
                     }
-                    echo("
+                    echo ("
                         <div class='order-card'>
-                            <svg class='order-card__delete' data-book-id='".$account_book[8]."' xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em'
+                            <svg class='order-card__delete' data-book-id='" . $account_book[8] . "' xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em'
                                 viewBox='0 0 24 24'>
                                 <path fill='none' stroke='#7e7e7e' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.1'
                                     d='m7 7l10 10M7 17L17 7' />
                             </svg>
                             <div class='order-card__head'>
                                 <img class='order-card__head__img' src='../assets/images/location.png'>
-                                <p class='order-card__head__workshop'>".$account_book[1]."</p>
+                                <p class='order-card__head__workshop'>" . $account_book[1] . "</p>
                             </div>
-                            <h2 class='order-card__service'>".$account_book[0]."</h2>
-                            <h3 class='order-card__worker'>".$account_book[2]."</h3>
+                            <h2 class='order-card__service'>" . $account_book[0] . "</h2>
+                            <h3 class='order-card__worker'>" . $account_book[2] . "</h3>
                             <div class='order-card__bottom-block'>
                                 <div class='order-card__bottom-block__details'>
-                                    ".$car_row."
-                                    <p class='order-card__bottom-block__details__status'>".$status."</p>
+                                    " . $car_row . "
+                                    <p class='order-card__bottom-block__details__status'>" . $status . "</p>
                                 </div>
                                 <div class='order-card__bottom-block__datetime'>
-                                    <p class='order-card__bottom-block__datetime__value'>".$date.", ".substr($account_book[5], 0, 5)."</p>
+                                    <p class='order-card__bottom-block__datetime__value'>" . $date . ", " . substr($account_book[5], 0, 5) . "</p>
                                 </div>
                             </div>
                         </div>
@@ -153,7 +153,7 @@ function russianMonth($monthNumber)
 
                 }
                 ?>
-                
+
             </div>
         </div>
         <div class="account-services history">
@@ -250,42 +250,6 @@ function russianMonth($monthNumber)
 <script src="../assets/js/account_navigation.js"></script>
 <script src="../assets/js/change_user_data.js"></script>
 <script src="../assets/js/delete_account_book.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const burger = document.querySelector('.burger-menu-account'); // Получить элемент бургер-кнопки
-    const navList = document.querySelector('.nav__list'); // Получить элемент списка навигации
-    const mediaQuery = window.matchMedia('(max-width: 736px)'); // Создать медиа-запрос для ширины экрана до 736px
-    const navItems = document.querySelectorAll('.nav__list__item'); // Получить все элементы списка навигации
+<script src="../assets/js/account_burger.js"></script>
 
-    function updateBurgerPosition() {
-        if (navList.classList.contains('active')) {
-            const navWidth = navList.getBoundingClientRect().width; // Получить ширину списка навигации
-            burger.style.left = `${navWidth+10}px`; // Установить новое значение left для бургер-кнопки
-        } else {
-            burger.style.left = '1rem'; // Восстановить начальное значение left для бургер-кнопки
-        }
-    }
-
-    burger.addEventListener('click', function() {
-        navList.classList.toggle('active'); // Переключить класс active для списка
-        burger.classList.toggle('active'); // Переключить класс active для бургер-кнопки
-        updateBurgerPosition(); // Обновить позицию бургер-кнопки
-    });
-
-    navItems.forEach(item => {
-        item.addEventListener('click', function() {
-            navList.classList.remove('active'); // Удалить класс active для списка при клике на элемент меню
-            burger.style.left = '1rem'; // Восстановить начальное значение left для бургер-кнопки
-            burger.classList.toggle('active'); // Переключить класс active для бургер-кнопки
-        });
-    });
-
-    mediaQuery.addListener(function(e) {
-        if (!e.matches) {
-            navList.classList.remove('active'); // Удалить класс active для списка на больших экранах
-            burger.style.left = '1rem'; // Восстановить начальное значение left для бургер-кнопки
-        }
-    });
-});
-</script>
 </html>

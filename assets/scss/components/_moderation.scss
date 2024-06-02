@@ -5,6 +5,9 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.accounts{
+    flex-direction: column;
+}
 .add-service-input, .admin-input, .user-input{
     border:none !important;
     border-bottom:1px solid #232323 !important;
