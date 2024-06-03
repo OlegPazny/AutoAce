@@ -106,6 +106,7 @@ $working_hours = mysqli_fetch_assoc($working_hours);
         </div>
     </section>
     <?php require_once "../includes/footer.php"; ?>
+    <?php require_once "../includes/popup.php"; ?>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.2/nouislider.js"></script>
 <script src="../assets/js/workshops_filter.js"></script>

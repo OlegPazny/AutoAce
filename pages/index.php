@@ -215,6 +215,7 @@ require_once "../assets/api/index_info_script.php";
         </div>
     </section>
     <?php require_once "../includes/footer.php"; ?>
+    <?php require_once "../includes/popup.php"; ?>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
