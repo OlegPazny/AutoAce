@@ -61,10 +61,15 @@ $(document).ready(function () {
         let mechan_email = $('input[name="mechan_email"]').val();
         let mechan_password = $('input[name="mechan_password"]').val();
         let mechan_new_password = $('input[name="mechan_new_password"]').val();
-        console.log(mechan_name);
-        console.log(mechan_email);
-        console.log(mechan_password);
-        console.log(mechan_new_password);
+        
+        if(mechan_name==""){
+            alert("Имя не может быть пустым.");
+            return;
+        }
+        if(mechan_email==""){
+            alert("Почта не может быть пустой.");
+            return;
+        }
         $.ajax({
             url: '../assets/api/change_mechanic_data_script.php',
             type: 'POST',

@@ -8,6 +8,16 @@ $('.account-info__submit').click(function (e) {
     let password = $('input[name="user_password"]').val();
     let new_password = $('input[name="user_new_password"]').val();
 
+    if(name==""){
+        alert("Имя не может быть пустым.");
+        return;
+    }
+    
+    if(email==""){
+        alert("Почта не может быть пустой.");
+        return;
+    }
+
     $.ajax({
         url: '../assets/api/change_user_data_script.php',
         type: 'POST',

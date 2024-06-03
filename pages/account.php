@@ -1,10 +1,14 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['user']['id'])) {
+    header('Location: ../index.php');
+}
+
 require_once "../assets/api/account_info_script.php";
 require_once "../assets/api/isAdmin.php";
-if (!isset($_SESSION['user']['id']) || $isMechanic == true) {
-    header('Location: ../index.php');
+if($isMechanic==true){
+    header('Location: ../index.php'); 
 }
 // Функция для получения русского названия месяца
 function russianMonth($monthNumber)

@@ -17,13 +17,13 @@ $new_password = $_POST['mechan_new_password'];
 //валидация
 $error_fields = [];
 
-if ($name != '') {
+if ($name != '' || preg_match("/^[А-Яа-яЁё]+$/u", $name) == 0) {
     $change_name = mysqli_query($db, "UPDATE `workers` SET `name`='$name' WHERE `id`=$current_user");
 } else {
     $response = [
         "status" => false,
         "type" => 1,
-        "message" => "Имя не может быть пустым",
+        "message" => "Имя не может быть пустым и должно быть написано кириллицей.",
         "fields" => ['mechan_name']
     ];
     echo json_encode($response);
@@ -38,14 +38,23 @@ if ($current_email['email'] != $email) {
             $response = [
                 "status" => false,
                 "type" => 1,
-                "message" => "Механик с такой почтой уже зарегистрирован",
+                "message" => "Механик с такой почтой уже зарегистрирован.",
                 "fields" => ['mechan_email']
             ];
             echo json_encode($response);
             die();
         }
         $change_email = mysqli_query($db, "UPDATE `workers` SET `email`='$email' WHERE `id`=$current_user");
-    }
+    }else{
+        $response = [
+            "status" => false,
+            "type" => 1,
+            "message" => "Введите почту корректно.",
+            "fields" => ['mechan_email']
+        ];
+        echo json_encode($response);
+        die();
+    }   
 }
 if ($password != "" && $new_password != "") {
     if (md5($password) === $current_password['password']) {

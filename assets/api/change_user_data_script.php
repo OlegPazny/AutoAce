@@ -17,13 +17,13 @@ $new_password = $_POST['new_password'];
 //валидация
 $error_fields = [];
 
-if ($name != '') {
+if ($name != '' || preg_match("/^[А-Яа-яЁё]+$/u", $name) == 0) {
     $change_name = mysqli_query($db, "UPDATE `users` SET `name`='$name' WHERE `id`=$current_user");
 } else {
     $response = [
         "status" => false,
         "type" => 1,
-        "message" => "Имя не может быть пустым",
+        "message" => "Имя не может быть пустым и должно быть написано кириллицей.",
         "fields" => ['user_name']
     ];
     echo json_encode($response);
@@ -38,7 +38,7 @@ if ($current_email['email'] != $email) {
             $response = [
                 "status" => false,
                 "type" => 1,
-                "message" => "Пользователь с такой почтой уже зарегистрирован",
+                "message" => "Пользователь с такой почтой уже зарегистрирован.",
                 "fields" => ['user_email']
             ];
             echo json_encode($response);
@@ -46,6 +46,14 @@ if ($current_email['email'] != $email) {
         }
         $change_email = mysqli_query($db, "UPDATE `users` SET `email`='$email' WHERE `id`=$current_user");
     }
+    $response = [
+        "status" => false,
+        "type" => 1,
+        "message" => "Введите почту корректно.",
+        "fields" => ['user_email']
+    ];
+    echo json_encode($response);
+    die();
 }
 if ($password != "" && $new_password != "") {
     if (md5($password) === $current_password['password']) {
@@ -67,7 +75,7 @@ if ($password != "" && $new_password != "") {
         $response = [
             "status" => false,
             "type" => 1,
-            "message" => "Неверно введен текущий пароль",
+            "message" => "Неверно введен текущий пароль.",
             "fields" => ['user_password']
         ];
         echo json_encode($response);
