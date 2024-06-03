@@ -2359,8 +2359,10 @@ input[type=checkbox] {
   font-weight: bolder;
   color: #fff;
   border-radius: 2rem 0 0 2rem;
+  font-size: 0.8rem;
 }
 .order-card__bottom-block__datetime__value, .order-card__bottom-block__datetime__price {
+  text-align: end;
   margin: 0;
 }
 .order-card__bottom-block__datetime__value {

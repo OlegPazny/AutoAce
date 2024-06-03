@@ -198,8 +198,10 @@
             font-weight: bolder;
             color:#fff;
             border-radius:2rem 0 0 2rem;
+            font-size: 0.8rem;
 
             &__value, &__price{
+                text-align: end;
                 margin:0;
             }
             &__value{
