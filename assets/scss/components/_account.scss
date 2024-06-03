@@ -248,7 +248,12 @@
 .workshops{
     display: none;
 }
+.add-vehicle-button, .delete-vehicle{
+    & svg{
+        cursor: pointer;
+    }
 
+}
 @media screen and (max-width: 1536px) {
     .account-section{
         padding: 0 5rem;

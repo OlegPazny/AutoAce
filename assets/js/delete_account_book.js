@@ -13,7 +13,9 @@ $(document).ready(function () {
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
-                        alert("Запись удалена!")
+                        $('.popup__bg__error-success').addClass('active');
+                        $('.popup__error-success').addClass('active');
+                        $('.popup__error-success .data-text').text('Запись удалена.');
                         var bookCard = button.parentNode;
                         bookCard.parentNode.removeChild(bookCard);
                     } else {

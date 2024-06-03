@@ -2415,6 +2415,10 @@ input[type=checkbox] {
   display: none;
 }
 
+.add-vehicle-button svg, .delete-vehicle svg {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1536px) {
   .account-section {
     padding: 0 5rem;
