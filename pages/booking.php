@@ -116,6 +116,8 @@ $end_hour = explode(":", $end_time)[0];
         <div class="form-shadow1"></div>
         <div class="form-shadow2"></div>
     </section>
+    
+    <?php require_once "../includes/popup.php"; ?>
     <script src="../assets/js/calendar.js"></script>
     <script>
 

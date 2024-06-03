@@ -424,6 +424,18 @@ $('#book').click(function (event) {
     }
     if ($('#record_email')) {
         var email = $('#record_email').val();
+        
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        function validateEmail(email) {
+            return emailPattern.test(email);
+        }
+        if (email=="" || !validateEmail(email)){
+            $('.popup__bg__error-success').addClass('active');
+            $('.popup__error-success').addClass('active');
+            $('.popup__error-success .data-text').text('Почта введена некорректно.');
+            return;
+        }
     }
     
 
@@ -431,11 +443,15 @@ $('#book').click(function (event) {
     // Проверяем, был ли отмечен чекбокс
     var checkBoxChecked = $('#book_submit').is(':checked');
     if (!checkBoxChecked) {
-        alert('Пожалуйста, дайте согласие на обработку персональных данных');
+        $('.popup__bg__error-success').addClass('active');
+        $('.popup__error-success').addClass('active');
+        $('.popup__error-success .data-text').text('Пожалуйста, дайте согласие на обработку персональных данных.');
         return;
     }
     if (!bookServiceDate || !bookServiceTime) {
-        alert("Пожалуйста, выберите дату и время записи");
+        $('.popup__bg__error-success').addClass('active');
+        $('.popup__error-success').addClass('active');
+        $('.popup__error-success .data-text').text('Пожалуйста, выберите дату и время записи.');
         return;
     }
     if (masterId && serviceId && bookServiceDate && bookServiceTime && vehicle && !email) {
@@ -462,8 +478,10 @@ $('#book').click(function (event) {
                         vehicleId: vehicle,
                         status: 'pending'
                     },
-                    success: function (response) {
-                        alert('Запись успешно добавлена');
+                    success: function (response) { 
+                        $('.popup__bg__error-success').addClass('active');
+                        $('.popup__error-success').addClass('active');
+                        $('.popup__error-success .data-text').text('Запись успешно добавлена! Вы можете отслеживать статус записи в личном кабинете.');
                         getBookingsByMaster(masterId);
 
                         $('#message').val('');
@@ -502,7 +520,9 @@ $('#book').click(function (event) {
                         status: 'pending'
                     },
                     success: function (response) {
-                        alert('Запись успешно добавлена');
+                        $('.popup__bg__error-success').addClass('active');
+                        $('.popup__error-success').addClass('active');
+                        $('.popup__error-success .data-text').text('Запись успешно добавлена! Вы можете отслеживать статус записи в личном кабинете.');
                         getBookingsByMaster(masterId);
 
                         $('#message').val('');
@@ -519,6 +539,7 @@ $('#book').click(function (event) {
         });
     } else if (masterId && serviceId && bookServiceDate && bookServiceTime && email) {
 
+        
         $.ajax({
             url: '../assets/api/search_worker_service_id.php',
             method: 'POST',
@@ -544,14 +565,18 @@ $('#book').click(function (event) {
                     },
                     success: function (response) {
                         if(response.status){
-                            alert(response.message);
+                            $('.popup__bg__error-success').addClass('active');
+                            $('.popup__error-success').addClass('active');
+                            $('.popup__error-success .data-text').text('Запись успешно добавлена! Вы можете отслеживать статус записи в личном кабинете после регистрации, используя свой адрес электронной почты.');
                             getBookingsByMaster(masterId);
     
                             $('#message').val('');
                             $('#record_email').val('');
                             $('#book_submit').prop('checked', false);
                         }else{
-                            alert(response.message);
+                            $('.popup__bg__error-success').addClass('active');
+                            $('.popup__error-success').addClass('active');
+                            $('.popup__error-success .data-text').text('Для записи на услугу, используя данный адрес электронной почты, авторизуйтесь.');
                         }
                     },
                     error: function (xhr, status, error) {
