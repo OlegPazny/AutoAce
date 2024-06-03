@@ -2570,6 +2570,7 @@ input[type=checkbox] {
   border-bottom: 1px solid #232323 !important;
   color: #232323 !important;
   width: 5rem !important;
+  z-index: 0 !important;
 }
 .add-service-input:focus, .admin-input:focus, .user-input:focus {
   border: none !important;
