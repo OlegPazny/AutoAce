@@ -7,19 +7,30 @@ require_once "db_connect.php";
 $login = $_POST['login'];
 $password = $_POST['password'];
 
-if ($login === '' || preg_match("/^[A-Za-z]+$/", $login) == 0) {
+if ($login === '' || preg_match("/^[A-Za-z][A-Za-z._]*[A-Za-z]$/", $login) == 0) {
     $error_fields[] = 'signin_login';
+    $message = "Логин может содержать _ и ., а также буквы латинского алфавита";
 }
-
+if (!empty($error_fields)) {
+    $response = [
+        "status" => false,
+        "type" => 1,
+        "message" => $message,
+        "fields" => $error_fields
+    ];
+    echo json_encode($response);
+    die();
+}
 if ($password === '' || preg_match("/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/", $password) == 0) {
     $error_fields[] = 'signin_password';
+    $message = "Пароль должен состоять из минимум 8 символов и содержать заглавные, строчные буквы и цифры.";
 }
 
 if (!empty($error_fields)) {
     $response = [
         "status" => false,
         "type" => 1,
-        "message" => "Проверьте правильность полей",
+        "message" => $message,
         "fields" => $error_fields
     ];
     echo json_encode($response);
@@ -71,7 +82,7 @@ if (mysqli_num_rows($check_user) > 0) {
 } else {
     $response = [
         "status" => false,
-        "message" => 'Авторизация неуспешна',
+        "message" => 'Неверный логин или пароль.',
     ];
 
     echo json_encode($response);

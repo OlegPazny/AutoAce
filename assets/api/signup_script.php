@@ -18,7 +18,7 @@
         $response=[
             "status"=>false,
             "type"=>1,
-            "message"=>"Такой пользователь уже существует",
+            "message"=>"Пользователь с таким логином уже существует.",
             "fields"=>['login']
         ];
         echo json_encode($response);
@@ -33,7 +33,7 @@
             $response=[
                 "status"=>false,
                 "type"=>1,
-                "message"=>"Пользователь с такой почтой уже зарегистрирован",
+                "message"=>"Пользователь с такой почтой уже зарегистрирован.",
                 "fields"=>['email']
             ];
             echo json_encode($response);
@@ -45,32 +45,73 @@
     }
     //валидация
     $error_fields=[];
-
-    if($login===''){
-        $error_fields[]='login';
-    }
-
-    if($name===''){
+    if($name==='' || preg_match("/^[А-Яа-яЁё]+$/u", $name) == 0){
         $error_fields[]='name';
+        $message = "Имя должно быть написанно на кириллице.";
     }
-    
+    if (!empty($error_fields)) {
+        $response = [
+            "status" => false,
+            "type" => 1,
+            "message" => $message,
+            "fields" => $error_fields
+        ];
+        echo json_encode($response);
+        die();
+    }
+    if ($login === '' || preg_match("/^[A-Za-z][A-Za-z._]*[A-Za-z]$/", $login) == 0) {
+        $error_fields[] = 'signin_login';
+        $message = "Логин может содержать _ и ., а также буквы латинского алфавита.";
+    }
+    if (!empty($error_fields)) {
+        $response = [
+            "status" => false,
+            "type" => 1,
+            "message" => $message,
+            "fields" => $error_fields
+        ];
+        echo json_encode($response);
+        die();
+    }
+
     if($email==='' || !filter_var($email, FILTER_VALIDATE_EMAIL)||preg_match("/^[\w\.-]+@[a-z]+\.[a-z]+$/",$email)==0){
         $error_fields[]='email';
+        $message = "Почта введена некорректно.";
     }
-    
-    if($password===''||preg_match("/^[a-zA-Z0-9]{8,}$/",$password)==0){
-        $error_fields[]='password';
+    if (!empty($error_fields)) {
+        $response = [
+            "status" => false,
+            "type" => 1,
+            "message" => $message,
+            "fields" => $error_fields
+        ];
+        echo json_encode($response);
+        die();
     }
-    
+    if ($password === '' || preg_match("/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/", $password) == 0) {
+        $error_fields[] = 'signin_password';
+        $message = "Пароль должен состоять из минимум 8 символов и содержать заглавные, строчные буквы и цифры.";
+    }
+    if (!empty($error_fields)) {
+        $response = [
+            "status" => false,
+            "type" => 1,
+            "message" => $message,
+            "fields" => $error_fields
+        ];
+        echo json_encode($response);
+        die();
+    }
     if($password_confirm===''){
         $error_fields[]='password_confirm';
+        $message = "Введите пароль повторно.";
     }
 
     if(!empty($error_fields)){
         $response=[
             "status"=>false,
             "type"=>1,
-            "message"=>"Проверьте правильность полей",
+            "message"=>$message,
             "fields"=>$error_fields
         ];
 
