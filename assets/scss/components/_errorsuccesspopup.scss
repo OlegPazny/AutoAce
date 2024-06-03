@@ -1,0 +1,70 @@
+.popup__bg__error-success {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    opacity: 0; /*Скрываем фон и сам попап*/
+    pointer-events: none; /*Запрещаем ему быть целью событий*/
+    transition: 0.5s ease-in-out;
+    z-index: 2000;/*100*/
+}
+.popup__bg__error-success.active { /* При добавлении класса 'active'*/
+    opacity: 1; /* Показываем фон и попап*/
+    pointer-events: all; /* Возвращаем события*/
+    transition: 0.5s ease-in-out;
+    z-index: 3000;/*200*/
+}
+.popup__error-success {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Центрируем и масштабируем в 0 само окно*/
+    background: #fff;
+    width: 840px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 900px;
+    /* transition: 0.5s all; */
+}
+.popup__error-success.active { /* При добавлении класса 'active'*/
+    transform: translate(-50%, -50%) scale(1); /* Так же центрируем и плавно увеличиваем*/
+    /* transition: 0.5s all; */
+}
+
+
+.close-popup__error-success {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    & path{
+        transition: 0.5s ease-in-out;
+    }
+}
+.close-popup__error-success:hover .close-popup{
+    &__error-success path{
+            stroke:#757575;
+            transition: 0.5s ease-in-out;
+        
+    }
+}
+.data-text{
+    font-family: "Onest";
+    font-size: 0.8rem;
+    line-height: 170%;
+    text-align: center;
+}
+
+.block__data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 47%
+}

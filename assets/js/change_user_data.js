@@ -9,12 +9,16 @@ $('.account-info__submit').click(function (e) {
     let new_password = $('input[name="user_new_password"]').val();
 
     if(name==""){
-        alert("Имя не может быть пустым.");
+        $('.popup__bg__error-success').addClass('active');
+        $('.popup__error-success').addClass('active');
+        $('.popup__error-success .data-text').text('Имя не может быть пустым!');
         return;
     }
     
     if(email==""){
-        alert("Почта не может быть пустой.");
+        $('.popup__bg__error-success').addClass('active');
+        $('.popup__error-success').addClass('active');
+        $('.popup__error-success .data-text').text('Почта не может быть пустой!');
         return;
     }
 
@@ -31,7 +35,11 @@ $('.account-info__submit').click(function (e) {
 
         success: function (data) {
             if (data.status) {
-                alert("Данные изменены!");
+                // Открытие нового окна popupES и установка текста
+                $('.popup__bg__error-success').addClass('active');
+                $('.popup__error-success').addClass('active');
+                $('.popup__error-success .data-text').text('Данные изменены!');
+
                 $('input[name="user_password"]').val('');
                 $('input[name="user_new_password"]').val('');
             } else {
@@ -40,7 +48,9 @@ $('.account-info__submit').click(function (e) {
                         $(`input[name="${field}"]`).addClass('error');
                     });
                 }
-                alert(data.message);
+                $('.popup__bg__error-success').addClass('active');
+                $('.popup__error-success').addClass('active');
+                $('.popup__error-success .data-text').text(data.message);
             }
         }
     })
@@ -83,7 +93,9 @@ $('#number_plate').mask('0000 AA-0', {
     onComplete: function(value, event, currentField, options) {
         const region = parseInt(value.slice(-1), 10);
         if (region < 1 || region > 7) {
-            alert("Регион должен быть числом от 1 до 7.");
+            $('.popup__bg__error-success').addClass('active');
+            $('.popup__error-success').addClass('active');
+            $('.popup__error-success .data-text').text('Регион должен быть числом от 1 до 7.');
             currentField.val(value.slice(0, -1)); // Стираем неправильный регион
         }
     }
@@ -121,11 +133,15 @@ $('.add-vehicle-button').click(function () {
     var numberPlate = $('#number_plate').val();
     
     if(vehicleBrand==""){
-        alert("Введите название марки автомобиля!");
+        $('.popup__bg__error-success').addClass('active');
+        $('.popup__error-success').addClass('active');
+        $('.popup__error-success .data-text').text('Введите название марки автомобиля!');
         return;
     }
     if(numberPlate.length!=9){
-        alert("Введите корректно гос. номер!");
+        $('.popup__bg__error-success').addClass('active');
+        $('.popup__error-success').addClass('active');
+        $('.popup__error-success .data-text').text('Введите корректно гос. номер!');
         return;
     }
     $.ajax({
@@ -137,7 +153,9 @@ $('.add-vehicle-button').click(function () {
             numberPlate: numberPlate
         },
         success: function (response) {
-            console.log('Автомобиль добавлен!');
+            $('.popup__bg__error-success').addClass('active');
+            $('.popup__error-success').addClass('active');
+            $('.popup__error-success .data-text').text('Автомобиль добавлен!');
             //получаем значение последнего индекса
             var newVehicle = response.vehicle;
             var tableBody = $('.vehicles-table').find('tbody'); // находим tbody во второй таблице
