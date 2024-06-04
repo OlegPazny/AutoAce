@@ -18,7 +18,7 @@ if (isset($_SESSION['workshop_id'])) {
                                                 workshop_name,
                                                 service_description
                                             FROM (
-                                                SELECT
+                                                SELECT DISTINCT
                                                     s.id AS service_id,
                                                     s.service_name AS service_name,
                                                     st.type AS service_type,
@@ -53,6 +53,7 @@ if (isset($_SESSION['workshop_id'])) {
             );
         }
     }
+
 } else {
     die("Данные не переданы");
 }

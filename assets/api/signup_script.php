@@ -125,7 +125,7 @@
         if($recorded_user==false){
             mysqli_query($db, "INSERT INTO `USERS` (`id`, `login`, `name`, `email`, `password`, `role`, `isVerified`) VALUES (NULL, '$login', '$name', '$email', '$password', 'client', 0)");
         }else if($recorded_user==true){
-            mysqli_query($db, "UPDATE `users` SET `login`='$login', `name`='$login', `password`='$password' WHERE `id`=$recorded_user_id");
+            mysqli_query($db, "UPDATE `users` SET `login`='$login', `name`='$name', `password`='$password' WHERE `id`=$recorded_user_id");
         }
 
 

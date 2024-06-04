@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require_once "../assets/api/verification_script.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,11 +13,7 @@
 </head>
 <body>
     <?php
-        if($isVerified==true){
-            echo("<input id='accountStatus' type='hidden' value='1'>");
-        }else{
-            echo("<input id='accountStatus' type='hidden' value='0'>");
-        }
+    require_once "../assets/api/verification_script.php";
     ?>
 </body>
 <script>
