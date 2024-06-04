@@ -421,7 +421,6 @@ $('#book').click(function (event) {
 
     if ($('#vehicle').length) {
         var vehicle = $('#vehicle').val();
-        alert("vehicle");
     }
     if ($('#record_email').length) {
         var email = $('#record_email').val();

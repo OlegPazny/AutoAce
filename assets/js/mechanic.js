@@ -26,32 +26,76 @@ $(document).ready(function () {
         $('.works').fadeIn('slow');
         setButtonStyles($(this));
     });
-    //изменение статуса заказа 
+    // //изменение статуса заказа 
 
-    var statusSelects = document.querySelectorAll('.status-select');
-    statusSelects.forEach(function (select) {
-        select.addEventListener('change', function () {
-            var bookingId = this.getAttribute('data-booking-id');
-            var newStatus = this.value;
-            updateStatus(bookingId, newStatus);
-        });
-    });
+    // var statusSelects = document.querySelectorAll('.status-select');
+    // statusSelects.forEach(function (select) {
+    //     select.addEventListener('change', function () {
+    //         var bookingId = this.getAttribute('data-booking-id');
+    //         var newStatus = this.value;
+    //         updateStatus(bookingId, newStatus);
+    //     });
+    // });
 
-    function updateStatus(bookingId, newStatus) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    // Обработка успешного ответа
-                } else {
-                    console.error('Произошла ошибка при обновлении статуса заказа');
-                }
+    // function updateStatus(bookingId, newStatus) {
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.onreadystatechange = function () {
+    //         if (xhr.readyState === XMLHttpRequest.DONE) {
+    //             if (xhr.status === 200) {
+    //                 // Обработка успешного ответа
+    //             } else {
+    //                 console.error('Произошла ошибка при обновлении статуса заказа');
+    //             }
+    //         }
+    //     };
+    //     xhr.open('POST', '../assets/api/update_status_script.php', true);
+    //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    //     xhr.send('booking_id=' + bookingId + '&new_status=' + newStatus);
+    // }
+    function updateRecordHandler() {
+        $('.update-book-button').click(function (e) {
+            e.preventDefault;
+            try {
+                const bookId = $(this).data('book-id');
+                const row = $(this).closest('tr');
+                const vin = row.find("input[name='vin']").val();
+                const mechan_comment = row.find("textarea[name='mechan_comment']").val();
+                const status = row.find(".status-select").val();
+                
+                // Отправляем данные на сервер...
+                const data = {
+                    book_id: bookId,
+                    vin: vin,
+                    mechan_comment: mechan_comment,
+                    status: status
+                };
+
+                fetch('../assets/api/update_mechan_book_script.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert("Запись обновлена успешно!");
+                        } else {
+                            alert("Ошибка при обновлении услуги!");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert("Error updating book!");
+                    });
+            } catch (error) {
+                console.error(error);
             }
-        };
-        xhr.open('POST', '../assets/api/update_status_script.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send('booking_id=' + bookingId + '&new_status=' + newStatus);
-    }
+
+        })
+    };
+    updateRecordHandler();
     $('.account-info__submit').click(function (e) {
         e.preventDefault();//не обновляет страницу при клике(отключение стандартного поведения)
     

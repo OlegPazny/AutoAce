@@ -83,10 +83,14 @@ function russianMonth($monthNumber) {
                         <th>id</th>
                         <th>Услуга</th>
                         <th>Клиент</th>
+                        <th>Автомобиль</th>
+                        <th>VIN</th>
                         <th>Комментарий</th>
                         <th>Дата записи</th>
                         <th>Время записи</th>
                         <th>Статус</th>
+                        <th>Выполненные работы</th>
+                        <th></th>
                     </tr>
                     <thead>
                     <tbody>
@@ -99,10 +103,20 @@ function russianMonth($monthNumber) {
                             $day = date('j', $date);
                             $month = date('n', $date);
                             $date = $day . ' ' . russianMonth($month);
+                            $vin_input="";
+                            if($work[7]!=NULL){
+                                $vin_input="<input type='text' class='admin-input' name='vin' value='" . $work[8] . "'>";
+                            }
+                            $client_name="Клиент";
+                            if($work[2]!=NULL){
+                                $client_name=$work[2];
+                            }
                             echo ("<tr>
                                         <td>" . $work[0] . "</td>
                                         <td>" . $work[1] . "</td>
-                                        <td>" . $work[2] . "</td>
+                                        <td>" . $client_name . "</td>
+                                        <td>" . $work[7] . "</td>
+                                        <td>". $vin_input . "</td>
                                         <td>" . $work[3] . "</td>
                                         <td>" . $date . "</td>
                                         <td>" . substr($work[5], 0, 5) . "</td>
@@ -120,6 +134,16 @@ function russianMonth($monthNumber) {
                                         Выполнено</option>
                                 </select>
                                 <?php echo ("</td>
+                                        <td><textarea class='admin-input' name='mechan_comment' value='".$work[9]."'></textarea></td>
+                                        <td>
+                                            <div class='update-book-button' data-book-id='".$work[0]."'>
+                                                <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'
+                                                        viewBox='0 0 24 24'>
+                                                        <path fill='#232323'
+                                                            d='M21 7v12q0 .825-.587 1.413T19 21H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h12zm-9 11q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-6-8h9V6H6z' />
+                                                    </svg>
+                                            </div>
+                                        </td>
                                 </tr>");
                         }
                         ?>
