@@ -93,14 +93,14 @@ function russianMonth($monthNumber)
         <div class="nav">
             <div class="burger-menu-account"></div>
             <ul class="nav__list">
-                <li class="nav__list__item info-btn">пользователи</li>
-                <li class="nav__list__item workers-btn">работники</li>
-                <li class="nav__list__item orders-btn">заказанные услуги</li>
-                <li class="nav__list__item history-btn">архив заказов</li>
-                <li class="nav__list__item service-types-btn">типы услуг</li>
-                <li class="nav__list__item services-btn">услуги</li>
-                <li class="nav__list__item relations-btn">назначить услуги</li>
-                <li class="nav__list__item workshops-btn">автосервисы</li>
+                <li class="nav__list__item info-btn">Пользователи</li>
+                <li class="nav__list__item workers-btn">Работники</li>
+                <li class="nav__list__item orders-btn">Заказанные услуги</li>
+                <li class="nav__list__item history-btn">Архив заказов</li>
+                <li class="nav__list__item service-types-btn">Типы услуг</li>
+                <li class="nav__list__item services-btn">Услуги</li>
+                <li class="nav__list__item relations-btn">Назначить услуги</li>
+                <li class="nav__list__item workshops-btn">Автосервисы</li>
             </ul>
         </div>
         <div class="account-services accounts">

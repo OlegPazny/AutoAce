@@ -43,8 +43,8 @@ function russianMonth($monthNumber) {
             <div class="burger-menu-account"></div>
 
             <ul class="nav__list">
-                <li class="nav__list__item info-btn">личные данные</li>
-                <li class="nav__list__item works-btn">список работ</li>
+                <li class="nav__list__item info-btn">Личные данные</li>
+                <li class="nav__list__item works-btn">Список работ</li>
             </ul>
         </div>
         <div class="account-info">

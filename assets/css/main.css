@@ -2174,7 +2174,6 @@ input[type=checkbox] {
   list-style-type: none;
   font-family: "Montserrat";
   font-weight: bold;
-  text-transform: capitalize;
   font-size: 1.46rem;
   color: #fff;
   width: -moz-fit-content;
