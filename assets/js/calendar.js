@@ -481,7 +481,7 @@ $('#book').click(function (event) {
                     success: function (response) { 
                         $('.popup__bg__error-success').addClass('active');
                         $('.popup__error-success').addClass('active');
-                        $('.popup__error-success .data-text').text('Запись успешно добавлена! Вы можете отслеживать статус записи в личном кабинете.');
+                        $('.popup__error-success .data-text').text('Запись успешно добавлена! Вы можете отслеживать статус записи в личном кабинете. Помните, что стоимость ремонта предварительная, конечная стоимость ремонта будет сообщена по завершению работ.');
                         getBookingsByMaster(masterId);
 
                         $('#message').val('');
@@ -522,7 +522,7 @@ $('#book').click(function (event) {
                     success: function (response) {
                         $('.popup__bg__error-success').addClass('active');
                         $('.popup__error-success').addClass('active');
-                        $('.popup__error-success .data-text').text('Запись успешно добавлена! Вы можете отслеживать статус записи в личном кабинете.');
+                        $('.popup__error-success .data-text').text('Запись успешно добавлена! Вы можете отслеживать статус записи в личном кабинете. Помните, что стоимость ремонта предварительная, конечная стоимость ремонта будет сообщена по завершению работ.');
                         getBookingsByMaster(masterId);
 
                         $('#message').val('');
