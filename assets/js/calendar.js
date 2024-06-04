@@ -419,10 +419,11 @@ var bookServiceTime;
 $('#book').click(function (event) {
     event.preventDefault();
 
-    if ($('#vehicle')) {
+    if ($('#vehicle').length) {
         var vehicle = $('#vehicle').val();
+        alert("vehicle");
     }
-    if ($('#record_email')) {
+    if ($('#record_email').length) {
         var email = $('#record_email').val();
         
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
