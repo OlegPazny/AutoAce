@@ -134,7 +134,7 @@ function russianMonth($monthNumber) {
                                         Выполнено</option>
                                 </select>
                                 <?php echo ("</td>
-                                        <td><textarea class='admin-input' name='mechan_comment' value='".$work[9]."'></textarea></td>
+                                        <td><textarea class='admin-input' name='mechan_comment'>".$work[9]."</textarea></td>
                                         <td>
                                             <div class='update-book-button' data-book-id='".$work[0]."'>
                                                 <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'

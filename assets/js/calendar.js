@@ -567,7 +567,7 @@ $('#book').click(function (event) {
                         if(response.status){
                             $('.popup__bg__error-success').addClass('active');
                             $('.popup__error-success').addClass('active');
-                            $('.popup__error-success .data-text').text('Запись успешно добавлена! Вы можете отслеживать статус записи в личном кабинете после регистрации, используя свой адрес электронной почты.');
+                            $('.popup__error-success .data-text').text('Запись успешно добавлена! Вы можете отслеживать статус записи в личном кабинете после регистрации, используя свой адрес электронной почты. Помните, что стоимость ремонта предварительная, конечная стоимость ремонта будет сообщена по завершению работ.');
                             getBookingsByMaster(masterId);
     
                             $('#message').val('');

@@ -172,14 +172,25 @@ $(document).ready(function () {
 
     // Вызов функции для инициализации обработчиков
     deleteWorkshopHandler();
-    //добавление автосервиса
     $('.add-workshop-button').click(function () {
         var photoInput = document.getElementById('workshop_photo');
         var file = photoInput.files[0];
-
+    
         if (file) {
-            // Проверки на размер и тип файла...
-
+            // Проверки на размер и тип файла
+            var validImageTypes = ['image/jpeg', 'image/png'];
+            var maxSizeInBytes = 2 * 1024 * 1024; // 2 MB
+    
+            if (!validImageTypes.includes(file.type)) {
+                alert('Неверный тип файла. Пожалуйста, загрузите изображение в формате JPEG или PNG.');
+                return;
+            }
+    
+            if (file.size > maxSizeInBytes) {
+                alert('Размер файла слишком большой. Максимальный размер файла - 2 МБ.');
+                return;
+            }
+    
             var reader = new FileReader();
             reader.onload = function (e) {
                 var base64Image = e.target.result.split(',')[1];
@@ -199,8 +210,6 @@ $(document).ready(function () {
                     alert("Заполните все поля!");
                     return;
                 }
-
-                // Отправка данных на сервер...
                 $.ajax({
                     type: 'POST',
                     url: '../assets/api/add_workshop_script.php',
@@ -216,8 +225,6 @@ $(document).ready(function () {
                     },
                     success: function (response) {
                         alert('Автосервис успешно добавлен!');
-
-                        // Добавляем новую запись в таблицу
                         var newWorkshop = response.workshop;
                         var tableBody = $('.workshops-table').find('tbody');
                         var newRow = $('<tr id="' + newWorkshop.id + '"></tr>');
@@ -228,7 +235,6 @@ $(document).ready(function () {
                         newRow.append('<td><img src="' + newWorkshop.photo + '" class="workshop-photo" style="width:150px; height:auto; cursor:pointer"><input type="hidden" name="workshop_photo" class="workshop-photo-hidden"></td>');
                         newRow.append("<td></td>");
                         newRow.append('<td><div class="update-workshop" data-workshop-id="' + newWorkshop.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="#232323" stroke-width="2" d="M1.75 16.002C3.353 20.098 7.338 23 12 23c6.075 0 11-4.925 11-11m-.75-4.002C20.649 3.901 16.663 1 12 1C5.925 1 1 5.925 1 12m8 4H1v8M23 0v8h-8"/></svg></div><div class="delete-workshop" data-workshop-id="' + newWorkshop.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
-
                         tableBody.append(newRow);
                         deleteWorkshopHandler();
                         updateWorkshopHandler();
@@ -255,6 +261,7 @@ $(document).ready(function () {
             alert("Выберите файл для загрузки!");
         }
     });
+    
 
     function updateWorkshopHandler() {
         let currentPhotoInput = null;
