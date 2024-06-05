@@ -89,7 +89,7 @@ require_once "../assets/api/index_info_script.php";
         </div>
     </section>
     <section class="prons-section">
-        <h2 class="prons-section__head">Мы это —</h2>
+        <h2 class="prons-section__head">Мы — это</h2>
         <div class="prons-section__body">
             <div class="pron">
                 <h5 class="pron__head">Профессиональные мастера</h5>
