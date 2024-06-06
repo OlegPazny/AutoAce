@@ -119,9 +119,6 @@ $end_hour = explode(":", $end_time)[0];
     
     <?php require_once "../includes/popup.php"; ?>
     <script src="../assets/js/calendar.js"></script>
-    <script>
-
-    </script>
 </body>
 
 </html>

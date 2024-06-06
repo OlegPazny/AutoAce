@@ -35,9 +35,10 @@ if (isset($_SESSION['workshop_id'])) {
             $service_duration = $service_data[3];
             $service_discount = $service_data[4];
 
+            $discount_price=NULL;
             $price=$service_duration*$workshop_price['standart_hour'];
             if($service_discount!=NULL){
-                $price=$price*(100-$service_discount)/100;
+                $discount_price=$price*(100-$service_discount)/100;
             }
             if (!isset($services_arr[$service_type])) {
                 $services_arr[$service_type] = [];
@@ -46,7 +47,9 @@ if (isset($_SESSION['workshop_id'])) {
                 'id' => $service_id,
                 'name' => $service_name,
                 'duration' => $service_duration,
-                'price' => $price
+                'price' => $price,
+                'discount_price' => $discount_price,
+                'discount' => $service_discount
             ];
         }
 
@@ -54,7 +57,12 @@ if (isset($_SESSION['workshop_id'])) {
         foreach ($services_arr as $service_type => $services) {
             $options .= "<option disabled class='disabled-option'>$service_type</option>";
             foreach ($services as $service) {
-                $options .= "<option class='service-option' data-duration='{$service['duration']}' value='{$service['id']}'>{$service['name']} {$service['price']} р.</option>";
+                if($service['discount_price']==NULL){
+                    $options .= "<option class='service-option' data-duration='{$service['duration']}' value='{$service['id']}'>{$service['name']} {$service['price']} р.</option>";
+                }else{
+                    $options .= "<option class='service-option' data-duration='{$service['duration']}' value='{$service['id']}'>{$service['name']} {$service['discount_price']} р. (Со скидкой {$service['discount']}%)</option>";
+                }
+                
             }
         }
 

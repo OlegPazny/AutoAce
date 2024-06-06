@@ -33,8 +33,8 @@
     
     function generateLogin($firstName, $lastName) {
         // Приводим имя и фамилию к нижнему регистру и транслитерируем
-        $firstName = transliterate(strtolower($firstName));
-        $lastName = transliterate(strtolower($lastName));
+        $firstName = transliterate(mb_strtolower($firstName));
+        $lastName = transliterate(mb_strtolower($lastName));
         
         // Берем первые две буквы имени
         $firstTwoLettersFirstName = substr($firstName, 0, 1);

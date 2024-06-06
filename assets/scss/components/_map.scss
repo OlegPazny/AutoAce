@@ -136,6 +136,9 @@ input[type="checkbox"]{
 .burger-menu.open span:nth-child(3) {
     transform: rotate(-45deg) translate(3px, -3px);
 }
+.discount-price{
+    text-decoration: line-through;
+}
 //responsive
 @media screen and (max-width: 1536px) {
     .filter-block{

@@ -1786,6 +1786,10 @@ input[type=checkbox] {
   transform: rotate(-45deg) translate(3px, -3px);
 }
 
+.discount-price {
+  text-decoration: line-through;
+}
+
 @media screen and (max-width: 1536px) {
   .filter-block {
     width: 40%;
