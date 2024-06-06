@@ -80,7 +80,6 @@ function russianMonth($monthNumber) {
             <table>
                 <thead>
                     <tr>
-                        <th>id</th>
                         <th>Услуга</th>
                         <th>Клиент</th>
                         <th>Автомобиль</th>
@@ -90,6 +89,7 @@ function russianMonth($monthNumber) {
                         <th>Время записи</th>
                         <th>Статус</th>
                         <th>Выполненные работы</th>
+                        <th>Стоимость, р.</th>
                         <th></th>
                     </tr>
                     <thead>
@@ -112,10 +112,9 @@ function russianMonth($monthNumber) {
                                 $client_name=$work[2];
                             }
                             echo ("<tr>
-                                        <td>" . $work[0] . "</td>
                                         <td>" . $work[1] . "</td>
                                         <td>" . $client_name . "</td>
-                                        <td>" . $work[7] . "</td>
+                                        <td>" . $work[7] . "<br>".$work[10]."</td>
                                         <td>". $vin_input . "</td>
                                         <td>" . $work[3] . "</td>
                                         <td>" . $date . "</td>
@@ -135,6 +134,7 @@ function russianMonth($monthNumber) {
                                 </select>
                                 <?php echo ("</td>
                                         <td><textarea class='admin-input' name='mechan_comment'>".$work[9]."</textarea></td>
+                                        <td><input type='text' class='admin-input' name='total_price' value='".$work[11]."'></td>
                                         <td>
                                             <div class='update-book-button' data-book-id='".$work[0]."'>
                                                 <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'

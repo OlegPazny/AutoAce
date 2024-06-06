@@ -59,6 +59,7 @@ $(document).ready(function () {
                 const bookId = $(this).data('book-id');
                 const row = $(this).closest('tr');
                 const vin = row.find("input[name='vin']").val();
+                const total_price = row.find("input[name='total_price']").val();
                 const mechan_comment = row.find("textarea[name='mechan_comment']").val();
                 const status = row.find(".status-select").val();
                 
@@ -67,6 +68,7 @@ $(document).ready(function () {
                     book_id: bookId,
                     vin: vin,
                     mechan_comment: mechan_comment,
+                    total_price: total_price,
                     status: status
                 };
 

@@ -4,9 +4,18 @@ require_once "mail_client_connect.php";
 header('Content-Type: application/json');
 $input = json_decode(file_get_contents('php://input'), true);
 $book_id = $input['book_id'];
-
 $mechan_comment = $input['mechan_comment'];
 $newStatus = $input['status'];
+
+$oldStatus=mysqli_query($db, "SELECT `status` FROM `service_bookings` WHERE `id`=$book_id");
+$oldStatus=mysqli_fetch_assoc($oldStatus);
+
+if(isset($input['total_price'])){
+    $total_price=$input['total_price'];
+    if($total_price!=""){
+        $update_total_price=mysqli_query($db, "UPDATE `service_bookings` SET `total_price`=$total_price WHERE `id`=$book_id");
+    }
+}
 //обновление вина
 if (isset($input['vin'])) {
     $vin = $input['vin'];
@@ -41,7 +50,7 @@ $service = mysqli_query($db, "SELECT `services`.`service_name` FROM `service_boo
     WHERE `service_bookings`.`id`=$book_id");
 $service = mysqli_fetch_assoc($service);
 
-if ($newStatus == "completed") {
+if ($newStatus == "completed" && $newStatus!=$oldStatus['status']) {
     $move_to_history = mysqli_query($db, "INSERT INTO `service_history` (`id`, `booking_id`, `completion_date`, `completion_time`) VALUES (NULL, '$book_id', '$date', '$time')");
     $body = "
         <p>Здравствуйте, " . $client['name'] . "</p>
@@ -51,9 +60,9 @@ if ($newStatus == "completed") {
         <p>С уважением AutoAce!</p>
     ";
     send_mail($settings['mail_settings'], [$client['email']], 'Статус выполнения изменен!', $body);
-} else if ($newStatus == "pending") {
+} else if ($newStatus == "pending" && $newStatus!=$oldStatus['status']) {
     $delete_from_history = mysqli_query($db, "DELETE FROM `service_history` WHERE `booking_id`=$book_id");
-} else if ($newStatus == "confirmed") {
+} else if ($newStatus == "confirmed" && $newStatus!=$oldStatus['status']) {
     $delete_from_history = mysqli_query($db, "DELETE FROM `service_history` WHERE `booking_id`=$book_id");
     $body = "
         <p>Здравствуйте, " . $client['name'] . "</p>
