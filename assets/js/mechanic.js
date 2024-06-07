@@ -82,14 +82,20 @@ $(document).ready(function () {
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            alert("Запись обновлена успешно!");
+                            $('.popup__bg__error-success').addClass('active');
+                            $('.popup__error-success').addClass('active');
+                            $('.popup__error-success .data-text').text('Запись обновлена успешно.');
                         } else {
-                            alert("Ошибка при обновлении услуги!");
+                            $('.popup__bg__error-success').addClass('active');
+                            $('.popup__error-success').addClass('active');
+                            $('.popup__error-success .data-text').text('Ошибка при обновлении записи!');
                         }
                     })
                     .catch(error => {
                         console.error('Error:', error);
-                        alert("Error updating book!");
+                        $('.popup__bg__error-success').addClass('active');
+                        $('.popup__error-success').addClass('active');
+                        $('.popup__error-success .data-text').text('Ошибка при обновлении записи!');
                     });
             } catch (error) {
                 console.error(error);
@@ -109,11 +115,15 @@ $(document).ready(function () {
         let mechan_new_password = $('input[name="mechan_new_password"]').val();
         
         if(mechan_name==""){
-            alert("Имя не может быть пустым.");
+            $('.popup__bg__error-success').addClass('active');
+            $('.popup__error-success').addClass('active');
+            $('.popup__error-success .data-text').text('Имя не может быть пустым.');
             return;
         }
         if(mechan_email==""){
-            alert("Почта не может быть пустой.");
+            $('.popup__bg__error-success').addClass('active');
+            $('.popup__error-success').addClass('active');
+            $('.popup__error-success .data-text').text('Почта не может быть пустой.');
             return;
         }
         $.ajax({
@@ -129,7 +139,10 @@ $(document).ready(function () {
     
             success: function (data) {
                 if (data.status) {
-                    alert("Данные изменены!");
+                    $('.popup__bg__error-success').addClass('active');
+                    $('.popup__error-success').addClass('active');
+                    $('.popup__error-success .data-text').text('Данные изменены.');
+
                     $('input[name="mechan_password"]').val('');
                     $('input[name="mechan_new_password"]').val('');
                 } else {
@@ -138,7 +151,9 @@ $(document).ready(function () {
                             $(`input[name="${field}"]`).addClass('error');
                         });
                     }
-                    alert(data.message);
+                    $('.popup__bg__error-success').addClass('active');
+                    $('.popup__error-success').addClass('active');
+                    $('.popup__error-success .data-text').text(data.message);
                 }
             }
         })

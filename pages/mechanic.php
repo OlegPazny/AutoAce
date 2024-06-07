@@ -151,6 +151,7 @@ function russianMonth($monthNumber) {
             </table>
         </div>
     </section>
+    <?php require_once "../includes/popup.php"; ?>
 </body>
 <script src="../assets/js/mechanic.js"></script>
 <script>
