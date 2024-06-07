@@ -634,6 +634,7 @@ function russianMonth($monthNumber)
         </div>
     </section>
     <?php require_once "../includes/footer.php"; ?>
+    <?php require_once "../includes/popup.php"; ?>
 </body>
 <script src="../assets/js/moderator.js"></script>
 <script src="../assets/js/admin.js"></script>

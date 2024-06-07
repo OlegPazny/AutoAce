@@ -128,7 +128,9 @@ $(document).ready(function () {
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
-                        alert("Запись удалена!")
+                        $('.popup__bg__error-success').addClass('active');
+                        $('.popup__error-success').addClass('active');
+                        $('.popup__error-success .data-text').text('запись удалена.');
                         var bookRow = button.parentNode.parentNode;
                         bookRow.parentNode.removeChild(bookRow);
                     } else {
@@ -175,6 +177,30 @@ $(document).ready(function () {
         var workerEmail = $('#worker_email').val();
         var workerWorkshop = $('#worker_workshops_insert').val();
 
+        if(workerEmail==""||workerName==""||!workerWorkshop){
+            $('.popup__bg__error-success').addClass('active');
+            $('.popup__error-success').addClass('active');
+            $('.popup__error-success .data-text').text('Заполните все поля формы.');
+            return;
+        }
+        //проверка почты
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (!emailPattern.test(workerEmail)) {
+            $('.popup__bg__error-success').addClass('active');
+            $('.popup__error-success').addClass('active');
+            $('.popup__error-success .data-text').text('Почта введена некорректно');
+            return;
+        }
+
+        const namePattern = /^[А-ЯЁа-яё]+ [А-ЯЁа-яё]+$/;
+
+        if (!namePattern.test(workerName)) {
+            $('.popup__bg__error-success').addClass('active');
+            $('.popup__error-success').addClass('active');
+            $('.popup__error-success .data-text').text('Имя и фамилия введены некорректно');
+            return;
+        }
         $.ajax({
             type: 'POST',
             url: '../assets/api/add_worker_script.php',
@@ -185,7 +211,9 @@ $(document).ready(function () {
                 worker_workshop: workerWorkshop,
             },
             success: function (response) {
-                alert('Работник добавлен!');
+                $('.popup__bg__error-success').addClass('active');
+                $('.popup__error-success').addClass('active');
+                $('.popup__error-success .data-text').text('Работник добавлен.');
 
                 var newWorker = response.worker;
                 var tableBody = $('.workers-table').find('tbody'); // находим tbody во второй таблице
@@ -230,6 +258,9 @@ $(document).ready(function () {
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
+                        $('.popup__bg__error-success').addClass('active');
+                        $('.popup__error-success').addClass('active');
+                        $('.popup__error-success .data-text').text('Работник удален.');
                         var workerRow = button.parentNode.parentNode; // Используем parentNode для доступа к <td>, а затем к <tr>
                         workerRow.parentNode.removeChild(workerRow);
                     } else {
@@ -275,7 +306,9 @@ $(document).ready(function () {
     function validateDiscountInput(inputElement) {
         let discount = inputElement.val().trim(); // Получаем значение поля и удаляем лишние пробелы
         if (!/^(?:[1-9]?[0-9])$/.test(discount)&&discount!=="") {
-            alert("Некорректное значение скидки. Введите число от 1 до 99.");
+            $('.popup__bg__error-success').addClass('active');
+            $('.popup__error-success').addClass('active');
+            $('.popup__error-success .data-text').text('Некорректное значение скидки. Введите число от 1 до 99.');
             inputElement.val(''); // Очищаем поле ввода
             throw new Error("Некорректное значение скидки"); // Останавливаем выполнение скрипта
         }
@@ -290,6 +323,22 @@ $(document).ready(function () {
             var serviceType = $('#service_type').val();
             var serviceDiscount = $('#service_discount').val();
 
+            if(serviceName==""||servicePrice==""||!serviceType){
+                $('.popup__bg__error-success').addClass('active');
+                $('.popup__error-success').addClass('active');
+                $('.popup__error-success .data-text').text('Заполните все поля формы.');
+                return;
+            }
+            // Регулярное выражение для проверки целого или дробного числа с десятыми
+            const numberPattern = /^-?\d+(\.\d{1})?$/;
+
+            if (!numberPattern.test(servicePrice)) {
+                $('.popup__bg__error-success').addClass('active');
+                $('.popup__error-success').addClass('active');
+                $('.popup__error-success .data-text').text('Значение нормочаса введено некорректно.');
+                return;
+            }
+
             $.ajax({
                 type: 'POST',
                 url: '../assets/api/add_service_script.php',
@@ -302,7 +351,9 @@ $(document).ready(function () {
                     service_discount: serviceDiscount
                 },
                 success: function (response) {
-                    alert('Услуга успешно добавлена!');
+                    $('.popup__bg__error-success').addClass('active');
+                    $('.popup__error-success').addClass('active');
+                    $('.popup__error-success .data-text').text('Услуга успешно добавлена.');
 
                     var newService = response.service;
                     var tableBody = $('.services-table').find('tbody'); // находим tbody во второй таблице
@@ -367,14 +418,20 @@ $(document).ready(function () {
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            alert("Услуга обновлена успешно!");
+                            $('.popup__bg__error-success').addClass('active');
+                            $('.popup__error-success').addClass('active');
+                            $('.popup__error-success .data-text').text('Услуга обновлена успешно.');
                         } else {
-                            alert("Ошибка при обновлении услуги!");
+                            $('.popup__bg__error-success').addClass('active');
+                            $('.popup__error-success').addClass('active');
+                            $('.popup__error-success .data-text').text('Ошибка при обновлении услуги.');
                         }
                     })
                     .catch(error => {
                         console.error('Error:', error);
-                        alert("Error updating service!");
+                        $('.popup__bg__error-success').addClass('active');
+                        $('.popup__error-success').addClass('active');
+                        $('.popup__error-success .data-text').text('Ошибка при обновлении услуги.');
                     });
             } catch (error) {
                 console.error(error);
@@ -426,7 +483,9 @@ $(document).ready(function () {
                 service_type_name: serviceTypeName,
             },
             success: function (response) {
-                alert('Тип услуги успешно добавлен!');
+                $('.popup__bg__error-success').addClass('active');
+                $('.popup__error-success').addClass('active');
+                $('.popup__error-success .data-text').text('Тип услуги успешно добавлен.');
 
                 var newServiceType = response.serviceType;
                 var tableBody = $('.service-types-table').find('tbody'); // находим tbody во второй таблице
@@ -464,7 +523,9 @@ $(document).ready(function () {
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
-                        alert("Тип услуги удален успешно!");
+                        $('.popup__bg__error-success').addClass('active');
+                        $('.popup__error-success').addClass('active');
+                        $('.popup__error-success .data-text').text('Тип услуги успешно удален.');
                         var serviceTypeRow = button.parentNode.parentNode; // Используем parentNode для доступа к <td>, а затем к <tr>
                         serviceTypeRow.parentNode.removeChild(serviceTypeRow);
                     } else {
@@ -485,7 +546,9 @@ $(document).ready(function () {
         var serviceNameRelation = $('#relation_service_name').val();
 
         if (!workerNameRelation || !serviceNameRelation) {
-            alert('Пожалуйста, выберите работника и услугу.');
+            $('.popup__bg__error-success').addClass('active');
+            $('.popup__error-success').addClass('active');
+            $('.popup__error-success .data-text').text('Выберите услугу и работника.');
             return;
         }
 
@@ -500,7 +563,9 @@ $(document).ready(function () {
                 }
             });
 
-            alert('Услуга успешно добавлена!');
+            $('.popup__bg__error-success').addClass('active');
+            $('.popup__error-success').addClass('active');
+            $('.popup__error-success .data-text').text('Услуга успешно назначена.');
             var newRelation = response.relation;
             var addRelationRow = $('.add-relation-row');
 
@@ -549,10 +614,14 @@ $(document).ready(function () {
                 });
 
                 if (response.success) {
-                    alert('Услуга успешно удалена!');
+                    $('.popup__bg__error-success').addClass('active');
+                    $('.popup__error-success').addClass('active');
+                    $('.popup__error-success .data-text').text('Связь успешно удалена.');
                     $(this).closest('tr').remove();
                 } else {
-                    alert('Ошибка при удалении услуги.');
+                    $('.popup__bg__error-success').addClass('active');
+                    $('.popup__error-success').addClass('active');
+                    $('.popup__error-success .data-text').text('Ошибка при удалении связи.');
                 }
             } catch (error) {
                 console.error('Ошибка при удалении услуги:', error);

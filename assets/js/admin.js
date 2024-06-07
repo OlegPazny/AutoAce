@@ -21,7 +21,9 @@ $('#workshop_hours').on('blur', function () {
 
         if (isNaN(startHour) || isNaN(startMinute) || isNaN(endHour) || isNaN(endMinute) ||
             startHour > 23 || startMinute > 59 || endHour > 23 || endMinute > 59) {
-            alert('Неверное время. Убедитесь, что часы не превышают 23, а минуты не превышают 59.');
+            $('.popup__bg__error-success').addClass('active');
+            $('.popup__error-success').addClass('active');
+            $('.popup__error-success .data-text').text('Неверное время. Убедитесь, что часы не превышают 23, а минуты не превышают 59.');
             $(this).val('');
             return;
         }
@@ -33,11 +35,15 @@ $('#workshop_hours').on('blur', function () {
         end.setHours(endHour, endMinute);
 
         if (start >= end) {
-            alert('Левая часть времени не может быть больше или равна правой части.');
+            $('.popup__bg__error-success').addClass('active');
+            $('.popup__error-success').addClass('active');
+            $('.popup__error-success .data-text').text('Левая часть времени не может быть больше или равна правой части.');
             $(this).val('');
         }
     } else {
-        alert('Неверный формат времени. Пожалуйста, используйте формат чч:мм-чч:мм.');
+        $('.popup__bg__error-success').addClass('active');
+        $('.popup__error-success').addClass('active');
+        $('.popup__error-success .data-text').text('Неверный формат времени. Пожалуйста, используйте формат чч:мм-чч:мм.');
         $(this).val('');
     }
 });
@@ -159,7 +165,10 @@ $(document).ready(function () {
                 if (xhr.status === 200) {
                     var workshopRow = button.closest('tr'); // Используем closest для нахождения ближайшего <tr>
                     workshopRow.parentNode.removeChild(workshopRow);
-                    alert("Автосервис удален!");
+                    
+                    $('.popup__bg__error-success').addClass('active');
+                    $('.popup__error-success').addClass('active');
+                    $('.popup__error-success .data-text').text('Автосервис удален.');
                 } else {
                     console.error('Произошла ошибка при удалении автосервиса');
                 }
@@ -182,12 +191,16 @@ $(document).ready(function () {
             var maxSizeInBytes = 2 * 1024 * 1024; // 2 MB
     
             if (!validImageTypes.includes(file.type)) {
-                alert('Неверный тип файла. Пожалуйста, загрузите изображение в формате JPEG или PNG.');
+                $('.popup__bg__error-success').addClass('active');
+                $('.popup__error-success').addClass('active');
+                $('.popup__error-success .data-text').text('Загрузите изображение в формате JPEG или PNG.');
                 return;
             }
     
             if (file.size > maxSizeInBytes) {
-                alert('Размер файла слишком большой. Максимальный размер файла - 2 МБ.');
+                $('.popup__bg__error-success').addClass('active');
+                $('.popup__error-success').addClass('active');
+                $('.popup__error-success .data-text').text('Максимальный размер изображения 2МБ.');
                 return;
             }
     
@@ -207,7 +220,9 @@ $(document).ready(function () {
                     longitude = latlng.lng;
                 }
                 if (!name || !address || !hours || !price || !latitude || !longitude || !base64Image) {
-                    alert("Заполните все поля!");
+                    $('.popup__bg__error-success').addClass('active');
+                    $('.popup__error-success').addClass('active');
+                    $('.popup__error-success .data-text').text('Заполните все поля формы.');
                     return;
                 }
                 $.ajax({
@@ -224,7 +239,9 @@ $(document).ready(function () {
                         photo: 'data:' + mimeType + ';base64,' + base64Image
                     },
                     success: function (response) {
-                        alert('Автосервис успешно добавлен!');
+                        $('.popup__bg__error-success').addClass('active');
+                        $('.popup__error-success').addClass('active');
+                        $('.popup__error-success .data-text').text('Автосервис добавлен.');
                         var newWorkshop = response.workshop;
                         var tableBody = $('.workshops-table').find('tbody');
                         var newRow = $('<tr id="' + newWorkshop.id + '"></tr>');
@@ -252,13 +269,18 @@ $(document).ready(function () {
                     },
                     error: function (xhr, status, error) {
                         console.error(xhr.responseText);
-                        alert("Ошибка при добавлении автосервиса!");
+                        
+                        $('.popup__bg__error-success').addClass('active');
+                        $('.popup__error-success').addClass('active');
+                        $('.popup__error-success .data-text').text('Ошибка при добавлении автосервиса.');
                     }
                 });
             };
             reader.readAsDataURL(file); // Чтение файла и преобразование в base64
         } else {
-            alert("Выберите файл для загрузки!");
+            $('.popup__bg__error-success').addClass('active');
+            $('.popup__error-success').addClass('active');
+            $('.popup__error-success .data-text').text('Выберите изображение для загрузки.');
         }
     });
     
@@ -278,7 +300,9 @@ $(document).ready(function () {
 
             if (file) {
                 if (file.size > 2 * 1024 * 1024) { // Проверка размера файла
-                    alert("Размер файла не должен превышать 2 МБ");
+                    $('.popup__bg__error-success').addClass('active');
+                    $('.popup__error-success').addClass('active');
+                    $('.popup__error-success .data-text').text('Размер файла не должен превышать 2МБ.');
                     return;
                 }
                 const reader = new FileReader();
@@ -321,14 +345,20 @@ $(document).ready(function () {
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        alert("Автомастерская обновлена успешно!");
+                        $('.popup__bg__error-success').addClass('active');
+                        $('.popup__error-success').addClass('active');
+                        $('.popup__error-success .data-text').text('Автосервис обновлен успешно.');
                     } else {
-                        alert("Ошибка при обновлении!");
+                        $('.popup__bg__error-success').addClass('active');
+                        $('.popup__error-success').addClass('active');
+                        $('.popup__error-success .data-text').text('Ошибка при обновлении автосервиса.');
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert("Error updating workshop!");
+                    $('.popup__bg__error-success').addClass('active');
+                    $('.popup__error-success').addClass('active');
+                    $('.popup__error-success .data-text').text('Ошибка при обновлении автосервиса.');
                 });
         });
     }
