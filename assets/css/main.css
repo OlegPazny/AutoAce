@@ -1682,6 +1682,9 @@ body {
 .filter-block__list {
   list-style-type: none;
 }
+.filter-block__list label {
+  cursor: pointer;
+}
 .filter-block__list__service {
   font-family: "Onest";
   font-weight: normal;

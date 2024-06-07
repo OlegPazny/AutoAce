@@ -50,7 +50,7 @@ $working_hours = mysqli_fetch_assoc($working_hours);
                         echo "<ul class='filter-block__list' style='display:none'>";
                         foreach ($services as $service) {
                             echo "<li class='filter-block__list__service'>";
-                            echo "<input type='checkbox' name='services' value='" . $service['id'] . "'>" . $service['name'];
+                            echo "<label><input type='checkbox' name='services' value='" . $service['id'] . "'>" . $service['name']."</label>";
                             echo "</li>";
                         }
                         echo "</ul>";

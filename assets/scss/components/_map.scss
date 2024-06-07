@@ -38,6 +38,9 @@
     }
     &__list{
         list-style-type: none;
+        & label{
+            cursor: pointer;
+        }
         &__service{
             font-family:"Onest";
             font-weight: normal;
