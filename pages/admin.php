@@ -187,7 +187,6 @@ function russianMonth($monthNumber)
             <table class="workers-table">
                 <thead>
                     <tr>
-                        <th>id</th>
                         <th>Логин</th>
                         <th>Имя</th>
                         <th>Почта</th>
@@ -198,7 +197,6 @@ function russianMonth($monthNumber)
                     <thead>
                     <tbody>
                         <tr class="add-worker-row">
-                            <td></td>
                             <td></td>
                             <td><input type="text" class="add-worker-name-input admin-input" name="worker_name"
                                     id="worker_name"></td>
@@ -224,7 +222,6 @@ function russianMonth($monthNumber)
                         <?php
                         foreach ($workers as $worker) {
                             echo ("<tr>
-                                    <td>" . $worker[0] . "</td>
                                     <td>" . $worker[3] . "</td>
                                     <td>" . $worker[1] . "</td>
                                     <td>" . $worker[4] . "</td>
@@ -385,7 +382,6 @@ function russianMonth($monthNumber)
             <table class="services-table">
                 <thead>
                     <tr>
-                        <th>id</th>
                         <th>Название</th>
                         <th>Описание</th>
                         <th>Нормочас</th>
@@ -396,7 +392,6 @@ function russianMonth($monthNumber)
                     <thead>
                     <tbody>
                         <tr id="new-service-row">
-                            <td></td>
                             <td><input type="text" class="add-service-input admin-input" name="service_name"
                                     id="service_name"></td>
                             <td><input type="text" class="add-service-input admin-input" name="service_description"
@@ -424,7 +419,6 @@ function russianMonth($monthNumber)
                         <?php
                         foreach ($services as $service) {
                             echo ("<tr>
-                                <td>" . $service[0] . "</td>
                                 <td>" . $service[1] . "</td>
                                 <td>" . $service[2] . "</td>
                                 <td>" . $service[3] . " н/ч</td>
@@ -454,14 +448,12 @@ function russianMonth($monthNumber)
             <table class="service-types-table">
                 <thead>
                     <tr>
-                        <th>id</th>
                         <th>Название</th>
                         <th></th>
                     </tr>
                     <thead>
                     <tbody>
                         <tr id="new-service-type-row">
-                            <td></td>
                             <td><input type="text" class="add-service-input admin-input" name="service-type_name"
                                     id="service-type_name"></td>
                             </td>
@@ -478,7 +470,6 @@ function russianMonth($monthNumber)
                         <?php
                         foreach ($services_types as $service_type) {
                             echo ("<tr>
-                                    <td>" . $service_type[0] . "</td>
                                     <td>" . $service_type[1] . "</td>
                                     <td>
                                         <div class='delete-service-type' data-service-type-id='" . $service_type[0] . "''>

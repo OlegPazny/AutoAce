@@ -194,7 +194,6 @@ $(document).ready(function () {
                 var newRow = $('<tr></tr>');
 
                 // Создаем ячейки для новой строки
-                newRow.append('<td>' + newWorker.id + '</td>');
                 newRow.append('<td>' + newWorker.worker_login + '</td>');
                 newRow.append('<td>' + newWorker.worker_name + '</td>');
                 newRow.append('<td>' + newWorker.worker_email + '</td>');
@@ -312,7 +311,6 @@ $(document).ready(function () {
                     var newRow = $('<tr></tr>');
 
                     // Создаем ячейки для новой строки
-                    newRow.append('<td>' + newService.id + '</td>');
                     newRow.append('<td>' + newService.service_name + '</td>');
                     newRow.append('<td>' + newService.service_description + '</td>');
                     newRow.append('<td>' + newService.service_hours + ' н/ч</td>');
@@ -437,7 +435,6 @@ $(document).ready(function () {
                 var newRow = $('<tr></tr>');
 
                 // Создаем ячейки для новой строки
-                newRow.append('<td>' + newServiceType.id + '</td>');
                 newRow.append('<td>' + newServiceType.type + '</td>');
                 newRow.append('<td><div class="delete-service-type" data-service-type-id="' + newServiceType.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="#232323" d="M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z"/></svg></div></td>');
 
