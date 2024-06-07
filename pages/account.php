@@ -177,6 +177,7 @@ function russianMonth($monthNumber)
                         <th>Комментарий</th>
                         <th>Дата завершения</th>
                         <th>Время завершения</th>
+                        <th>Конечная стоимость, р.</th>
                     </tr>
                     <thead>
                     <tbody>
@@ -194,6 +195,7 @@ function russianMonth($monthNumber)
                                     <td>" . $item[2] . "</td>
                                     <td>" . $date . "</td>
                                     <td>" . substr($item[4], 0, 5) . "</td>
+                                    <td>" . $item[9] . "</td>
                                 </tr>");
                         }
                         ?>
