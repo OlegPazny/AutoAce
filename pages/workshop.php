@@ -74,10 +74,10 @@ require_once "../assets/api/get_workshop_data_script.php";
                         echo ("</div>");
                     } ?>
                 </div>
-                <h3 class="about-workshop-section__container__info__description-head">адрес</h3>
+                <h3 class="about-workshop-section__container__info__description-head">Адрес</h3>
                 <p class="about-workshop-section__container__info__description"><?php echo ($workshop_data['address']); ?>
                 </p>
-                <h3 class="about-workshop-section__container__info__description-head">время работы</h3>
+                <h3 class="about-workshop-section__container__info__description-head">Время работы</h3>
                 <p class="about-workshop-section__container__info__description">
                     <?php echo ($workshop_data['working_hours']); ?></p>
             </div>

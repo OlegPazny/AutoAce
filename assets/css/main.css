@@ -1238,11 +1238,12 @@ body {
   flex-direction: column;
   align-items: center;
   max-width: 15.8rem;
-  text-align: center;
+  text-align: start;
 }
 .pron__head {
   font-size: 1.25rem;
   margin: 1rem 0;
+  text-align: center;
 }
 .pron__text {
   font-size: 0.75rem;
@@ -1280,7 +1281,7 @@ body {
 }
 .info__text {
   font-size: 0.75rem;
-  text-align: justify;
+  text-align: left;
   margin-bottom: 1.67rem;
   line-height: 170%;
   -webkit-hyphens: auto;
@@ -1965,7 +1966,6 @@ input[type=checkbox] {
 }
 .about-workshop-section__container__info__description-head {
   font-family: "Montserrat";
-  text-transform: capitalize;
 }
 .about-workshop-section__container__img {
   display: flex;
@@ -2007,7 +2007,6 @@ input[type=checkbox] {
 .list-container__head {
   font-family: "Montserrat";
   font-size: 1.17rem;
-  text-transform: capitalize;
   margin-bottom: 0.2rem;
 }
 .list-container ul {
