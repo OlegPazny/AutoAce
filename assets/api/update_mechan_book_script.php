@@ -16,20 +16,42 @@ if(isset($input['total_price'])){
         $update_total_price=mysqli_query($db, "UPDATE `service_bookings` SET `total_price`=$total_price WHERE `id`=$book_id");
     }
 }
-//обновление вина
-if (isset($input['vin'])) {
-    $vin = $input['vin'];
-    if ($vin != "") {
-        if (strlen($vin) == 17) {
-            $select_car = mysqli_query($db, "SELECT `vehicles`.`id` FROM `service_bookings` INNER JOIN `vehicles` ON `service_bookings`.`vehicle_id`=`vehicles`.`id` WHERE `service_bookings`.`id`=$book_id");
-            if (mysqli_num_rows($select_car) > 0) {
-                $current_vehicle_id = mysqli_fetch_assoc($select_car);
-                $car_id = $current_vehicle_id['id'];
-                $update_vin = mysqli_query($db, "UPDATE `vehicles` SET `vin`='$vin' WHERE `id`=$car_id");
+if(isset($input['vehicle'])&&isset($input['plate'])){
+    $vehicle=$input['vehicle'];
+    $plate=$input['plate'];
+    if($vehicle!=""&&$plate!=""){
+        $user_id=mysqli_query($db, "SELECT `user_id` FROM `service_bookings` WHERE `id`=$book_id");
+        $user_id=mysqli_fetch_assoc($user_id);
+        $user_id=$user_id['user_id'];
+
+        $select_car = mysqli_query($db, "SELECT `vehicles`.`id` FROM `service_bookings` INNER JOIN `vehicles` ON `service_bookings`.`vehicle_id`=`vehicles`.`id` WHERE `service_bookings`.`id`=$book_id");
+        if (mysqli_num_rows($select_car) > 0) {
+            $current_vehicle_id = mysqli_fetch_assoc($select_car);
+            $car_id = $current_vehicle_id['id'];
+            $update_car = mysqli_query($db, "UPDATE `vehicles` SET `brand`='$vehicle', `num_plate`='$plate' WHERE `id`=$car_id");
+        }else{
+            $insert_car=mysqli_query($db, "INSERT INTO `vehicles` VALUES (NULL, '$vehicle', '$plate', $user_id, NULL)");
+            $new_car_id=mysqli_insert_id($db);
+            $update_book=mysqli_query($db, "UPDATE `service_bookings` SET `vehicle_id`=$new_car_id WHERE `id`=$book_id");
+        }
+
+        //обновление вина
+        if (isset($input['vin'])) {
+            $vin = $input['vin'];
+            if ($vin != "") {
+                if (strlen($vin) == 17) {
+                    $select_car = mysqli_query($db, "SELECT `vehicles`.`id` FROM `service_bookings` INNER JOIN `vehicles` ON `service_bookings`.`vehicle_id`=`vehicles`.`id` WHERE `service_bookings`.`id`=$book_id");
+                    if (mysqli_num_rows($select_car) > 0) {
+                        $current_vehicle_id = mysqli_fetch_assoc($select_car);
+                        $car_id = $current_vehicle_id['id'];
+                        $update_vin = mysqli_query($db, "UPDATE `vehicles` SET `vin`='$vin' WHERE `id`=$car_id");
+                    }
+                }
             }
         }
     }
 }
+
 
 //обновление комментария механика
 if ($mechan_comment != "") {

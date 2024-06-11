@@ -2180,7 +2180,7 @@ input[type=checkbox] {
   list-style-type: none;
   font-family: "Montserrat";
   font-weight: bold;
-  font-size: 1.46rem;
+  font-size: 1.2rem;
   color: #fff;
   width: -moz-fit-content;
   width: fit-content;
@@ -2189,7 +2189,7 @@ input[type=checkbox] {
 }
 .nav__list__item {
   background-color: #232323;
-  padding: 1.4rem 1.5rem 1.4rem 2.91rem;
+  padding: 1.4rem 1.5rem;
   cursor: pointer;
 }
 .nav__list__item:first-child {
@@ -2591,6 +2591,19 @@ input[type=checkbox] {
 
 .add-service-button, .block-user, .delete-service, .block-worker, .delete-relation, .add-worker-button, .add-service-button, .add-relation-button, .add-workshop-button, .update-workshop, .delete-workshop, .add-service-type-button, .delete-service-type {
   cursor: pointer;
+}
+
+.total-price {
+  width: 40px !important;
+}
+
+.mechan-status-select {
+  width: 125px;
+}
+
+.mechan-comment {
+  width: 200px;
+  height: 150px;
 }
 
 .booking-form {

@@ -52,20 +52,87 @@ $(document).ready(function () {
     //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     //     xhr.send('booking_id=' + bookingId + '&new_status=' + newStatus);
     // }
+    // Применение маски для номера
+// Применение маски для всех полей номерных знаков
+$('input[name="plate"]').mask('0000 AA-0', {
+    translation: {
+        'A': { pattern: /[A-Za-z]/ },
+        '0': { pattern: /[0-9]/ }
+    },
+    onComplete: function(value, event, currentField, options) {
+        const region = parseInt(value.slice(-1), 10);
+        if (region < 1 || region > 7) {
+            $('.popup__bg__error-success').addClass('active');
+            $('.popup__error-success').addClass('active');
+            $('.popup__error-success .data-text').text('Регион должен быть числом от 1 до 7.');
+            currentField.val(value.slice(0, -1)); // Стираем неправильный регион
+        }
+    }
+});
+
+// Автоматическое преобразование строчных букв в заглавные для всех полей номерных знаков
+$(document).on('input', 'input[name="plate"]', function () {
+    var value = $(this).val();
+    // Преобразование строчных букв в заглавные
+    var uppercasedValue = value.toUpperCase();
+    // Обновление значения инпута
+    $(this).val(uppercasedValue);
+});
+
+// Обработка ввода для всех полей марок автомобилей
+$(document).on('input', 'input[name="car"]', function() {
+    var value = $(this).val();
+                
+    // Удаление всех символов, кроме латинских и кириллических букв, дефисов и пробелов
+    value = value.replace(/[^A-Za-zА-Яа-яЁё \-]/g, '');
+    
+    // Преобразование первой буквы в каждом слове в заглавную
+    var words = value.split(' ');
+    for (var i = 0; i < words.length; i++) {
+        if (words[i].length > 0) {
+            words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+        }
+    }
+    var newValue = words.join(' ');
+    $(this).val(newValue);
+});
     function updateRecordHandler() {
         $('.update-book-button').click(function (e) {
             e.preventDefault;
             try {
                 const bookId = $(this).data('book-id');
                 const row = $(this).closest('tr');
+                const vehicle = row.find("input[name='car']").val();
+                const plate = row.find("input[name='plate']").val();
                 const vin = row.find("input[name='vin']").val();
                 const total_price = row.find("input[name='total_price']").val();
                 const mechan_comment = row.find("textarea[name='mechan_comment']").val();
                 const status = row.find(".status-select").val();
                 
+                if(vin!=""){
+                    if(plate==""||vehicle==""){
+                        $('.popup__bg__error-success').addClass('active');
+                        $('.popup__error-success').addClass('active');
+                        $('.popup__error-success .data-text').text('При добавлении VIN-кода укажите все данные автомобиля.');
+                        return;
+                    }else if(plate==""&&vehicle==""){
+                        $('.popup__bg__error-success').addClass('active');
+                        $('.popup__error-success').addClass('active');
+                        $('.popup__error-success .data-text').text('При добавлении VIN-кода укажите все данные автомобиля.');
+                        return;
+                    }
+                }
+                if(vin!=""&&vin.length!=17){
+                    $('.popup__bg__error-success').addClass('active');
+                    $('.popup__error-success').addClass('active');
+                    $('.popup__error-success .data-text').text('Длина VIN-кода должна состоять из 17 символов.');
+                    return;
+                }
                 // Отправляем данные на сервер...
                 const data = {
                     book_id: bookId,
+                    vehicle: vehicle,
+                    plate: plate,
                     vin: vin,
                     mechan_comment: mechan_comment,
                     total_price: total_price,

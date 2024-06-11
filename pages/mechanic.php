@@ -30,6 +30,7 @@ function russianMonth($monthNumber) {
     <!-- jQuery connection -->
     <script src="../assets/js/core/jquery.min.js"></script>
     <script src="../assets/js/core/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> -->
     <!-- jQuery connection -->
@@ -103,10 +104,10 @@ function russianMonth($monthNumber) {
                             $day = date('j', $date);
                             $month = date('n', $date);
                             $date = $day . ' ' . russianMonth($month);
-                            $vin_input="";
-                            if($work[7]!=NULL){
-                                $vin_input="<input type='text' class='admin-input' name='vin' value='" . $work[8] . "'>";
-                            }
+                            $car_input="<input type='text' class='admin-input' name='car' placeholder='Марка' value='" . $work[7] . "'>";
+                            $plate_input="<input type='text' class='admin-input' name='plate' placeholder='0000 XX-1' value='" . $work[10] . "'>";
+                            $vin_input="<input type='text' class='admin-input' name='vin' value='" . $work[8] . "'>";
+
                             $client_name="Клиент";
                             if($work[2]!=NULL){
                                 $client_name=$work[2];
@@ -114,14 +115,14 @@ function russianMonth($monthNumber) {
                             echo ("<tr>
                                         <td>" . $work[1] . "</td>
                                         <td>" . $client_name . "</td>
-                                        <td>" . $work[7] . "<br>".$work[10]."</td>
+                                        <td>" . $car_input . "<br>".$plate_input."</td>
                                         <td>". $vin_input . "</td>
                                         <td>" . $work[3] . "</td>
                                         <td>" . $date . "</td>
                                         <td>" . substr($work[5], 0, 5) . "</td>
                                         <td>");
                                 ?>
-                                <select class='status-select' data-booking-id="<?php echo $work[0]; ?>">
+                                <select class='status-select mechan-status-select' data-booking-id="<?php echo $work[0]; ?>">
                                     <option value='pending' <?php if ($work[6] == "pending")
                                         echo "selected"; ?>>В
                                         обработке</option>
@@ -133,8 +134,8 @@ function russianMonth($monthNumber) {
                                         Выполнено</option>
                                 </select>
                                 <?php echo ("</td>
-                                        <td><textarea class='admin-input' name='mechan_comment'>".$work[9]."</textarea></td>
-                                        <td><input type='text' class='admin-input' name='total_price' value='".$work[11]."'></td>
+                                        <td><textarea class='admin-input mechan-comment' name='mechan_comment'>".$work[9]."</textarea></td>
+                                        <td><input type='text' class='admin-input total-price' name='total_price' value='".$work[11]."'></td>
                                         <td>
                                             <div class='update-book-button' data-book-id='".$work[0]."'>
                                                 <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'
