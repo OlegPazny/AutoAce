@@ -61,7 +61,19 @@ $gl-lg : "screen and (max-width: 80em)"; // max 1280px
         }
     }
 }
+.works{
+    & table{
+        & tbody{
+            & tr{
+                & td{
+                    vertical-align: bottom;
+                    padding-bottom: 0.5rem;
+                }
+            }
 
+        }
+    }
+}
 @media screen and (max-width: 736px) {
     .account-services>table {
         border-spacing: 1;

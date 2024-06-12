@@ -26,76 +26,51 @@ $(document).ready(function () {
         $('.works').fadeIn('slow');
         setButtonStyles($(this));
     });
-    // //изменение статуса заказа 
-
-    // var statusSelects = document.querySelectorAll('.status-select');
-    // statusSelects.forEach(function (select) {
-    //     select.addEventListener('change', function () {
-    //         var bookingId = this.getAttribute('data-booking-id');
-    //         var newStatus = this.value;
-    //         updateStatus(bookingId, newStatus);
-    //     });
-    // });
-
-    // function updateStatus(bookingId, newStatus) {
-    //     var xhr = new XMLHttpRequest();
-    //     xhr.onreadystatechange = function () {
-    //         if (xhr.readyState === XMLHttpRequest.DONE) {
-    //             if (xhr.status === 200) {
-    //                 // Обработка успешного ответа
-    //             } else {
-    //                 console.error('Произошла ошибка при обновлении статуса заказа');
-    //             }
-    //         }
-    //     };
-    //     xhr.open('POST', '../assets/api/update_status_script.php', true);
-    //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    //     xhr.send('booking_id=' + bookingId + '&new_status=' + newStatus);
-    // }
     // Применение маски для номера
-// Применение маски для всех полей номерных знаков
-$('input[name="plate"]').mask('0000 AA-0', {
-    translation: {
-        'A': { pattern: /[A-Za-z]/ },
-        '0': { pattern: /[0-9]/ }
-    },
-    onComplete: function(value, event, currentField, options) {
-        const region = parseInt(value.slice(-1), 10);
-        if (region < 1 || region > 7) {
-            $('.popup__bg__error-success').addClass('active');
-            $('.popup__error-success').addClass('active');
-            $('.popup__error-success .data-text').text('Регион должен быть числом от 1 до 7.');
-            currentField.val(value.slice(0, -1)); // Стираем неправильный регион
+    // Применение маски для всех полей номерных знаков
+    $('input[name="plate"]').mask('0000 AA-0', {
+        translation: {
+            'A': { pattern: /[A-Za-z]/ },
+            '0': { pattern: /[0-9]/ }
+        },
+        onComplete: function (value, event, currentField, options) {
+            const region = parseInt(value.slice(-1), 10);
+            if (region < 1 || region > 7) {
+                $('.popup__bg__error-success').addClass('active');
+                $('.popup__error-success').addClass('active');
+                $('.popup__error-success .data-text').text('Регион должен быть числом от 1 до 7.');
+                currentField.val(value.slice(0, -1)); // Стираем неправильный регион
+            }
         }
-    }
-});
+    });
 
-// Автоматическое преобразование строчных букв в заглавные для всех полей номерных знаков
-$(document).on('input', 'input[name="plate"]', function () {
-    var value = $(this).val();
-    // Преобразование строчных букв в заглавные
-    var uppercasedValue = value.toUpperCase();
-    // Обновление значения инпута
-    $(this).val(uppercasedValue);
-});
+    // Автоматическое преобразование строчных букв в заглавные для всех полей номерных знаков
+    $(document).on('input', 'input[name="plate"]', function () {
+        var value = $(this).val();
+        // Преобразование строчных букв в заглавные
+        var uppercasedValue = value.toUpperCase();
+        // Обновление значения инпута
+        $(this).val(uppercasedValue);
+    });
 
-// Обработка ввода для всех полей марок автомобилей
-$(document).on('input', 'input[name="car"]', function() {
-    var value = $(this).val();
-                
-    // Удаление всех символов, кроме латинских и кириллических букв, дефисов и пробелов
-    value = value.replace(/[^A-Za-zА-Яа-яЁё \-]/g, '');
-    
-    // Преобразование первой буквы в каждом слове в заглавную
-    var words = value.split(' ');
-    for (var i = 0; i < words.length; i++) {
-        if (words[i].length > 0) {
-            words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+    // Обработка ввода для всех полей марок автомобилей
+    $(document).on('input', 'input[name="car"]', function () {
+        var value = $(this).val();
+
+        // Удаление всех символов, кроме латинских и кириллических букв, дефисов и пробелов
+        value = value.replace(/[^A-Za-zА-Яа-яЁё \-]/g, '');
+
+        // Преобразование первой буквы в каждом слове в заглавную
+        var words = value.split(' ');
+        for (var i = 0; i < words.length; i++) {
+            if (words[i].length > 0) {
+                words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+            }
         }
-    }
-    var newValue = words.join(' ');
-    $(this).val(newValue);
-});
+        var newValue = words.join(' ');
+        $(this).val(newValue);
+    });
+    $('input[name="total_price"]').mask('0000000.00', { reverse: true });
     function updateRecordHandler() {
         $('.update-book-button').click(function (e) {
             e.preventDefault;
@@ -108,21 +83,30 @@ $(document).on('input', 'input[name="car"]', function() {
                 const total_price = row.find("input[name='total_price']").val();
                 const mechan_comment = row.find("textarea[name='mechan_comment']").val();
                 const status = row.find(".status-select").val();
-                
-                if(vin!=""){
-                    if(plate==""||vehicle==""){
+
+                if (vin != "") {
+                    if (plate == "" || vehicle == "") {
                         $('.popup__bg__error-success').addClass('active');
                         $('.popup__error-success').addClass('active');
-                        $('.popup__error-success .data-text').text('При добавлении VIN-кода укажите все данные автомобиля.');
+                        $('.popup__error-success .data-text').text('Укажите все данные автомобиля.');
                         return;
-                    }else if(plate==""&&vehicle==""){
+                    } else if (plate == "" && vehicle == "") {
                         $('.popup__bg__error-success').addClass('active');
                         $('.popup__error-success').addClass('active');
-                        $('.popup__error-success .data-text').text('При добавлении VIN-кода укажите все данные автомобиля.');
+                        $('.popup__error-success .data-text').text('Укажите все данные автомобиля.');
                         return;
                     }
                 }
-                if(vin!=""&&vin.length!=17){
+                if (vehicle != "") {
+                    if (plate == "" || plate.length != 9) {
+                        $('.popup__bg__error-success').addClass('active');
+                        $('.popup__error-success').addClass('active');
+                        $('.popup__error-success .data-text').text('Введите корректно гос. номер!');
+                        return;
+                    }
+                }
+
+                if (vin != "" && vin.length != 17) {
                     $('.popup__bg__error-success').addClass('active');
                     $('.popup__error-success').addClass('active');
                     $('.popup__error-success .data-text').text('Длина VIN-кода должна состоять из 17 символов.');
@@ -155,14 +139,14 @@ $(document).on('input', 'input[name="car"]', function() {
                         } else {
                             $('.popup__bg__error-success').addClass('active');
                             $('.popup__error-success').addClass('active');
-                            $('.popup__error-success .data-text').text('Ошибка при обновлении записи!');
+                            $('.popup__error-success .data-text').text(data.message);
                         }
                     })
                     .catch(error => {
                         console.error('Error:', error);
                         $('.popup__bg__error-success').addClass('active');
                         $('.popup__error-success').addClass('active');
-                        $('.popup__error-success .data-text').text('Ошибка при обновлении записи!');
+                        $('.popup__error-success .data-text').text(error);
                     });
             } catch (error) {
                 console.error(error);
@@ -173,21 +157,21 @@ $(document).on('input', 'input[name="car"]', function() {
     updateRecordHandler();
     $('.account-info__submit').click(function (e) {
         e.preventDefault();//не обновляет страницу при клике(отключение стандартного поведения)
-    
+
         $(`input`).removeClass('error');//очищение инпутов от класса error
-    
+
         let mechan_name = $('input[name="mechan_name"]').val();
         let mechan_email = $('input[name="mechan_email"]').val();
         let mechan_password = $('input[name="mechan_password"]').val();
         let mechan_new_password = $('input[name="mechan_new_password"]').val();
-        
-        if(mechan_name==""){
+
+        if (mechan_name == "") {
             $('.popup__bg__error-success').addClass('active');
             $('.popup__error-success').addClass('active');
             $('.popup__error-success .data-text').text('Имя не может быть пустым.');
             return;
         }
-        if(mechan_email==""){
+        if (mechan_email == "") {
             $('.popup__bg__error-success').addClass('active');
             $('.popup__error-success').addClass('active');
             $('.popup__error-success .data-text').text('Почта не может быть пустой.');
@@ -203,7 +187,7 @@ $(document).on('input', 'input[name="car"]', function() {
                 mechan_password: mechan_password,
                 mechan_new_password: mechan_new_password
             },
-    
+
             success: function (data) {
                 if (data.status) {
                     $('.popup__bg__error-success').addClass('active');

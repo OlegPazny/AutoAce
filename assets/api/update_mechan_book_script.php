@@ -38,15 +38,30 @@ if(isset($input['vehicle'])&&isset($input['plate'])){
         //обновление вина
         if (isset($input['vin'])) {
             $vin = $input['vin'];
+            $select_car = mysqli_query($db, "SELECT `vehicles`.`id` FROM `service_bookings` INNER JOIN `vehicles` ON `service_bookings`.`vehicle_id`=`vehicles`.`id` WHERE `service_bookings`.`id`=$book_id");
             if ($vin != "") {
                 if (strlen($vin) == 17) {
-                    $select_car = mysqli_query($db, "SELECT `vehicles`.`id` FROM `service_bookings` INNER JOIN `vehicles` ON `service_bookings`.`vehicle_id`=`vehicles`.`id` WHERE `service_bookings`.`id`=$book_id");
                     if (mysqli_num_rows($select_car) > 0) {
                         $current_vehicle_id = mysqli_fetch_assoc($select_car);
                         $car_id = $current_vehicle_id['id'];
                         $update_vin = mysqli_query($db, "UPDATE `vehicles` SET `vin`='$vin' WHERE `id`=$car_id");
                     }
                 }
+            }else{
+                if (mysqli_num_rows($select_car) > 0) {
+                    $current_vehicle_id = mysqli_fetch_assoc($select_car);
+                    $car_id = $current_vehicle_id['id'];
+                    $check_vin = mysqli_query($db, "SELECT `vin` FROM `vehicles` WHERE `id`=$car_id");
+                }
+                if(isset($check_vin)&&$check_vin!=NULL){
+                    $response=[
+                        "success"=>false,
+                        "message"=>"VIN-код должен состоять из 17 символов."
+                    ];
+                    echo json_encode($response);
+                    die();
+                }
+
             }
         }
     }
@@ -74,9 +89,14 @@ $service = mysqli_fetch_assoc($service);
 
 if ($newStatus == "completed" && $newStatus!=$oldStatus['status']) {
     $move_to_history = mysqli_query($db, "INSERT INTO `service_history` (`id`, `booking_id`, `completion_date`, `completion_time`) VALUES (NULL, '$book_id', '$date', '$time')");
+    $price_str="";
+    if($total_price!=""){
+        $price_str="<p>Окончательная стоимость ремонта составила ".$total_price." р.</p>";
+    }
     $body = "
         <p>Здравствуйте, " . $client['name'] . "</p>
         <p>Услуга " . $service['service_name'] . " выполнена!</p>
+        ".$price_str."
         <p>Приезжайте за автомобилем в удобное для Вас время!</p>
         <p>Спасибо за выбор автосервиса!</p>
         <p>С уважением AutoAce!</p>

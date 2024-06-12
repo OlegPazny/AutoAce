@@ -595,6 +595,11 @@ input[type=checkbox]:checked {
   text-align: center;
 }
 
+.works table tbody tr td {
+  vertical-align: bottom;
+  padding-bottom: 0.5rem;
+}
+
 @media screen and (max-width: 736px) {
   .account-services > table {
     border-spacing: 1;
@@ -2602,8 +2607,8 @@ input[type=checkbox] {
 }
 
 .mechan-comment {
-  width: 200px;
-  height: 150px;
+  width: 9rem;
+  height: 5rem;
 }
 
 .booking-form {
