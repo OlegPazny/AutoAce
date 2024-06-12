@@ -28,6 +28,14 @@ $('.register-btn').click(function(e){
 
         success:function(data){
             if(data.status){
+                $('input[name="name"]').val('');
+                $('input[name="login"]').val('');
+                $('input[name="password"]').val('');
+                $('input[name="email"]').val('');
+                $('input[name="password_confirm"]').val('');
+                $('.popup__bg__error-success').addClass('active');
+                $('.popup__error-success').addClass('active');
+                $('.popup__error-success .data-text').text('Для подтверждения аккаунта проверьте свою почту.');
                 document.querySelector('.popup__bg__sign-in').classList.add('active'); // Добавляем класс 'active' для фона
                 document.querySelector('.signup-section.signin').classList.add('active'); // И для самого окна
 
@@ -37,6 +45,7 @@ $('.register-btn').click(function(e){
                 if(document.querySelector('.signup-section.signup').classList.contains('active')){
                     document.querySelector('.signup-section.signup').classList.remove('active'); // И с окна
                 }  
+
             }else{
                 if(data.type===1){
                     data.fields.forEach(function(field){

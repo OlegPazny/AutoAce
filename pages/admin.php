@@ -326,13 +326,14 @@ function russianMonth($monthNumber)
             <table>
                 <thead>
                     <tr>
-                        <th>Автосервис</th>
+                        <th>Механик</th>
                         <th>Услуга</th>
                         <th>Стоимость</th>
                         <th>Клиент</th>
-                        <th>Комментарий</th>
+                        <th>Комментарий механика</th>
                         <th>Дата выполнения</th>
                         <th>Время выполнения</th>
+                        <th>Конечная стоимость</th>
                         <th>Статус</th>
                     </tr>
                     <thead>
@@ -356,6 +357,7 @@ function russianMonth($monthNumber)
                                 <td>" . $account_history[2] . "</td>
                                 <td>" . $date . "</td>
                                 <td>" . substr($account_history[4], 0, 5) . "</td>
+                                <td>" . $account_history[12] . " р.</td>
                                 <td>");
                             ?>
                             <select class='history-status-select' data-booking-id="<?php echo $account_history[6]; ?>">
