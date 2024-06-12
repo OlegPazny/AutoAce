@@ -93,7 +93,6 @@ require_once "../assets/api/get_workshop_data_script.php";
     <?php require_once "../includes/footer.php"; ?>
 </body>
 <script src="../assets/js/workshop_location.js"></script>
-<script src="../assets/js/book.js"></script>
 <script src="../assets/js/calendar_modal.js"></script>
 
 </html>
