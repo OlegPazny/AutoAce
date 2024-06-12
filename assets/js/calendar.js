@@ -37,7 +37,8 @@ const holidaysList = (year) => {
     ];
 };
 
-const year = new Date().getFullYear();
+// Пример использования
+const year = 2024;
 const holidays = holidaysList(year);
 
 var serviceId;
@@ -52,16 +53,16 @@ function loadServices() {
         success: function (response) {
             console.log(response);
             $('#service').html(response.options);
-            //getServiceDuration();
+            //getProcedureDuration();
             $('#service option:eq(1)').prop('selected', true);
             var firstDefaultServiceId = $('#service option:eq(1)').val();
             serviceId = firstDefaultServiceId;
-            loadWorkersByService(firstDefaultServiceId);
+            loadMastersByService(firstDefaultServiceId);
         }
     });
 }
 
-function loadWorkersByService(serviceId) {
+function loadMastersByService(serviceId) {
     $.ajax({
         url: '../assets/api/get_workers_by_service.php', // Файл PHP для запроса списка мастеров
         method: 'POST',
@@ -77,7 +78,7 @@ function loadWorkersByService(serviceId) {
             var firstDefaultMasterId = $('#master option:first').val();
             masterId = firstDefaultMasterId;
             // Получение записей по первому выбранному мастеру
-            getBookingsByWorker(firstDefaultMasterId);
+            getBookingsByMaster(firstDefaultMasterId);
         }
     });
 }
@@ -85,11 +86,11 @@ function loadWorkersByService(serviceId) {
 // Функция для загрузки списка мастеров в зависимости от выбранной услуги
 $('#service').change(function () {
     serviceId = $(this).val();
-    loadWorkersByService(serviceId);
+    loadMastersByService(serviceId);
 });
 
 // Функция для получения длительности процедуры из выбранной услуги
-function getServiceDuration() {
+function getProcedureDuration() {
     var durationHours = parseFloat($('#service option:selected').attr('data-duration')); // Длительность процедуры в часах
     var durationSlots = Math.ceil(durationHours * 60 / 30); // Количество слотов, из которых состоит процедура
     //console.log("Выбранная в селекте процедура занимает слотов(шт по 30 минут): ", durationSlots);
@@ -99,7 +100,7 @@ function getServiceDuration() {
 $('#master').change(function () {
     masterId = $(this).val();
     //console.log('Выбранный мастер: ' + masterId);
-    getBookingsByWorker(masterId);
+    getBookingsByMaster(masterId);
 });
 
 var workingDayHourStart = parseInt($('.start_hour').val());
@@ -116,7 +117,7 @@ var workingDayHourStartString = "0" + workingDayHourStart + ":00";
 //var workingHoursEnd = moment().set({ hour: 18, minute: 0, second: 0 }); // Устанавливаем конец рабочего дня на 18:00
 
 // Функция для получения занятых временных слотов мастера
-function getBookingsByWorker(masterId) {
+function getBookingsByMaster(masterId) {
     $.ajax({
         url: '../assets/api/get_bookings_by_master.php', // Файл PHP для запроса списка записей
         method: 'POST',
@@ -286,8 +287,8 @@ function removeSubArrays(mainArray) {
 }
 
 // Функция для проверки вмещения промежутков времени в свободные слоты с учетом продолжения на следующие дни 
-function findServiceSlots(freeSlots, durationSlots) {
-    let serviceCombinations = []; // Здесь будем хранить все найденные комбинации
+function findProcedureSlots(freeSlots, durationSlots) {
+    let procedureCombinations = []; // Здесь будем хранить все найденные комбинации
     var workingDayPreHolidayHourEndString = workingDayPreHolidayHourEnd + ":00";
     for (let i = 0; i < freeSlots.length; i++) {
         let currentCombination = []; // Текущая комбинация слотов
@@ -330,12 +331,12 @@ function findServiceSlots(freeSlots, durationSlots) {
             }
             // Если длительность процедуры вмещается в найденные последовательные слоты, добавляем комбинацию
             if (currentCombination.length === durationSlots) {
-                serviceCombinations.push(currentCombination);
+                procedureCombinations.push(currentCombination);
             }
         }
     }
-    removeSubArrays(serviceCombinations);
-    return serviceCombinations;
+    removeSubArrays(procedureCombinations);
+    return procedureCombinations;
 }
 
 //чтобы убирать те слоты, где промежуток времени равен 0 минут
@@ -407,9 +408,9 @@ function defineWorkingHours(busySlots) {
     }
 
     // Шаг 4: Проверка вмещения полученных промежутков времени в свободные слоты работы мастера с учетом продолжения на следующие дни
-    var durationSlots = getServiceDuration(); // Получаем количество слотов, которые занимает процедура
-    var serviceCombinations = findServiceSlots(freeSlots, durationSlots); // Проверяем доступность свободных слотов
-    loadCalendar(serviceCombinations);
+    var durationSlots = getProcedureDuration(); // Получаем количество слотов, которые занимает процедура
+    var procedureCombinations = findProcedureSlots(freeSlots, durationSlots); // Проверяем доступность свободных слотов
+    loadCalendar(procedureCombinations);
 }
 
 var bookServiceDate;
@@ -481,7 +482,7 @@ $('#book').click(function (event) {
                         $('.popup__bg__error-success').addClass('active');
                         $('.popup__error-success').addClass('active');
                         $('.popup__error-success .data-text').text('Запись успешно добавлена! Вы можете отслеживать статус записи в личном кабинете. Помните, что стоимость ремонта предварительная, конечная стоимость ремонта будет сообщена по завершению работ.');
-                        getBookingsByWorker(masterId);
+                        getBookingsByMaster(masterId);
 
                         $('#message').val('');
                         $('#book_submit').prop('checked', false);
@@ -522,7 +523,7 @@ $('#book').click(function (event) {
                         $('.popup__bg__error-success').addClass('active');
                         $('.popup__error-success').addClass('active');
                         $('.popup__error-success .data-text').text('Запись успешно добавлена! Вы можете отслеживать статус записи в личном кабинете. Помните, что стоимость ремонта предварительная, конечная стоимость ремонта будет сообщена по завершению работ.');
-                        getBookingsByWorker(masterId);
+                        getBookingsByMaster(masterId);
 
                         $('#message').val('');
                         $('#book_submit').prop('checked', false);
@@ -567,7 +568,7 @@ $('#book').click(function (event) {
                             $('.popup__bg__error-success').addClass('active');
                             $('.popup__error-success').addClass('active');
                             $('.popup__error-success .data-text').text('Запись успешно добавлена! Вы можете отслеживать статус записи в личном кабинете после регистрации, используя свой адрес электронной почты. Помните, что стоимость ремонта предварительная, конечная стоимость ремонта будет сообщена по завершению работ.');
-                            getBookingsByWorker(masterId);
+                            getBookingsByMaster(masterId);
     
                             $('#message').val('');
                             $('#record_email').val('');

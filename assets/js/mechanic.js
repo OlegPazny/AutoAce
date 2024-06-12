@@ -84,6 +84,12 @@ $(document).ready(function () {
                 const mechan_comment = row.find("textarea[name='mechan_comment']").val();
                 const status = row.find(".status-select").val();
 
+                if(status=="completed"&&total_price==""){
+                    $('.popup__bg__error-success').addClass('active');
+                    $('.popup__error-success').addClass('active');
+                    $('.popup__error-success .data-text').text('Перед завершением работ введите стоимость ремонта.');
+                    return;
+                }
                 if (vin != "") {
                     if (plate == "" || vehicle == "") {
                         $('.popup__bg__error-success').addClass('active');
