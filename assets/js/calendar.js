@@ -37,7 +37,6 @@ const holidaysList = (year) => {
     ];
 };
 
-// Пример использования
 const year = 2024;
 const holidays = holidaysList(year);
 
@@ -47,7 +46,7 @@ var workshopId = $('.workshop_id').val();
 // Функция для загрузки списка услуг
 function loadServices() {
     $.ajax({
-        url: '../assets/api/get_services.php', // Файл PHP для запроса списка услуг
+        url: '../assets/api/get_services.php',
         method: "POST",
         dataType: "json",
         success: function (response) {
@@ -64,7 +63,7 @@ function loadServices() {
 
 function loadMastersByService(serviceId) {
     $.ajax({
-        url: '../assets/api/get_workers_by_service.php', // Файл PHP для запроса списка мастеров
+        url: '../assets/api/get_workers_by_service.php',
         method: 'POST',
         data: {
             serviceId: serviceId,
@@ -73,40 +72,42 @@ function loadMastersByService(serviceId) {
         success: function (response) {
             $('#master').html(response);
 
-            // Автоматически выбираем первого мастера из списка
+            // Автоматически выбираем первого механика из списка
             $('#master option:first').prop('selected', true);
             var firstDefaultMasterId = $('#master option:first').val();
             masterId = firstDefaultMasterId;
-            // Получение записей по первому выбранному мастеру
+            // Получение записей по первому выбранному механику
             getBookingsByMaster(firstDefaultMasterId);
         }
     });
 }
 
-// Функция для загрузки списка мастеров в зависимости от выбранной услуги
 $('#service').change(function () {
     serviceId = $(this).val();
     loadMastersByService(serviceId);
 });
 
-// Функция для получения длительности процедуры из выбранной услуги
+// Функция для получения длительности услуги из выбранной услуги
 function getProcedureDuration() {
-    var durationHours = parseFloat($('#service option:selected').attr('data-duration')); // Длительность процедуры в часах
-    var durationSlots = Math.ceil(durationHours * 60 / 30); // Количество слотов, из которых состоит процедура
-    //console.log("Выбранная в селекте процедура занимает слотов(шт по 30 минут): ", durationSlots);
+    var durationHours = parseFloat($('#service option:selected').attr('data-duration')); // Длительность услуги в часах
+    var durationSlots = Math.ceil(durationHours * 60 / 30); // Количество слотов, из которых состоит услуга
+    console.log("Выбранная в селекте услуга занимает слотов(шт по 30 минут): ", durationSlots);
     return durationSlots;
 }
 
 $('#master').change(function () {
     masterId = $(this).val();
-    //console.log('Выбранный мастер: ' + masterId);
+    console.log('Выбранный механик: ' + masterId);
     getBookingsByMaster(masterId);
 });
 
 var workingDayHourStart = parseInt($('.start_hour').val());
-var workingDayHourEnd = parseInt($('.end_hour').val());
 console.log(workingDayHourStart);
+
+var workingDayHourEnd = parseInt($('.end_hour').val());
 console.log(workingDayHourEnd);
+// console.log(workingDayHourStart);
+// console.log(workingDayHourEnd);
 
 var workingDayPreHolidayHourEnd = workingDayHourEnd - 1;
 
@@ -116,17 +117,18 @@ var workingDayHourStartString = "0" + workingDayHourStart + ":00";
 // var workingHoursStart = moment().set({ hour: 8, minute: 0, second: 0 }); // Устанавливаем начало рабочего дня на 8:00 утра
 //var workingHoursEnd = moment().set({ hour: 18, minute: 0, second: 0 }); // Устанавливаем конец рабочего дня на 18:00
 
-// Функция для получения занятых временных слотов мастера
+// Функция для получения занятых временных слотов механика
 function getBookingsByMaster(masterId) {
+    console.log("getBookingsByMaster");
     $.ajax({
-        url: '../assets/api/get_bookings_by_master.php', // Файл PHP для запроса списка записей
+        url: '../assets/api/get_bookings_by_master.php',
         method: 'POST',
         data: { masterId: masterId },
         success: function (response) {
             // Обработка полученных записей
             var bookings = JSON.parse(response);
             var busySlots = [];
-            //console.log(bookings);
+            console.log(bookings);
             // Проходимся по каждой записи и добавляем занятые слоты в массив
             for (var i = 0; i < bookings.length; i++) {
                 //console.log('i', i);
@@ -135,19 +137,26 @@ function getBookingsByMaster(masterId) {
                 var start = moment(bookings[i].service_date + ' ' + startTime, 'YYYY-MM-DD HH:mm:ss');
                 // Вычисляем время окончания записи
                 var end;
+                console.log(start.toString());
                 var endOnlyToCheck = moment(start).add(bookings[i].duration, 'hours');
+                console.log(endOnlyToCheck.toString());
 
                 if (!isPreHoliday(start, holidays)) {
+                    console.log("isPreHoliday false");
                     if (endOnlyToCheck.isAfter(start.clone().endOf('day').set({ hour: workingDayHourEnd, minute: 0, second: 0 }))) {
                         // Получаем количество часов, которые влезают в день начала проведения услуги
 
                         var start = moment(bookings[i].service_date + ' ' + startTime, 'YYYY-MM-DD HH:mm:ss');
+                        // console.log("start");
+                        // console.log(start.toString());
 
                         var hoursInStartDay = Math.abs(moment(start).diff(start.set({ hour: workingDayHourEnd, minute: 0, second: 0 }), 'hours', 'minutes'));
+                        // console.log("hoursInStartDay");
+                        // console.log(hoursInStartDay);
 
                         var start = moment(bookings[i].service_date + ' ' + startTime, 'YYYY-MM-DD HH:mm:ss');
 
-                        //console.log("Если процедура затрагивает не только 1 день, то остаток часов, которые еще влазят в этот день после начала процедуры:");
+                        //console.log("Если услуга затрагивает не только 1 день, то остаток часов, которые еще влазят в этот день после начала услуги:");
                         //console.log(hoursInStartDay);
 
 
@@ -190,11 +199,13 @@ function getBookingsByMaster(masterId) {
                     // Добавляем оставшееся время, если оно не выходит за пределы рабочего дня
                     else {
                         var end = moment(start).add(bookings[i].duration, 'hours');
+                        
                         let remainder = end.minutes() % 30;
                         if (remainder !== 0) {
                             end.add(30 - remainder, 'minutes');
                         }
                         busySlots.push({ start: start.toString(), end: end.toString() });
+
                     }
                 }
 
@@ -208,7 +219,7 @@ function getBookingsByMaster(masterId) {
 
                         var start = moment(bookings[i].service_date + ' ' + startTime, 'YYYY-MM-DD HH:mm:ss');
 
-                        //console.log("Если процедура затрагивает не только 1 день, то остаток часов, которые еще влазят в этот день после начала процедуры:");
+                        //console.log("Если услуга затрагивает не только 1 день, то остаток часов, которые еще влазят в этот день после начала услуги:");
                         //console.log(hoursInStartDay);
 
 
@@ -260,8 +271,8 @@ function getBookingsByMaster(masterId) {
                 }
 
             }
-            //console.log('Занятые слоты');
-            //console.log(busySlots);
+            console.log('Занятые слоты');
+            console.log(busySlots);
             // Возвращаем массив занятых временных слотов
             defineWorkingHours(busySlots);
         }
@@ -292,7 +303,7 @@ function findProcedureSlots(freeSlots, durationSlots) {
     var workingDayPreHolidayHourEndString = workingDayPreHolidayHourEnd + ":00";
     for (let i = 0; i < freeSlots.length; i++) {
         let currentCombination = []; // Текущая комбинация слотов
-        // Проверка продолжительности процедуры
+        // Проверка продолжительности услуги
         if (i + durationSlots <= freeSlots.length) {
             var k = 0;
             // Проверяем последовательные слоты
@@ -329,7 +340,7 @@ function findProcedureSlots(freeSlots, durationSlots) {
                     break; // Прерываем цикл, если условия не выполнены
                 }
             }
-            // Если длительность процедуры вмещается в найденные последовательные слоты, добавляем комбинацию
+            // Если длительность услуги вмещается в найденные последовательные слоты, добавляем комбинацию
             if (currentCombination.length === durationSlots) {
                 procedureCombinations.push(currentCombination);
             }
@@ -359,20 +370,30 @@ function isPreHoliday(date, holidays) {
 //получаем все свободные слтоты по 30 минут с текущего дня до конца текущего  месяца
 function defineWorkingHours(busySlots) {
     busySlots.sort((a, b) => new Date(a.start) - new Date(b.start));
+    console.log(busySlots);
     var currentDate = moment(); // Текущая дата
-    var endDate = moment(currentDate).endOf('year');  // Конец этого месяца
+    console.log(currentDate);
+    var endDate = moment(currentDate).endOf('year');  // Конец этого года
     const slotDuration = 30;
     var freeSlots = []; // Массив для хранения свободных промежутков времени
     // Итерация по дням с текущего дня до конца года
     while (currentDate.isBefore(endDate)) {
         var isDayPreHoliday = isPreHoliday(currentDate, holidays);
         if (!isHoliday(currentDate, holidays)) {
+
             var workDayStartTime = moment(currentDate).set({ hour: workingDayHourStart, minute: 0, second: 0 });
+            // console.log("workDayStartTime");
+            // console.log(workDayStartTime);
             var workDayEndTime = moment(currentDate).set({ hour: workingDayHourEnd, minute: 0, second: 0 });
+            // console.log(workDayEndTime);
+
             if (isDayPreHoliday) {
                 workDayEndTime = moment(currentDate).set({ hour: workingDayPreHolidayHourEnd, minute: 0, second: 0 });
             }
             let currentSlotStart = moment(workDayStartTime);
+            // console.log("currentSlotStart");
+            // console.log(currentSlotStart);
+
             while (currentSlotStart.isBefore(workDayEndTime)) {
                 let currentSlotEnd = moment(currentSlotStart).add(slotDuration, 'minutes');
                 let isSlotFree = true;
@@ -407,8 +428,8 @@ function defineWorkingHours(busySlots) {
         currentDate.add(1, 'day');
     }
 
-    // Шаг 4: Проверка вмещения полученных промежутков времени в свободные слоты работы мастера с учетом продолжения на следующие дни
-    var durationSlots = getProcedureDuration(); // Получаем количество слотов, которые занимает процедура
+    // Шаг 4: Проверка вмещения полученных промежутков времени в свободные слоты работы механика с учетом продолжения на следующие дни
+    var durationSlots = getProcedureDuration(); // Получаем количество слотов, которые занимает услуга
     var procedureCombinations = findProcedureSlots(freeSlots, durationSlots); // Проверяем доступность свободных слотов
     loadCalendar(procedureCombinations);
 }
