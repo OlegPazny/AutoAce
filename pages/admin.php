@@ -89,10 +89,10 @@ function russianMonth($monthNumber)
 
 <body>
     <?php require_once "../includes/header.php"; ?>
-    <section class="account-section">
+    <section class="account-section moder-section">
         <div class="nav">
-            <div class="burger-menu-account"></div>
-            <ul class="nav__list">
+            <div class="burger-menu-account moder-menu-account"></div>
+            <ul class="nav__list moder-nav">
                 <li class="nav__list__item info-btn">Пользователи</li>
                 <li class="nav__list__item workers-btn">Работники</li>
                 <li class="nav__list__item orders-btn">Заказанные услуги</li>
@@ -321,14 +321,14 @@ function russianMonth($monthNumber)
                     </tbody>
             </table>
         </div>
+
         <div class="account-services history">
             <h2>Архив заказов</h2>
             <table>
                 <thead>
                     <tr>
                         <th>Механик</th>
-                        <th>Услуга</th>
-                        <th>Стоимость</th>
+                        <th>Автомобиль</th>
                         <th>Клиент</th>
                         <th>Комментарий механика</th>
                         <th>Дата выполнения</th>
@@ -340,19 +340,16 @@ function russianMonth($monthNumber)
                     <tbody>
                         <?php
                         foreach ($accounts_history as $account_history) {
-                            $date = strtotime($account_history[3]); // Преобразование строки в дату
-                            $day = date('j', $date);
-                            $month = date('n', $date);
-                            $date = $day . ' ' . russianMonth($month);
-
+                            $dateTime = new DateTime($account_history[3]);
+                            // Преобразуем дату в нужный формат
+                            $date = $dateTime->format('d-m-Y');
                             $price = $account_history[8] * $account_history[9];
                             if ($account_history[10] != NULL) {
                                 $price = $price * (100 - $account_history[10]) / 100;
                             }
                             echo ("<tr>
                                 <td>" . $account_history[0] . "</td>
-                                <td>" . $account_history[1] . "</td>
-                                <td>" . $price . " р.</td>
+                                <td>".$account_history[13]."<br>".$account_history[14]."</td>
                                 <td>" . $account_history[11] . "</td>
                                 <td>" . $account_history[2] . "</td>
                                 <td>" . $date . "</td>

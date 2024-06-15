@@ -114,6 +114,58 @@ $(document).ready(function () {
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send('booking_id=' + bookingId + '&new_status=' + newStatus);
     }
+    function updateRecordHandler() {
+        $('.update-book-button').click(function (e) {
+            e.preventDefault;
+            try {
+                const bookId = $(this).data('book-id');
+                const row = $(this).closest('tr');
+                const vin = row.find("input[name='admin_vin']").val();
+
+                if (vin != "" && vin.length != 17) {
+                    $('.popup__bg__error-success').addClass('active');
+                    $('.popup__error-success').addClass('active');
+                    $('.popup__error-success .data-text').text('Длина VIN-кода должна состоять из 17 символов.');
+                    return;
+                }
+                // Отправляем данные на сервер...
+                const data = {
+                    book_id: bookId,
+                    vin: vin
+                };
+
+                fetch('../assets/api/update_admin_book_script.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            $('.popup__bg__error-success').addClass('active');
+                            $('.popup__error-success').addClass('active');
+                            $('.popup__error-success .data-text').text('VIN обновлен успешно.');
+                        } else {
+                            $('.popup__bg__error-success').addClass('active');
+                            $('.popup__error-success').addClass('active');
+                            $('.popup__error-success .data-text').text(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        $('.popup__bg__error-success').addClass('active');
+                        $('.popup__error-success').addClass('active');
+                        $('.popup__error-success .data-text').text(error);
+                    });
+            } catch (error) {
+                console.error(error);
+            }
+
+        })
+    };
+    updateRecordHandler();
     //удаление записи
     function deleteBookHandler() {
         var deleteButtons = document.querySelectorAll('.delete-book');

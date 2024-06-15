@@ -47,10 +47,10 @@ function russianMonth($monthNumber)
 
 <body>
     <?php require_once "../includes/header.php"; ?>
-    <section class="account-section">
+    <section class="account-section moder-section">
         <div class="nav">
-            <div class="burger-menu-account"></div>
-            <ul class="nav__list">
+            <div class="burger-menu-account moder-menu-account"></div>
+            <ul class="nav__list moder-nav">
                 <li class="nav__list__item info-btn">Пользователи</li>
                 <li class="nav__list__item workers-btn">Работники</li>
                 <li class="nav__list__item orders-btn">Заказанные услуги</li>
@@ -215,9 +215,9 @@ function russianMonth($monthNumber)
                         <th>Услуга</th>
                         <th>Стоимость</th>
                         <th>Клиент</th>
-                        <th>Автомобиль</th>
+                        <th>Автомобиль<br>VIN</th>
                         <th>Комментарий</th>
-                        <th>Дата записи</th>
+                        <th>Дата&nbspзаписи</th>
                         <th>Время записи</th>
                         <th>Статус</th>
                         <th></th>
@@ -233,10 +233,9 @@ function russianMonth($monthNumber)
                             if ($account_book[10] != NULL) {
                                 $name = $account_book[10];
                             }
-                            $date = strtotime($account_book[4]); // Преобразование строки в дату
-                            $day = date('j', $date);
-                            $month = date('n', $date);
-                            $date = $day . ' ' . russianMonth($month);
+                            $dateTime = new DateTime($account_book[4]);
+                            // Преобразуем дату в нужный формат
+                            $date = $dateTime->format('d-m-Y');
 
                             $price = (int) $account_book[7] * (int) $account_book[11];
                             if ($account_book[9] != NULL) {
@@ -247,7 +246,7 @@ function russianMonth($monthNumber)
                                     <td>" . $account_book[2] . "</td>
                                     <td>" . $price . " р.</td>
                                     <td>" . $name . "</td>
-                                    <td>" . $account_book[12] . "</td>
+                                    <td class='vehicle-data'>" . $account_book[12] . "<br>".$account_book[14]."<br><input class='admin-input admin_vin' type='text' value='".$account_book[13]."' name='admin_vin'></td>
                                     <td>" . $account_book[3] . "</td>
                                     <td>" . $date . "</td>
                                     <td>" . substr($account_book[5], 0, 5) . "</td>
@@ -266,6 +265,13 @@ function russianMonth($monthNumber)
                             </select>
                             <?php echo ("</td>
                                     <td>
+                                        <div class='update-book-button' data-book-id='".$account_book[0]."'>
+                                            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'
+                                                    viewBox='0 0 24 24'>
+                                                    <path fill='#232323'
+                                                        d='M21 7v12q0 .825-.587 1.413T19 21H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h12zm-9 11q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-6-8h9V6H6z' />
+                                                </svg>
+                                        </div>
                                         <div class='delete-book' data-book-id='" . $account_book[0] . "''>
                                             <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20'>
                                                 <path fill='#232323' d='M10 1a9 9 0 1 0 9 9a9 9 0 0 0-9-9m5 10H5V9h10z'/>
@@ -284,8 +290,7 @@ function russianMonth($monthNumber)
                 <thead>
                     <tr>
                         <th>Механик</th>
-                        <th>Услуга</th>
-                        <th>Стоимость</th>
+                        <th>Автомобиль</th>
                         <th>Клиент</th>
                         <th>Комментарий механика</th>
                         <th>Дата выполнения</th>
@@ -297,19 +302,16 @@ function russianMonth($monthNumber)
                     <tbody>
                         <?php
                         foreach ($accounts_history as $account_history) {
-                            $date = strtotime($account_history[3]); // Преобразование строки в дату
-                            $day = date('j', $date);
-                            $month = date('n', $date);
-                            $date = $day . ' ' . russianMonth($month);
-
-                            $price=$account_history[8]*$account_history[9];
-                            if($account_history[10]!=NULL){
-                                $price=$price*(100-$account_history[10])/100;
+                            $dateTime = new DateTime($account_history[3]);
+                            // Преобразуем дату в нужный формат
+                            $date = $dateTime->format('d-m-Y');
+                            $price = $account_history[8] * $account_history[9];
+                            if ($account_history[10] != NULL) {
+                                $price = $price * (100 - $account_history[10]) / 100;
                             }
                             echo ("<tr>
                                 <td>" . $account_history[0] . "</td>
-                                <td>" . $account_history[1] . "</td>
-                                <td>" . $price . " р.</td>
+                                <td>".$account_history[13]."<br>".$account_history[14]."</td>
                                 <td>" . $account_history[11] . "</td>
                                 <td>" . $account_history[2] . "</td>
                                 <td>" . $date . "</td>

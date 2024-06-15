@@ -39,11 +39,11 @@ function russianMonth($monthNumber) {
 
 <body>
     <?php require_once "../includes/header.php";?>
-    <section class="account-section">
+    <section class="account-section mechan-section">
         <div class="nav">
-            <div class="burger-menu-account"></div>
+            <div class="burger-menu-account mechan_button"></div>
 
-            <ul class="nav__list">
+            <ul class="nav__list mechan_nav">
                 <li class="nav__list__item info-btn">Личные данные</li>
                 <li class="nav__list__item works-btn">Список работ</li>
             </ul>
@@ -83,11 +83,9 @@ function russianMonth($monthNumber) {
                     <tr>
                         <th>Услуга</th>
                         <th>Клиент</th>
-                        <th>Автомобиль</th>
-                        <th>VIN</th>
+                        <th>Бренд, номер, VIN автомобиля</th>
                         <th>Комментарий</th>
-                        <th>Дата записи</th>
-                        <th>Время записи</th>
+                        <th>Дата и&nbspвремя&nbspзаписи</th>
                         <th>Статус</th>
                         <th>Выполненные работы</th>
                         <th>Стоимость, р.</th>
@@ -100,10 +98,9 @@ function russianMonth($monthNumber) {
                             if($work[6]=="completed"){
                                 continue;
                             }
-                            $date = strtotime($work[4]); // Преобразование строки в дату
-                            $day = date('j', $date);
-                            $month = date('n', $date);
-                            $date = $day . ' ' . russianMonth($month);
+                            $dateTime = new DateTime($work[4]);
+                            // Преобразуем дату в нужный формат
+                            $date = $dateTime->format('d-m-Y');
                             $car_input="<input type='text' class='admin-input' name='car' placeholder='Марка' value='" . $work[7] . "'>";
                             $plate_input="<input type='text' class='admin-input' name='plate' placeholder='0000 XX-1' value='" . $work[10] . "'>";
                             $vin_input="<input type='text' class='admin-input' name='vin' value='" . $work[8] . "'>";
@@ -115,11 +112,9 @@ function russianMonth($monthNumber) {
                             echo ("<tr>
                                         <td>" . $work[1] . "</td>
                                         <td>" . $client_name . "</td>
-                                        <td>" . $car_input . "<br>".$plate_input."</td>
-                                        <td>". $vin_input . "</td>
+                                        <td>" . $car_input . "<br>".$plate_input."<br>". $vin_input . "</td>
                                         <td>" . $work[3] . "</td>
-                                        <td>" . $date . "</td>
-                                        <td>" . substr($work[5], 0, 5) . "</td>
+                                        <td>" . $date . "<br>" . substr($work[5], 0, 5) . "</td>
                                         <td>");
                                 ?>
                                 <select class='status-select mechan-status-select' data-booking-id="<?php echo $work[0]; ?>">
@@ -150,6 +145,7 @@ function russianMonth($monthNumber) {
                         ?>
                     </tbody>
             </table>
+            
         </div>
     </section>
     <?php require_once "../includes/popup.php"; ?>
