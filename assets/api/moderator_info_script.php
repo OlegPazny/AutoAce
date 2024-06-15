@@ -40,12 +40,6 @@
 //типы услуг
     $services_types=mysqli_query($db, "SELECT * FROM `service_type`");
     $services_types=mysqli_fetch_all($services_types);
-//отношения сервис-услуга
-    $relationships=mysqli_query($db, "SELECT `service_workshop_relationships`.`id`, `workshops`.`name`, `services`.`service_name` FROM `service_workshop_relationships`
-    INNER JOIN `workshops` ON `service_workshop_relationships`.`workshop_id`=`workshops`.`id`
-    INNER JOIN `services` ON `service_workshop_relationships`.`service_id`=`services`.`id`
-    ORDER BY `workshops`.`name` DESC");
-    $relationships=mysqli_fetch_all($relationships);
 //отношения работник-услуга
     $worker_services=mysqli_query($db, "SELECT `worker_service_relationships`.`id`, `workers`.`name`, `services`.`service_name`, `workshops`.`name` FROM `worker_service_relationships`
     INNER JOIN `workers` ON `worker_service_relationships`.`worker_id`=`workers`.`id`
