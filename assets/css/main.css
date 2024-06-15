@@ -570,6 +570,9 @@ input[type=checkbox]:checked {
   font-size: 16px;
   color: #fff;
 }
+.account-services > table thead tr th {
+  text-align: center;
+}
 .account-services > table tbody tr {
   height: 48px;
   border-bottom: 1px solid #E3F1D5;
@@ -2178,6 +2181,11 @@ input[type=checkbox] {
   justify-content: space-between;
 }
 
+.mechan-section {
+  flex-direction: column;
+  justify-content: center;
+}
+
 .nav {
   margin-right: 1.7rem;
 }
@@ -2202,7 +2210,33 @@ input[type=checkbox] {
   color: #232323;
 }
 
+.mechan_nav {
+  position: absolute;
+  left: -100%;
+  background-color: #232323;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  transition: left 0.3s ease-in-out;
+}
+.mechan_nav.active {
+  left: 0;
+}
+
+.mechan_button {
+  display: flex;
+}
+
+.burger-menu-account {
+  display: flex;
+}
+
 .nav__list.active ~ .burger-menu-account {
+  left: calc(100% - 3rem);
+}
+
+.nav__list.active ~ .mechan_button {
   left: calc(100% - 3rem);
 }
 
@@ -2223,13 +2257,20 @@ input[type=checkbox] {
   transition: left 0.3s ease-in-out;
 }
 .burger-menu-account:before {
-  content: "❯"; /* Юникод стрелки вправо */
+  content: "❯";
+  /* Юникод стрелки вправо */
   font-size: 2rem;
   color: #232323;
-  transition: transform 0.3s ease-in-out; /* Плавный переход для transform */
+  transition: transform 0.3s ease-in-out;
+  /* Плавный переход для transform */
 }
 .burger-menu-account.active:before {
-  content: "❮"; /* Юникод стрелки влево */
+  content: "❮";
+  /* Юникод стрелки влево */
+}
+
+.mechan_button {
+  display: flex;
 }
 
 .account-info {
@@ -2385,8 +2426,33 @@ input[type=checkbox] {
   align-items: flex-start;
 }
 
-.account-info h2, .orders h2, .history h2, .vehicles h2, .works h2, .accounts h2, .workers h2, .workshops h2, .history h2, .services h2, .service-types h2, .relations h2 {
+.account-info h2 {
   display: none;
+}
+
+.orders,
+.history,
+.vehicles,
+.accounts,
+.workers,
+.workshops,
+.history,
+.services,
+.service-types,
+.relations {
+  width: 100%;
+}
+.orders table,
+.history table,
+.vehicles table,
+.accounts table,
+.workers table,
+.workshops table,
+.history table,
+.services table,
+.service-types table,
+.relations table {
+  max-width: 100%;
 }
 
 .orders {
@@ -2419,13 +2485,19 @@ input[type=checkbox] {
 
 .works {
   display: none;
+  width: 100%;
+}
+.works table {
+  max-width: 100%;
 }
 
 .workshops {
   display: none;
 }
 
-.add-vehicle-button svg, .delete-vehicle svg {
+.add-vehicle-button svg,
+.delete-vehicle svg,
+.update-book-button svg {
   cursor: pointer;
 }
 
@@ -2445,16 +2517,20 @@ input[type=checkbox] {
     height: 2.5rem;
   }
   .account-info__data:nth-child(1) {
-    order: 1; /* Первое место для первого элемента (Имя) */
+    order: 1;
+    /* Первое место для первого элемента (Имя) */
   }
   .account-info__data:nth-child(2) {
-    order: 3; /* Третье место для второго элемента (Пароль) */
+    order: 3;
+    /* Третье место для второго элемента (Пароль) */
   }
   .account-info__data:nth-child(3) {
-    order: 2; /* Второе место для третьего элемента (Почта) */
+    order: 2;
+    /* Второе место для третьего элемента (Почта) */
   }
   .account-info__data:nth-child(4) {
-    order: 4; /* Четвертое место для четвертого элемента (Новый пароль) */
+    order: 4;
+    /* Четвертое место для четвертого элемента (Новый пароль) */
   }
   .nav__list__item {
     padding: 1.3rem 1.4rem 1.3rem 2.7rem;
@@ -2524,7 +2600,18 @@ input[type=checkbox] {
   }
 }
 @media screen and (max-width: 736px) {
-  .account-info h2, .orders h2, .history h2, .vehicles h2, .works h2, .accounts h2, .workers h2, .workshops h2, .history h2, .services h2, .service-types h2, .relations h2 {
+  .account-info h2,
+  .orders h2,
+  .history h2,
+  .vehicles h2,
+  .works h2,
+  .accounts h2,
+  .workers h2,
+  .workshops h2,
+  .history h2,
+  .services h2,
+  .service-types h2,
+  .relations h2 {
     display: block;
     margin-left: 1rem;
     font-size: 1rem;
@@ -2577,6 +2664,29 @@ input[type=checkbox] {
   justify-content: space-between;
 }
 
+.moder-section {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.moder-nav {
+  position: absolute;
+  left: -100%;
+  background-color: #232323;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  transition: left 0.3s ease-in-out;
+}
+.moder-nav.active {
+  left: 0;
+}
+
+.moder-menu-account {
+  display: flex;
+}
+
 .accounts {
   flex-direction: column;
 }
@@ -2607,7 +2717,7 @@ input[type=checkbox] {
 }
 
 .mechan-comment {
-  width: 9rem;
+  width: 15rem !important;
   height: 5rem;
 }
 

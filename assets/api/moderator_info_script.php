@@ -10,7 +10,7 @@
     ");
     $workers=mysqli_fetch_all($workers);
 //записи на услуги
-    $accounts_books=mysqli_query($db, "SELECT `service_bookings`.`id`, `workshops`.`name`, `services`.`service_name`, `message`, `service_date`, `service_time`, `status`, `services`.`duration`, `workshops`.`standart_hour`, `services`.`discount`, `users`.`name`, `workshops`.`standart_hour`, `vehicles`.`brand` FROM `service_bookings`
+    $accounts_books=mysqli_query($db, "SELECT `service_bookings`.`id`, `workshops`.`name`, `services`.`service_name`, `message`, `service_date`, `service_time`, `status`, `services`.`duration`, `workshops`.`standart_hour`, `services`.`discount`, `users`.`name`, `workshops`.`standart_hour`, `vehicles`.`brand`, `vehicles`.`vin`, `vehicles`.`num_plate` FROM `service_bookings`
     INNER JOIN `worker_service_relationships` ON `service_bookings`.`worker_service_id`=`worker_service_relationships`.`id`
     inner join `services` on `worker_service_relationships`.`service_id`=`services`.`id`
     INNER JOIN `workers` ON `worker_service_relationships`.`worker_id`=`workers`.`id`
@@ -20,13 +20,15 @@
     ORDER BY `service_date` ASC, `service_time` ASC");
     $accounts_books=mysqli_fetch_all($accounts_books);
 //история записей
-    $accounts_history=mysqli_query($db, "SELECT `workers`.`name`, `services`.`service_name`, `service_bookings`.`comment`, `service_history`.`completion_date`, `service_history`.`completion_time`, `service_bookings`.`status`, `service_history`.`booking_id`, `workshops`.`name`, `services`.`duration`, `workshops`.`standart_hour`, `services`.`discount`, `users`.`name`, `service_bookings`.`total_price` FROM `service_history`
+    $accounts_history=mysqli_query($db, "SELECT `workers`.`name`, `services`.`service_name`, `service_bookings`.`comment`, `service_history`.`completion_date`, `service_history`.`completion_time`, `service_bookings`.`status`, `service_history`.`booking_id`, `workshops`.`name`, `services`.`duration`, `workshops`.`standart_hour`, `services`.`discount`, `users`.`name`, `service_bookings`.`total_price`, `vehicles`.`brand`, `vehicles`.`vin` FROM `service_history`
     INNER JOIN `service_bookings` ON `service_history`.`booking_id`=`service_bookings`.`id`
+    INNER JOIN `vehicles` ON `service_bookings`.`vehicle_id`=`vehicles`.`id`
     INNER JOIN `worker_service_relationships` ON `service_bookings`.`worker_service_id`=`worker_service_relationships`.`id`
     inner join `services` on `worker_service_relationships`.`service_id`=`services`.`id`
     INNER JOIN `workers` ON `worker_service_relationships`.`worker_id`=`workers`.`id`
     INNER JOIN `workshops` ON `workers`.`workshop_id`=`workshops`.`id`
-    INNER JOIN `users` ON `service_bookings`.`user_id` = `users`.`id`");
+    INNER JOIN `users` ON `service_bookings`.`user_id` = `users`.`id`
+    ORDER BY `service_history`.`completion_date` DESC");
     $accounts_history=mysqli_fetch_all($accounts_history);
 //услуги
     $services=mysqli_query($db, "SELECT `services`.`id`, `service_name`, `description`, `duration`, `service_type`.`type`, `discount` FROM `services`
@@ -38,12 +40,6 @@
 //типы услуг
     $services_types=mysqli_query($db, "SELECT * FROM `service_type`");
     $services_types=mysqli_fetch_all($services_types);
-//отношения сервис-услуга
-    $relationships=mysqli_query($db, "SELECT `service_workshop_relationships`.`id`, `workshops`.`name`, `services`.`service_name` FROM `service_workshop_relationships`
-    INNER JOIN `workshops` ON `service_workshop_relationships`.`workshop_id`=`workshops`.`id`
-    INNER JOIN `services` ON `service_workshop_relationships`.`service_id`=`services`.`id`
-    ORDER BY `workshops`.`name` DESC");
-    $relationships=mysqli_fetch_all($relationships);
 //отношения работник-услуга
     $worker_services=mysqli_query($db, "SELECT `worker_service_relationships`.`id`, `workers`.`name`, `services`.`service_name`, `workshops`.`name` FROM `worker_service_relationships`
     INNER JOIN `workers` ON `worker_service_relationships`.`worker_id`=`workers`.`id`

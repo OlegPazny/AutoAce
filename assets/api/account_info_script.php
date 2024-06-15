@@ -10,7 +10,8 @@
     INNER JOIN `workers` ON `worker_service_relationships`.`worker_id`=`workers`.`id`
     INNER JOIN `workshops` ON `workers`.`workshop_id`=`workshops`.`id`
     LEFT JOIN `vehicles` ON `service_bookings`.`vehicle_id`=`vehicles`.`id`
-    WHERE `service_bookings`.`user_id`=$user_id;");
+    WHERE `service_bookings`.`user_id`=$user_id
+    ORDER BY `service_bookings`.`service_date` ASC");
     $account_books=mysqli_fetch_all($account_books);
 
     $account_history=mysqli_query($db, "SELECT `workers`.`name`, `services`.`service_name`, `service_bookings`.`message`, `service_history`.`completion_date`, `service_history`.`completion_time`, `service_bookings`.`status`, `service_history`.`booking_id`, `workshops`.`name`, `vehicles`.`brand`, `service_bookings`.`total_price` FROM `service_history`

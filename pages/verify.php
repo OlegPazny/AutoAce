@@ -20,7 +20,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     var accountStatus = document.getElementById('accountStatus').value;
 
-    if (accountStatus === '1') {
+    if (accountStatus == '1') {
         alert('Аккаунт подтвержден!');
         window.location.href = '../index.php';
     }else{
