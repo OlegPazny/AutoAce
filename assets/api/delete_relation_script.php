@@ -2,7 +2,7 @@
     require_once "db_connect.php";
 
     $relationId = $_POST['relation_id'];
-    $query="DELETE FROM `service_workshop_relationships` WHERE `id`=$relationId";
+    $query="DELETE FROM `worker_service_relationships` WHERE `id`=$relationId";
 
     if(mysqli_query($db, $query)){
         echo json_encode([

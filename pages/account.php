@@ -107,7 +107,7 @@ function russianMonth($monthNumber)
                 </div>
             </div>
         </div>
-        <div class="account-services orders">
+        <div class="account-services orders account-orders">
             <h2>Мои записи</h2>
             <div class="order-cards-container">
 
@@ -165,7 +165,7 @@ function russianMonth($monthNumber)
 
             </div>
         </div>
-        <div class="account-services history">
+        <div class="account-services history account-history">
             <h2>История заказов</h2>
             <table>
                 <thead>
@@ -174,7 +174,7 @@ function russianMonth($monthNumber)
                         <th>Работник</th>
                         <th>Автомобиль</th>
                         <th>Услуга</th>
-                        <th>Комментарий</th>
+                        <th>Комментарий<br>механика</th>
                         <th>Дата завершения</th>
                         <th>Время завершения</th>
                         <th>Конечная стоимость, р.</th>
@@ -192,7 +192,7 @@ function russianMonth($monthNumber)
                                     <td>" . $item[0] . "</td>
                                     <td>" . $item[8] . "</td>
                                     <td>" . $item[1] . "</td>
-                                    <td>" . $item[2] . "</td>
+                                    <td>" . $item[10] . "</td>
                                     <td>" . $date . "</td>
                                     <td>" . substr($item[4], 0, 5) . "</td>
                                     <td>" . $item[9] . "</td>
@@ -202,7 +202,7 @@ function russianMonth($monthNumber)
                     </tbody>
             </table>
         </div>
-        <div class="account-services vehicles">
+        <div class="account-services vehicles account-vehicles">
             <h2>Мои автомобили</h2>
             <table class="vehicles-table">
                 <thead>

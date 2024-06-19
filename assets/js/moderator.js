@@ -182,7 +182,7 @@ $(document).ready(function () {
                     if (xhr.status === 200) {
                         $('.popup__bg__error-success').addClass('active');
                         $('.popup__error-success').addClass('active');
-                        $('.popup__error-success .data-text').text('запись удалена.');
+                        $('.popup__error-success .data-text').text('Запись удалена.');
                         var bookRow = button.parentNode.parentNode;
                         bookRow.parentNode.removeChild(bookRow);
                     } else {

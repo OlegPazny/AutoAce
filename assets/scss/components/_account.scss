@@ -288,6 +288,11 @@
         display: none;
     }
 }
+.account-history, .account-orders, .account-vehicles{
+    & h2{
+        display: none;
+    }
+}
 .orders,
 .history,
 .vehicles,

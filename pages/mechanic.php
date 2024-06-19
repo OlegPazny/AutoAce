@@ -36,7 +36,20 @@ function russianMonth($monthNumber) {
     <!-- jQuery connection -->
     <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
 </head>
-
+<style>
+    .textarea-container {
+      position: relative;
+      display: flex;
+      flex-direction: column-reverse; /* Это позволяет увеличить высоту вверх */
+    }
+    .auto-resize-textarea {
+      width: 300px; /* Фиксированная ширина */
+      min-height: 50px; /* Минимальная высота */
+      resize: none; /* Отключаем возможность ручного изменения размера */
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+  </style>
 <body>
     <?php require_once "../includes/header.php";?>
     <section class="account-section mechan-section">
@@ -129,7 +142,7 @@ function russianMonth($monthNumber) {
                                         Выполнено</option>
                                 </select>
                                 <?php echo ("</td>
-                                        <td><textarea class='admin-input mechan-comment' name='mechan_comment'>".$work[9]."</textarea></td>
+                                        <td><div class='textarea-container'><textarea id='autoResizeTextarea' class='admin-input mechan-comment auto-resize-textarea' rows='1' name='mechan_comment'>".$work[9]."</textarea></div></td>
                                         <td><input type='text' class='admin-input total-price' name='total_price' value='".$work[11]."'></td>
                                         <td>
                                             <div class='update-book-button' data-book-id='".$work[0]."'>
@@ -152,7 +165,20 @@ function russianMonth($monthNumber) {
 </body>
 <script src="../assets/js/mechanic.js"></script>
 <script>
+        function autoResizeTextarea(textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+    }
 document.addEventListener('DOMContentLoaded', function() {
+    const textareas = document.querySelectorAll('.auto-resize-textarea');
+      textareas.forEach(textarea => {
+        textarea.addEventListener('input', function() {
+          autoResizeTextarea(textarea);
+        });
+
+        // Инициализация начальной высоты
+        autoResizeTextarea(textarea);
+      });
     const burger = document.querySelector('.burger-menu-account'); // Получить элемент бургер-кнопки
     const navList = document.querySelector('.nav__list'); // Получить элемент списка навигации
     const mediaQuery = window.matchMedia('(max-width: 736px)'); // Создать медиа-запрос для ширины экрана до 736px

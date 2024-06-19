@@ -2430,6 +2430,10 @@ input[type=checkbox] {
   display: none;
 }
 
+.account-history h2, .account-orders h2, .account-vehicles h2 {
+  display: none;
+}
+
 .orders,
 .history,
 .vehicles,
@@ -2704,7 +2708,7 @@ input[type=checkbox] {
   outline: none !important;
 }
 
-.add-service-button, .block-user, .delete-service, .block-worker, .delete-relation, .add-worker-button, .add-service-button, .add-relation-button, .add-workshop-button, .update-workshop, .delete-workshop, .add-service-type-button, .delete-service-type {
+.add-service-button, .block-user, .delete-service, .block-worker, .delete-relation, .add-worker-button, .add-service-button, .add-relation-button, .add-workshop-button, .update-workshop, .delete-workshop, .add-service-type-button, .delete-service-type, .update-service {
   cursor: pointer;
 }
 
@@ -2718,7 +2722,6 @@ input[type=checkbox] {
 
 .mechan-comment {
   width: 15rem !important;
-  height: 5rem;
 }
 
 .booking-form {

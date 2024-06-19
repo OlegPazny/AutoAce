@@ -14,7 +14,7 @@
     ORDER BY `service_bookings`.`service_date` ASC");
     $account_books=mysqli_fetch_all($account_books);
 
-    $account_history=mysqli_query($db, "SELECT `workers`.`name`, `services`.`service_name`, `service_bookings`.`message`, `service_history`.`completion_date`, `service_history`.`completion_time`, `service_bookings`.`status`, `service_history`.`booking_id`, `workshops`.`name`, `vehicles`.`brand`, `service_bookings`.`total_price` FROM `service_history`
+    $account_history=mysqli_query($db, "SELECT `workers`.`name`, `services`.`service_name`, `service_bookings`.`message`, `service_history`.`completion_date`, `service_history`.`completion_time`, `service_bookings`.`status`, `service_history`.`booking_id`, `workshops`.`name`, `vehicles`.`brand`, `service_bookings`.`total_price`, `service_bookings`.`comment` FROM `service_history`
     INNER JOIN `service_bookings` ON `service_history`.`booking_id`=`service_bookings`.`id`
     LEFT JOIN `vehicles` ON `service_bookings`.`vehicle_id`=`vehicles`.`id`
     INNER JOIN `worker_service_relationships` ON `service_bookings`.`worker_service_id`=`worker_service_relationships`.`id`

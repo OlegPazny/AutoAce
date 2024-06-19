@@ -241,12 +241,16 @@ function russianMonth($monthNumber)
                             if ($account_book[9] != NULL) {
                                 $price = $price * (100 - (int) $account_book[9]) / 100;
                             }
+                            $vin_data="";
+                            if($account_book[12]!=NULL){
+                                $vin_data=$account_book[12] . "<br>".$account_book[14]."<br><input class='admin-input admin_vin' type='text' value='".$account_book[13]."' name='admin_vin'>";
+                            }
                             echo ("<tr>
                                     <td>" . $account_book[1] . "</td>
                                     <td>" . $account_book[2] . "</td>
                                     <td>" . $price . " р.</td>
                                     <td>" . $name . "</td>
-                                    <td class='vehicle-data'>" . $account_book[12] . "<br>".$account_book[14]."<br><input class='admin-input admin_vin' type='text' value='".$account_book[13]."' name='admin_vin'></td>
+                                    <td class='vehicle-data'>" . $vin_data ."</td>
                                     <td>" . $account_book[3] . "</td>
                                     <td>" . $date . "</td>
                                     <td>" . substr($account_book[5], 0, 5) . "</td>
